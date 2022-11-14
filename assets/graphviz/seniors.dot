@@ -1,0 +1,68 @@
+digraph ORG {
+    splines=ortho;
+    ranksep=0.2;
+
+    node[shape=box, width=3 height=0.6 fontname="Arial"];
+    // Command staff nodes
+    CC    [ label = "{CC}"          ]
+    CD    [ label = "{DC}"   ]
+    CCN   [ label = "{CCN}"       ]
+    SE    [ label = "{SE}"     ]
+    CdtCC [ label = "{C/CC}" ]
+
+    // Program staff nodes
+    CPA  [ label = "{CPA}" ]
+    AE   [ label = "{AE}"  ]
+    HCI  [ label = "{HCI}" ]
+    DOS  [ label = "{DOS}" ]
+    CPL  [ label = "{CPL}" ]
+    CPF  [ label = "{CPF}" ]
+    RR   [ label = "{RR}"  ]
+
+    // Support staff nodes
+    DA  [ label = "{DA}" ]
+    DC  [ label = "{DC}" ]
+    PD  [ label = "{PD}" ]
+    FM  [ label = "{FM}" ]
+    IT  [ label = "{IT}" ]
+    LG  [ label = "{LG}" ]
+    DP  [ label = "{DP}" ]
+    PA  [ label = "{PA}" ]
+
+    node[shape=box, width=4.9 height=0.6 fontname="Arial"];
+    prog [ label = "Program Staff" ]
+    sup  [ label = "Support Staff" ]
+
+    node[shape=none, width=0, height=0, label=""];
+    edge[dir=none];
+
+    // Command staff layout
+    CC -> command -> se -> staff -> CdtCC;
+    {rank=same; CD -> command -> CCN;}
+    {rank=same; SE -> se;}
+    {rank=same; programs -> staff -> support;}
+    
+    // Program staff layout
+    programs -> prog -> prg_lvl_1 -> prg_lvl_2 -> prg_lvl_3 -> prg_lvl_4
+    {rank=same; CPA -> prg_lvl_1 -> AE;}
+    {rank=same; HCI -> prg_lvl_2 -> DOS;}
+    {rank=same; CPL -> prg_lvl_3 -> CPF;}
+    {rank=same; RR  -> prg_lvl_4;}
+
+    // Support staff layout
+    support -> sup -> sup_lvl_1 -> sup_lvl_2 -> sup_lvl_3 -> sup_lvl_4
+    {rank=same; DA -> sup_lvl_1 -> DC;}
+    {rank=same; PD -> sup_lvl_2 -> FM;}
+    {rank=same; IT -> sup_lvl_3 -> LG;}
+    {rank=same; DP -> sup_lvl_4 -> PA;}
+
+    // Alignment
+    //CdtCC -> spacer [style=invis];
+    {rank=same; AE  -> DA [style=invis];}
+    {rank=same; DOS -> FM [style=invis];}
+    {rank=same; CPF -> LG [style=invis];}
+    CPA -> HCI -> CPL -> RR [style=invis]
+    AE -> DOS -> CPF [style=invis]
+    DC -> FM -> LG -> PA [style=invis]
+    PD -> IT -> DP [style=invis]
+}

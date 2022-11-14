@@ -1,0 +1,85 @@
+digraph ORG {
+    splines=ortho;
+    ranksep=0.2;
+
+    node[shape=box, width=3.2 height=0.6 fontname="Arial"];
+    // Command staff nodes
+    CC   [ label = "{C/CC}"  ]
+    CCF  [ label = "{C/CCF}" ]
+    CDO  [ label = "{C/CDO}" ]
+    CDS  [ label = "{C/CDS}" ]
+
+    // Line Staff Nodes
+    // Alpha Flight
+    ACC   [ label = "{AFlt/CC}"   ]
+    ACCF  [ label = "{AFlt/CCF}"  ]
+    A1EL  [ label = "{AFlt/CCF1}" ]
+    A2EL  [ label = "{AFlt/CCF2}" ]
+    A3EL  [ label = "{AFlt/CCF3}" ]
+
+    // Bravo Flight
+    BCC   [ label = "{BFlt/CC}"   ]
+    BCCF  [ label = "{BFlt/CCF}"  ]
+    B1EL  [ label = "{BFlt/CCF1}" ]
+    B2EL  [ label = "{BFlt/CCF2}" ]
+    B3EL  [ label = "{BFlt/CCF3}" ]
+
+    // Support staff nodes
+    AE   [ label = "{C/AE}"  ]
+    DA   [ label = "{C/DA}"  ]
+    DC   [ label = "{C/DC}"  ]
+    CPL  [ label = "{C/CPL}" ]
+    DO   [ label = "{C/DO}"  ]
+    PA   [ label = "{C/PA}"  ]
+    RR   [ label = "{C/RR}"  ]
+    LGS  [ label = "{C/LGS}" ]
+
+
+    node[shape=none, width=0, height=0, label=""];
+    edge[dir=none];
+
+    // Command staff layout
+    CC -> command -> directorates;
+    {rank=same; CCF -> command;}
+    {rank=same; CDO -> directorates -> CDS [minlen=8];}
+
+    // Line Staff Layout
+    CDO -> flt_cc
+    {rank=same; ACC -> flt_cc -> BCC;}
+
+    // Alpha Flight
+    ACC -> ACCF
+    ACCF -> el_a1 -> el_a2 -> el_a3
+    {rank=same; A1EL -> el_a1;}
+    {rank=same; A2EL -> el_a2;}
+    {rank=same; A3EL -> el_a3;}
+
+    // Bravo Flight
+    BCC -> BCCF
+    BCCF -> el_b1 -> el_b2 -> el_b3
+    {rank=same; B1EL -> el_b1;}
+    {rank=same; B2EL -> el_b2;}
+    {rank=same; B3EL -> el_b3;}
+
+    // Support staff layout
+    CDS -> sup_lvl_1 -> sup_lvl_2 -> sup_lvl_3 -> sup_lvl_4
+    {rank=same; AE -> sup_lvl_1 -> DA;}
+    {rank=same; DC -> sup_lvl_2 -> CPL;}
+    {rank=same; DO -> sup_lvl_3 -> PA;}
+    {rank=same; RR -> sup_lvl_4 -> LGS;}
+
+    // Alignment
+    {rank=same; BCC -> AE [style=invis;minlen=2];}
+    {rank=same; ACCF -> BCCF -> DC [style=invis;minlen=2];}
+    {rank=same; el_b1 -> DO [style=invis;minlen=2];}
+    {rank=same; el_b2 -> RR [style=invis;minlen=2];}
+
+
+    {rank=same; el_a1 -> B1EL [style=invis];}
+    {rank=same; el_a2 -> B2EL [style=invis];}
+    {rank=same; el_a3 -> B3EL [style=invis];}
+    A1EL -> A2EL -> A3EL [style=invis]
+    B1EL -> B2EL -> B3EL [style=invis]
+    AE -> DC -> DO -> RR [style=invis]
+    DA -> CPL -> PA -> LGS [style=invis]
+}

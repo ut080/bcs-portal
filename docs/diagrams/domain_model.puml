@@ -1,0 +1,112 @@
+@startuml
+!theme spacelab
+skinparam linetype ortho
+
+/'
+    Org Package
+
+    This package is the core domain model.
+'/
+class org.DutyAssignment {
+    +DutyTitle: string
+    +Assistant: bool
+    +OfficeSymbol: string
+    +MinGrade: *Grade
+    +MaxGrade: *Grade
+    +Assignee: *Member
+}
+
+class org.Element {
+    +ElementLeader: DutyAssignment
+    +AsstElementLeader: DutyAssignment
+    +Members: Members[]
+}
+
+class org.Flight {
+    +Name: string
+    +Abbreviation: string
+    +FlightCommander: DutyAssignment
+    +FlightSergeant: DutyAssignment
+    +Elements: Element[]
+}
+
+class org.Member {
+    +CAPID: int
+    +LastName: string
+    +FirstName: string
+    +MemberType: MemberType
+    +Grade: Grade
+    +String(): string
+    +FullName(): string
+}
+
+class org.StaffGroup {
+    +Name string
+    +SubGroups: StaffSubGroup[]
+}
+
+class org.StaffSubGroup {
+    +Name: string
+    +Leader: DutyAssignment
+    +DirectReports: DutyAssignments[]
+}
+
+enum org.Grade
+enum org.MemberType
+
+org.DutyAssignment *-- org.Grade
+org.DutyAssignment *-- org.Member
+
+org.Element *-- org.DutyAssignment
+org.Element o-- org.Member
+
+org.Flight *-- org.DutyAssignment
+org.Flight o-- org.Element
+
+org.Member *-- org.MemberType
+org.Member *-- org.Grade
+
+org.StaffGroup o-- org.StaffSubGroup
+org.StaffSubGroup o-- org.DutyAssignment
+
+/'
+    CAPWATCH Package
+
+    This package is for retrieving and extracting data from CAPWATCH dumps.
+'/
+class capwatch.Dump {
+    -dump: byte[]
+    +NewDump(dump: byte[]): *Dump
+}
+
+class capwatch.Client {
+    -capwatch_username: *string
+    -capwatch_password: *string
+    +Fetch(filename: string, refresh: bool): *Dump, error
+    -queryCapwatch(): *Dump, error
+    -writeCache(dump: *Dump, filename: string): error
+    -readCache(filename: string): *Dump, error
+}
+
+/'
+    YAML Package
+
+    This package is for processing additional information contained in YAML
+    documents (e.g. element assignments or staff groupings for the attendance logs).
+'/
+
+/'
+    XLSX Package
+
+    This package is for reading information from/writing information to the official
+    flight lists document.
+'/
+
+/'
+    LaTeX Package
+
+    This package is for generating documents from domain data, e.g. barcode attendance logs
+    or domain charts.
+'/
+
+@enduml

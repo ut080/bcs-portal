@@ -1,0 +1,41 @@
+package yaml
+
+import (
+	"path/filepath"
+	"testing"
+
+	"github.com/spf13/viper"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/suite"
+
+	"github.com/derhabicht/herriman/tests"
+)
+
+type TableOfOrganizationSuite struct {
+	suite.Suite
+}
+
+func (suite *TableOfOrganizationSuite) SetupTest() {
+	tests.SetUpTestConfig(testDataDir)
+}
+
+func (suite *TableOfOrganizationSuite) TestLoadTableOfOrganization() {
+	daCfg := DutyAssignmentConfig{}
+	err := LoadYamlDocFromFile(filepath.Join(testDataDir, "config", "duty_assignments.yaml"), &daCfg)
+	assert.NoError(suite.T(), err)
+
+	domainDACfg := daCfg.DomainDutyAssignments()
+
+	to := TableOfOrganization{}
+	err = LoadYamlDocFromFile(filepath.Join(testDataDir, "to.yaml"), &to)
+	assert.NoError(suite.T(), err)
+
+	domainTo, err := to.DomainTableOfOrganization(domainDACfg)
+	assert.NoError(suite.T(), err)
+
+	assert.Equal(suite.T(), viper.GetInt("test_member.capid"), domainTo.Flights[0].FlightCommander.Assignee.CAPID)
+}
+
+func TestTableOfOrganizationSuite(t *testing.T) {
+	suite.Run(t, new(TableOfOrganizationSuite))
+}

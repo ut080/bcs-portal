@@ -1,0 +1,22 @@
+digraph ORG {
+    splines=ortho;
+    ranksep=0.2;
+
+    node[shape=box, width=5 height=0.6 fontname="Arial"];
+
+    POTUS    [ label = "{POTUS}"       ]
+    SECDEF   [ label = "{SECDEF}"      ]
+    SECAF    [ label = "{SECAF}"       ]
+    CSAF     [ label = "{CSAF}"        ]
+    ACC      [ label = "{ACC/CC}"      ]
+    AFNORTH  [ label = "{AFNORTH/CC}"  ]
+    CAPUSAF  [ label = "{CAP-USAF/CC}" ]
+    CAPCC    [ label = "{CAP/CC}"      ]
+    RMRCC    [ label = "{RMR/CC}"      ]
+    UTWGCC   [ label = "{UTWG/CC}"     ]
+    UT080CC  [ label = "{UT080/CC"     ]
+
+    edge[dir=none];
+
+    POTUS -> SECDEF -> SECAF -> CSAF -> ACC -> AFNORTH -> CAPUSAF -> CAPCC -> RMRCC -> UTWGCC -> UT080CC
+}

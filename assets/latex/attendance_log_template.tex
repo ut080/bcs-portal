@@ -1,0 +1,33 @@
+\documentclass[12pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{ag7ifform}
+\usepackage{attendance}
+\usepackage{datetime2}
+\usepackage{fancyhdr}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage[code=Code39, X=0.5mm, ratio=2.5, H=1cm]{makebarcode}
+
+\setlength{\headheight}{72pt}
+\setlength{\textheight}{650pt}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[height=0.75in]{cap_command_emblem.jpg}}
+\fancyhead[C]{{\Large Blackhawk Cadet Squadron \\ Attendance Log for\ \FormTextBoxU{1.0in}{date}}}
+\fancyhead[R]{\includegraphics[height=0.75in]{ut080_patch.png}}
+\fancyfoot[R]{Page\ \thepage\ of\ \pageref{LastPage}}
+\fancyfoot[L]{Generated:\ \today}
+\pagestyle{fancy}
+
+\newcounter{lineNumber}
+
+\begin{document}
+    %\begin{StaffGroup}{GROUP_NAME}
+    %    \StaffSubGroup{SUBGROUP_NAME}
+    %    \Member{CAPID}{NAME}
+    %\end{StaffGroup}
+
+    %{STAFF_GROUPS}
+
+\end{document}

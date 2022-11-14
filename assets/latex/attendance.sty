@@ -1,0 +1,44 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{attendance}
+
+\RequirePackage{longtable}
+\RequirePackage{nth}
+
+\newenvironment{StaffGroup}[1]{%
+    \stepcounter{elementNumber}
+    \begin{longtable}{|r|l|c|c|c|c|c|c|}
+        \hline
+        \multicolumn{8}{|c|}{\textbf{#1}} \\
+        \hline
+        \multicolumn{1}{|c|}{\textbf{CAPID}} &
+        \multicolumn{1}{|c|}{\textbf{Name}} &
+        \textbf{E}                          &
+        \textbf{L}                          &
+        \textbf{P}                          &
+        \textbf{U}                          &
+        \textbf{ID}                         &
+        \textbf{T}                         \\
+        \hline
+        \endhead
+        }{%
+    \end{longtable}
+    \setcounter{elementNumber}{0}
+}
+
+\newcommand{\StaffSubGroup}[1]{%
+    \multicolumn{8}{|l|}{\textbf{#1}} \\
+    \hline
+}
+
+\newcommand{\Member}[2]{%
+    \stepcounter{lineNumber}
+    \barcode{#1}                                      &
+    #2                                                &
+    \FormCheckBox{excused\arabic{lineNumber}}{}       &
+    \FormCheckBox{late\arabic{lineNumber}}{}          &  
+    \FormCheckBox{present\arabic{lineNumber}}{}       &  
+    \FormCheckBox{uniform\arabic{lineNumber}}{}       &  
+    \FormCheckBox{id\arabic{lineNumber}}{}            &
+    \FormCheckBox{test\arabic{lineNumber}}{}         \\
+    \hline
+}
