@@ -1,4 +1,4 @@
-module github.com/ut080/bcsdp
+module github.com/ut080/bcs-portal
 
 go 1.19
 

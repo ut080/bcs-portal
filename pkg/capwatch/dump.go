@@ -11,7 +11,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
 
-	"github.com/derhabicht/herriman/pkg"
+	"github.com/ut080/bcs-portal/pkg"
 )
 
 type Dump struct {

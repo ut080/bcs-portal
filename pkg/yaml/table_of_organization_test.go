@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/derhabicht/herriman/tests"
+	"github.com/ut080/bcs-portal/tests"
 )
 
 type TableOfOrganizationSuite struct {

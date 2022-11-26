@@ -1,7 +1,7 @@
 package yaml
 
 import (
-	"github.com/derhabicht/herriman/pkg"
+	"github.com/ut080/bcs-portal/pkg"
 )
 
 type DutyAssignmentConfig struct {

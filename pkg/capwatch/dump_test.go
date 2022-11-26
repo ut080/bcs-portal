@@ -8,8 +8,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/derhabicht/herriman/pkg"
-	"github.com/derhabicht/herriman/tests"
+	"github.com/ut080/bcs-portal/pkg"
+	"github.com/ut080/bcs-portal/tests"
 )
 
 type DumpTestSuite struct {

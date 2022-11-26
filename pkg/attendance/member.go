@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/derhabicht/herriman/pkg"
+	"github.com/ut080/bcs-portal/pkg"
 )
 
 type Member struct {

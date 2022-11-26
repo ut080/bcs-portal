@@ -8,7 +8,7 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/sbani/go-humanizer/numbers"
 
-	"github.com/derhabicht/herriman/pkg"
+	"github.com/ut080/bcs-portal/pkg"
 )
 
 type LogGroup struct {

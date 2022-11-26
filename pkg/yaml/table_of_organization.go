@@ -6,7 +6,7 @@ import (
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/pkg/errors"
 
-	"github.com/derhabicht/herriman/pkg"
+	"github.com/ut080/bcs-portal/pkg"
 )
 
 type TableOfOrganization struct {
