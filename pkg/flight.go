@@ -3,7 +3,6 @@ package pkg
 import (
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/pkg/errors"
-	"github.com/rs/zerolog/log"
 )
 
 type Flight struct {
@@ -20,7 +19,6 @@ func (f *Flight) PopulateMemberData(members map[uint]Member, accounted *mapset.S
 			// TODO: Instead of halting on error, continue to populate and return a slice of errors
 			return errors.Errorf("no member found with CAPID %d", f.FlightCommander.Assignee.CAPID)
 		}
-		log.Trace().Msgf("Found %s commander: %s", f.Name, cc)
 		f.FlightCommander.Assignee = &cc
 		(*accounted).Add(cc.CAPID)
 	}
@@ -31,7 +29,6 @@ func (f *Flight) PopulateMemberData(members map[uint]Member, accounted *mapset.S
 			// TODO: Instead of halting on error, continue to populate and return a slice of errors
 			return errors.Errorf("no member found with CAPID %d", f.FlightSergeant.Assignee.CAPID)
 		}
-		log.Trace().Msgf("Found %s Flight Sergeant: %s", f.Name, ccf)
 		f.FlightSergeant.Assignee = &ccf
 		(*accounted).Add(ccf.CAPID)
 	}
@@ -65,7 +62,6 @@ func (e *Element) PopulateMemberData(members map[uint]Member, accounted *mapset.
 			// TODO: Instead of halting on error, continue to populate and return a slice of errors
 			return errors.Errorf("no member found with CAPID %d", e.ElementLeader.Assignee.CAPID)
 		}
-		log.Trace().Msgf("Found Element Leader: %s", el)
 		e.ElementLeader.Assignee = &el
 		(*accounted).Add(el.CAPID)
 	}
@@ -76,7 +72,6 @@ func (e *Element) PopulateMemberData(members map[uint]Member, accounted *mapset.
 			// TODO: Instead of halting on error, continue to populate and return a slice of errors
 			return errors.Errorf("no member found with CAPID %d", e.AsstElementLeader.Assignee.CAPID)
 		}
-		log.Trace().Msgf("Found Assistant Element Leader: %s", ael)
 		e.AsstElementLeader.Assignee = &ael
 		(*accounted).Add(ael.CAPID)
 	}
@@ -88,7 +83,6 @@ func (e *Element) PopulateMemberData(members map[uint]Member, accounted *mapset.
 		if !ok {
 			return errors.Errorf("no member found with CAPID %d", member.CAPID)
 		}
-		log.Trace().Msgf("Found Element Member: %s", mbr)
 		elementMembers = append(elementMembers, mbr)
 		(*accounted).Add(mbr.CAPID)
 	}

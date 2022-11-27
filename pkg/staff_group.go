@@ -3,7 +3,6 @@ package pkg
 import (
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/pkg/errors"
-	"github.com/rs/zerolog/log"
 )
 
 type StaffGroup struct {
@@ -40,7 +39,6 @@ func (ssg *StaffSubGroup) PopulateMemberData(members map[uint]Member, assigned *
 			// TODO: Instead of halting on error, continue to populate and return a slice of errors
 			return errors.Errorf("no member found with CAPID %d", ssg.Leader.Assignee.CAPID)
 		}
-		log.Trace().Msgf("Found %s leader: %s", ssg.Name, leader)
 		ssg.Leader.Assignee = &leader
 		(*assigned).Add(leader.CAPID)
 	}
@@ -53,7 +51,6 @@ func (ssg *StaffSubGroup) PopulateMemberData(members map[uint]Member, assigned *
 				// TODO: Instead of halting on error, continue to populate and return a slice of errors
 				return errors.Errorf("no member found with CAPID %d", ssg.Leader.Assignee.CAPID)
 			}
-			log.Trace().Msgf("Found %s assignee: %s", report.DutyTitle, member)
 			report.Assignee = &member
 			(*assigned).Add(member.CAPID)
 
