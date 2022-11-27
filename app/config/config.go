@@ -1,8 +1,34 @@
 package config
 
 import (
+	"os"
+	"path/filepath"
+
+	"github.com/pkg/errors"
 	"github.com/spf13/viper"
 )
+
+// Directory functions
+
+// ConfigDir returns the directory where configuration files and assets are stored.
+func ConfigDir() (string, error) {
+	hd, err := os.UserConfigDir()
+	if err != nil {
+		return "", errors.WithMessage(err, "failed to find user home directory")
+	}
+
+	return filepath.Join(hd, "bcs-portal"), nil
+}
+
+// CacheDir returns the directory where CAPWATCH and other cache files are stored.
+func CacheDir() (string, error) {
+	cd, err := os.UserCacheDir()
+	if err != nil {
+		return "", errors.WithMessage(err, "failed to find user cache directory")
+	}
+
+	return filepath.Join(cd, "bcs-portal"), nil
+}
 
 // Config setup functions
 
@@ -37,6 +63,11 @@ func WriteConfigAs(path string) error {
 }
 
 // Configuration access functions
+
+// GetInt wraps Viper's GetInt function.
+func GetInt(key string) int {
+	return viper.GetInt(key)
+}
 
 // GetString wraps Viper's GetString function.
 func GetString(key string) string {

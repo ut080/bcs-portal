@@ -1,0 +1,211 @@
+duty_assignments:
+  - symbol: CC
+    title: 'Commander'
+  - symbol: CD
+    title: 'Deputy Commander'
+    capwatch_title: 'Deputy Commander for Cadets'
+  - symbol: CCN
+    title: 'NCO Advisor'
+    capwatch_title: 'Squadron NCO'
+  - symbol: SE
+    title: 'Safety Officer'
+  - symbol: CPA
+    title: 'Activities Officer'
+    capwatch_title: 'Cadet Activities Officer'
+  - symbol: AE
+    title: 'Aerospace Education Officer'
+  - symbol: HCI
+    title: 'Character Development Instructor'
+  - symbol: DOS
+    title: 'Emergency Services Officer'
+  - symbol: CPL
+    title: 'Leadership Officer'
+    capwatch_title: 'Squadron Leadership Officer'
+  - symbol: CPF
+    title: 'Fitness Officer'
+  - symbol: RR
+    title: 'Recruiting & Retention Officer'
+  - symbol: DA
+    title: 'Administrative Officer'
+  - symbol: DC
+    title: 'Communications Officer'
+  - symbol: PD
+    title: 'Education and Training Officer'
+  - symbol: FM
+    title: 'Finance Officer'
+  - symbol: IT
+    title: 'Information Technology Officer'
+  - symbol: LG
+    title: 'Logistics Officer'
+  - symbol: DP
+    title: 'Personnel Officer'
+  - symbol: PA
+    title: 'Public Affairs Officer'
+  - symbol: C/CC
+    title: 'Cadet Commander'
+    min_grade: 'C/2d Lt'
+    max_grade: 'C/Col'
+  - symbol: C/CDO
+    title: 'Cadet Deputy Commander for Operations'
+    min_grade: 'C/2d Lt'
+    max_grade: 'C/Col'
+  - symbol: C/CDS
+    title: 'Cadet Deputy Commander for Support'
+    min_grade: 'C/2d Lt'
+    max_grade: 'C/Col'
+  - symbol: C/CCF
+    title: 'First Sergeant'
+    capwatch_title: 'Cadet First Sergeant'
+    min_grade: 'C/MSgt'
+    max_grade: 'C/CMSgt'
+  - symbol: C/CA
+    title: 'Cadet Advisory Council Representative'
+    capwatch_title: 'Cadet WCAC Representative'
+  - symbol: AFlt/CC
+    title: 'Alpha Flight Commander'
+    capwatch_title: 'Cadet Flight Commander'
+    min_grade: 'C/MSgt'
+    max_grade: 'C/Capt'
+  - symbol: AFlt/CCF
+    title: 'Alpha Flight Sergeant'
+    capwatch_title: 'Cadet Flight Sergeant'
+    min_grade: 'C/SSgt'
+    max_grade: 'C/CMSgt'
+  - symbol: AFlt/CCF1
+    title: 'Element A-1 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
+  - symbol: AFlt/CCF2
+    title: 'Element A-2 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
+  - symbol: AFlt/CCF3
+    title: 'Element A-3 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
+  - symbol: BFlt/CC
+    title: 'Bravo Flight Commander'
+    capwatch_title: 'Cadet Flight Commander'
+    min_grade: 'C/MSgt'
+    max_grade: 'C/Capt'
+  - symbol: BFlt/CCF
+    title: 'Bravo Flight Sergeant'
+    capwatch_title: 'Cadet Flight Sergeant'
+    min_grade: 'C/SSgt'
+    max_grade: 'C/CMSgt'
+  - symbol: BFlt/CCF1
+    title: 'Element B-1 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
+  - symbol: BFlt/CCF2
+    title: 'Element B-2 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
+  - symbol: BFlt/CCF3
+    title: 'Element B-3 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
+  - symbol: C/AE
+    title: 'Cadet Aerospace Education Officer'
+    min_grade: 'C/2d Lt'
+    max_grade: 'C/Col'
+  - symbol: C/AEN
+    title: 'Cadet Aerospace Education NCO'
+    min_grade: 'C/SSgt'
+    max_grade: 'C/CMSgt'
+  - symbol: C/AEA
+    title: 'Cadet Aerospace Education Assistant'
+    min_grade: 'C/A1C'
+    max_grade: 'C/SrA'
+  - symbol: C/DA
+    title: 'Cadet Administrative Officer'
+    min_grade: 'C/2d Lt'
+    max_grade: 'C/Col'
+  - symbol: C/DAN
+    title: 'Cadet Administrative NCO'
+    min_grade: 'C/SSgt'
+    max_grade: 'C/CMSgt'
+  - symbol: C/DAA
+    title: 'Cadet Administrative Assistant'
+    min_grade: 'C/A1C'
+    max_grade: 'C/SrA'
+  - symbol: C/DC
+    title: 'Cadet Communications Officer'
+    min_grade: 'C/2d Lt'
+    max_grade: 'C/Col'
+  - symbol: C/DCN
+    title: 'Cadet Communications NCO'
+    min_grade: 'C/SSgt'
+    max_grade: 'C/CMSgt'
+  - symbol: C/DCA
+    title: 'Cadet Communications Assistant'
+    min_grade: 'C/A1C'
+    max_grade: 'C/SrA'
+  - symbol: C/CPL
+    title: 'Cadet Leadership Officer'
+    capwatch_title: 'Cadet Leadership Education Officer'
+    min_grade: 'C/2d Lt'
+    max_grade: 'C/Col'
+  - symbol: C/CPLN
+    title: 'Cadet Leadership NCO'
+    capwatch_title: 'Cadet Leadership Education NCO'
+    min_grade: 'C/SSgt'
+    max_grade: 'C/CMSgt'
+  - symbol: C/CPLA
+    title: 'Cadet Leadership Assistant'
+    min_grade: 'C/A1C'
+    max_grade: 'C/SrA'
+  - symbol: C/DO
+    title: 'Cadet Operations Officer'
+    min_grade: 'C/2d Lt'
+    max_grade: 'C/Col'
+  - symbol: C/DON
+    title: 'Cadet Operations NCO'
+    min_grade: 'C/SSgt'
+    max_grade: 'C/CMSgt'
+  - symbol: C/DOA
+    title: 'Cadet Operations Assistant'
+    min_grade: 'C/A1C'
+    max_grade: 'C/SrA'
+  - symbol: C/PA
+    title: 'Cadet Public Affairs Officer'
+    min_grade: 'C/2d Lt'
+    max_grade: 'C/Col'
+  - symbol: C/PAN
+    title: 'Cadet Public Affairs NCO'
+    min_grade: 'C/SSgt'
+    max_grade: 'C/CMSgt'
+  - symbol: C/PAA
+    title: 'Cadet Public Affairs Assistant'
+    min_grade: 'C/A1C'
+    max_grade: 'C/SrA'
+  - symbol: C/RR
+    title: 'Cadet Recruiting Officer'
+    min_grade: 'C/2d Lt'
+    max_grade: 'C/Col'
+  - symbol: C/RRN
+    title: 'Cadet Recruiting NCO'
+    min_grade: 'C/SSgt'
+    max_grade: 'C/CMSgt'
+  - symbol: C/RRA
+    title: 'Cadet Recruiting Assistant'
+    min_grade: 'C/A1C'
+    max_grade: 'C/SrA'
+  - symbol: C/LGS
+    title: 'Cadet Supply Officer'
+    min_grade: 'C/2d Lt'
+    max_grade: 'C/Col'
+  - symbol: C/LGSN
+    title: 'Cadet Supply NCO'
+    min_grade: 'C/SSgt'
+    max_grade: 'C/CMSgt'
+  - symbol: C/LGSA
+    title: 'Cadet Supply Assistant'
+    min_grade: 'C/A1C'
+    max_grade: 'C/SrA'

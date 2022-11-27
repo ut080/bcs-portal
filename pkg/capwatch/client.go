@@ -35,7 +35,7 @@ func NewClient(orgID, capwatchUsername, capwatchPassword string, refresh int, lo
 
 func (c Client) Fetch(filename string, refresh bool) (dump *Dump, err error) {
 	if !refresh {
-		if !c.refreshCache(filename) {
+		if !c.WillRefreshCache(filename) {
 			dump, err = c.readCache(filename)
 			if err == nil {
 				c.logger.Info().Msg("CAPWATCH cache loaded")
@@ -43,6 +43,7 @@ func (c Client) Fetch(filename string, refresh bool) (dump *Dump, err error) {
 			}
 			c.logger.Warn().Err(err).Msg("failed to find CAPWATCH cache, re-querying from CAPWATCH")
 		}
+		c.logger.Info().Msg("refreshing CAPWATCH cache")
 	}
 
 	dump, err = c.queryCapwatch()
@@ -59,7 +60,7 @@ func (c Client) Fetch(filename string, refresh bool) (dump *Dump, err error) {
 	return dump, nil
 }
 
-func (c Client) refreshCache(filename string) bool {
+func (c Client) WillRefreshCache(filename string) bool {
 	info, err := os.Stat(filename)
 	if err != nil {
 		return true
@@ -69,11 +70,11 @@ func (c Client) refreshCache(filename string) bool {
 	diff := int((now.Sub(info.ModTime()).Hours()) / 24)
 
 	if diff >= c.refresh {
-		c.logger.Info().Int("age", diff).Int("refresh", c.refresh).Msg("CAPWATCH cache is old, refreshing")
+		c.logger.Info().Int("age", diff).Int("refresh", c.refresh).Msg("CAPWATCH cache is old")
 		return true
 	}
 
-	c.logger.Info().Int("age", diff).Int("refresh", c.refresh).Msg("CAPWATCH cache is new enough, continuing")
+	c.logger.Info().Int("age", diff).Int("refresh", c.refresh).Msg("CAPWATCH cache is new enough")
 	return false
 }
 
