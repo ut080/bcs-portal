@@ -9,6 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 
+	"github.com/ut080/bcs-portal/app/logging"
 	"github.com/ut080/bcs-portal/tests"
 )
 
@@ -26,7 +27,7 @@ func (suite *ClientTestSuite) TestFetch() {
 	username := viper.GetString("capwatch.username")
 	password := viper.GetString("capwatch.password")
 	refresh := viper.GetInt("capwatch.refresh")
-	client := NewClient(orgID, username, password, refresh)
+	client := NewClient(orgID, username, password, refresh, logging.Logger{})
 
 	cacheFile := filepath.Join(testDataDir, "cache", "capwatch.zip")
 

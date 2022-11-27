@@ -9,8 +9,8 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
-	"github.com/rs/zerolog/log"
 
+	"github.com/ut080/bcs-portal/app/logging"
 	"github.com/ut080/bcs-portal/pkg"
 )
 
@@ -70,19 +70,22 @@ func (d *Dump) FetchMembers() (members map[uint]pkg.Member, err error) {
 
 		capid, err := strconv.Atoi(record[0])
 		if err != nil {
-			log.Warn().Err(err).Int("col", 0).Str("capid", record[0]).Msg("error converting CAPID, skipping record")
+			// TODO: Remove direct calls to logger
+			logging.Warn().Err(err).Int("col", 0).Str("capid", record[0]).Msg("error converting CAPID, skipping record")
 			continue
 		}
 		lastName := record[2]
 		firstName := record[3]
 		memberType, err := pkg.ParseMemberType(record[21])
 		if err != nil {
-			log.Warn().Err(err).Int("capid", capid).Int("col", 21).Str("member_type", record[21]).Msg("error converting MemberType, skipping record")
+			// TODO: Remove direct calls to logger
+			logging.Warn().Err(err).Int("capid", capid).Int("col", 21).Str("member_type", record[21]).Msg("error converting MemberType, skipping record")
 			continue
 		}
 		grade, err := pkg.ParseGrade(record[14])
 		if err != nil {
-			log.Error().Err(err).Int("capid", capid).Int("col", 14).Str("grade", record[14]).Msg("error converting Grade, skipping record")
+			// TODO: Remove direct calls to logger
+			logging.Error().Err(err).Int("capid", capid).Int("col", 14).Str("grade", record[14]).Msg("error converting Grade, skipping record")
 			continue
 		}
 

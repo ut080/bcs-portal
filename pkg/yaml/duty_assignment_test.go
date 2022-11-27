@@ -7,6 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 
+	"github.com/ut080/bcs-portal/app/logging"
 	"github.com/ut080/bcs-portal/pkg"
 )
 
@@ -17,7 +18,7 @@ type DutyAssignmentSuite struct {
 func (suite *DutyAssignmentSuite) TestLoadReadDutyAssignmentConfig() {
 	dac := DutyAssignmentConfig{}
 
-	err := LoadYamlDocFromFile(filepath.Join(testDataDir, "config", "duty_assignments.yaml"), &dac)
+	err := LoadYamlDocFromFile(filepath.Join(testDataDir, "config", "duty_assignments.yaml"), &dac, logging.Logger{})
 	assert.NoError(suite.T(), err)
 
 	// NOTE: This test assumes that C/CC is defined in duty_assignments.yaml as follows:

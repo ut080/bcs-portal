@@ -6,7 +6,6 @@ import (
 	"time"
 
 	mapset "github.com/deckarep/golang-set/v2"
-	"github.com/rs/zerolog/log"
 
 	"github.com/ut080/bcs-portal/pkg"
 )
@@ -66,7 +65,6 @@ func (bl *BarcodeLog) PopulateFromTableOfOrganization(to pkg.TableOfOrganization
 }
 
 func (bl *BarcodeLog) LaTeX() string {
-	log.Debug().Msg("Generating Barcode Log")
 	// Build preamble
 	latex := barcodeLogPreamble
 	latex = strings.Replace(latex, "$(UNIT)", bl.Unit, 1)

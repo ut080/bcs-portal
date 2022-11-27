@@ -5,7 +5,6 @@ import (
 	"strings"
 
 	mapset "github.com/deckarep/golang-set/v2"
-	"github.com/rs/zerolog/log"
 	"github.com/sbani/go-humanizer/numbers"
 
 	"github.com/ut080/bcs-portal/pkg"
@@ -85,7 +84,6 @@ func (lg LogGroup) Height() (h uint) {
 }
 
 func (lg LogGroup) LaTeX() string {
-	log.Debug().Str("log_group", lg.Name).Msg("Generating LaTeX for log group")
 	s := strings.Replace(logGroupBeginTemplate, "$(LOG_GROUP)", lg.Name, 1)
 
 	for _, group := range lg.SubGroups {
@@ -160,7 +158,6 @@ func (lsg LogSubGroup) LaTeX() string {
 		return ""
 	}
 
-	log.Debug().Str("log_subgroup", lsg.Name).Msg("Generating LaTeX for log subgroup")
 	s := strings.Replace(logSubGroupTemplate, "$(LOG_SUB_GROUP)", lsg.Name, 1)
 
 	for _, member := range lsg.Members {

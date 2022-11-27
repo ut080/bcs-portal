@@ -10,6 +10,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 
+	"github.com/ut080/bcs-portal/app/logging"
 	"github.com/ut080/bcs-portal/pkg"
 	"github.com/ut080/bcs-portal/pkg/capwatch"
 	"github.com/ut080/bcs-portal/pkg/yaml"
@@ -24,7 +25,7 @@ type BarcodeLogSuite struct {
 
 func loadTOConfig() (pkg.TableOfOrganization, error) {
 	daCfg := yaml.DutyAssignmentConfig{}
-	err := yaml.LoadYamlDocFromFile(filepath.Join(testDataDir, "config", "duty_assignments.yaml"), &daCfg)
+	err := yaml.LoadYamlDocFromFile(filepath.Join(testDataDir, "config", "duty_assignments.yaml"), &daCfg, logging.Logger{})
 	if err != nil {
 		return pkg.TableOfOrganization{}, err
 	}
@@ -32,7 +33,7 @@ func loadTOConfig() (pkg.TableOfOrganization, error) {
 	domainDACfg := daCfg.DomainDutyAssignments()
 
 	to := yaml.TableOfOrganization{}
-	err = yaml.LoadYamlDocFromFile(filepath.Join(testDataDir, "to.yaml"), &to)
+	err = yaml.LoadYamlDocFromFile(filepath.Join(testDataDir, "to.yaml"), &to, logging.Logger{})
 	if err != nil {
 		return pkg.TableOfOrganization{}, err
 	}
@@ -50,7 +51,7 @@ func loadCAPWATCHData() (map[uint]pkg.Member, time.Time, error) {
 	username := viper.GetString("capwatch.username")
 	password := viper.GetString("capwatch.password")
 	refresh := viper.GetInt("capwatch.refresh")
-	client := capwatch.NewClient(orgID, username, password, refresh)
+	client := capwatch.NewClient(orgID, username, password, refresh, logging.Logger{})
 
 	cacheFile := filepath.Join(testDataDir, "cache", "capwatch.zip")
 

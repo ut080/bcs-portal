@@ -4,20 +4,21 @@ import (
 	"os"
 
 	"github.com/pkg/errors"
-	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v3"
+
+	"github.com/ut080/bcs-portal/app/logging"
 )
 
-func LoadYamlDocFromFile(filename string, out interface{}) error {
+func LoadYamlDocFromFile(filename string, out interface{}, logger logging.Logger) error {
 	raw, err := os.ReadFile(filename)
 	if err != nil {
-		log.Error().Err(err).Str("filename", filename).Msg("failed to read yaml file")
+		logger.Error().Err(err).Str("filename", filename).Msg("failed to read yaml file")
 		return errors.WithStack(err)
 	}
 
 	err = yaml.Unmarshal(raw, out)
 	if err != nil {
-		log.Error().Err(err).Msg("failed to unmarshal yaml document")
+		logger.Error().Err(err).Msg("failed to unmarshal yaml document")
 		return errors.WithStack(err)
 	}
 

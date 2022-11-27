@@ -8,6 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 
+	"github.com/ut080/bcs-portal/app/logging"
 	"github.com/ut080/bcs-portal/pkg"
 	"github.com/ut080/bcs-portal/tests"
 )
@@ -25,7 +26,7 @@ func (suite *DumpTestSuite) TestFetchMembers() {
 	username := viper.GetString("capwatch.username")
 	password := viper.GetString("capwatch.password")
 	refresh := viper.GetInt("capwatch.refresh")
-	client := NewClient(orgID, username, password, refresh)
+	client := NewClient(orgID, username, password, refresh, logging.Logger{})
 
 	cacheFile := filepath.Join(testDataDir, "cache", "capwatch.zip")
 
@@ -43,7 +44,7 @@ func (suite *DumpTestSuite) TestFetchMembers() {
 	//		first_name: <FIRST_NAME>
 	//		grade: <GRADE>
 	//		member_type: <MEMBER_TYPE>
-	testMember, ok := members[viper.GetInt("test_member.capid")]
+	testMember, ok := members[viper.GetUint("test_member.capid")]
 	assert.True(suite.T(), ok)
 
 	testMemberType, err := pkg.ParseMemberType(viper.GetString("test_member.member_type"))
@@ -55,7 +56,7 @@ func (suite *DumpTestSuite) TestFetchMembers() {
 		panic(err)
 	}
 
-	assert.Equal(suite.T(), viper.GetInt("test_member.capid"), testMember.CAPID)
+	assert.Equal(suite.T(), viper.GetUint("test_member.capid"), testMember.CAPID)
 	assert.Equal(suite.T(), viper.GetString("test_member.last_name"), testMember.LastName)
 	assert.Equal(suite.T(), viper.GetString("test_member.first_name"), testMember.FirstName)
 	assert.Equal(suite.T(), testMemberType, testMember.MemberType)

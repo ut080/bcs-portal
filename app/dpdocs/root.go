@@ -4,7 +4,12 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
+
+	"github.com/ut080/bcs-portal/app/config"
+	"github.com/ut080/bcs-portal/app/logging"
 )
+
+var logLevel string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -23,5 +28,8 @@ func Execute() {
 }
 
 func init() {
-	//rootCmd.PersistentFlags().StringVar(&logLevel, "loglevel", "", "")
+	rootCmd.PersistentFlags().StringVar(&logLevel, "loglevel", "info", "")
+
+	logging.InitLogging(logLevel, true)
+	config.InitConfig()
 }
