@@ -22,12 +22,13 @@ func (suite *ClientTestSuite) SetupTest() {
 }
 
 func (suite *ClientTestSuite) TestFetch() {
-	suite.T().Skip("This test hits CAPWATCH, comment out the Skip() method if you want it to run.")
+	//suite.T().Skip("This test hits CAPWATCH, comment out the Skip() method if you want it to run.")
 	orgID := viper.GetString("capwatch.orgid")
 	username := viper.GetString("capwatch.username")
 	password := viper.GetString("capwatch.password")
 	refresh := viper.GetInt("capwatch.refresh")
-	client := NewClient(orgID, username, password, refresh, logging.Logger{})
+	client := NewClient(orgID, username, refresh, logging.Logger{})
+	client.SetCapwatchPassword([]byte(password))
 
 	cacheFile := filepath.Join(testDataDir, "cache", "capwatch.zip")
 

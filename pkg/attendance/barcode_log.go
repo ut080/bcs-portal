@@ -10,6 +10,74 @@ import (
 	"github.com/ut080/bcs-portal/pkg"
 )
 
+const (
+	blankEntries = 17
+
+	textHeight = 650
+
+	barcodeLogPreamble = `\documentclass[12pt]{article}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{datetime2}
+\usepackage{fancyhdr}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage[code=Code39, X=0.5mm, ratio=2.5, H=1cm]{makebarcode}
+\usepackage{xltabular}
+
+\setlength{\headheight}{72pt}
+\setlength{\textheight}{650pt}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[height=0.75in]{$(COMMAND_EMBLEM_PATH)}}
+\fancyhead[C]{{\Large $(UNIT) \\ Attendance Log for\ $(LOG_DATE)}}
+\fancyhead[R]{\includegraphics[height=0.75in]{$(UNIT_PATCH_PATH)}}
+\fancyfoot[R]{Page\ \thepage\ of\ \pageref{LastPage}}
+\fancyfoot[L]{Current as of:\ $(LAST_CAPWATCH_SYNC)}
+\pagestyle{fancy}
+
+\newcommand{\FormCheckBox}[2]{%
+    \CheckBox[height=0.1in, width=0.15in, borderwidth=1pt, bordercolor={0 0 0}, backgroundcolor={}, name=#1]{#2}
+}
+
+\newcounter{lineNumber}
+
+\begin{document}
+
+`
+
+	barcodeLogEndTemplate = `\end{document}
+`
+
+	blankGroupBeginTemplate = `\pagebreak
+
+\begin{xltabular}{\textwidth}{|r|X|c|c|c|c|}
+    \hline
+    \multicolumn{6}{|c|}{\textbf{Visitors/New Members}} \\
+    \hline
+    \multicolumn{1}{|c|}{\textbf{CAPID/Contact}} & 
+    \multicolumn{1}{|c|}{\textbf{Name}}          & 
+    \textbf{P}                                   & 
+    \textbf{E}                                   & 
+    \textbf{ID}                                  & 
+    \textbf{U}                                   \\
+    \hline
+    \endhead
+`
+
+	blankEntryLineTemplate = `\stepcounter{lineNumber}
+    \hspace{2.25in}                                   &
+                                                      &
+    \FormCheckBox{present\arabic{lineNumber}}{}       &  
+    \FormCheckBox{excused\arabic{lineNumber}}{}       &
+    \FormCheckBox{id\arabic{lineNumber}}{}            &
+    \FormCheckBox{uniform\arabic{lineNumber}}{}       \\[0.75cm]
+    \hline
+`
+
+	blankGroupEndTemplate = `\end{xltabular}`
+)
+
 type BarcodeLog struct {
 	Unit              string
 	CommandEmblemPath string
@@ -21,8 +89,8 @@ type BarcodeLog struct {
 	heightAcc         uint
 }
 
-func NewBarcodeLog(unit, commandEmblemPath, unitPatchPath string, logDate, lastCapwatchSync time.Time) BarcodeLog {
-	bl := BarcodeLog{
+func NewBarcodeLog(unit, commandEmblemPath, unitPatchPath string, logDate, lastCapwatchSync time.Time) (bl *BarcodeLog) {
+	nbl := BarcodeLog{
 		Unit:              unit,
 		CommandEmblemPath: commandEmblemPath,
 		UnitPatchPath:     unitPatchPath,
@@ -31,6 +99,7 @@ func NewBarcodeLog(unit, commandEmblemPath, unitPatchPath string, logDate, lastC
 		ignore:            mapset.NewSet[uint](),
 	}
 
+	bl = &nbl
 	return bl
 }
 
@@ -64,13 +133,13 @@ func (bl *BarcodeLog) PopulateFromTableOfOrganization(to pkg.TableOfOrganization
 	bl.LogGroups = append(bl.LogGroups, unassigned)
 }
 
-func (bl *BarcodeLog) LaTeX() string {
+func (bl *BarcodeLog) LaTeX() (latex string) {
 	// Build preamble
-	latex := barcodeLogPreamble
+	latex = barcodeLogPreamble
 	latex = strings.Replace(latex, "$(UNIT)", bl.Unit, 1)
 	latex = strings.Replace(latex, "$(COMMAND_EMBLEM_PATH)", bl.CommandEmblemPath, 1)
 	latex = strings.Replace(latex, "$(UNIT_PATCH_PATH)", bl.UnitPatchPath, 1)
-	latex = strings.Replace(latex, "$(LOG_DATE)", bl.LogDate.Format("02 Jan 2006"), 1)
+	latex = strings.Replace(latex, "$(LOG_DATE)", bl.LogDate.Format("2 Jan 2006"), 1)
 	latex = strings.Replace(latex, "$(LAST_CAPWATCH_SYNC)", bl.LastCapwatchSync.Format("02 Jan 2006"), 1)
 
 	// Inject log groups
@@ -93,69 +162,3 @@ func (bl *BarcodeLog) LaTeX() string {
 	latex += barcodeLogEndTemplate
 	return latex
 }
-
-const blankEntries = 17
-
-const textHeight = 650
-
-const barcodeLogPreamble = `\documentclass[12pt]{article}
-
-\usepackage[hidelinks]{hyperref}
-\usepackage{datetime2}
-\usepackage{fancyhdr}
-\usepackage[margin=0.5in]{geometry}
-\usepackage{graphicx}
-\usepackage{lastpage}
-\usepackage[code=Code39, X=0.5mm, ratio=2.5, H=1cm]{makebarcode}
-\usepackage{xltabular}
-
-\setlength{\headheight}{72pt}
-\setlength{\textheight}{650pt}
-\fancyhf{}
-\fancyhead[L]{\includegraphics[height=0.75in]{$(COMMAND_EMBLEM_PATH)}}
-\fancyhead[C]{{\Large $(UNIT) \\ Attendance Log for\ $(LOG_DATE)}}
-\fancyhead[R]{\includegraphics[height=0.75in]{$(UNIT_PATCH_PATH)}}
-\fancyfoot[R]{Page\ \thepage\ of\ \pageref{LastPage}}
-\fancyfoot[L]{Current as of:\ $(LAST_CAPWATCH_SYNC)}
-\pagestyle{fancy}
-
-\newcommand{\FormCheckBox}[2]{%
-    \CheckBox[height=0.1in, width=0.15in, borderwidth=1pt, bordercolor={0 0 0}, backgroundcolor={}, name=#1]{#2}
-}
-
-\newcounter{lineNumber}
-
-\begin{document}
-
-`
-
-const barcodeLogEndTemplate = `\end{document}
-`
-
-const blankGroupBeginTemplate = `\pagebreak
-
-\begin{xltabular}{\textwidth}{|r|X|c|c|c|c|}
-    \hline
-    \multicolumn{6}{|c|}{\textbf{Visitors/New Members}} \\
-    \hline
-    \multicolumn{1}{|c|}{\textbf{CAPID/Contact}} & 
-    \multicolumn{1}{|c|}{\textbf{Name}}          & 
-    \textbf{P}                                   & 
-    \textbf{E}                                   & 
-    \textbf{ID}                                  & 
-    \textbf{U}                                   \\
-    \hline
-    \endhead
-`
-
-const blankEntryLineTemplate = `\stepcounter{lineNumber}
-    \hspace{2.25in}                                   &
-                                                      &
-    \FormCheckBox{present\arabic{lineNumber}}{}       &  
-    \FormCheckBox{excused\arabic{lineNumber}}{}       &
-    \FormCheckBox{id\arabic{lineNumber}}{}            &
-    \FormCheckBox{uniform\arabic{lineNumber}}{}       \\[0.75cm]
-    \hline
-`
-
-const blankGroupEndTemplate = `\end{xltabular}`

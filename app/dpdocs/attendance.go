@@ -1,6 +1,7 @@
 package dpdocs
 
 import (
+	"fmt"
 	"os"
 	"time"
 
@@ -10,7 +11,6 @@ import (
 	"github.com/ut080/bcs-portal/app/logging"
 )
 
-var capwatchPassword string // TODO: Handle this without having to type password in the clear on the command line
 var outfile string
 
 var attendanceCmd = &cobra.Command{
@@ -19,13 +19,18 @@ var attendanceCmd = &cobra.Command{
 	Long:  ``,
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		logDate, err := time.Parse("2006-01-02", args[1])
+		logDateStr := args[1]
+		logDate, err := time.Parse("2006-01-02", logDateStr)
 		if err != nil {
 			logging.Error().Err(err).Msg("Invalid date format for log date, use ISO 8601")
 			os.Exit(1)
 		}
 
-		err = attendance.BuildBarcodeLog(args[0], outfile, capwatchPassword, logDate)
+		if outfile == "" {
+			outfile = fmt.Sprintf("%s.pdf", logDateStr)
+		}
+
+		err = attendance.BuildBarcodeLog(args[0], outfile, logDate)
 		if err != nil {
 			logging.Error().Err(err).Msg("Failed to generate barcode attendance log")
 			os.Exit(1)
@@ -34,8 +39,7 @@ var attendanceCmd = &cobra.Command{
 }
 
 func init() {
-	attendanceCmd.Flags().StringVarP(&capwatchPassword, "password", "p", "", "eServices password")
-	attendanceCmd.Flags().StringVarP(&outfile, "out", "o", "attendance.pdf", "output file path")
+	attendanceCmd.Flags().StringVarP(&outfile, "out", "o", "", "output file path (defaults to the log date)")
 
 	rootCmd.AddCommand(attendanceCmd)
 }

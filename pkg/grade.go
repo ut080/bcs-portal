@@ -41,74 +41,77 @@ const (
 	CdtAB       Grade = "C/AB"
 )
 
-func ParseGrade(grade string) (Grade, error) {
-	switch grade {
+func ParseGrade(gradeStr string) (grade Grade, err error) {
+	switch gradeStr {
 	case "Maj Gen":
-		return MajGen, nil
+		grade = MajGen
 	case "Brig Gen":
-		return BrigGen, nil
+		grade = BrigGen
 	case "Col":
-		return Col, nil
+		grade = Col
 	case "Lt Col":
-		return LtCol, nil
+		grade = LtCol
 	case "Maj":
-		return Maj, nil
+		grade = Maj
 	case "Capt":
-		return Capt, nil
+		grade = Capt
 	case "1st Lt":
-		return FirstLt, nil
+		grade = FirstLt
 	case "2d Lt":
-		return SecondLt, nil
+		grade = SecondLt
 	case "SFO":
-		return SFO, nil
+		grade = SFO
 	case "TFO":
-		return TFO, nil
+		grade = TFO
 	case "FO":
-		return FO, nil
+		grade = FO
 	case "CMSgt":
-		return CMSgt, nil
+		grade = CMSgt
 	case "SMSgt":
-		return SMSgt, nil
+		grade = SMSgt
 	case "MSgt":
-		return MSgt, nil
+		grade = MSgt
 	case "TSgt":
-		return TSgt, nil
+		grade = TSgt
 	case "SSgt":
-		return SSgt, nil
+		grade = SSgt
 	case "SM":
-		return SM, nil
+		grade = SM
 	case "C/Col":
-		return CdtCol, nil
+		grade = CdtCol
 	case "C/Lt Col":
-		return CdtLtCol, nil
+		grade = CdtLtCol
 	case "C/Maj":
-		return CdtMaj, nil
+		grade = CdtMaj
 	case "C/Capt":
-		return CdtCapt, nil
+		grade = CdtCapt
 	case "C/1st Lt":
-		return CdtFirstLt, nil
+		grade = CdtFirstLt
 	case "C/2d Lt":
-		return CdtSecondLt, nil
+		grade = CdtSecondLt
 	case "C/CMSgt":
-		return CdtCMSgt, nil
+		grade = CdtCMSgt
 	case "C/SMSgt":
-		return CdtSMSgt, nil
+		grade = CdtSMSgt
 	case "C/MSgt":
-		return CdtMSgt, nil
+		grade = CdtMSgt
 	case "C/TSgt":
-		return CdtTSgt, nil
+		grade = CdtTSgt
 	case "C/SSgt":
-		return CdtSSgt, nil
+		grade = CdtSSgt
 	case "C/SrA":
-		return CdtSrA, nil
+		grade = CdtSrA
 	case "C/A1C":
-		return CdtA1C, nil
+		grade = CdtA1C
 	case "C/Amn":
-		return CdtAmn, nil
+		grade = CdtAmn
 	case "C/AB":
 	case "CADET":
-		return CdtAB, nil
+		grade = CdtAB
+	default:
+		err = errors.Errorf("invalid gradeStr: %s", gradeStr)
+		return "", err
 	}
 
-	return "", errors.Errorf("invalid grade: %s", grade)
+	return grade, nil
 }

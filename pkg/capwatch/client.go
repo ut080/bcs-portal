@@ -18,22 +18,24 @@ const capwatchURL = "https://www.capnhq.gov/CAP.CapWatchAPI.Web/api/cw"
 type Client struct {
 	orgID            string
 	capwatchUsername string
-	capwatchPassword string
+	capwatchPassword []byte
 	refresh          int
 	logger           logging.Logger
 }
 
-func NewClient(orgID, capwatchUsername, capwatchPassword string, refresh int, logger logging.Logger) Client {
-	return Client{
+func NewClient(orgID, capwatchUsername string, refresh int, logger logging.Logger) (c *Client) {
+	nc := Client{
 		orgID:            orgID,
 		capwatchUsername: capwatchUsername,
-		capwatchPassword: capwatchPassword,
 		refresh:          refresh,
 		logger:           logger,
 	}
+
+	c = &nc
+	return c
 }
 
-func (c Client) Fetch(filename string, refresh bool) (dump *Dump, err error) {
+func (c *Client) Fetch(filename string, refresh bool) (dump *Dump, err error) {
 	if !refresh {
 		if !c.WillRefreshCache(filename) {
 			dump, err = c.readCache(filename)
@@ -60,7 +62,7 @@ func (c Client) Fetch(filename string, refresh bool) (dump *Dump, err error) {
 	return dump, nil
 }
 
-func (c Client) WillRefreshCache(filename string) bool {
+func (c *Client) WillRefreshCache(filename string) bool {
 	info, err := os.Stat(filename)
 	if err != nil {
 		return true
@@ -78,7 +80,11 @@ func (c Client) WillRefreshCache(filename string) bool {
 	return false
 }
 
-func (c Client) queryCapwatch() (dump *Dump, err error) {
+func (c *Client) SetCapwatchPassword(password []byte) {
+	c.capwatchPassword = password
+}
+
+func (c *Client) queryCapwatch() (dump *Dump, err error) {
 	// Create new request
 	req, err := http.NewRequest("GET", capwatchURL, nil)
 	if err != nil {
@@ -86,8 +92,9 @@ func (c Client) queryCapwatch() (dump *Dump, err error) {
 	}
 
 	// Set up auth header
-	credString := fmt.Sprintf("%s:%s", c.capwatchUsername, c.capwatchPassword)
-	creds := base64.StdEncoding.EncodeToString([]byte(credString))
+	rawCreds := append([]byte(c.capwatchUsername), ':')
+	rawCreds = append(rawCreds, c.capwatchPassword...)
+	creds := base64.StdEncoding.EncodeToString(rawCreds)
 	auth := fmt.Sprintf("Basic %s", creds)
 	req.Header.Add("Authorization", auth)
 
@@ -121,7 +128,7 @@ func (c Client) queryCapwatch() (dump *Dump, err error) {
 	return dump, nil
 }
 
-func (c Client) writeCache(dump *Dump, filename string) (err error) {
+func (c *Client) writeCache(dump *Dump, filename string) (err error) {
 	c.logger.Info().Str("filename", filename).Msg("writing CAPWATCH cache")
 	file, err := os.Create(filename)
 	if err != nil {
@@ -138,7 +145,7 @@ func (c Client) writeCache(dump *Dump, filename string) (err error) {
 	return nil
 }
 
-func (c Client) readCache(filename string) (dump *Dump, err error) {
+func (c *Client) readCache(filename string) (dump *Dump, err error) {
 	c.logger.Info().Str("filename", filename).Msg("loading CAPWATCH data from cache")
 	file, err := os.Open(filename)
 	if err != nil {

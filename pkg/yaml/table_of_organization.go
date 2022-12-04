@@ -21,37 +21,38 @@ type Unit struct {
 	Name    string `yaml:"name"`
 }
 
-func domainDutyAssignment(config map[string]pkg.DutyAssignment, da DutyAssignment) (pkg.DutyAssignment, error) {
+func domainDutyAssignment(config map[string]pkg.DutyAssignment, yamlDA DutyAssignment) (da pkg.DutyAssignment, err error) {
 	// Try to find the assignment in the configuration
-	assignment, ok := config[da.OfficeSymbol]
+	da, ok := config[yamlDA.OfficeSymbol]
 	if !ok {
-		return pkg.DutyAssignment{}, DutyAssignmentNotDefinedError{OfficeSymbol: da.OfficeSymbol}
+		err = DutyAssignmentNotDefinedError{OfficeSymbol: yamlDA.OfficeSymbol}
+		return da, err
 	}
 
 	// If a CAPID is given in the YAML duty assignment, then we need to create a pointer to an domain.Member
 	var member *pkg.Member
-	if da.AsigneeCAPID != nil {
+	if yamlDA.AsigneeCAPID != nil {
 		member = new(pkg.Member)
-		member.CAPID = *da.AsigneeCAPID
+		member.CAPID = *yamlDA.AsigneeCAPID
 	}
 
-	// Should be equivalent to assignment.Assignee = nil if da.AssigneeCAPID is nil
-	assignment.Assignee = member
+	// Should be equivalent to assignment.Assignee = nil if yamlDA.AssigneeCAPID is nil
+	da.Assignee = member
 
-	return assignment, nil
+	return da, nil
 }
 
-func handleDomainStaffGroupError(err error, group string, subgroup string) ([]pkg.StaffGroup, error) {
-	if e, ok := err.(DutyAssignmentNotDefinedError); ok {
-		e.StaffGroup = group
-		e.StaffSubGroup = subgroup
-		return nil, e
+func handleDomainStaffGroupError(dsgErr error, group string, subgroup string) (err error) {
+	if err, ok := dsgErr.(DutyAssignmentNotDefinedError); ok {
+		err.StaffGroup = group
+		err.StaffSubGroup = subgroup
+		return err
 	}
 
-	return nil, err
+	return dsgErr
 }
 
-func domainStaffGroups(config map[string]pkg.DutyAssignment, groups []StaffGroup) ([]pkg.StaffGroup, error) {
+func domainStaffGroups(config map[string]pkg.DutyAssignment, groups []StaffGroup) (sg []pkg.StaffGroup, err error) {
 	var domainGroupList []pkg.StaffGroup
 
 	for _, group := range groups {
@@ -59,7 +60,8 @@ func domainStaffGroups(config map[string]pkg.DutyAssignment, groups []StaffGroup
 		for _, subgroup := range group.Subgroups {
 			leader, err := domainDutyAssignment(config, subgroup.Leader)
 			if err != nil {
-				return handleDomainStaffGroupError(err, group.Group, subgroup.Subgroup)
+				err = handleDomainStaffGroupError(err, group.Group, subgroup.Subgroup)
+				return nil, err
 			}
 
 			domainSubgroup := pkg.StaffSubGroup{
@@ -70,7 +72,8 @@ func domainStaffGroups(config map[string]pkg.DutyAssignment, groups []StaffGroup
 			for _, report := range subgroup.DirectReports {
 				dutyAssignment, err := domainDutyAssignment(config, report)
 				if err != nil {
-					return handleDomainStaffGroupError(err, group.Group, subgroup.Subgroup)
+					err = handleDomainStaffGroupError(err, group.Group, subgroup.Subgroup)
+					return nil, err
 				}
 
 				domainSubgroup.DirectReports = append(domainSubgroup.DirectReports, dutyAssignment)
@@ -85,29 +88,29 @@ func domainStaffGroups(config map[string]pkg.DutyAssignment, groups []StaffGroup
 	return domainGroupList, nil
 }
 
-func handleDomainElementsError(err error, flight string, element string) ([]pkg.Element, error) {
-	if e, ok := err.(DutyAssignmentNotDefinedError); ok {
-		e.StaffGroup = flight
-		e.StaffSubGroup = element
-		return nil, e
+func handleDomainElementsError(elErr error, flight string, element string) (err error) {
+	if err, ok := elErr.(DutyAssignmentNotDefinedError); ok {
+		err.StaffGroup = flight
+		err.StaffSubGroup = element
+		return err
 	}
 
-	return nil, err
+	return elErr
 }
 
-func domainElements(config map[string]pkg.DutyAssignment, flight Flight) ([]pkg.Element, error) {
-	var elementList []pkg.Element
-
+func domainElements(config map[string]pkg.DutyAssignment, flight Flight) (elementList []pkg.Element, err error) {
 	for _, element := range flight.Elements {
 
 		domainEL, err := domainDutyAssignment(config, element.ElementLeader)
 		if err != nil {
-			return handleDomainElementsError(err, flight.Name, element.Name)
+			err = handleDomainElementsError(err, flight.Name, element.Name)
+			return nil, err
 		}
 
 		domainAsstEL, err := domainDutyAssignment(config, element.AsstElementLeader)
 		if err != nil {
-			return handleDomainElementsError(err, flight.Name, element.Name)
+			err = handleDomainElementsError(err, flight.Name, element.Name)
+			return nil, err
 		}
 
 		domainElement := pkg.Element{ElementLeader: domainEL, AsstElementLeader: domainAsstEL}
@@ -123,28 +126,28 @@ func domainElements(config map[string]pkg.DutyAssignment, flight Flight) ([]pkg.
 	return elementList, nil
 }
 
-func handleDomainFlightsError(err error, flight string) ([]pkg.Flight, error) {
-	if e, ok := err.(DutyAssignmentNotDefinedError); ok {
-		e.StaffGroup = flight
-		return nil, e
+func handleDomainFlightsError(flightErr error, flight string) (err error) {
+	if err, ok := flightErr.(DutyAssignmentNotDefinedError); ok {
+		err.StaffGroup = flight
+		return err
 	}
 
-	return nil, err
+	return flightErr
 }
 
-func domainFlights(config map[string]pkg.DutyAssignment, flights []Flight) ([]pkg.Flight, error) {
-	var flightList []pkg.Flight
-
+func domainFlights(config map[string]pkg.DutyAssignment, flights []Flight) (flightList []pkg.Flight, err error) {
 	for _, flight := range flights {
 
 		domainFltCC, err := domainDutyAssignment(config, flight.Commander)
 		if err != nil {
-			return handleDomainFlightsError(err, flight.Name)
+			err = handleDomainFlightsError(err, flight.Name)
+			return nil, err
 		}
 
 		domainFltCCF, err := domainDutyAssignment(config, flight.FlightSergeant)
 		if err != nil {
-			return handleDomainFlightsError(err, flight.Name)
+			err = handleDomainFlightsError(err, flight.Name)
+			return nil, err
 		}
 
 		orgFlight := pkg.Flight{
@@ -166,15 +169,15 @@ func domainFlights(config map[string]pkg.DutyAssignment, flights []Flight) ([]pk
 	return flightList, nil
 }
 
-func (to TableOfOrganization) DomainTableOfOrganization(config map[string]pkg.DutyAssignment) (pkg.TableOfOrganization, error) {
+func (to TableOfOrganization) DomainTableOfOrganization(config map[string]pkg.DutyAssignment) (domainTO pkg.TableOfOrganization, err error) {
 	staffGroups, err := domainStaffGroups(config, to.StaffGroups)
 	if err != nil {
-		return pkg.TableOfOrganization{}, errors.WithStack(err)
+		return domainTO, errors.WithStack(err)
 	}
 
 	flights, err := domainFlights(config, to.Flights)
 	if err != nil {
-		return pkg.TableOfOrganization{}, errors.WithStack(err)
+		return domainTO, errors.WithStack(err)
 	}
 
 	inactive := mapset.NewSet[uint]()
@@ -182,11 +185,9 @@ func (to TableOfOrganization) DomainTableOfOrganization(config map[string]pkg.Du
 		inactive.Add(i)
 	}
 
-	domainTO := pkg.TableOfOrganization{
-		StaffGroups:    staffGroups,
-		Flights:        flights,
-		InactiveCAPIDs: inactive,
-	}
+	domainTO.StaffGroups = staffGroups
+	domainTO.Flights = flights
+	domainTO.InactiveCAPIDs = inactive
 
 	return domainTO, nil
 }
@@ -197,11 +198,13 @@ type DutyAssignmentNotDefinedError struct {
 	StaffSubGroup string
 }
 
-func (err DutyAssignmentNotDefinedError) Error() string {
-	return fmt.Sprintf(
+func (err DutyAssignmentNotDefinedError) Error() (msg string) {
+	msg = fmt.Sprintf(
 		"failed to find definiton for duty assignment %s in %s/%s",
 		err.OfficeSymbol,
 		err.StaffGroup,
 		err.StaffSubGroup,
 	)
+
+	return msg
 }

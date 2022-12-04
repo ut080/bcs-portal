@@ -12,12 +12,13 @@ type Flight struct {
 	Elements        []Element
 }
 
-func (f *Flight) PopulateMemberData(members map[uint]Member, accounted *mapset.Set[uint]) error {
+func (f *Flight) PopulateMemberData(members map[uint]Member, accounted *mapset.Set[uint]) (err error) {
 	if f.FlightCommander.Assignee != nil {
 		cc, ok := members[f.FlightCommander.Assignee.CAPID]
 		if !ok {
 			// TODO: Instead of halting on error, continue to populate and return a slice of errors
-			return errors.Errorf("no member found with CAPID %d", f.FlightCommander.Assignee.CAPID)
+			err = errors.Errorf("no member found with CAPID %d", f.FlightCommander.Assignee.CAPID)
+			return err
 		}
 		f.FlightCommander.Assignee = &cc
 		(*accounted).Add(cc.CAPID)
@@ -27,7 +28,8 @@ func (f *Flight) PopulateMemberData(members map[uint]Member, accounted *mapset.S
 		ccf, ok := members[f.FlightSergeant.Assignee.CAPID]
 		if !ok {
 			// TODO: Instead of halting on error, continue to populate and return a slice of errors
-			return errors.Errorf("no member found with CAPID %d", f.FlightSergeant.Assignee.CAPID)
+			err = errors.Errorf("no member found with CAPID %d", f.FlightSergeant.Assignee.CAPID)
+			return err
 		}
 		f.FlightSergeant.Assignee = &ccf
 		(*accounted).Add(ccf.CAPID)
@@ -38,7 +40,8 @@ func (f *Flight) PopulateMemberData(members map[uint]Member, accounted *mapset.S
 		err := element.PopulateMemberData(members, accounted)
 		if err != nil {
 			// TODO: Instead of halting on error, continue to populate and return a slice of errors
-			return errors.WithStack(err)
+			err = errors.WithStack(err)
+			return err
 		}
 
 		elements = append(elements, element)
@@ -55,12 +58,13 @@ type Element struct {
 	Members           []Member
 }
 
-func (e *Element) PopulateMemberData(members map[uint]Member, accounted *mapset.Set[uint]) error {
+func (e *Element) PopulateMemberData(members map[uint]Member, accounted *mapset.Set[uint]) (err error) {
 	if e.ElementLeader.Assignee != nil {
 		el, ok := members[e.ElementLeader.Assignee.CAPID]
 		if !ok {
 			// TODO: Instead of halting on error, continue to populate and return a slice of errors
-			return errors.Errorf("no member found with CAPID %d", e.ElementLeader.Assignee.CAPID)
+			err = errors.Errorf("no member found with CAPID %d", e.ElementLeader.Assignee.CAPID)
+			return err
 		}
 		e.ElementLeader.Assignee = &el
 		(*accounted).Add(el.CAPID)
@@ -70,7 +74,8 @@ func (e *Element) PopulateMemberData(members map[uint]Member, accounted *mapset.
 		ael, ok := members[e.AsstElementLeader.Assignee.CAPID]
 		if !ok {
 			// TODO: Instead of halting on error, continue to populate and return a slice of errors
-			return errors.Errorf("no member found with CAPID %d", e.AsstElementLeader.Assignee.CAPID)
+			err = errors.Errorf("no member found with CAPID %d", e.AsstElementLeader.Assignee.CAPID)
+			return err
 		}
 		e.AsstElementLeader.Assignee = &ael
 		(*accounted).Add(ael.CAPID)
@@ -81,7 +86,8 @@ func (e *Element) PopulateMemberData(members map[uint]Member, accounted *mapset.
 		// TODO: Instead of halting on error, continue to populate and return a slice of errors
 		mbr, ok := members[member.CAPID]
 		if !ok {
-			return errors.Errorf("no member found with CAPID %d", member.CAPID)
+			err = errors.Errorf("no member found with CAPID %d", member.CAPID)
+			return err
 		}
 		elementMembers = append(elementMembers, mbr)
 		(*accounted).Add(mbr.CAPID)

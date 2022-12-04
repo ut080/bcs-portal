@@ -10,6 +10,28 @@ import (
 	"github.com/ut080/bcs-portal/pkg"
 )
 
+const (
+	logGroupBeginTemplate = `\begin{xltabular}{\textwidth}{|r|X|c|c|c|c|}
+\hline
+\multicolumn{6}{|c|}{\textbf{$(LOG_GROUP)}} \\
+\hline
+\multicolumn{1}{|c|}{\textbf{CAPID}} & 
+\multicolumn{1}{|c|}{\textbf{Name}}  & 
+\textbf{P}                           & 
+\textbf{E}                           & 
+\textbf{ID}                          & 
+\textbf{U}                           \\
+\hline
+\endhead
+`
+
+	logGroupEndTemplate = `\end{xltabular}`
+
+	logSubGroupTemplate = `\multicolumn{6}{|l|}{\textbf{$(LOG_SUB_GROUP)}} \\
+\hline
+`
+)
+
 type LogGroup struct {
 	Name           string
 	SubGroups      []LogSubGroup
@@ -26,8 +48,8 @@ func NewLogGroupFromStaffGroup(group pkg.StaffGroup, ignore *mapset.Set[uint]) L
 	return lg
 }
 
-func NewLogGroupFromFlight(flight pkg.Flight, ignore *mapset.Set[uint]) LogGroup {
-	lg := LogGroup{Name: flight.Name}
+func NewLogGroupFromFlight(flight pkg.Flight, ignore *mapset.Set[uint]) (lg LogGroup) {
+	lg.Name = flight.Name
 
 	fltStaff := LogSubGroup{Name: "Flight Staff"}
 	if flight.FlightCommander.Assignee != nil && !(*ignore).Contains(flight.FlightCommander.Assignee.CAPID) {
@@ -49,8 +71,8 @@ func NewLogGroupFromFlight(flight pkg.Flight, ignore *mapset.Set[uint]) LogGroup
 	return lg
 }
 
-func NewLogGroupFromMemberGroup(memberGroup pkg.MemberGroup) LogGroup {
-	lg := LogGroup{Name: memberGroup.Name, breakBeforeLog: true}
+func NewLogGroupFromMemberGroup(memberGroup pkg.MemberGroup) (lg LogGroup) {
+	lg = LogGroup{Name: memberGroup.Name, breakBeforeLog: true}
 
 	seniors := LogSubGroup{Name: "Seniors"}
 	for _, senior := range memberGroup.Seniors {
@@ -83,16 +105,16 @@ func (lg LogGroup) Height() (h uint) {
 	return h
 }
 
-func (lg LogGroup) LaTeX() string {
-	s := strings.Replace(logGroupBeginTemplate, "$(LOG_GROUP)", lg.Name, 1)
+func (lg LogGroup) LaTeX() (latex string) {
+	latex = strings.Replace(logGroupBeginTemplate, "$(LOG_GROUP)", lg.Name, 1)
 
 	for _, group := range lg.SubGroups {
-		s += group.LaTeX()
+		latex += group.LaTeX()
 	}
 
-	s += logGroupEndTemplate
+	latex += logGroupEndTemplate
 
-	return s
+	return latex
 }
 
 type LogSubGroup struct {
@@ -100,10 +122,8 @@ type LogSubGroup struct {
 	Members []Member
 }
 
-func NewLogSubGroupFromStaffSubGroup(subgroup pkg.StaffSubGroup, ignore *mapset.Set[uint]) LogSubGroup {
-	lsg := LogSubGroup{
-		Name: subgroup.Name,
-	}
+func NewLogSubGroupFromStaffSubGroup(subgroup pkg.StaffSubGroup, ignore *mapset.Set[uint]) (lsg LogSubGroup) {
+	lsg.Name = subgroup.Name
 
 	if subgroup.Leader.Assignee != nil && !(*ignore).Contains(subgroup.Leader.Assignee.CAPID) {
 		lsg.Members = append(lsg.Members, NewMemberFromDomainMember(*subgroup.Leader.Assignee))
@@ -120,10 +140,8 @@ func NewLogSubGroupFromStaffSubGroup(subgroup pkg.StaffSubGroup, ignore *mapset.
 	return lsg
 }
 
-func NewLogSubGroupFromElement(element pkg.Element, elementNumber int, ignore *mapset.Set[uint]) LogSubGroup {
-	lsg := LogSubGroup{
-		Name: fmt.Sprintf("%s Element", numbers.Ordinalize(elementNumber)),
-	}
+func NewLogSubGroupFromElement(element pkg.Element, elementNumber int, ignore *mapset.Set[uint]) (lsg LogSubGroup) {
+	lsg.Name = fmt.Sprintf("%s Element", numbers.Ordinalize(elementNumber))
 
 	if element.ElementLeader.Assignee != nil && !(*ignore).Contains(element.ElementLeader.Assignee.CAPID) {
 		lsg.Members = append(lsg.Members, NewMemberFromDomainMember(*element.ElementLeader.Assignee))
@@ -148,41 +166,22 @@ func NewLogSubGroupFromElement(element pkg.Element, elementNumber int, ignore *m
 // Height represents roughly how high this subgroup will be when it is rendered by LaTeX in the final pdf.
 // Each member row of the barcode log is roughly 30pts high and each title block is roughly 15 points high, hence the
 // math: (number_of_members * 30) + 15
-func (lsg LogSubGroup) Height() uint {
-	return uint((len(lsg.Members) * 30) + 15)
+func (lsg LogSubGroup) Height() (height uint) {
+	height = uint((len(lsg.Members) * 30) + 15)
+	return height
 }
 
-func (lsg LogSubGroup) LaTeX() string {
+func (lsg LogSubGroup) LaTeX() (latex string) {
 	// Skip this subgroup if it doesn't contain any
 	if len(lsg.Members) == 0 {
-		return ""
+		return latex
 	}
 
-	s := strings.Replace(logSubGroupTemplate, "$(LOG_SUB_GROUP)", lsg.Name, 1)
+	latex = strings.Replace(logSubGroupTemplate, "$(LOG_SUB_GROUP)", lsg.Name, 1)
 
 	for _, member := range lsg.Members {
-		s += member.LaTeX()
+		latex += member.LaTeX()
 	}
 
-	return s
+	return latex
 }
-
-const logGroupBeginTemplate = `\begin{xltabular}{\textwidth}{|r|X|c|c|c|c|}
-    \hline
-    \multicolumn{6}{|c|}{\textbf{$(LOG_GROUP)}} \\
-    \hline
-    \multicolumn{1}{|c|}{\textbf{CAPID}} & 
-    \multicolumn{1}{|c|}{\textbf{Name}}  & 
-    \textbf{P}                           & 
-    \textbf{E}                           & 
-    \textbf{ID}                          & 
-    \textbf{U}                           \\
-    \hline
-    \endhead
-`
-
-const logGroupEndTemplate = `\end{xltabular}`
-
-const logSubGroupTemplate = `\multicolumn{6}{|l|}{\textbf{$(LOG_SUB_GROUP)}} \\
-\hline
-`
