@@ -7,25 +7,6 @@ import (
 	"github.com/ut080/bcs-portal/pkg"
 )
 
-type Member struct {
-	CAPID uint
-	Name  string
-}
-
-func NewMemberFromDomainMember(member pkg.Member) Member {
-	return Member{
-		CAPID: member.CAPID,
-		Name:  member.String(),
-	}
-}
-
-func (m Member) LaTeX() string {
-	s := strings.Replace(memberTemplate, "$(CAPID)", strconv.Itoa(int(m.CAPID)), 1)
-	s = strings.Replace(s, "$(NAME)", m.Name, 1)
-
-	return s
-}
-
 const memberTemplate = `\stepcounter{lineNumber}
     \barcode{$(CAPID)}                                &
     $(NAME)                                           &
@@ -35,3 +16,22 @@ const memberTemplate = `\stepcounter{lineNumber}
     \FormCheckBox{uniform\arabic{lineNumber}}{}       \\
     \hline
 `
+
+type Member struct {
+	CAPID uint
+	Name  string
+}
+
+func NewMemberFromDomainMember(domainMember pkg.Member) (member Member) {
+	member.CAPID = domainMember.CAPID
+	member.Name = domainMember.String()
+
+	return member
+}
+
+func (m Member) LaTeX() (latex string) {
+	latex = strings.Replace(memberTemplate, "$(CAPID)", strconv.Itoa(int(m.CAPID)), 1)
+	latex = strings.Replace(latex, "$(NAME)", m.Name, 1)
+
+	return latex
+}

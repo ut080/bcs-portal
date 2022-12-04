@@ -28,8 +28,8 @@ type MemberGroup struct {
 	Cadets  []Member
 }
 
-func capidSet(members map[uint]Member) mapset.Set[uint] {
-	s := mapset.NewSet[uint]()
+func capidSet(members map[uint]Member) (s mapset.Set[uint]) {
+	s = mapset.NewSet[uint]()
 
 	for u, _ := range members {
 		s.Add(u)
@@ -38,8 +38,8 @@ func capidSet(members map[uint]Member) mapset.Set[uint] {
 	return s
 }
 
-func NewUnassignedMemberGroup(members map[uint]Member, assigned mapset.Set[uint], inactive mapset.Set[uint]) MemberGroup {
-	mg := MemberGroup{Name: "Unassigned"}
+func NewUnassignedMemberGroup(members map[uint]Member, assigned mapset.Set[uint], inactive mapset.Set[uint]) (mg MemberGroup) {
+	mg.Name = "Unassigned"
 
 	diff := capidSet(members).Difference(inactive).Difference(assigned)
 

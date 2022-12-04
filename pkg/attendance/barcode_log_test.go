@@ -51,7 +51,8 @@ func loadCAPWATCHData() (map[uint]pkg.Member, time.Time, error) {
 	username := viper.GetString("capwatch.username")
 	password := viper.GetString("capwatch.password")
 	refresh := viper.GetInt("capwatch.refresh")
-	client := capwatch.NewClient(orgID, username, password, refresh, logging.Logger{})
+	client := capwatch.NewClient(orgID, username, refresh, logging.Logger{})
+	client.SetCapwatchPassword([]byte(password))
 
 	cacheFile := filepath.Join(testDataDir, "cache", "capwatch.zip")
 

@@ -13,13 +13,16 @@ const (
 	CadetMember  MemberType = "CADET"
 )
 
-func ParseMemberType(memberType string) (MemberType, error) {
-	switch strings.ToUpper(memberType) {
+func ParseMemberType(memberTypeStr string) (mt MemberType, err error) {
+	switch strings.ToUpper(memberTypeStr) {
 	case "SENIOR":
-		return SeniorMember, nil
+		mt = SeniorMember
 	case "CADET":
-		return CadetMember, nil
+		mt = CadetMember
+	default:
+		err = errors.Errorf("invalid member type: %s", memberTypeStr)
+		return "", err
 	}
 
-	return "", errors.Errorf("invalid member type: %s", memberType)
+	return mt, nil
 }

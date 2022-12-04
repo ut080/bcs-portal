@@ -4,9 +4,11 @@ import (
 	"fmt"
 	"os/exec"
 	"path/filepath"
+	"syscall"
 	"time"
 
 	"github.com/pkg/errors"
+	"golang.org/x/term"
 
 	"github.com/ut080/bcs-portal/app/config"
 	"github.com/ut080/bcs-portal/app/logging"
@@ -17,7 +19,7 @@ import (
 	"github.com/ut080/bcs-portal/pkg/yaml"
 )
 
-func loadTableOfOrganizationConfiguration(toCfg string, logger logging.Logger) (pkg.TableOfOrganization, error) {
+func loadTableOfOrganizationConfiguration(toCfg string, logger logging.Logger) (to pkg.TableOfOrganization, err error) {
 	cfgDir, err := config.ConfigDir()
 	if err != nil {
 		return pkg.TableOfOrganization{}, errors.WithMessage(err, "failed to access config directory")
@@ -32,57 +34,74 @@ func loadTableOfOrganizationConfiguration(toCfg string, logger logging.Logger) (
 
 	domainDACfg := daCfg.DomainDutyAssignments()
 
-	to := yaml.TableOfOrganization{}
-	err = yaml.LoadYamlDocFromFile(toCfg, &to, logger)
+	yamlTo := yaml.TableOfOrganization{}
+	err = yaml.LoadYamlDocFromFile(toCfg, &yamlTo, logger)
 	if err != nil {
 		return pkg.TableOfOrganization{}, err
 	}
 
-	domainTO, err := to.DomainTableOfOrganization(domainDACfg)
+	to, err = yamlTo.DomainTableOfOrganization(domainDACfg)
 	if err != nil {
 		return pkg.TableOfOrganization{}, err
 	}
 
-	return domainTO, nil
+	return to, nil
 }
 
-func loadCapwatchData(to *pkg.TableOfOrganization, password string, logger logging.Logger) (time.Time, error) {
+func getCapwatchPassword(capwatchUsername string) (password []byte, err error) {
+	fmt.Printf("Enter password for %s: ", capwatchUsername)
+	password, err = term.ReadPassword(syscall.Stdin)
+	if err != nil {
+		return nil, err
+	}
+
+	return password, nil
+}
+
+func loadCapwatchData(to *pkg.TableOfOrganization, logger logging.Logger) (refreshDate time.Time, err error) {
 	cacheDir, err := config.CacheDir()
 	if err != nil {
-		return time.Time{}, errors.WithStack(err)
+		return refreshDate, errors.WithStack(err)
 	}
 
 	orgID := config.GetString("capwatch.orgid")
 	username := config.GetString("capwatch.username")
 	refresh := config.GetInt("capwatch.refresh")
-	client := capwatch.NewClient(orgID, username, password, refresh, logger)
+	client := capwatch.NewClient(orgID, username, refresh, logger)
 
 	cacheFile := filepath.Join(cacheDir, "capwatch", fmt.Sprintf("%s.zip", orgID))
 
-	if client.WillRefreshCache(cacheFile) && password == "" {
-		logger.Error().Msg("Will need to query CAPWATCH, but no password provided. Re-execute with the --password flag.")
-		return time.Time{}, errors.New("re-run with --password flag")
+	if client.WillRefreshCache(cacheFile) {
+		password, err := getCapwatchPassword(username)
+		if err != nil {
+			logger.Error().Err(err).Msg("Failed to read CAPWATCH password")
+			return refreshDate, err
+		}
+
+		client.SetCapwatchPassword(password)
 	}
 
 	dump, err := client.Fetch(cacheFile, false)
 	if err != nil {
-		return time.Time{}, errors.WithStack(err)
+		return refreshDate, errors.WithStack(err)
 	}
 
 	members, err := dump.FetchMembers()
 	if err != nil {
-		return time.Time{}, errors.WithStack(err)
+		return refreshDate, errors.WithStack(err)
 	}
 
 	err = to.PopulateMemberData(members)
 	if err != nil {
-		return time.Time{}, errors.WithStack(err)
+		return refreshDate, errors.WithStack(err)
 	}
 
-	return dump.LastSync(), nil
+	refreshDate = dump.LastSync()
+
+	return refreshDate, nil
 }
 
-func generateLaTeX(to pkg.TableOfOrganization, logDate, lastSync time.Time, logger logging.Logger) error {
+func generateLaTeX(to pkg.TableOfOrganization, logDate, lastSync time.Time, logger logging.Logger) (err error) {
 	cfgDir, err := config.ConfigDir()
 	if err != nil {
 		return errors.WithStack(err)
@@ -120,7 +139,7 @@ func generateLaTeX(to pkg.TableOfOrganization, logDate, lastSync time.Time, logg
 	return nil
 }
 
-func compileLaTeX(logDate time.Time, outDest string) error {
+func compileLaTeX(logDate time.Time, outDest string) (err error) {
 	cacheDir, err := config.CacheDir()
 	if err != nil {
 		return errors.WithStack(err)
@@ -149,7 +168,7 @@ func compileLaTeX(logDate time.Time, outDest string) error {
 	return nil
 }
 
-func BuildBarcodeLog(input, output, password string, logDate time.Time) error {
+func BuildBarcodeLog(input, output string, logDate time.Time) (err error) {
 	logger := logging.Logger{}
 
 	to, err := loadTableOfOrganizationConfiguration(input, logger)
@@ -157,7 +176,7 @@ func BuildBarcodeLog(input, output, password string, logDate time.Time) error {
 		return errors.WithStack(err)
 	}
 
-	lastSync, err := loadCapwatchData(&to, password, logger)
+	lastSync, err := loadCapwatchData(&to, logger)
 	if err != nil {
 		return errors.WithStack(err)
 	}

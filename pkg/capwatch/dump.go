@@ -19,14 +19,17 @@ type Dump struct {
 	lastSync time.Time
 }
 
-func NewDump(dump []byte, lastSync time.Time) *Dump {
-	return &Dump{
+func NewDump(dump []byte, lastSync time.Time) (d *Dump) {
+	nd := Dump{
 		raw:      dump,
 		lastSync: lastSync,
 	}
+
+	d = &nd
+	return d
 }
 
-func (d *Dump) openCSV(filename string) (*csv.Reader, error) {
+func (d *Dump) openCSV(filename string) (reader *csv.Reader, err error) {
 	rawArchive := bytes.NewReader(d.raw)
 	archive, err := zip.NewReader(rawArchive, int64(len(d.raw)))
 	if err != nil {
@@ -38,7 +41,8 @@ func (d *Dump) openCSV(filename string) (*csv.Reader, error) {
 		return nil, errors.WithStack(err)
 	}
 
-	return csv.NewReader(f), nil
+	reader = csv.NewReader(f)
+	return reader, nil
 }
 
 func (d *Dump) FetchMembers() (members map[uint]pkg.Member, err error) {

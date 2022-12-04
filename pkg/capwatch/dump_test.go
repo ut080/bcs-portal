@@ -26,7 +26,8 @@ func (suite *DumpTestSuite) TestFetchMembers() {
 	username := viper.GetString("capwatch.username")
 	password := viper.GetString("capwatch.password")
 	refresh := viper.GetInt("capwatch.refresh")
-	client := NewClient(orgID, username, password, refresh, logging.Logger{})
+	client := NewClient(orgID, username, refresh, logging.Logger{})
+	client.SetCapwatchPassword([]byte(password))
 
 	cacheFile := filepath.Join(testDataDir, "cache", "capwatch.zip")
 

@@ -10,13 +10,14 @@ type StaffGroup struct {
 	SubGroups []StaffSubGroup
 }
 
-func (sg *StaffGroup) PopulateMemberData(members map[uint]Member, assigned *mapset.Set[uint]) error {
+func (sg *StaffGroup) PopulateMemberData(members map[uint]Member, assigned *mapset.Set[uint]) (err error) {
 	var subgroups []StaffSubGroup
 	for _, group := range sg.SubGroups {
-		err := group.PopulateMemberData(members, assigned)
+		err = group.PopulateMemberData(members, assigned)
 		if err != nil {
 			// TODO: Instead of halting on error, continue to populate and return a slice of errors
-			return errors.WithStack(err)
+			err = errors.WithStack(err)
+			return err
 		}
 		subgroups = append(subgroups, group)
 	}
@@ -32,12 +33,13 @@ type StaffSubGroup struct {
 	DirectReports []DutyAssignment
 }
 
-func (ssg *StaffSubGroup) PopulateMemberData(members map[uint]Member, assigned *mapset.Set[uint]) error {
+func (ssg *StaffSubGroup) PopulateMemberData(members map[uint]Member, assigned *mapset.Set[uint]) (err error) {
 	if ssg.Leader.Assignee != nil {
 		leader, ok := members[ssg.Leader.Assignee.CAPID]
 		if !ok {
 			// TODO: Instead of halting on error, continue to populate and return a slice of errors
-			return errors.Errorf("no member found with CAPID %d", ssg.Leader.Assignee.CAPID)
+			err = errors.Errorf("no member found with CAPID %d", ssg.Leader.Assignee.CAPID)
+			return err
 		}
 		ssg.Leader.Assignee = &leader
 		(*assigned).Add(leader.CAPID)

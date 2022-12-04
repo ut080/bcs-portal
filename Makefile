@@ -11,6 +11,11 @@ LDFLAGS = -ldflags "-s -X main.BuildTime=${BUILD_TIME} -X main.GitRevision=${GIT
 bin/dpdocs: $(foreach f, $(SRC), $(f))
 	go build ${LDFLAGS} -o bin/dpdocs cmd/dpdocs/main.go
 
+.PHONY: install
+install: bin/dpdocs
+	go run build/dpdocs/install.go $(CURDIR)
+	cp bin/dpdocs ${HOME}/.local/bin/
+
 .PHONY: test
 test:
 	go test -v -count=1 ./...

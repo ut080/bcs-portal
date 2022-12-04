@@ -9,7 +9,7 @@ import (
 	"github.com/ut080/bcs-portal/app/logging"
 )
 
-func LoadYamlDocFromFile(filename string, out interface{}, logger logging.Logger) error {
+func LoadYamlDocFromFile(filename string, out interface{}, logger logging.Logger) (err error) {
 	raw, err := os.ReadFile(filename)
 	if err != nil {
 		logger.Error().Err(err).Str("filename", filename).Msg("failed to read yaml file")
