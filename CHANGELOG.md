@@ -10,20 +10,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 ### Changed
-- Output file name now defaults to the log date
-- `dpdocs` will ask for the CAPWATCH password if it will be refreshing the cache instead of throwing an error
 
 ### Deprecated
 
 ### Removed
-- `--password` flag removed from command-line interface
 
 ### Fixed
 
 ### Security
-- Instead of typing the eServices password on the command line in the clear, a no-echo scan approach is now used
 
-## [v1.0.0]
+## [1.0.0]
 
 ### Changed
 - Output file name now defaults to the log date
