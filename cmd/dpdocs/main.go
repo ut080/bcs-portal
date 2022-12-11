@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/viper"
 
-	"github.com/ut080/bcs-portal/app/dpdocs"
+	"github.com/ut080/bcs-portal/internal/dpdocs"
 )
 
 // BaseVersion is the SemVer-formatted string that defines the current version of ag7if.
