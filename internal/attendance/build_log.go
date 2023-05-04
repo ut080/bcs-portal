@@ -11,6 +11,7 @@ import (
 	"golang.org/x/term"
 
 	"github.com/ut080/bcs-portal/clients/capwatch"
+	"github.com/ut080/bcs-portal/clients/eservices"
 	"github.com/ut080/bcs-portal/clients/yaml"
 	"github.com/ut080/bcs-portal/domain"
 	"github.com/ut080/bcs-portal/internal/config"
@@ -101,6 +102,25 @@ func loadCapwatchData(to *domain.TableOfOrganization, logger logging.Logger) (re
 	return refreshDate, nil
 }
 
+func loadDataFromMembershipReport(to *domain.TableOfOrganization, filepath string) (lastSync time.Time, err error) {
+	report, err := eservices.NewMembershipReport(filepath)
+	if err != nil {
+		return lastSync, errors.WithStack(err)
+	}
+
+	members, err := report.FetchMembers()
+	if err != nil {
+		return lastSync, errors.WithStack(err)
+	}
+
+	err = to.PopulateMemberData(members)
+	if err != nil {
+		return lastSync, errors.WithStack(err)
+	}
+
+	return report.LastModified(), nil
+}
+
 func generateLaTeX(to domain.TableOfOrganization, logDate, lastSync time.Time, logger logging.Logger) (err error) {
 	cfgDir, err := config.ConfigDir()
 	if err != nil {
@@ -168,7 +188,7 @@ func compileLaTeX(logDate time.Time, outDest string) (err error) {
 	return nil
 }
 
-func BuildBarcodeLog(input, output string, logDate time.Time) (err error) {
+func BuildBarcodeLog(input, output, membershipReport string, logDate time.Time) (err error) {
 	logger := logging.Logger{}
 
 	to, err := loadTableOfOrganizationConfiguration(input, logger)
@@ -176,9 +196,17 @@ func BuildBarcodeLog(input, output string, logDate time.Time) (err error) {
 		return errors.WithStack(err)
 	}
 
-	lastSync, err := loadCapwatchData(&to, logger)
-	if err != nil {
-		return errors.WithStack(err)
+	var lastSync time.Time
+	if membershipReport == "" {
+		lastSync, err = loadCapwatchData(&to, logger)
+		if err != nil {
+			return errors.WithStack(err)
+		}
+	} else {
+		lastSync, err = loadDataFromMembershipReport(&to, membershipReport)
+		if err != nil {
+			return errors.WithStack(err)
+		}
 	}
 
 	err = generateLaTeX(to, logDate, lastSync, logger)

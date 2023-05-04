@@ -115,3 +115,42 @@ func ParseGrade(gradeStr string) (grade Grade, err error) {
 
 	return grade, nil
 }
+
+func MapGradesToMemberTypes() map[Grade]MemberType {
+	mapping := map[Grade]MemberType{
+		MajGen:      SeniorMember,
+		BrigGen:     SeniorMember,
+		Col:         SeniorMember,
+		LtCol:       SeniorMember,
+		Maj:         SeniorMember,
+		Capt:        SeniorMember,
+		FirstLt:     SeniorMember,
+		SecondLt:    SeniorMember,
+		SFO:         SeniorMember,
+		TFO:         SeniorMember,
+		FO:          SeniorMember,
+		CMSgt:       SeniorMember,
+		SMSgt:       SeniorMember,
+		MSgt:        SeniorMember,
+		TSgt:        SeniorMember,
+		SSgt:        SeniorMember,
+		SM:          SeniorMember,
+		CdtCol:      CadetMember,
+		CdtLtCol:    CadetMember,
+		CdtMaj:      CadetMember,
+		CdtCapt:     CadetMember,
+		CdtFirstLt:  CadetMember,
+		CdtSecondLt: CadetMember,
+		CdtCMSgt:    CadetMember,
+		CdtSMSgt:    CadetMember,
+		CdtMSgt:     CadetMember,
+		CdtTSgt:     CadetMember,
+		CdtSSgt:     CadetMember,
+		CdtSrA:      CadetMember,
+		CdtA1C:      CadetMember,
+		CdtAmn:      CadetMember,
+		CdtAB:       CadetMember,
+	}
+
+	return mapping
+}

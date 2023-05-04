@@ -2,6 +2,7 @@ package domain
 
 import (
 	"fmt"
+	"time"
 
 	mapset "github.com/deckarep/golang-set/v2"
 )
@@ -12,6 +13,8 @@ type Member struct {
 	FirstName  string
 	MemberType MemberType
 	Grade      Grade
+	JoinDate   time.Time
+	RankDate   time.Time
 }
 
 func (m Member) String() string {

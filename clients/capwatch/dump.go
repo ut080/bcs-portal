@@ -93,6 +93,9 @@ func (d *Dump) FetchMembers() (members map[uint]domain.Member, err error) {
 			continue
 		}
 
+		// TODO: Parse JoinDate
+		// TODO: Parse RankDate
+
 		member := domain.Member{
 			CAPID:      uint(capid),
 			LastName:   lastName,
