@@ -53,7 +53,7 @@ func (m Month) Height() (h uint) {
 }
 
 func (m Month) LaTeX() (latex string) {
-	latex = strings.Replace(monthBeginTemplate, "$(Month)", m.Name, 1)
+	latex = strings.Replace(monthBeginTemplate, "$(MONTH)", m.Name, 1)
 
 	for _, member := range m.Members {
 		latex += member.LaTeX()

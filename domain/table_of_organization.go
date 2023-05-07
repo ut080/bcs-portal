@@ -43,7 +43,7 @@ func (to *TableOfOrganization) PopulateMemberData(members map[uint]Member) (err 
 
 	to.Flights = flights
 
-	to.Unassigned = NewUnassignedMemberGroup(members, assigned, to.InactiveCAPIDs)
+	to.Unassigned = NewUnassignedMemberGroup(members, assigned, to.InactiveCAPIDs, true)
 
 	return nil
 }

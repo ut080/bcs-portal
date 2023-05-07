@@ -2,6 +2,7 @@ package feedback
 
 import (
 	"math"
+	"strconv"
 	"strings"
 	"time"
 
@@ -41,9 +42,24 @@ const (
 \begin{document}
 `
 
-	scheduleEndTemplate = `\end{document
+	scheduleEndTemplate = `\end{document}
 `
 )
+
+var fiscalYear []time.Month = []time.Month{
+	time.October,
+	time.November,
+	time.December,
+	time.January,
+	time.February,
+	time.March,
+	time.April,
+	time.May,
+	time.June,
+	time.July,
+	time.August,
+	time.September,
+}
 
 type Schedule struct {
 	Unit              string
@@ -80,10 +96,9 @@ func (s *Schedule) lineBreak() bool {
 	return false
 }
 
-func (s *Schedule) PopulateFromTableOfOrganization(schedule map[time.Month][]domain.Member) {
-	var months []Month
-
-	for month, members := range schedule {
+func (s *Schedule) PopulateFromMap(schedule map[time.Month][]domain.Member) {
+	for _, month := range fiscalYear {
+		members := schedule[month]
 		var monthMembers []Member
 		for _, member := range members {
 			monthMembers = append(monthMembers, NewMemberFromDomainMember(member))
@@ -97,15 +112,24 @@ func (s *Schedule) PopulateFromTableOfOrganization(schedule map[time.Month][]dom
 	}
 }
 
-func (s *Schedule) LaTeX() (latex string) {
+func (s *Schedule) DocLaTeX() (latex string) {
 	// Build preamble
 	latex = schedulePreamble
 	latex = strings.Replace(latex, "$(UNIT)", s.Unit, 1)
 	latex = strings.Replace(latex, "$(COMMAND_EMBLEM_PATH)", s.CommandEmblemPath, 1)
 	latex = strings.Replace(latex, "$(UNIT_PATCH_PATH)", s.UnitPatchPath, 1)
-	//latex = strings.Replace(latex, "$(LOG_DATE)", FiscalYear, 1)
+	latex = strings.Replace(latex, "$(FY)", strconv.Itoa(int(s.FiscalYear)), 1)
 	latex = strings.Replace(latex, "$(LAST_CAPWATCH_SYNC)", s.LastCapwatchSync.Format("02 Jan 2006"), 1)
 
+	latex += s.LaTeX()
+
+	// Close document
+	latex += scheduleEndTemplate
+
+	return latex
+}
+
+func (s *Schedule) LaTeX() (latex string) {
 	// Inject months
 	for _, month := range s.Months {
 		if s.lineBreak() {

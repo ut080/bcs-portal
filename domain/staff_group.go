@@ -60,6 +60,7 @@ func (ssg *StaffSubGroup) PopulateMemberData(members map[uint]Member, assigned *
 		}
 	}
 
+	SortDutyAssignmentsByAssigneeName(directReports)
 	ssg.DirectReports = directReports
 
 	return nil

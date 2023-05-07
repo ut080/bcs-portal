@@ -2,6 +2,7 @@ package domain
 
 import (
 	"fmt"
+	"sort"
 	"time"
 
 	mapset "github.com/deckarep/golang-set/v2"
@@ -41,7 +42,7 @@ func capidSet(members map[uint]Member) (s mapset.Set[uint]) {
 	return s
 }
 
-func NewUnassignedMemberGroup(members map[uint]Member, assigned mapset.Set[uint], inactive mapset.Set[uint]) (mg MemberGroup) {
+func NewUnassignedMemberGroup(members map[uint]Member, assigned mapset.Set[uint], inactive mapset.Set[uint], sortByName bool) (mg MemberGroup) {
 	mg.Name = "Unassigned"
 
 	diff := capidSet(members).Difference(inactive).Difference(assigned)
@@ -56,5 +57,29 @@ func NewUnassignedMemberGroup(members map[uint]Member, assigned mapset.Set[uint]
 		}
 	}
 
+	if sortByName {
+		SortMembersByName(mg.Seniors)
+		SortMembersByName(mg.Cadets)
+	} else {
+		SortMembersByCAPID(mg.Seniors)
+		SortMembersByCAPID(mg.Cadets)
+	}
+
 	return mg
+}
+
+func SortMembersByName(members []Member) {
+	sort.Slice(members, func(i, j int) bool {
+		if members[i].LastName == members[j].LastName {
+			return members[i].FirstName < members[j].FirstName
+		}
+
+		return members[i].LastName < members[j].LastName
+	})
+}
+
+func SortMembersByCAPID(members []Member) {
+	sort.Slice(members, func(i, j int) bool {
+		return members[i].CAPID < members[j].CAPID
+	})
 }

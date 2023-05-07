@@ -10,6 +10,8 @@ import (
 )
 
 var logLevel string
+var outfile string
+var mbrReport string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -29,6 +31,8 @@ func Execute() {
 
 func init() {
 	rootCmd.PersistentFlags().StringVar(&logLevel, "loglevel", "info", "")
+	rootCmd.PersistentFlags().StringVarP(&outfile, "out", "o", "", "output file path (defaults to the log date)")
+	rootCmd.PersistentFlags().StringVarP(&mbrReport, "membership-report", "r", "", "file path to eServices Membership report (skips CAPWATCH access)")
 
 	logging.InitLogging(logLevel, true)
 	config.InitConfig()

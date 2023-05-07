@@ -3,6 +3,7 @@ package files
 import (
 	"io"
 	"os"
+	"path/filepath"
 
 	"github.com/pkg/errors"
 )
@@ -67,4 +68,21 @@ func Write(destPath, content string) (err error) {
 	}
 
 	return nil
+}
+
+func Remove(path string) error {
+	return os.Remove(path)
+}
+
+func SplitPath(path string) (dir string, file string, err error) {
+	dir, file = filepath.Split(path)
+
+	if dir == "" {
+		dir, err = os.Getwd()
+		if err != nil {
+			return "", "", errors.WithStack(err)
+		}
+	}
+
+	return dir, file, nil
 }

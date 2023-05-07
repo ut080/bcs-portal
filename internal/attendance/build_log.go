@@ -2,7 +2,6 @@ package attendance
 
 import (
 	"fmt"
-	"os/exec"
 	"path/filepath"
 	"syscall"
 	"time"
@@ -17,6 +16,7 @@ import (
 	"github.com/ut080/bcs-portal/internal/config"
 	"github.com/ut080/bcs-portal/internal/files"
 	"github.com/ut080/bcs-portal/internal/logging"
+	"github.com/ut080/bcs-portal/reports"
 	"github.com/ut080/bcs-portal/reports/attendance"
 )
 
@@ -121,75 +121,35 @@ func loadDataFromMembershipReport(to *domain.TableOfOrganization, filepath strin
 	return report.LastModified(), nil
 }
 
-func generateLaTeX(to domain.TableOfOrganization, logDate, lastSync time.Time, logger logging.Logger) (err error) {
-	cfgDir, err := config.ConfigDir()
-	if err != nil {
-		return errors.WithStack(err)
-	}
-
-	cacheDir, err := config.CacheDir()
-	if err != nil {
-		return errors.WithStack(err)
-	}
+func generateReport(to domain.TableOfOrganization, logDate, lastSync time.Time) (bl *attendance.BarcodeLog, assets []string) {
+	const capCommandEmblem = "cap_command_emblem.jpg"
 
 	unit := config.GetString("unit.name")
 	unitPatch := config.GetString("unit.patch_image")
 
-	bl := attendance.NewBarcodeLog(unit, "cap_command_emblem.jpg", unitPatch, logDate, lastSync)
+	bl = attendance.NewBarcodeLog(unit, capCommandEmblem, unitPatch, logDate, lastSync)
 	bl.PopulateFromTableOfOrganization(to)
 
-	err = files.Copy(filepath.Join(cfgDir, "assets", "cap_command_emblem.jpg"), filepath.Join(cacheDir, "build", "cap_command_emblem.jpg"))
-	if err != nil {
-		// TODO: React to whether this build asset has already been copied
-		logger.Warn().Err(err).Str("file", "cap_command_emblem.jpg").Msg("failed to copy build asset")
+	assets = []string{
+		capCommandEmblem,
+		unitPatch,
 	}
 
-	err = files.Copy(filepath.Join(cfgDir, "assets", unitPatch), filepath.Join(cacheDir, "build", unitPatch))
-	if err != nil {
-		// TODO: React to whether this build asset has already been copied
-		logger.Warn().Err(err).Str("file", unitPatch).Msg("failed to copy build asset")
-	}
-
-	latexFilePath := filepath.Join(cacheDir, "build", fmt.Sprintf("%s.tex", logDate.Format("2006-01-02")))
-	err = files.Write(latexFilePath, bl.LaTeX())
-	if err != nil {
-		return errors.WithStack(err)
-	}
-
-	return nil
-}
-
-func compileLaTeX(logDate time.Time, outDest string) (err error) {
-	cacheDir, err := config.CacheDir()
-	if err != nil {
-		return errors.WithStack(err)
-	}
-
-	filename := logDate.Format("2006-01-02")
-
-	// First run
-	cmd := exec.Command("pdflatex", "-halt-on-error", fmt.Sprintf("%s.tex", filename))
-	cmd.Dir = filepath.Join(cacheDir, "build")
-
-	err = cmd.Run()
-	if err != nil {
-		return errors.WithStack(err)
-	}
-
-	// Second run (pdflatex usually needs two runs to get formatting right)
-	cmd = exec.Command("pdflatex", "-halt-on-error", fmt.Sprintf("%s.tex", filename))
-	cmd.Dir = filepath.Join(cacheDir, "build")
-
-	err = files.Move(filepath.Join(cacheDir, "build", fmt.Sprintf("%s.pdf", filename)), outDest)
-	if err != nil {
-		return errors.WithStack(err)
-	}
-
-	return nil
+	return bl, assets
 }
 
 func BuildBarcodeLog(input, output, membershipReport string, logDate time.Time) (err error) {
 	logger := logging.Logger{}
+
+	outputPath, filename, err := files.SplitPath(output)
+	if err != nil {
+		logger.Error().Err(err).Msg("Failed to compile LaTeX.")
+		return errors.WithStack(err)
+	}
+
+	if filename == "" {
+		filename = logDate.Format("2006-01-02")
+	}
 
 	to, err := loadTableOfOrganizationConfiguration(input, logger)
 	if err != nil {
@@ -209,13 +169,17 @@ func BuildBarcodeLog(input, output, membershipReport string, logDate time.Time) 
 		}
 	}
 
-	err = generateLaTeX(to, logDate, lastSync, logger)
+	cfgDir, err := config.ConfigDir()
 	if err != nil {
 		return errors.WithStack(err)
 	}
 
-	err = compileLaTeX(logDate, output)
+	bl, assets := generateReport(to, logDate, lastSync)
+	assetDir := filepath.Join(cfgDir, "assets")
+
+	err = reports.CompileLaTeX(bl, assetDir, outputPath, filename, assets, logger)
 	if err != nil {
+		logger.Error().Err(err).Msg("Failed to compile LaTeX.")
 		return errors.WithStack(err)
 	}
 

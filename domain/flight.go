@@ -93,6 +93,7 @@ func (e *Element) PopulateMemberData(members map[uint]Member, accounted *mapset.
 		(*accounted).Add(mbr.CAPID)
 	}
 
+	SortMembersByName(elementMembers)
 	e.Members = elementMembers
 
 	return nil

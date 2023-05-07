@@ -86,6 +86,11 @@ duty_assignments:
     capwatch_title: 'Cadet Element Leader'
     min_grade: 'C/Amn'
     max_grade: 'C/CMSgt'
+  - symbol: AFlt/CCF4
+    title: 'Element A-4 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
   - symbol: BFlt/CC
     title: 'Bravo Flight Commander'
     capwatch_title: 'Cadet Flight Commander'
@@ -108,6 +113,101 @@ duty_assignments:
     max_grade: 'C/CMSgt'
   - symbol: BFlt/CCF3
     title: 'Element B-3 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
+  - symbol: BFlt/CCF4
+    title: 'Element B-4 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
+  - symbol: CFlt/CC
+    title: 'Charlie Flight Commander'
+    capwatch_title: 'Cadet Flight Commander'
+    min_grade: 'C/MSgt'
+    max_grade: 'C/Capt'
+  - symbol: CFlt/CCF
+    title: 'Charlie Flight Sergeant'
+    capwatch_title: 'Cadet Flight Sergeant'
+    min_grade: 'C/SSgt'
+    max_grade: 'C/CMSgt'
+  - symbol: CFlt/CCF1
+    title: 'Element C-1 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
+  - symbol: CFlt/CCF2
+    title: 'Element C-2 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
+  - symbol: CFlt/CCF3
+    title: 'Element C-3 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
+  - symbol: CFlt/CCF4
+    title: 'Element C-4 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
+  - symbol: DFlt/CC
+    title: 'Delta Flight Commander'
+    capwatch_title: 'Cadet Flight Commander'
+    min_grade: 'C/MSgt'
+    max_grade: 'C/Capt'
+  - symbol: DFlt/CCF
+    title: 'Delta Flight Sergeant'
+    capwatch_title: 'Cadet Flight Sergeant'
+    min_grade: 'C/SSgt'
+    max_grade: 'C/CMSgt'
+  - symbol: DFlt/CCF1
+    title: 'Element D-1 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
+  - symbol: DFlt/CCF2
+    title: 'Element D-2 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
+  - symbol: DFlt/CCF3
+    title: 'Element D-3 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
+  - symbol: DFlt/CCF4
+    title: 'Element D-4 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
+  - symbol: TFlt/CC
+    title: 'Training Flight Commander'
+    capwatch_title: 'Cadet Flight Commander'
+    min_grade: 'C/MSgt'
+    max_grade: 'C/Capt'
+  - symbol: TFlt/CCF
+    title: 'Training Flight Sergeant'
+    capwatch_title: 'Cadet Flight Sergeant'
+    min_grade: 'C/SSgt'
+    max_grade: 'C/CMSgt'
+  - symbol: TFlt/CCF1
+    title: 'Element T-1 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
+  - symbol: TFlt/CCF2
+    title: 'Element T-2 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
+  - symbol: TFlt/CCF3
+    title: 'Element T-3 Leader'
+    capwatch_title: 'Cadet Element Leader'
+    min_grade: 'C/Amn'
+    max_grade: 'C/CMSgt'
+  - symbol: TFlt/CCF4
+    title: 'Element T-4 Leader'
     capwatch_title: 'Cadet Element Leader'
     min_grade: 'C/Amn'
     max_grade: 'C/CMSgt'

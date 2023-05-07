@@ -134,14 +134,6 @@ func (bl *BarcodeLog) PopulateFromTableOfOrganization(to domain.TableOfOrganizat
 }
 
 func (bl *BarcodeLog) LaTeX() (latex string) {
-	// Build preamble
-	latex = barcodeLogPreamble
-	latex = strings.Replace(latex, "$(UNIT)", bl.Unit, 1)
-	latex = strings.Replace(latex, "$(COMMAND_EMBLEM_PATH)", bl.CommandEmblemPath, 1)
-	latex = strings.Replace(latex, "$(UNIT_PATCH_PATH)", bl.UnitPatchPath, 1)
-	latex = strings.Replace(latex, "$(LOG_DATE)", bl.LogDate.Format("2 Jan 2006"), 1)
-	latex = strings.Replace(latex, "$(LAST_CAPWATCH_SYNC)", bl.LastCapwatchSync.Format("02 Jan 2006"), 1)
-
 	// Inject log groups
 	for _, group := range bl.LogGroups {
 		if group.BreakBeforeLog() || bl.lineBreak() {
@@ -159,6 +151,21 @@ func (bl *BarcodeLog) LaTeX() (latex string) {
 	}
 	latex += blankGroupEndTemplate
 
+	return latex
+}
+
+func (bl *BarcodeLog) DocLaTeX() (latex string) {
+	// Build preamble
+	latex = barcodeLogPreamble
+	latex = strings.Replace(latex, "$(UNIT)", bl.Unit, 1)
+	latex = strings.Replace(latex, "$(COMMAND_EMBLEM_PATH)", bl.CommandEmblemPath, 1)
+	latex = strings.Replace(latex, "$(UNIT_PATCH_PATH)", bl.UnitPatchPath, 1)
+	latex = strings.Replace(latex, "$(LOG_DATE)", bl.LogDate.Format("2 Jan 2006"), 1)
+	latex = strings.Replace(latex, "$(LAST_CAPWATCH_SYNC)", bl.LastCapwatchSync.Format("02 Jan 2006"), 1)
+
+	latex += bl.LaTeX()
+
 	latex += barcodeLogEndTemplate
+
 	return latex
 }

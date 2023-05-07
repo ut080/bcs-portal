@@ -9,9 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - `dpdocs` will now accept the eServices Membership report as an input file as an alternative to CAPWATCH.
+- The Barcode Attendance log now sorts names.
 - Join Date and Rank Date are now a part of the Domain Model.
+- New report: schedule of cadet feedback sessions by month.
 
 ### Changed
+- Refactored LaTeX report generation into a common package.
 
 ### Deprecated
 

@@ -1,7 +1,6 @@
 package dpdocs
 
 import (
-	"fmt"
 	"os"
 	"time"
 
@@ -10,9 +9,6 @@ import (
 	"github.com/ut080/bcs-portal/internal/attendance"
 	"github.com/ut080/bcs-portal/internal/logging"
 )
-
-var attMbrReport string
-var attOutfile string
 
 var attendanceCmd = &cobra.Command{
 	Use:   "attendance [TableOfOrgFile] [LogDate]",
@@ -27,11 +23,7 @@ var attendanceCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		if attOutfile == "" {
-			attOutfile = fmt.Sprintf("%s.pdf", logDateStr)
-		}
-
-		err = attendance.BuildBarcodeLog(args[0], attOutfile, attMbrReport, logDate)
+		err = attendance.BuildBarcodeLog(args[0], outfile, mbrReport, logDate)
 		if err != nil {
 			logging.Error().Err(err).Msg("Failed to generate barcode attendance log")
 			os.Exit(1)
@@ -40,8 +32,6 @@ var attendanceCmd = &cobra.Command{
 }
 
 func init() {
-	attendanceCmd.Flags().StringVarP(&attOutfile, "out", "o", "", "output file path (defaults to the log date)")
-	attendanceCmd.Flags().StringVarP(&attMbrReport, "membership-report", "r", "", "file path to eServices Membership report (skips CAPWATCH access)")
 
 	rootCmd.AddCommand(attendanceCmd)
 }
