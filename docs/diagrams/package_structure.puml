@@ -1,0 +1,16 @@
+@startwbs
+'https://plantuml.com/wbs-diagram
+
+* BCS Portal
+** API
+** Clients
+*** CAPWATCH
+*** YAML
+** Domain Model
+** Repositories
+*** Postgres
+** Reports
+*** Barcode Attendance Log
+*** Element Assignments Report
+*** Organization Chart
+@endwbs

@@ -7,7 +7,7 @@ skinparam linetype ortho
 
     This package is the core domain model.
 '/
-class org.DutyAssignment {
+class DutyAssignment {
     +DutyTitle: string
     +Assistant: bool
     +OfficeSymbol: string
@@ -16,13 +16,13 @@ class org.DutyAssignment {
     +Assignee: *Member
 }
 
-class org.Element {
+class Element {
     +ElementLeader: DutyAssignment
     +AsstElementLeader: DutyAssignment
     +Members: Members[]
 }
 
-class org.Flight {
+class Flight {
     +Name: string
     +Abbreviation: string
     +FlightCommander: DutyAssignment
@@ -30,7 +30,7 @@ class org.Flight {
     +Elements: Element[]
 }
 
-class org.Member {
+class Member {
     +CAPID: int
     +LastName: string
     +FirstName: string
@@ -40,73 +40,33 @@ class org.Member {
     +FullName(): string
 }
 
-class org.StaffGroup {
+class StaffGroup {
     +Name string
     +SubGroups: StaffSubGroup[]
 }
 
-class org.StaffSubGroup {
+class StaffSubGroup {
     +Name: string
     +Leader: DutyAssignment
     +DirectReports: DutyAssignments[]
 }
 
-enum org.Grade
-enum org.MemberType
+enum Grade
+enum MemberType
 
-org.DutyAssignment *-- org.Grade
-org.DutyAssignment *-- org.Member
+DutyAssignment *-- Grade
+DutyAssignment *-- Member
 
-org.Element *-- org.DutyAssignment
-org.Element o-- org.Member
+Element *-- DutyAssignment
+Element o-- Member
 
-org.Flight *-- org.DutyAssignment
-org.Flight o-- org.Element
+Flight *-- DutyAssignment
+Flight o-- Element
 
-org.Member *-- org.MemberType
-org.Member *-- org.Grade
+Member *-- MemberType
+Member *-- Grade
 
-org.StaffGroup o-- org.StaffSubGroup
-org.StaffSubGroup o-- org.DutyAssignment
-
-/'
-    CAPWATCH Package
-
-    This package is for retrieving and extracting data from CAPWATCH dumps.
-'/
-class capwatch.Dump {
-    -dump: byte[]
-    +NewDump(dump: byte[]): *Dump
-}
-
-class capwatch.Client {
-    -capwatch_username: *string
-    -capwatch_password: *string
-    +Fetch(filename: string, refresh: bool): *Dump, error
-    -queryCapwatch(): *Dump, error
-    -writeCache(dump: *Dump, filename: string): error
-    -readCache(filename: string): *Dump, error
-}
-
-/'
-    YAML Package
-
-    This package is for processing additional information contained in YAML
-    documents (e.g. element assignments or staff groupings for the attendance logs).
-'/
-
-/'
-    XLSX Package
-
-    This package is for reading information from/writing information to the official
-    flight lists document.
-'/
-
-/'
-    LaTeX Package
-
-    This package is for generating documents from domain data, e.g. barcode attendance logs
-    or domain charts.
-'/
+StaffGroup o-- StaffSubGroup
+StaffSubGroup o-- DutyAssignment
 
 @enduml

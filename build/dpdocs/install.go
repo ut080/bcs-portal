@@ -6,9 +6,9 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/ut080/bcs-portal/app/config"
-	"github.com/ut080/bcs-portal/app/logging"
-	"github.com/ut080/bcs-portal/pkg/files"
+	"github.com/ut080/bcs-portal/internal/config"
+	"github.com/ut080/bcs-portal/internal/files"
+	"github.com/ut080/bcs-portal/internal/logging"
 )
 
 func CreateConfigDirectories() error {
