@@ -1,5 +1,20 @@
+<script setup>
+useHead({
+  title: 'Blackhawk Cadet Squadron',
+  meta: [
+    { name: 'description', content: 'Blackhawk Cadet Squadron, Utah Wing, Civil Air Patrol - United States Air Force Auxiliary' }
+  ],
+  link: [
+    { rel: 'apple-touch-icon', sizes:'180x180', href:'/apple-touch-icon.png'},
+    { rel: 'icon', type:'image/png', sizes:'32x32', href:'/favicon-32x32.png'},
+    { rel: 'icon', type:'image/png', sizes:'16x16', href:'/favicon-16x16.png'},
+    { rel: 'manifest', href:'/site.webmanifest'}
+  ]
+})
+</script>
+
 <template>
   <div>
-    <NuxtWelcome />
+    <h1>Hello World!</h1>
   </div>
 </template>
