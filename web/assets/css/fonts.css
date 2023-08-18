@@ -1,0 +1,62 @@
+@font-face {
+    font-family: "Rajdhani-Bold";
+    src:          url("/fonts/Rajdhani-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Ubuntu-Regular";
+    src:          url("/fonts/Ubuntu-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Ubuntu-Italic";
+    src:          url("/fonts/Ubuntu-Italic.ttf") format("truetype");
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Ubuntu-Bold";
+    src:          url("/fonts/Ubuntu-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Ubuntu-BoldItalic";
+    src:          url("/fonts/Ubuntu-BoldItalic.ttf") format("truetype");
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "NoticiaText-Regular";
+    src:          url("/fonts/NoticiaText-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "NoticiaText-Italic";
+    src:          url("/fonts/NoticiaText-Italic.ttf") format("truetype");
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "NoticiaText-Bold";
+    src:          url("/fonts/NoticiaText-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "NoticiaText-BoldItalic";
+    src:          url("/fonts/NoticiaText-BoldItalic.ttf") format("truetype");
+    font-weight: 700;
+    font-style: italic;
+}

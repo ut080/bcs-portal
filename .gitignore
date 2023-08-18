@@ -14,7 +14,13 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
+# Files that get generated if you accidentally run yarn in the project root
+node_modules/
+yarn.lock
+package.json
+
 # Local dev environment
 bin/
 temp/
 testdata/
+.env
