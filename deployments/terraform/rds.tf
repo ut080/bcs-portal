@@ -4,6 +4,7 @@ resource "aws_kms_key" "bcs_portal" {
 
 resource "aws_db_instance" "bcs_portal" {
   allocated_storage             = 20
+  ca_cert_identifier            = "rds-ca-ecc384-g1"
   db_name                       = "bcs_portal"
   engine                        = "postgres"
   engine_version                = "15.4"
