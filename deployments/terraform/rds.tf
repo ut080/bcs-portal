@@ -5,7 +5,7 @@ resource "aws_kms_key" "bcs_portal" {
 resource "aws_db_instance" "bcs_portal" {
   allocated_storage             = 20
   db_name                       = "bcs_portal"
-  engine                        = "postgresql"
+  engine                        = "postgres"
   engine_version                = "15.4-R1"
   identifier                    = "bcs-portal-db"
   instance_class                = "db.t3.micro"
