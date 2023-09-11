@@ -1,13 +1,17 @@
 resource "aws_route53domains_registered_domain" "bcs_portal" {
   domain_name = var.bcs_portal_domain
+
+  tags = {
+    Service = "bcs-portal"
+  }
 }
 
 resource "aws_amplify_app" "bcs_portal" {
-  name = "bcs-portal-web"
+  name       = "bcs-portal-web"
   repository = var.amplify_repository
 
   environment_variables = {
-    AMPLIFY_DIFF_DEPLOY = "false"
+    AMPLIFY_DIFF_DEPLOY       = "false"
     AMPLIFY_MONOREPO_APP_ROOT = "web"
   }
 
@@ -43,15 +47,23 @@ resource "aws_amplify_app" "bcs_portal" {
             paths:
               - node_modules/**/*
 EOT
+
+  tags = {
+    Service = "bcs-portal"
+  }
 }
 
 resource "aws_amplify_branch" "main" {
-  app_id = aws_amplify_app.bcs_portal.id
+  app_id      = aws_amplify_app.bcs_portal.id
   branch_name = "main"
+
+  tags = {
+    Service = "bcs-portal"
+  }
 }
 
 resource "aws_amplify_domain_association" "bcs_portal" {
-  app_id = aws_amplify_app.bcs_portal.id
+  app_id      = aws_amplify_app.bcs_portal.id
   domain_name = aws_route53domains_registered_domain.bcs_portal.domain_name
 
   sub_domain {
@@ -62,5 +74,9 @@ resource "aws_amplify_domain_association" "bcs_portal" {
   sub_domain {
     branch_name = aws_amplify_branch.main.branch_name
     prefix      = "www"
+  }
+
+  tags = {
+    Service = "bcs-portal"
   }
 }
