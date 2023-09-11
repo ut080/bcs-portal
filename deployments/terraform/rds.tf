@@ -6,7 +6,7 @@ resource "aws_db_instance" "bcs_portal" {
   allocated_storage             = 20
   db_name                       = "bcs_portal"
   engine                        = "postgresql"
-  engine_version                = "15.3"
+  engine_version                = "15.4-R1"
   identifier                    = "bcs-portal-db"
   instance_class                = "db.t3.micro"
   manage_master_user_password   = true
@@ -20,7 +20,7 @@ resource "aws_db_instance" "bcs_portal" {
 
 resource "aws_db_subnet_group" "bcs_portal" {
   name       = "bcs-portal-dbsg"
-  subnet_ids = [aws_subnet.bcs_portal_db.id]
+  subnet_ids = [aws_subnet.bcs_portal_db_aza.id, aws_subnet.bcs_portal_db_azb.id]
 
   tags = {
     Service = "bcs-portal"
