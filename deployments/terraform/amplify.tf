@@ -1,3 +1,4 @@
+/*
 resource "aws_route53domains_registered_domain" "bcs_portal" {
   domain_name = var.bcs_portal_domain
 }
@@ -38,13 +39,14 @@ resource "aws_amplify_app" "bcs_portal" {
           artifacts:
             baseDirectory: '.output/public'
             files:
-              - '**/*'
-          cache:
-            paths:
-              - node_modules/**/*
-EOT
-}
+#              - '**/*'
+#          cache:
+#            paths:
+#              - node_modules/**/*
+#EOT
+#}
 
+/*
 resource "aws_amplify_branch" "main" {
   app_id      = aws_amplify_app.bcs_portal.id
   branch_name = "main"
@@ -64,3 +66,4 @@ resource "aws_amplify_domain_association" "bcs_portal" {
     prefix      = "www"
   }
 }
+*/
