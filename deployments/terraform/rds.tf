@@ -11,6 +11,7 @@ resource "aws_db_instance" "bcs_portal" {
   identifier                    = "bcs-portal-db"
   instance_class                = "db.t3.micro"
   manage_master_user_password   = true
+  master_user_secret_kms_key_id = aws_kms_key.bcs_portal.id
   username                      = "postgres"
 
   tags = {
