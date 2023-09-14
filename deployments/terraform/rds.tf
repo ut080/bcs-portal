@@ -1,5 +1,42 @@
 resource "aws_kms_key" "bcs_portal" {
   description = "BCS Portal secrets key"
+  policy = <<-EOT
+  {
+      "Version": "2012-10-17",
+      "Id": "bcs-portal-secrets-1",
+      "Statement": [
+          {
+              "Sid": "Enable IAM User Permissions",
+              "Effect": "Allow",
+              "Principal": {
+                  "AWS": "${var.aws_principal_arn}"
+              },
+              "Action": "kms:*",
+              "Resource": "*"
+          },
+          {
+              "Sid": "Allow Terraform Cloud access to this key",
+              "Effect": "Allow",
+              "Principal": {
+                  "AWS": "${var.terraform_cloud_role_arn}"
+              },
+              "Action": [
+                "kms:DescribeKey",
+                "kms:Decrypt",
+                "kms:CreateDataKey",
+                "kms:CreateGrant"
+              ],
+              "Resource": "*"
+          }
+      ]
+  }
+EOT
+
+}
+
+resource "aws_kms_alias" "bcs_portal" {
+  name          = "alias/bcs-portal"
+  target_key_id = aws_kms_key.bcs_portal.key_id
 }
 
 resource "aws_db_instance" "bcs_portal" {
