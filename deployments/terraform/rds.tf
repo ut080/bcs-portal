@@ -32,11 +32,10 @@ resource "aws_kms_key" "bcs_portal" {
   }
 EOT
 
-
 }
 
 resource "aws_kms_alias" "bcs_portal" {
-  name          = "bcs-portal"
+  name          = "alias/bcs-portal"
   target_key_id = aws_kms_key.bcs_portal.key_id
 }
 
