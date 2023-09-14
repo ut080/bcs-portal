@@ -1,4 +1,3 @@
-/*
 resource "aws_kms_key" "bcs_portal" {
   description = "BCS Portal secrets key"
 }
@@ -28,5 +27,3 @@ resource "aws_db_subnet_group" "bcs_portal" {
     Service = "bcs-portal"
   }
 }
-
-*/

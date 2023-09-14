@@ -1,4 +1,3 @@
-/*
 resource "aws_vpc" "bcs_portal" {
   cidr_block = "10.0.0.0/16"
 
@@ -26,4 +25,3 @@ resource "aws_subnet" "bcs_portal_db_azb" {
     Service = "bcs-portal"
   }
 }
-*/
