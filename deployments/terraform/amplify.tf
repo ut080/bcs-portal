@@ -3,8 +3,9 @@ resource "aws_route53domains_registered_domain" "bcs_portal" {
 }
 
 resource "aws_amplify_app" "bcs_portal" {
-  name       = "bcs-portal-web"
-  repository = var.amplify_repository
+  name         = "bcs-portal-web"
+  repository   = var.amplify_repository
+  access_token = var.amplify_repository_access_token
 
   environment_variables = {
     AMPLIFY_DIFF_DEPLOY       = "false"
