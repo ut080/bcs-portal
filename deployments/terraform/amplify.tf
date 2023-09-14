@@ -63,8 +63,4 @@ resource "aws_amplify_domain_association" "bcs_portal" {
     branch_name = aws_amplify_branch.main.branch_name
     prefix      = "www"
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 5d20c3d (chore: Rebuilding infrastructure)
