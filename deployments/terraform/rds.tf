@@ -20,12 +20,7 @@ resource "aws_kms_key" "bcs_portal" {
               "Principal": {
                   "AWS": "${var.terraform_cloud_role_arn}"
               },
-              "Action": [
-                "kms:DescribeKey",
-                "kms:Decrypt",
-                "kms:CreateDataKey",
-                "kms:CreateGrant"
-              ],
+              "Action": "kms:*",
               "Resource": "*"
           }
       ]
