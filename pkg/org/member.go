@@ -8,13 +8,14 @@ import (
 )
 
 type Member struct {
-	CAPID      uint
-	LastName   string
-	FirstName  string
-	MemberType MemberType
-	Grade      Grade
-	JoinDate   time.Time
-	RankDate   time.Time
+	CAPID          uint
+	LastName       string
+	FirstName      string
+	MemberType     MemberType
+	Grade          Grade
+	JoinDate       time.Time
+	RankDate       time.Time
+	ExpirationDate time.Time
 }
 
 func (m Member) String() string {
