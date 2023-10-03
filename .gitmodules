@@ -1,0 +1,3 @@
+[submodule "assets/publications"]
+	path = assets/publications
+	url = git@github.com:ut080/publications.git
