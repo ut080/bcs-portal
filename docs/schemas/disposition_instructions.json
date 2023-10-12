@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ut080/bcs-portal/blob/main/docs/schemas/disposition_instructions.json",
+  "title": "Disposition Instructions",
+  "description": "YAML definition of CAP file disposition instructions per the tables in CAPR 10-2",
+  "$defs": {
+    "table": {
+      "type": "object",
+      "properties": {
+        "table_number": { "type":  "integer", "minimum":  0 },
+        "title": { "type":  "string", "minLength": 1 },
+        "rules": { "type": "array", "items": { "$ref": "#/$defs/rule" } }
+      },
+      "required": [ "table_number", "title", "rules"]
+    },
+    "rule": {
+      "type": "object",
+      "properties": {
+        "rule_number": { "type": "integer", "minimum":  0},
+        "record_type": { "type": "string", "minLength": 1 },
+        "cutoff": { "type": "string" },
+        "disposition": { "type": "string", "minLength": 1 }
+      },
+      "required": [ "rule_number", "record_type", "cutoff", "disposition" ]
+    }
+  },
+  "type": "object",
+  "patternProperties": {
+    "^table_[0-9]+": { "$ref": "#/$defs/table" }
+  },
+  "additionalProperties": false
+}

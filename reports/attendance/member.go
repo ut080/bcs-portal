@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ut080/bcs-portal/domain"
+	"github.com/ut080/bcs-portal/pkg/org"
 )
 
 const memberTemplate = `\stepcounter{lineNumber}
@@ -22,15 +22,15 @@ type Member struct {
 	Name  string
 }
 
-func NewMemberFromDomainMember(domainMember domain.Member) (member Member) {
+func NewMemberFromDomainMember(domainMember org.Member) (member Member) {
 	member.CAPID = domainMember.CAPID
 	member.Name = domainMember.String()
 
 	return member
 }
 
-func (m Member) LaTeX() (latex string) {
-	latex = strings.Replace(memberTemplate, "$(CAPID)", strconv.Itoa(int(m.CAPID)), 1)
+func (m Member) LaTeX() string {
+	latex := strings.Replace(memberTemplate, "$(CAPID)", strconv.Itoa(int(m.CAPID)), 1)
 	latex = strings.Replace(latex, "$(NAME)", m.Name, 1)
 
 	return latex

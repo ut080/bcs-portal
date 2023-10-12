@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ut080/bcs-portal/blob/main/docs/schemas/disposition_instructions.json",
+  "title": "Fileplan",
+  "description": "YAML definition for a CAPR 10-2 file plan",
+  "$defs": {
+    "file_item": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "table": { "type": ["integer", "null"], "minimum": 0 },
+        "rule": { "type": ["integer", "null"], "minimum": 0 },
+        "subitems": { "type": "array", "items": { "$ref": "#/$defs/file_item"} }
+      },
+      "required": [ "title", "table", "rule" ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "plan_title": { "type": "string" },
+    "preparer": { "type": "string" },
+    "prepared": { "type": "string", "format": "date" },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/file_item" }
+    }
+  }
+}

@@ -22,13 +22,13 @@ func (suite *TableOfOrganizationSuite) SetupTest() {
 
 func (suite *TableOfOrganizationSuite) TestLoadTableOfOrganization() {
 	daCfg := DutyAssignmentConfig{}
-	err := LoadYamlDocFromFile(filepath.Join(testDataDir, "config", "duty_assignments.yaml"), &daCfg, logging.Logger{})
+	err := LoadFromFile(filepath.Join(testDataDir, "config", "duty_assignments.yaml"), &daCfg, logging.Logger{})
 	assert.NoError(suite.T(), err)
 
 	domainDACfg := daCfg.DomainDutyAssignments()
 
 	to := TableOfOrganization{}
-	err = LoadYamlDocFromFile(filepath.Join(testDataDir, "to.yaml"), &to, logging.Logger{})
+	err = LoadFromFile(filepath.Join(testDataDir, "to.yaml"), &to, logging.Logger{})
 	assert.NoError(suite.T(), err)
 
 	domainTo, err := to.DomainTableOfOrganization(domainDACfg)

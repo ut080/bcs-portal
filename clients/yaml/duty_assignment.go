@@ -1,7 +1,7 @@
 package yaml
 
 import (
-	"github.com/ut080/bcs-portal/domain"
+	"github.com/ut080/bcs-portal/pkg/org"
 )
 
 type DutyAssignmentConfig struct {
@@ -17,27 +17,27 @@ type DutyAssignment struct {
 	AsigneeCAPID  *uint   `yaml:"capid"`
 }
 
-func (dac DutyAssignmentConfig) DomainDutyAssignments() (dutyAssignments map[string]domain.DutyAssignment) {
-	dutyAssignments = make(map[string]domain.DutyAssignment)
+func (dac DutyAssignmentConfig) DomainDutyAssignments() (dutyAssignments map[string]org.DutyAssignment) {
+	dutyAssignments = make(map[string]org.DutyAssignment)
 
 	for _, assignment := range dac.DutyAssignments {
-		var min *domain.Grade = nil
+		var min *org.Grade = nil
 		if assignment.MinGrade != nil {
-			mi, err := domain.ParseGrade(*assignment.MinGrade)
+			mi, err := org.ParseGrade(*assignment.MinGrade)
 			if err == nil { // TODO: Add some actual error handling
 				min = &mi
 			}
 		}
 
-		var max *domain.Grade = nil
+		var max *org.Grade = nil
 		if assignment.MaxGrade != nil {
-			mx, err := domain.ParseGrade(*assignment.MaxGrade)
+			mx, err := org.ParseGrade(*assignment.MaxGrade)
 			if err == nil { // TODO: Add some actual error handling
 				max = &mx
 			}
 		}
 
-		da := domain.DutyAssignment{
+		da := org.DutyAssignment{
 			DutyTitle:    assignment.Title,
 			OfficeSymbol: assignment.OfficeSymbol,
 			MinGrade:     min,

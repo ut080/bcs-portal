@@ -2,7 +2,6 @@ package attendance
 
 import (
 	"fmt"
-	"os/exec"
 	"path/filepath"
 	"syscall"
 	"time"
@@ -13,37 +12,41 @@ import (
 	"github.com/ut080/bcs-portal/clients/capwatch"
 	"github.com/ut080/bcs-portal/clients/eservices"
 	"github.com/ut080/bcs-portal/clients/yaml"
-	"github.com/ut080/bcs-portal/domain"
 	"github.com/ut080/bcs-portal/internal/config"
 	"github.com/ut080/bcs-portal/internal/files"
+	"github.com/ut080/bcs-portal/internal/latex"
 	"github.com/ut080/bcs-portal/internal/logging"
+	"github.com/ut080/bcs-portal/pkg/org"
 	"github.com/ut080/bcs-portal/reports/attendance"
 )
 
-func loadTableOfOrganizationConfiguration(toCfg string, logger logging.Logger) (to domain.TableOfOrganization, err error) {
+func loadTableOfOrganizationConfiguration(toCfg files.File, logger logging.Logger) (to org.TableOfOrganization, err error) {
 	cfgDir, err := config.ConfigDir()
 	if err != nil {
-		return domain.TableOfOrganization{}, errors.WithMessage(err, "failed to access config directory")
+		return org.TableOfOrganization{}, errors.WithMessage(err, "failed to access config directory")
 	}
 
 	daCfg := yaml.DutyAssignmentConfig{}
-	daCfgPath := filepath.Join(cfgDir, "cfg", "duty_assignments.yaml")
-	err = yaml.LoadYamlDocFromFile(daCfgPath, &daCfg, logger)
+	daCfgFile, err := files.NewFile(filepath.Join(cfgDir, "cfg", "duty_assignments.yaml"), logger)
 	if err != nil {
-		return domain.TableOfOrganization{}, err
+		return org.TableOfOrganization{}, errors.WithStack(err)
+	}
+	err = yaml.LoadFromFile(daCfgFile, &daCfg, logger)
+	if err != nil {
+		return org.TableOfOrganization{}, err
 	}
 
 	domainDACfg := daCfg.DomainDutyAssignments()
 
-	yamlTo := yaml.TableOfOrganization{}
-	err = yaml.LoadYamlDocFromFile(toCfg, &yamlTo, logger)
+	yamlTO := yaml.TableOfOrganization{}
+	err = yaml.LoadFromFile(toCfg, &yamlTO, logger)
 	if err != nil {
-		return domain.TableOfOrganization{}, err
+		return org.TableOfOrganization{}, err
 	}
 
-	to, err = yamlTo.DomainTableOfOrganization(domainDACfg)
+	to, err = yamlTO.DomainTableOfOrganization(domainDACfg)
 	if err != nil {
-		return domain.TableOfOrganization{}, err
+		return org.TableOfOrganization{}, err
 	}
 
 	return to, nil
@@ -59,7 +62,7 @@ func getCapwatchPassword(capwatchUsername string) (password []byte, err error) {
 	return password, nil
 }
 
-func loadCapwatchData(to *domain.TableOfOrganization, logger logging.Logger) (refreshDate time.Time, err error) {
+func loadCapwatchData(to *org.TableOfOrganization, logger logging.Logger) (refreshDate time.Time, err error) {
 	cacheDir, err := config.CacheDir()
 	if err != nil {
 		return refreshDate, errors.WithStack(err)
@@ -102,8 +105,8 @@ func loadCapwatchData(to *domain.TableOfOrganization, logger logging.Logger) (re
 	return refreshDate, nil
 }
 
-func loadDataFromMembershipReport(to *domain.TableOfOrganization, filepath string) (lastSync time.Time, err error) {
-	report, err := eservices.NewMembershipReport(filepath)
+func loadDataFromMembershipReport(to *org.TableOfOrganization, reportFile files.File) (lastSync time.Time, err error) {
+	report, err := eservices.NewMembershipReport(reportFile)
 	if err != nil {
 		return lastSync, errors.WithStack(err)
 	}
@@ -121,37 +124,16 @@ func loadDataFromMembershipReport(to *domain.TableOfOrganization, filepath strin
 	return report.LastModified(), nil
 }
 
-func generateLaTeX(to domain.TableOfOrganization, logDate, lastSync time.Time, logger logging.Logger) (err error) {
-	cfgDir, err := config.ConfigDir()
-	if err != nil {
-		return errors.WithStack(err)
-	}
-
-	cacheDir, err := config.CacheDir()
-	if err != nil {
-		return errors.WithStack(err)
-	}
-
+func generateLaTeX(to org.TableOfOrganization, outputFile files.File, logDate, lastSync time.Time, logger logging.Logger) error {
 	unit := config.GetString("unit.name")
 	unitPatch := config.GetString("unit.patch_image")
 
 	bl := attendance.NewBarcodeLog(unit, "cap_command_emblem.jpg", unitPatch, logDate, lastSync)
 	bl.PopulateFromTableOfOrganization(to)
 
-	err = files.Copy(filepath.Join(cfgDir, "assets", "cap_command_emblem.jpg"), filepath.Join(cacheDir, "build", "cap_command_emblem.jpg"))
-	if err != nil {
-		// TODO: React to whether this build asset has already been copied
-		logger.Warn().Err(err).Str("file", "cap_command_emblem.jpg").Msg("failed to copy build asset")
-	}
+	assets := []string{"cap_command_emblem.jpg", unitPatch}
 
-	err = files.Copy(filepath.Join(cfgDir, "assets", unitPatch), filepath.Join(cacheDir, "build", unitPatch))
-	if err != nil {
-		// TODO: React to whether this build asset has already been copied
-		logger.Warn().Err(err).Str("file", unitPatch).Msg("failed to copy build asset")
-	}
-
-	latexFilePath := filepath.Join(cacheDir, "build", fmt.Sprintf("%s.tex", logDate.Format("2006-01-02")))
-	err = files.Write(latexFilePath, bl.LaTeX())
+	err := latex.GenerateLaTeX(bl, outputFile, assets, logger)
 	if err != nil {
 		return errors.WithStack(err)
 	}
@@ -159,45 +141,16 @@ func generateLaTeX(to domain.TableOfOrganization, logDate, lastSync time.Time, l
 	return nil
 }
 
-func compileLaTeX(logDate time.Time, outDest string) (err error) {
-	cacheDir, err := config.CacheDir()
-	if err != nil {
-		return errors.WithStack(err)
-	}
-
-	filename := logDate.Format("2006-01-02")
-
-	// First run
-	cmd := exec.Command("pdflatex", "-halt-on-error", fmt.Sprintf("%s.tex", filename))
-	cmd.Dir = filepath.Join(cacheDir, "build")
-
-	err = cmd.Run()
-	if err != nil {
-		return errors.WithStack(err)
-	}
-
-	// Second run (pdflatex usually needs two runs to get formatting right)
-	cmd = exec.Command("pdflatex", "-halt-on-error", fmt.Sprintf("%s.tex", filename))
-	cmd.Dir = filepath.Join(cacheDir, "build")
-
-	err = files.Move(filepath.Join(cacheDir, "build", fmt.Sprintf("%s.pdf", filename)), outDest)
-	if err != nil {
-		return errors.WithStack(err)
-	}
-
-	return nil
-}
-
-func BuildBarcodeLog(input, output, membershipReport string, logDate time.Time) (err error) {
+func BuildBarcodeLog(toCfg, outFile, membershipReport files.File, logDate time.Time) error {
 	logger := logging.Logger{}
 
-	to, err := loadTableOfOrganizationConfiguration(input, logger)
+	to, err := loadTableOfOrganizationConfiguration(toCfg, logger)
 	if err != nil {
 		return errors.WithStack(err)
 	}
 
 	var lastSync time.Time
-	if membershipReport == "" {
+	if membershipReport.Empty() {
 		lastSync, err = loadCapwatchData(&to, logger)
 		if err != nil {
 			return errors.WithStack(err)
@@ -209,12 +162,12 @@ func BuildBarcodeLog(input, output, membershipReport string, logDate time.Time) 
 		}
 	}
 
-	err = generateLaTeX(to, logDate, lastSync, logger)
+	err = generateLaTeX(to, outFile, logDate, lastSync, logger)
 	if err != nil {
 		return errors.WithStack(err)
 	}
 
-	err = compileLaTeX(logDate, output)
+	err = latex.CompileLaTeX(outFile, logger)
 	if err != nil {
 		return errors.WithStack(err)
 	}

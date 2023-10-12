@@ -1,4 +1,4 @@
-package domain
+package org
 
 import (
 	"github.com/pkg/errors"

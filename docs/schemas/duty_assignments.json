@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ut080/bcs-portal/blob/main/docs/schemas/disposition_instructions.json",
+  "title": "Duty Assignments",
+  "description": "YAML definition of CAP Duty Assignment configuration for the DPDOCS utility.",
+  "$defs": {
+    "grade": {
+      "type": "string",
+      "enum": [
+        "Maj Gen", "Brig Gen", "Col", "Lt Col", "Maj", "Capt", "1st Lt", "2d Lt", "SFO", "TFO", "FO", "CMSgt", "SMSgt",
+        "MSgt", "TSgt", "SSgt", "SM", "C/Col", "C/Lt Col", "C/Maj", "C/Capt", "C/1st Lt", "C/2d Lt", "C/CMSgt",
+        "C/SMSgt", "C/MSgt", "C/TSgt", "C/SSgt", "C/SrA", "C/A1C", "C/Amn", "C/AB"
+      ]
+    }
+  },
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "symbol": { "type":  "string", "minLength":  1 },
+      "title": { "type":  "string", "minLength": 1 },
+      "capwatch_title": { "type": "string" },
+      "min_grade": { "$ref": "#/$defs/grade" },
+      "max_grade": { "$ref": "#/$defs/grade" }
+    },
+    "required": [ "symbol", "title"]
+  }
+}

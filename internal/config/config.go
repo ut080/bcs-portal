@@ -10,7 +10,7 @@ import (
 
 // Directory functions
 
-// ConfigDir returns the directory where configuration files and assets are stored.
+// ConfigDir returns the directory where configuration filing and assets are stored.
 func ConfigDir() (string, error) {
 	hd, err := os.UserConfigDir()
 	if err != nil {
@@ -20,7 +20,7 @@ func ConfigDir() (string, error) {
 	return filepath.Join(hd, "bcs-portal"), nil
 }
 
-// CacheDir returns the directory where CAPWATCH and other cache files are stored.
+// CacheDir returns the directory where CAPWATCH and other cache filing are stored.
 func CacheDir() (string, error) {
 	cd, err := os.UserCacheDir()
 	if err != nil {

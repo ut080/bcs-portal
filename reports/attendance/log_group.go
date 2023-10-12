@@ -7,7 +7,7 @@ import (
 	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/sbani/go-humanizer/numbers"
 
-	"github.com/ut080/bcs-portal/domain"
+	"github.com/ut080/bcs-portal/pkg/org"
 )
 
 const (
@@ -38,7 +38,7 @@ type LogGroup struct {
 	breakBeforeLog bool
 }
 
-func NewLogGroupFromStaffGroup(group domain.StaffGroup, ignore *mapset.Set[uint]) LogGroup {
+func NewLogGroupFromStaffGroup(group org.StaffGroup, ignore *mapset.Set[uint]) LogGroup {
 	lg := LogGroup{Name: group.Name}
 
 	for _, subGroup := range group.SubGroups {
@@ -48,7 +48,7 @@ func NewLogGroupFromStaffGroup(group domain.StaffGroup, ignore *mapset.Set[uint]
 	return lg
 }
 
-func NewLogGroupFromFlight(flight domain.Flight, ignore *mapset.Set[uint]) (lg LogGroup) {
+func NewLogGroupFromFlight(flight org.Flight, ignore *mapset.Set[uint]) (lg LogGroup) {
 	lg.Name = flight.Name
 
 	fltStaff := LogSubGroup{Name: "Flight Staff"}
@@ -71,7 +71,7 @@ func NewLogGroupFromFlight(flight domain.Flight, ignore *mapset.Set[uint]) (lg L
 	return lg
 }
 
-func NewLogGroupFromMemberGroup(memberGroup domain.MemberGroup) (lg LogGroup) {
+func NewLogGroupFromMemberGroup(memberGroup org.MemberGroup) (lg LogGroup) {
 	lg = LogGroup{Name: memberGroup.Name, breakBeforeLog: true}
 
 	seniors := LogSubGroup{Name: "Seniors"}
@@ -122,7 +122,7 @@ type LogSubGroup struct {
 	Members []Member
 }
 
-func NewLogSubGroupFromStaffSubGroup(subgroup domain.StaffSubGroup, ignore *mapset.Set[uint]) (lsg LogSubGroup) {
+func NewLogSubGroupFromStaffSubGroup(subgroup org.StaffSubGroup, ignore *mapset.Set[uint]) (lsg LogSubGroup) {
 	lsg.Name = subgroup.Name
 
 	if subgroup.Leader.Assignee != nil && !(*ignore).Contains(subgroup.Leader.Assignee.CAPID) {
@@ -140,7 +140,7 @@ func NewLogSubGroupFromStaffSubGroup(subgroup domain.StaffSubGroup, ignore *maps
 	return lsg
 }
 
-func NewLogSubGroupFromElement(element domain.Element, elementNumber int, ignore *mapset.Set[uint]) (lsg LogSubGroup) {
+func NewLogSubGroupFromElement(element org.Element, elementNumber int, ignore *mapset.Set[uint]) (lsg LogSubGroup) {
 	lsg.Name = fmt.Sprintf("%s Element", numbers.Ordinalize(elementNumber))
 
 	if element.ElementLeader.Assignee != nil && !(*ignore).Contains(element.ElementLeader.Assignee.CAPID) {

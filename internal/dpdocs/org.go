@@ -6,7 +6,7 @@ import (
 )
 
 var attendanceCmd = &cobra.Command{
-	Use:   "domain",
+	Use:   "pkg",
 	Short: "Generate squadron Org Chart and Flight/Element assignments ",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {

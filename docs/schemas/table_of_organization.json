@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ut080/bcs-portal/blob/main/docs/schemas/table_of_organization.json",
+  "title": "Table of Organization",
+  "description": "YAML definition of a CAP unit's table of organization",
+  "type": "object"
+}

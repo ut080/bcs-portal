@@ -7,7 +7,7 @@ import (
 
 	mapset "github.com/deckarep/golang-set/v2"
 
-	"github.com/ut080/bcs-portal/domain"
+	"github.com/ut080/bcs-portal/pkg/org"
 )
 
 const (
@@ -115,7 +115,7 @@ func (bl *BarcodeLog) lineBreak() bool {
 	return false
 }
 
-func (bl *BarcodeLog) PopulateFromTableOfOrganization(to domain.TableOfOrganization) {
+func (bl *BarcodeLog) PopulateFromTableOfOrganization(to org.TableOfOrganization) {
 	var flightGroups []LogGroup
 	for _, flight := range to.Flights {
 		flightGroups = append(flightGroups, NewLogGroupFromFlight(flight, &bl.ignore))

@@ -8,11 +8,12 @@ import (
 	"github.com/spf13/cobra"
 
 	"github.com/ut080/bcs-portal/internal/attendance"
+	"github.com/ut080/bcs-portal/internal/files"
 	"github.com/ut080/bcs-portal/internal/logging"
 )
 
-var attMbrReport string
-var attOutfile string
+var attMbrReportStr string
+var attOutfileStr string
 
 var attendanceCmd = &cobra.Command{
 	Use:   "attendance [TableOfOrgFile] [LogDate]",
@@ -20,6 +21,12 @@ var attendanceCmd = &cobra.Command{
 	Long:  ``,
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
+		toCfg, err := files.NewFile(args[0])
+		if err != nil {
+			logging.Error().Err(err).Str("toCfg", args[0]).Msg("Failed to create file reference for TO cfg")
+			os.Exit(1)
+		}
+
 		logDateStr := args[1]
 		logDate, err := time.Parse("2006-01-02", logDateStr)
 		if err != nil {
@@ -27,11 +34,26 @@ var attendanceCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
-		if attOutfile == "" {
-			attOutfile = fmt.Sprintf("%s.pdf", logDateStr)
+		var attOutfile files.File
+		if attOutfileStr == "" {
+			attOutfileStr = fmt.Sprintf("%s.pdf", logDateStr)
+		}
+		attOutfile, err = files.NewFile(attOutfileStr)
+		if err != nil {
+			logging.Error().Err(err).Str("attOutfileStr", attOutfileStr).Msg("Failed to create file reference for log")
+			os.Exit(1)
 		}
 
-		err = attendance.BuildBarcodeLog(args[0], attOutfile, attMbrReport, logDate)
+		var attMbrReport files.File
+		if attMbrReportStr != "" {
+			attMbrReport, err = files.NewFile(attMbrReportStr)
+			if err != nil {
+				logging.Error().Err(err).Str("attMbrReportStr", attMbrReportStr).Msg("Failed to create file reference for Member report")
+				os.Exit(1)
+			}
+		}
+
+		err = attendance.BuildBarcodeLog(toCfg, attOutfile, attMbrReport, logDate)
 		if err != nil {
 			logging.Error().Err(err).Msg("Failed to generate barcode attendance log")
 			os.Exit(1)
@@ -40,8 +62,8 @@ var attendanceCmd = &cobra.Command{
 }
 
 func init() {
-	attendanceCmd.Flags().StringVarP(&attOutfile, "out", "o", "", "output file path (defaults to the log date)")
-	attendanceCmd.Flags().StringVarP(&attMbrReport, "membership-report", "r", "", "file path to eServices Membership report (skips CAPWATCH access)")
+	attendanceCmd.Flags().StringVarP(&attOutfileStr, "out", "o", "", "output file path (defaults to the log date)")
+	attendanceCmd.Flags().StringVarP(&attMbrReportStr, "membership-report", "r", "", "file path to eServices Membership report (skips CAPWATCH access)")
 
 	rootCmd.AddCommand(attendanceCmd)
 }

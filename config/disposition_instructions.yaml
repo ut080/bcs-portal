@@ -1,0 +1,280 @@
+table_1:
+  table_number: 1
+  title: 'Administration'
+  rules:
+    - rule_number: 1
+      record_type: 'file plan'
+      cutoff: ''
+      disposition: 'destroy when superseded, obsolete, or no longer needed'
+    - rule_number: 2
+      record_type: 'suspense control'
+      cutoff: ''
+      disposition: 'destroy when superseded, obsolete, or no longer needed'
+    - rule_number: 3
+      record_type: 'general correspondence'
+      cutoff: '31 Dec'
+      disposition: 'destroy after 1 year'
+    - rule_number: 4
+      record_type: 'TAs and MSAs (originals FY)'
+      cutoff: '30 Sep'
+      disposition: 'destroy after 1 year'
+    - rule_number: 5
+      record_type: 'PAs'
+      cutoff: '31 Dec'
+      disposition: 'destroy after 1 year (originals CY)'
+    - rule_number: 6
+      record_type: 'TAs, MSAs, and PAs (distribution copies)'
+      cutoff: ''
+      disposition: 'destroy when no longer needed'
+    - rule_number: 7
+      record_type: 'reports'
+      cutoff: '31 Dec'
+      disposition: 'destroy after 3 years'
+    - rule_number: 8
+      record_type: 'memorandum of understanding (originals)'
+      cutoff: '31 Dec'
+      disposition: 'destroy 6 years after superseded or terminated'
+    - rule_number: 9
+      record_type: 'memorandum of understanding (information copies)'
+      cutoff: ''
+      disposition: 'destroy when superseded or terminated'
+    - rule_number: 10
+      record_type: 'meeting minutes (originals FY)'
+      cutoff: '20 Sep'
+      disposition: 'destroy after 3 years or may be destroyed once uploaded into HHQ electronic database'
+    - rule_number: 11
+      record_type: 'meeting minutes (originals CY)'
+      cutoff: '31 Dec'
+      disposition: 'destroy after 3 years or may be destroyed once uploaded into HHQ electronic database'
+    - rule_number: 12
+      record_type: 'meeting minutes (information copies)'
+      cutoff: ''
+      disposition: 'destroy when superseded, obsolete, or no longer needed'
+    - rule_number: 13
+      record_type: 'unit CAP numbered publications (record sets)'
+      cutoff: '31 Dec'
+      disposition: 'retain as permanent'
+    - rule_number: 14
+      record_type: 'unit CAP numbered publications (information copies)'
+      cutoff: ''
+      disposition: 'destroy when superseded, rescinded, or no longer needed'
+table_3:
+  table_number: 3
+  title: 'Education and Training'
+  rules:
+    - rule_number: 1
+      record_type: 'cadet program activities or workshops'
+      cutoff: '31 Dec'
+      disposition: 'destroy after 1 year'
+    - rule_number: 2
+      record_type: 'professional development training documents'
+      cutoff: '31 Dec'
+      disposition: 'destroy after 2 years'
+    - rule_number: 3
+      record_type: 'aerospace education correspondence'
+      cutoff: '31 Dec'
+      disposition: 'destroy after 3 years'
+    - rule_number: 4
+      record_type: 'testing material control documentation'
+      cutoff: '31 Dec'
+      disposition: 'destroy after 2 years'
+table_4:
+  table_number: 4
+  title: 'Chaplain and Character Development Instructor'
+  rules:
+    - rule_number: 1
+      record_type: 'statistical reports'
+      cutoff: '31 Dec'
+      disposition: 'destroy after 1 year'
+    - rule_number: 2
+      record_type: 'appointment application'
+      cutoff: ''
+      disposition: 'destroy when superseded, obsolete, or no longer needed'
+    - rule_number: 3
+      record_type: 'newsletters'
+      cutoff: ''
+      disposition: 'destroy when superseded, obsolete, or no longer needed'
+table_5:
+  table_number: 5
+  title: 'Inspector General'
+  rules:
+    - rule_number: 1
+      record_type: 'inspection guides'
+      cutoff: ''
+      disposition: 'destroy when superseded, obsolete, or no longer needed'
+    - rule_number: 2
+      record_type: 'inspection/self-inspection reports (CI/SAV/short-notice)',
+      cutoff: '',
+      disposition: 'destroy when superseded, obsolete, or no longer needed'
+    - rule_number: 3
+      record_type: 'inspection reports (SUI)',
+      cutoff: '',
+      disposition: 'retain last two reports from each unit inspected'
+    - rule_number: 4
+      record_type: 'IG complaints'
+      cutoff: ''
+      disposition: 'destroy 5 years from date case was closed unless a legal action is pending; destroy upon completion of the legal action if the 5 year requirement has been met'
+    - rule_number: 5
+      record_type: 'adverse information against CAP senior level officials'
+      cutoff: ''
+      disposition: 'maintained permanently by CAP/IG'
+table_6:
+  table_number: 6
+  title: 'Financial Management'
+  rules:
+    - rule_number: 1
+      record_type: 'accounts payable'
+      cutoff: '30 Sep'
+      disposition: 'destroy after 3 years'
+    - rule_number: 2
+      record_type: 'accounts receivable'
+      cutoff: '30 Sep'
+      disposition: 'destroy after 3 years'
+    - rule_number: 3
+      record_type: 'general ledger'
+      cutoff: '30 Sep'
+      disposition: 'destroy after 3 years'
+    - rule_number: 4
+      record_type: 'audit records'
+      cutoff: '30 Sep'
+      disposition: 'destroy after 3 years'
+    - rule_number: 5
+      record_type: 'budgets'
+      cutoff: '30 Sep'
+      disposition: 'destroy after 3 years'
+    - rule_number: 6
+      record_type: 'checking accounts'
+      cutoff: '30 Sep'
+      disposition: 'destroy after 3 years'
+    - rule_number: 7
+      record_type: 'region and wing financial statements'
+      cutoff: '30 Sep'
+      disposition: 'destroy after 3 years'
+    - rule_number: 8
+      record_type: 'region and wing tax forms'
+      cutoff: '30 Sep'
+      disposition: 'destroy after 3 years'
+    - rule_number: 9
+      record_type: 'CAPF 172/3'
+      cutoff: '30 Sep'
+      disposition: 'destroy after 3 years'
+    - rule_number: 10
+      record_type: 'investment statements'
+      cutoff: '30 Sep'
+      disposition: 'destroy after 3 years'
+    - rule_number: 11
+      record_type: 'payroll records'
+      cutoff: '31 Dec'
+      disposition: 'destroy after 4 years'
+    - rule_number: 12
+      record_type: 'real property and equipment'
+      cutoff: ''
+      disposition: 'retained for 4 years after final disposition'
+table_7:
+  table_number: 7
+  title: 'Legal'
+  rules:
+    - rule_number: 1
+      record_type: 'legal records'
+      cutoff: '31 Dec'
+      disposition: 'retain as permanent'
+    - rule_number: 2
+      record_type: 'governmental inquiries'
+      cutoff: '30 Sep'
+      disposition: 'retain at NHQ and then destroy after 5 years'
+table_8:
+  table_number: 8
+  title: 'Operations'
+  rules:
+    - rule_number: 1
+      record_type: 'pilot and ES qualification documentation'
+      cutoff: '30 Sep'
+      disposition: 'destroy after 1 year; retain current Form 5s and two renewals prior; destroy 2 years after quals lapse; destroy after uploading to Ops Quals'
+    - rule_number: 2
+      record_type: 'mission records'
+      cutoff: '30 Sep'
+      disposition: 'destroy 4 years after closure of mission except in case of actual or potential litigation'
+    - rule_number: 3
+      record_type: 'non-CAP passengers'
+      cutoff: '30 Sep'
+      disposition: 'destroy after 1 year'
+    - rule_number: 4
+      record_type: 'CAP fligt release logs'
+      cutoff: '30 Sep'
+      disposition: 'destroy after 1 year or when loaded into WIMRS'
+table_9:
+  table_number: 9
+  title: 'Safety'
+  rules:
+    - rule_number: 1
+      record_type: 'safety correspondence'
+      cutoff: '31 Dec'
+      disposition: 'destroy after 1 year'
+    - rule_number: 2
+      record_type: 'safety inspections'
+      cutoff: ''
+      disposition: 'destroy when superseded by the next successive survey'
+    - rule_number: 3
+      record_type: 'mishap reports'
+      cutoff: '30 Sep'
+      disposition: 'destroy after 3 years'
+table_10:
+  table_number: 10
+  title: 'Logistics'
+  rules:
+    - rule_number: 1
+      record_type: 'CAPF 73'
+      cutoff: ''
+      disposition: 'maintain in VIF for 12 months then destroy'
+    - rule_number: 2
+      record_type: 'vehicle ownership documents'
+      cutoff: ''
+      disposition: 'maintained as long as the vehicle is owned by CAP'
+    - rule_number: 3
+      record_type: 'vehicle records (other than CAPF 73)'
+      cutoff: '31 Dec'
+      disposition: 'destroy after 3 years'
+    - rule_number: 4
+      record_type: 'vehicle records (correspondence, licenses, and leases)'
+      cutoff: ''
+      disposition: 'destroy when superseded'
+    - rule_number: 5
+      record_type: 'real property'
+      cutoff: '31 Dec'
+      disposition: 'destroy 10 years after disposition of real property'
+    - rule_number: 6
+      record_type: 'temporary issue receipts'
+      cutoff: ''
+      disposition: 'destroy when property returned'
+    - rule_number: 7
+      record_type: 'aircraft records'
+      cutoff: '31 Dec'
+      disposition: 'retain as permanent'
+table_11:
+  table_number: 11
+  title: 'Personnel'
+  rules:
+    - rule_number: 1
+      record_type: 'personnel administration'
+      cutoff: '31 Dec'
+      disposition: 'destroy after 3 years'
+    - rule_number: 2
+      record_type: 'personnel records'
+      cutoff: ''
+      disposition: 'Cut off when membership expires/transfers and destroy after 5 years'
+table_12:
+  table_number: 12
+  title: 'Public Affairs'
+  rules:
+    - rule_number: 1
+      record_type: 'public affairs records'
+      cutoff: ''
+      disposition: 'destroy when superseded, obsolete, or no longer needed'
+    - rule_number: 2
+      record_type: 'public affairs reports'
+      cutoff: '31 Dec'
+      disposition: 'destroy after 1 year'
+    - rule_number: 3
+      record_type: 'historical records'
+      cutoff: '31 Dec'
+      disposition: 'retain as permanent'
