@@ -41,7 +41,7 @@ func DecomposePath(path string) (string, string, string, error) {
 
 	dir := filepath.Dir(abs)
 
-	base := strings.TrimSuffix(abs, filepath.Ext(abs))
+	base := strings.TrimSuffix(filepath.Base(abs), filepath.Ext(abs))
 
 	ext := filepath.Ext(abs)
 
@@ -65,11 +65,11 @@ func (f File) Ext() string {
 }
 
 func (f File) Name() string {
-	return fmt.Sprintf("%s.%s", f.base, f.ext)
+	return fmt.Sprintf("%s%s", f.base, f.ext)
 }
 
 func (f File) FullPath() string {
-	return filepath.Join(f.dir)
+	return filepath.Join(f.dir, fmt.Sprintf("%s%s", f.base, f.ext))
 }
 
 func (f File) Stat() (os.FileInfo, error) {
@@ -94,6 +94,7 @@ func (f File) Copy(destDir string) (File, error) {
 	if err != nil {
 		return File{}, errors.WithStack(err)
 	}
+	f.logger.Debug().Str("destDir", destDir).Str("path", destFile.FullPath()).Msg("will copy to path")
 
 	dest, err := destFile.Create()
 	if err != nil {
