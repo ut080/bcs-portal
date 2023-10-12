@@ -96,7 +96,11 @@ func NewFilePlanItem(item filing.FilePlanItem) FilePlanItem {
 }
 
 func (fpi FilePlanItem) LaTeX() string {
-	return fmt.Sprintf("%s & %s & %d & %d \\", fpi.itemID, fpi.title, fpi.table, fpi.rule)
+	if fpi.table == 0 && fpi.rule == 0 {
+		return fmt.Sprintf("%s & %s & & \\\\\n", fpi.itemID, fpi.title)
+	}
+
+	return fmt.Sprintf("%s & %s & %d & %d \\\\\n", fpi.itemID, fpi.title, fpi.table, fpi.rule)
 }
 
 func unpackFilePlanItems(item filing.FilePlanItem) []FilePlanItem {

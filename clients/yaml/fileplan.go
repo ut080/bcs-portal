@@ -2,7 +2,6 @@ package yaml
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/ut080/bcs-portal/internal/logging"
 	"github.com/ut080/bcs-portal/pkg/filing"
@@ -11,7 +10,7 @@ import (
 type FilePlan struct {
 	PlanTitle string         `yaml:"plan_title"`
 	Preparer  string         `yaml:"preparer"`
-	Prepared  time.Time      `yaml:"prepared"`
+	Prepared  Date           `yaml:"prepared"`
 	Items     []FilePlanItem `yaml:"items"`
 }
 
@@ -21,7 +20,7 @@ func (fp FilePlan) DomainFilePlan(dispositionRules map[uint]filing.DispositionTa
 		items = append(items, item.DomainFilePlanItem(fmt.Sprintf("%d.", i+1), dispositionRules, logger))
 	}
 
-	return filing.NewFilePlan(fp.PlanTitle, fp.Preparer, fp.Prepared, items)
+	return filing.NewFilePlan(fp.PlanTitle, fp.Preparer, fp.Prepared.Time, items)
 }
 
 type FilePlanItem struct {

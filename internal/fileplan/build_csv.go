@@ -11,8 +11,11 @@ func filePlanItemAsCsvRow(item filing.FilePlanItem) []string {
 
 	row[0] = item.ItemID()
 	row[1] = item.Title()
-	row[2] = fmt.Sprintf("%s, %s", item.Table(), item.Rule())
-	row[3] = item.Disposition().Instructions()
+
+	if !item.Disposition().Empty() {
+		row[2] = fmt.Sprintf("T%d, R%d", item.Table(), item.Rule())
+		row[3] = item.Disposition().Instructions()
+	}
 
 	return row
 }

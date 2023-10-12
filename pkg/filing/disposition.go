@@ -73,6 +73,10 @@ func NewDispositionRule(tableNumber, ruleNumber uint, recordType, cutoff, instru
 	}
 }
 
+func (dr DispositionRule) Empty() bool {
+	return dr.tableNumber == 0 && dr.ruleNumber == 0 && dr.recordType == "" && dr.cutoff == "" && dr.instructions == ""
+}
+
 func (dr DispositionRule) TableNumber() uint {
 	return dr.tableNumber
 }

@@ -15,7 +15,7 @@ import (
 var csvOutFileStr string
 var pdfOutFileStr string
 
-var attendanceCmd = &cobra.Command{
+var fileplanCmd = &cobra.Command{
 	Use:   "fileplan [FILE_PLAN_YAML]",
 	Short: "Read the YAML file and generate a CSV for creating file plan labels as well as a PDF file plan. ",
 	Long:  ``,
@@ -40,7 +40,7 @@ var attendanceCmd = &cobra.Command{
 
 		var pdfOutFile files.File
 		if pdfOutFileStr == "" {
-			csvOutFileStr = filepath.Join(filePlanCfg.Dir(), fmt.Sprintf("%s.pdf", filePlanCfg.Base()))
+			pdfOutFileStr = filepath.Join(filePlanCfg.Dir(), fmt.Sprintf("%s.pdf", filePlanCfg.Base()))
 		}
 		pdfOutFile, err = files.NewFile(pdfOutFileStr, logger)
 		if err != nil {
@@ -57,8 +57,8 @@ var attendanceCmd = &cobra.Command{
 }
 
 func init() {
-	attendanceCmd.Flags().StringVarP(&csvOutFileStr, "csv", "c", "", "output file path for the CSV file (defaults to the basename of the fileplan config)")
-	attendanceCmd.Flags().StringVarP(&csvOutFileStr, "pdf", "p", "", "output file path for the PDF file (defaults to the basename of the fileplan config)")
+	fileplanCmd.Flags().StringVarP(&csvOutFileStr, "csv", "c", "", "output file path for the CSV file (defaults to the basename of the fileplan config)")
+	fileplanCmd.Flags().StringVarP(&csvOutFileStr, "pdf", "p", "", "output file path for the PDF file (defaults to the basename of the fileplan config)")
 
-	rootCmd.AddCommand(attendanceCmd)
+	rootCmd.AddCommand(fileplanCmd)
 }

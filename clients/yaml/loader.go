@@ -17,7 +17,7 @@ func LoadFromFile(file files.File, out interface{}, logger logging.Logger) (err 
 
 	err = yaml.Unmarshal(raw, out)
 	if err != nil {
-		logger.Error().Err(err).Msg("failed to unmarshal yaml document")
+		logger.Error().Err(err).Str("filename", file.FullPath()).Msg("failed to unmarshal yaml document")
 		return errors.WithStack(err)
 	}
 

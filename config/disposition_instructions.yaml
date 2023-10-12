@@ -103,12 +103,12 @@ table_5:
       cutoff: ''
       disposition: 'destroy when superseded, obsolete, or no longer needed'
     - rule_number: 2
-      record_type: 'inspection/self-inspection reports (CI/SAV/short-notice)',
-      cutoff: '',
+      record_type: 'inspection/self-inspection reports (CI/SAV/short-notice)'
+      cutoff: ''
       disposition: 'destroy when superseded, obsolete, or no longer needed'
     - rule_number: 3
-      record_type: 'inspection reports (SUI)',
-      cutoff: '',
+      record_type: 'inspection reports (SUI)'
+      cutoff: ''
       disposition: 'retain last two reports from each unit inspected'
     - rule_number: 4
       record_type: 'IG complaints'
