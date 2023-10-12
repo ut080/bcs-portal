@@ -21,7 +21,9 @@ var attendanceCmd = &cobra.Command{
 	Long:  ``,
 	Args:  cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		toCfg, err := files.NewFile(args[0])
+		logger := logging.Logger{}
+
+		toCfg, err := files.NewFile(args[0], logger)
 		if err != nil {
 			logging.Error().Err(err).Str("toCfg", args[0]).Msg("Failed to create file reference for TO cfg")
 			os.Exit(1)
@@ -38,7 +40,7 @@ var attendanceCmd = &cobra.Command{
 		if attOutfileStr == "" {
 			attOutfileStr = fmt.Sprintf("%s.pdf", logDateStr)
 		}
-		attOutfile, err = files.NewFile(attOutfileStr)
+		attOutfile, err = files.NewFile(attOutfileStr, logger)
 		if err != nil {
 			logging.Error().Err(err).Str("attOutfileStr", attOutfileStr).Msg("Failed to create file reference for log")
 			os.Exit(1)
@@ -46,14 +48,14 @@ var attendanceCmd = &cobra.Command{
 
 		var attMbrReport files.File
 		if attMbrReportStr != "" {
-			attMbrReport, err = files.NewFile(attMbrReportStr)
+			attMbrReport, err = files.NewFile(attMbrReportStr, logger)
 			if err != nil {
 				logging.Error().Err(err).Str("attMbrReportStr", attMbrReportStr).Msg("Failed to create file reference for Member report")
 				os.Exit(1)
 			}
 		}
 
-		err = attendance.BuildBarcodeLog(toCfg, attOutfile, attMbrReport, logDate)
+		err = attendance.BuildBarcodeLog(toCfg, attOutfile, attMbrReport, logDate, logger)
 		if err != nil {
 			logging.Error().Err(err).Msg("Failed to generate barcode attendance log")
 			os.Exit(1)

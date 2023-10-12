@@ -3,6 +3,7 @@ package damx
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/spf13/cobra"
 
@@ -11,8 +12,8 @@ import (
 	"github.com/ut080/bcs-portal/internal/logging"
 )
 
-var csvOutfile string
-var pdfOutfile string
+var csvOutFileStr string
+var pdfOutFileStr string
 
 var attendanceCmd = &cobra.Command{
 	Use:   "fileplan [FILE_PLAN_YAML]",
@@ -20,17 +21,34 @@ var attendanceCmd = &cobra.Command{
 	Long:  ``,
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		planPath, planBase, planExt, err := files.DecomposePath(args[1])
-
-		if csvOutfile == "" {
-			csvOutfile = fmt.Sprintf("%s.csv", planBase)
+		logger := logging.Logger{}
+		filePlanCfg, err := files.NewFile(args[0], logger)
+		if err != nil {
+			logging.Error().Err(err).Str("filePlanCfg", args[0]).Msg("Failed to acquire reference for file plan config")
+			os.Exit(1)
 		}
 
-		if pdfOutfile == "" {
-			pdfOutfile = fmt.Sprintf("%s.pdf", planBase)
+		var csvOutFile files.File
+		if csvOutFileStr == "" {
+			csvOutFileStr = filepath.Join(filePlanCfg.Dir(), fmt.Sprintf("%s.csv", filePlanCfg.Base()))
+		}
+		csvOutFile, err = files.NewFile(csvOutFileStr, logger)
+		if err != nil {
+			logging.Error().Err(err).Str("csvOutFileStr", csvOutFileStr).Msg("Failed to acquire reference for file plan output CSV")
+			os.Exit(1)
 		}
 
-		err := fileplan.BuildFilePlan(fileplanConfig, csvOutfile, pdfOutfile)
+		var pdfOutFile files.File
+		if pdfOutFileStr == "" {
+			csvOutFileStr = filepath.Join(filePlanCfg.Dir(), fmt.Sprintf("%s.pdf", filePlanCfg.Base()))
+		}
+		pdfOutFile, err = files.NewFile(pdfOutFileStr, logger)
+		if err != nil {
+			logging.Error().Err(err).Str("pdfOutFileStr", pdfOutFileStr).Msg("Failed to acquire reference for file plan output PDF")
+			os.Exit(1)
+		}
+
+		err = fileplan.BuildFilePlan(filePlanCfg, csvOutFile, pdfOutFile, logger)
 		if err != nil {
 			logging.Error().Err(err).Msg("Failed to generate file plan")
 			os.Exit(1)
@@ -39,8 +57,8 @@ var attendanceCmd = &cobra.Command{
 }
 
 func init() {
-	attendanceCmd.Flags().StringVarP(&csvOutfile, "csv", "c", "", "output file path for the CSV file (defaults to the basename of the fileplan config)")
-	attendanceCmd.Flags().StringVarP(&csvOutfile, "pdf", "p", "", "output file path for the PDF file (defaults to the basename of the fileplan config)")
+	attendanceCmd.Flags().StringVarP(&csvOutFileStr, "csv", "c", "", "output file path for the CSV file (defaults to the basename of the fileplan config)")
+	attendanceCmd.Flags().StringVarP(&csvOutFileStr, "pdf", "p", "", "output file path for the PDF file (defaults to the basename of the fileplan config)")
 
 	rootCmd.AddCommand(attendanceCmd)
 }

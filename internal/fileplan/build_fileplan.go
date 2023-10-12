@@ -1,14 +1,18 @@
 package fileplan
 
 import (
+	"encoding/csv"
 	"path/filepath"
 
 	"github.com/pkg/errors"
 
 	"github.com/ut080/bcs-portal/clients/yaml"
 	"github.com/ut080/bcs-portal/internal/config"
+	"github.com/ut080/bcs-portal/internal/files"
+	"github.com/ut080/bcs-portal/internal/latex"
 	"github.com/ut080/bcs-portal/internal/logging"
 	"github.com/ut080/bcs-portal/pkg/filing"
+	"github.com/ut080/bcs-portal/reports/fileplan"
 )
 
 func loadFileDispositionRules(logger logging.Logger) (map[uint]filing.DispositionTable, error) {
@@ -18,8 +22,11 @@ func loadFileDispositionRules(logger logging.Logger) (map[uint]filing.Dispositio
 	}
 
 	dispRulesCfg := make(map[string]yaml.DispositionTable)
-	dispRulesCfgPath := filepath.Join(cfgDir, "cfg", "disposition_instructions.yaml")
-	err = yaml.LoadFromFile(dispRulesCfgPath, &dispRulesCfg, logger)
+	dispRulesCfgFile, err := files.NewFile(filepath.Join(cfgDir, "cfg", "disposition_instructions.yaml"), logger)
+	if err != nil {
+		return nil, errors.WithStack(err)
+	}
+	err = yaml.LoadFromFile(dispRulesCfgFile, &dispRulesCfg, logger)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
@@ -32,9 +39,9 @@ func loadFileDispositionRules(logger logging.Logger) (map[uint]filing.Dispositio
 	return dispRules, nil
 }
 
-func readFilePlan(input string, dispositionRules map[uint]filing.DispositionTable, logger logging.Logger) (filing.FilePlan, error) {
+func readFilePlan(planFile files.File, dispositionRules map[uint]filing.DispositionTable, logger logging.Logger) (filing.FilePlan, error) {
 	var filePlanCfg yaml.FilePlan
-	err := yaml.LoadFromFile(input, &filePlanCfg, logger)
+	err := yaml.LoadFromFile(planFile, &filePlanCfg, logger)
 	if err != nil {
 		return filing.FilePlan{}, errors.WithStack(err)
 	}
@@ -42,30 +49,42 @@ func readFilePlan(input string, dispositionRules map[uint]filing.DispositionTabl
 	return filePlanCfg.DomainFilePlan(dispositionRules, logger), nil
 }
 
-func generateCSV(filePlan filing.FilePlan, outCSV string) error {
-	csv, err := newCSV(outCSV)
+func generateCSV(filePlan filing.FilePlan, outCSV files.File) error {
+	f, err := outCSV.Create()
 	if err != nil {
 		return errors.WithStack(err)
 	}
+	csvFile := csv.NewWriter(f)
 
 	plan := convertFilePlanToRows(filePlan)
 
-	err = csv.WriteAll(plan)
+	err = csvFile.WriteAll(plan)
 	if err != nil {
 		return errors.WithStack(err)
 	}
 
-	csv.Flush()
+	csvFile.Flush()
 
 	return nil
 }
 
-func generatePDF(fileplan filing.FilePlan, outPDF string) error {
+func generatePDF(filePlan filing.FilePlan, outPDF files.File, logger logging.Logger) error {
+	plan := fileplan.NewFilePlan(filePlan)
+
+	err := latex.GenerateLaTeX(plan, outPDF, nil, logger)
+	if err != nil {
+		return errors.WithStack(err)
+	}
+
+	err = latex.CompileLaTeX(outPDF, logger)
+	if err != nil {
+		return errors.WithStack(err)
+	}
+
+	return nil
 }
 
-func BuildFilePlan(input, outCSV, outPDF string) error {
-	logger := logging.Logger{}
-
+func BuildFilePlan(input, outCSV, outPDF files.File, logger logging.Logger) error {
 	dispositionRules, err := loadFileDispositionRules(logger)
 	if err != nil {
 		return errors.WithStack(err)
@@ -77,6 +96,11 @@ func BuildFilePlan(input, outCSV, outPDF string) error {
 	}
 
 	err = generateCSV(filePlan, outCSV)
+	if err != nil {
+		return errors.WithStack(err)
+	}
+
+	err = generatePDF(filePlan, outPDF, logger)
 	if err != nil {
 		return errors.WithStack(err)
 	}

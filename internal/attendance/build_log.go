@@ -141,9 +141,7 @@ func generateLaTeX(to org.TableOfOrganization, outputFile files.File, logDate, l
 	return nil
 }
 
-func BuildBarcodeLog(toCfg, outFile, membershipReport files.File, logDate time.Time) error {
-	logger := logging.Logger{}
-
+func BuildBarcodeLog(toCfg, outFile, membershipReport files.File, logDate time.Time, logger logging.Logger) error {
 	to, err := loadTableOfOrganizationConfiguration(toCfg, logger)
 	if err != nil {
 		return errors.WithStack(err)

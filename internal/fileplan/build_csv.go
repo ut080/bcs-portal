@@ -1,23 +1,10 @@
 package fileplan
 
 import (
-	"encoding/csv"
 	"fmt"
-	"os"
-
-	"github.com/pkg/errors"
 
 	"github.com/ut080/bcs-portal/pkg/filing"
 )
-
-func newCSV(csvOutFile string) (*csv.Writer, error) {
-	f, err := os.Create(csvOutFile)
-	if err != nil {
-		return nil, errors.WithStack(err)
-	}
-
-	return csv.NewWriter(f), nil
-}
 
 func filePlanItemAsCsvRow(item filing.FilePlanItem) []string {
 	row := make([]string, 4)
