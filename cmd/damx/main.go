@@ -5,7 +5,7 @@ import (
 
 	"github.com/spf13/viper"
 
-	"github.com/ut080/bcs-portal/internal/dpdocs"
+	"github.com/ut080/bcs-portal/internal/damx"
 )
 
 // BaseVersion is the SemVer-formatted string that defines the current version of ag7if.
@@ -31,5 +31,5 @@ func main() {
 		BuildTime,
 	)
 	viper.Set("version", version)
-	dpdocs.Execute()
+	damx.Execute()
 }

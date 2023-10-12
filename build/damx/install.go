@@ -102,7 +102,7 @@ func clearFileExistsError(err error) error {
 }
 
 func main() {
-	logging.InitLogging("debug", true)
+	logging.InitLogging("info", true)
 
 	logger := logging.Logger{}
 
