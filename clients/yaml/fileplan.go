@@ -17,7 +17,7 @@ type FilePlan struct {
 func (fp FilePlan) DomainFilePlan(dispositionRules map[uint]filing.DispositionTable, logger logging.Logger) filing.FilePlan {
 	var items []filing.FilePlanItem
 	for i, item := range fp.Items {
-		items = append(items, item.DomainFilePlanItem(fmt.Sprintf("%d.", i+1), dispositionRules, logger))
+		items = append(items, item.DomainFilePlanItem(fmt.Sprintf("%d.", i+1), dispositionRules, true, logger))
 	}
 
 	return filing.NewFilePlan(fp.PlanTitle, fp.Preparer, fp.Prepared.Time, items)
@@ -31,13 +31,13 @@ type FilePlanItem struct {
 	Subitems      []FilePlanItem `yaml:"subitems"`
 }
 
-func (fpi FilePlanItem) DomainFilePlanItem(itemID string, dispositionRules map[uint]filing.DispositionTable, logger logging.Logger) filing.FilePlanItem {
+func (fpi FilePlanItem) DomainFilePlanItem(itemID string, dispositionRules map[uint]filing.DispositionTable, root bool, logger logging.Logger) filing.FilePlanItem {
 	var subitems []filing.FilePlanItem
 
 	if fpi.Subitems != nil {
 		for i, subitem := range fpi.Subitems {
 			subitemID := fmt.Sprintf("%s%d.", itemID, i+1)
-			subitems = append(subitems, subitem.DomainFilePlanItem(subitemID, dispositionRules, logger))
+			subitems = append(subitems, subitem.DomainFilePlanItem(subitemID, dispositionRules, false, logger))
 		}
 	}
 
@@ -67,5 +67,5 @@ func (fpi FilePlanItem) DomainFilePlanItem(itemID string, dispositionRules map[u
 
 	}
 
-	return filing.NewFilePlanItem(itemID, fpi.Title, rule, fpi.DontMakeLabel, subitems)
+	return filing.NewFilePlanItem(itemID, fpi.Title, rule, fpi.DontMakeLabel, subitems, root)
 }
