@@ -2,6 +2,7 @@ package fileplan
 
 import (
 	"fmt"
+	"unicode"
 
 	"github.com/ut080/bcs-portal/pkg/filing"
 )
@@ -12,9 +13,18 @@ func filePlanItemAsCsvRow(item filing.FilePlanItem) []string {
 	row[0] = item.ItemID()
 	row[1] = item.Title()
 
+	// Process LaTeX commands for en- and em-dashes in the title row
+
 	if !item.Disposition().Empty() {
 		row[2] = fmt.Sprintf("T%d, R%d", item.Table(), item.Rule())
-		row[3] = item.Disposition().Instructions()
+
+		if item.Disposition().Cutoff() == "" {
+			instructions := []rune(item.Disposition().Instructions())
+			instructions[0] = unicode.ToUpper(instructions[0])
+			row[3] = string(instructions)
+		} else {
+			row[3] = fmt.Sprintf("Cut Off: %s/%s", item.Disposition().Cutoff(), item.Disposition().Instructions())
+		}
 	}
 
 	return row
@@ -22,7 +32,10 @@ func filePlanItemAsCsvRow(item filing.FilePlanItem) []string {
 
 func filePlanSubItemsToRows(item filing.FilePlanItem) [][]string {
 	var rows [][]string
-	rows = append(rows, filePlanItemAsCsvRow(item))
+
+	if !item.DontMakeLabel() {
+		rows = append(rows, filePlanItemAsCsvRow(item))
+	}
 
 	for _, subitem := range item.Subitems() {
 		rows = append(rows, filePlanSubItemsToRows(subitem)...)

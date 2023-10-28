@@ -24,10 +24,11 @@ func (fp FilePlan) DomainFilePlan(dispositionRules map[uint]filing.DispositionTa
 }
 
 type FilePlanItem struct {
-	Title    string         `yaml:"title"`
-	Table    uint           `yaml:"table"`
-	Rule     uint           `yaml:"rule"`
-	Subitems []FilePlanItem `yaml:"subitems"`
+	Title         string         `yaml:"title"`
+	Table         uint           `yaml:"table"`
+	Rule          uint           `yaml:"rule"`
+	DontMakeLabel bool           `yaml:"dont_make_label"`
+	Subitems      []FilePlanItem `yaml:"subitems"`
 }
 
 func (fpi FilePlanItem) DomainFilePlanItem(itemID string, dispositionRules map[uint]filing.DispositionTable, logger logging.Logger) filing.FilePlanItem {
@@ -66,5 +67,5 @@ func (fpi FilePlanItem) DomainFilePlanItem(itemID string, dispositionRules map[u
 
 	}
 
-	return filing.NewFilePlanItem(itemID, fpi.Title, rule, subitems)
+	return filing.NewFilePlanItem(itemID, fpi.Title, rule, fpi.DontMakeLabel, subitems)
 }
