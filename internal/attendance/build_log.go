@@ -6,6 +6,8 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/ag7if/go-files"
+	"github.com/ag7if/go-latex"
 	"github.com/pkg/errors"
 	"golang.org/x/term"
 
@@ -13,10 +15,9 @@ import (
 	"github.com/ut080/bcs-portal/clients/eservices"
 	"github.com/ut080/bcs-portal/clients/yaml"
 	"github.com/ut080/bcs-portal/internal/config"
-	"github.com/ut080/bcs-portal/internal/files"
-	"github.com/ut080/bcs-portal/internal/latex"
 	"github.com/ut080/bcs-portal/internal/logging"
 	"github.com/ut080/bcs-portal/pkg/org"
+	"github.com/ut080/bcs-portal/reports"
 	"github.com/ut080/bcs-portal/reports/attendance"
 )
 
@@ -27,7 +28,7 @@ func loadTableOfOrganizationConfiguration(toCfg files.File, logger logging.Logge
 	}
 
 	daCfg := yaml.DutyAssignmentConfig{}
-	daCfgFile, err := files.NewFile(filepath.Join(cfgDir, "cfg", "duty_assignments.yaml"), logger)
+	daCfgFile, err := files.NewFile(filepath.Join(cfgDir, "cfg", "duty_assignments.yaml"), logger.DefaultLogger())
 	if err != nil {
 		return org.TableOfOrganization{}, errors.WithStack(err)
 	}
@@ -124,7 +125,7 @@ func loadDataFromMembershipReport(to *org.TableOfOrganization, reportFile files.
 	return report.LastModified(), nil
 }
 
-func generateLaTeX(to org.TableOfOrganization, outputFile files.File, logDate, lastSync time.Time, logger logging.Logger) error {
+func generateLaTeX(to org.TableOfOrganization, compiler *latex.Compiler, outputFile files.File, logDate, lastSync time.Time) error {
 	unit := config.GetString("unit.name")
 	unitPatch := config.GetString("unit.patch_image")
 
@@ -133,7 +134,7 @@ func generateLaTeX(to org.TableOfOrganization, outputFile files.File, logDate, l
 
 	assets := []string{"cap_command_emblem.jpg", unitPatch}
 
-	err := latex.GenerateLaTeX(bl, outputFile, assets, logger)
+	err := compiler.GenerateLaTeX(bl, outputFile, assets)
 	if err != nil {
 		return errors.WithStack(err)
 	}
@@ -160,12 +161,17 @@ func BuildBarcodeLog(toCfg, outFile, membershipReport files.File, logDate time.T
 		}
 	}
 
-	err = generateLaTeX(to, outFile, logDate, lastSync, logger)
+	compiler, err := reports.ConfigureLaTeXCompiler(logger)
 	if err != nil {
 		return errors.WithStack(err)
 	}
 
-	err = latex.CompileLaTeX(outFile, logger)
+	err = generateLaTeX(to, compiler, outFile, logDate, lastSync)
+	if err != nil {
+		return errors.WithStack(err)
+	}
+
+	err = compiler.CompileLaTeX(outFile)
 	if err != nil {
 		return errors.WithStack(err)
 	}

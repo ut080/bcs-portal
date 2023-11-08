@@ -5,10 +5,10 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/ag7if/go-files"
 	"github.com/spf13/cobra"
 
 	"github.com/ut080/bcs-portal/internal/fileplan"
-	"github.com/ut080/bcs-portal/internal/files"
 	"github.com/ut080/bcs-portal/internal/logging"
 )
 
@@ -22,7 +22,7 @@ var fileplanCmd = &cobra.Command{
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		logger := logging.Logger{}
-		filePlanCfg, err := files.NewFile(args[0], logger)
+		filePlanCfg, err := files.NewFile(args[0], logger.DefaultLogger())
 		if err != nil {
 			logging.Error().Err(err).Str("filePlanCfg", args[0]).Msg("Failed to acquire reference for file plan config")
 			os.Exit(1)
@@ -32,7 +32,7 @@ var fileplanCmd = &cobra.Command{
 		if csvOutFileStr == "" {
 			csvOutFileStr = filepath.Join(filePlanCfg.Dir(), fmt.Sprintf("%s.csv", filePlanCfg.Base()))
 		}
-		csvOutFile, err = files.NewFile(csvOutFileStr, logger)
+		csvOutFile, err = files.NewFile(csvOutFileStr, logger.DefaultLogger())
 		if err != nil {
 			logging.Error().Err(err).Str("csvOutFileStr", csvOutFileStr).Msg("Failed to acquire reference for file plan output CSV")
 			os.Exit(1)
@@ -42,7 +42,7 @@ var fileplanCmd = &cobra.Command{
 		if pdfOutFileStr == "" {
 			pdfOutFileStr = filepath.Join(filePlanCfg.Dir(), fmt.Sprintf("%s.pdf", filePlanCfg.Base()))
 		}
-		pdfOutFile, err = files.NewFile(pdfOutFileStr, logger)
+		pdfOutFile, err = files.NewFile(pdfOutFileStr, logger.DefaultLogger())
 		if err != nil {
 			logging.Error().Err(err).Str("pdfOutFileStr", pdfOutFileStr).Msg("Failed to acquire reference for file plan output PDF")
 			os.Exit(1)

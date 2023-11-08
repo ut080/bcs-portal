@@ -5,16 +5,19 @@ import (
 	"os"
 	"strings"
 
+	"github.com/ag7if/go-files"
 	"github.com/pkg/errors"
 
 	"github.com/ut080/bcs-portal/clients/eservices"
-	"github.com/ut080/bcs-portal/domain"
 	"github.com/ut080/bcs-portal/internal/logging"
+	"github.com/ut080/bcs-portal/pkg/org"
 	"github.com/ut080/bcs-portal/repositories/sharepoint"
 )
 
-func loadMembershipReport(mbrReportPath string) ([]domain.Member, error) {
-	report, err := eservices.NewMembershipReport(mbrReportPath)
+func loadMembershipReport(mbrReportPath string) ([]org.Member, error) {
+	mbrReport, err := files.NewFile(mbrReportPath, logging.DefaultLogger())
+
+	report, err := eservices.NewMembershipReport(mbrReport)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
@@ -24,7 +27,7 @@ func loadMembershipReport(mbrReportPath string) ([]domain.Member, error) {
 		return nil, errors.WithStack(err)
 	}
 
-	var mbr []domain.Member
+	var mbr []org.Member
 	for _, member := range members {
 		mbr = append(mbr, member)
 	}
@@ -32,8 +35,8 @@ func loadMembershipReport(mbrReportPath string) ([]domain.Member, error) {
 	return mbr, nil
 }
 
-func parseMembership(members []domain.Member) map[domain.MemberType][]sharepoint.Member {
-	mbr := make(map[domain.MemberType][]sharepoint.Member)
+func parseMembership(members []org.Member) map[org.MemberType][]sharepoint.Member {
+	mbr := make(map[org.MemberType][]sharepoint.Member)
 	for _, member := range members {
 		m := sharepoint.NewMember(member)
 		mbr[member.MemberType] = append(mbr[member.MemberType], m)
@@ -42,7 +45,7 @@ func parseMembership(members []domain.Member) map[domain.MemberType][]sharepoint
 	return mbr
 }
 
-func makeDirectories(t domain.MemberType, members []sharepoint.Member, path string) error {
+func makeDirectories(t org.MemberType, members []sharepoint.Member, path string) error {
 	mt := strings.ToLower(string(t))
 	mt = fmt.Sprintf("%s%s", strings.ToUpper(mt[:1]), mt[1:])
 	dir := fmt.Sprintf("%s/%ss", path, mt)
@@ -72,12 +75,12 @@ func CreateDirectories(mbrReportPath, outputPath string) error {
 
 	membersByType := parseMembership(members)
 
-	err = makeDirectories(domain.SeniorMember, membersByType[domain.SeniorMember], outputPath)
+	err = makeDirectories(org.SeniorMember, membersByType[org.SeniorMember], outputPath)
 	if err != nil {
 		return errors.WithStack(err)
 	}
 
-	err = makeDirectories(domain.CadetMember, membersByType[domain.CadetMember], outputPath)
+	err = makeDirectories(org.CadetMember, membersByType[org.CadetMember], outputPath)
 	if err != nil {
 		return errors.WithStack(err)
 	}

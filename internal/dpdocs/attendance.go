@@ -5,10 +5,10 @@ import (
 	"os"
 	"time"
 
+	"github.com/ag7if/go-files"
 	"github.com/spf13/cobra"
 
 	"github.com/ut080/bcs-portal/internal/attendance"
-	"github.com/ut080/bcs-portal/internal/files"
 	"github.com/ut080/bcs-portal/internal/logging"
 )
 
@@ -23,7 +23,7 @@ var attendanceCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		logger := logging.Logger{}
 
-		toCfg, err := files.NewFile(args[0], logger)
+		toCfg, err := files.NewFile(args[0], logger.DefaultLogger())
 		if err != nil {
 			logging.Error().Err(err).Str("toCfg", args[0]).Msg("Failed to create file reference for TO cfg")
 			os.Exit(1)
@@ -40,7 +40,7 @@ var attendanceCmd = &cobra.Command{
 		if attOutfileStr == "" {
 			attOutfileStr = fmt.Sprintf("%s.pdf", logDateStr)
 		}
-		attOutfile, err = files.NewFile(attOutfileStr, logger)
+		attOutfile, err = files.NewFile(attOutfileStr, logger.DefaultLogger())
 		if err != nil {
 			logging.Error().Err(err).Str("attOutfileStr", attOutfileStr).Msg("Failed to create file reference for log")
 			os.Exit(1)
@@ -48,7 +48,7 @@ var attendanceCmd = &cobra.Command{
 
 		var attMbrReport files.File
 		if attMbrReportStr != "" {
-			attMbrReport, err = files.NewFile(attMbrReportStr, logger)
+			attMbrReport, err = files.NewFile(attMbrReportStr, logger.DefaultLogger())
 			if err != nil {
 				logging.Error().Err(err).Str("attMbrReportStr", attMbrReportStr).Msg("Failed to create file reference for Member report")
 				os.Exit(1)

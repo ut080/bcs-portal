@@ -4,14 +4,14 @@ import (
 	"encoding/csv"
 	"path/filepath"
 
+	"github.com/ag7if/go-files"
 	"github.com/pkg/errors"
 
 	"github.com/ut080/bcs-portal/clients/yaml"
 	"github.com/ut080/bcs-portal/internal/config"
-	"github.com/ut080/bcs-portal/internal/files"
-	"github.com/ut080/bcs-portal/internal/latex"
 	"github.com/ut080/bcs-portal/internal/logging"
 	"github.com/ut080/bcs-portal/pkg/filing"
+	"github.com/ut080/bcs-portal/reports"
 	"github.com/ut080/bcs-portal/reports/fileplan"
 )
 
@@ -22,7 +22,7 @@ func loadFileDispositionRules(logger logging.Logger) (map[uint]filing.Dispositio
 	}
 
 	dispRulesCfg := make(map[string]yaml.DispositionTable)
-	dispRulesCfgFile, err := files.NewFile(filepath.Join(cfgDir, "cfg", "disposition_instructions.yaml"), logger)
+	dispRulesCfgFile, err := files.NewFile(filepath.Join(cfgDir, "cfg", "disposition_instructions.yaml"), logger.DefaultLogger())
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
@@ -71,12 +71,14 @@ func generateCSV(filePlan filing.FilePlan, outCSV files.File) error {
 func generatePDF(filePlan filing.FilePlan, outPDF files.File, logger logging.Logger) error {
 	plan := fileplan.NewFilePlan(filePlan)
 
-	err := latex.GenerateLaTeX(plan, outPDF, nil, logger)
+	compiler, err := reports.ConfigureLaTeXCompiler(logger)
+
+	err = compiler.GenerateLaTeX(plan, outPDF, nil)
 	if err != nil {
 		return errors.WithStack(err)
 	}
 
-	err = latex.CompileLaTeX(outPDF, logger)
+	err = compiler.CompileLaTeX(outPDF)
 	if err != nil {
 		return errors.WithStack(err)
 	}

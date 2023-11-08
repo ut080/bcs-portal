@@ -60,9 +60,21 @@ func Trace() *Event {
 	return &Event{log.Trace()}
 }
 
+// DefaultLogger is a not-so-great solution to passing the logger on to libraries such as github.com/ag7if/go-files.
+// TODO: Find a better way to do this.
+func DefaultLogger() *zerolog.Logger {
+	return &log.Logger
+}
+
 // Logger is, currently, a placeholder object. For now, there is no difference between Logger.LvlFunc()
 // and logging.LvlFunc(). This might change if we start configuring subloggers.
 type Logger struct{}
+
+// DefaultLogger is a not-so-great solution to passing the logger on to libraries such as github.com/ag7if/go-files.
+// TODO: Find a better way to do this.
+func (l *Logger) DefaultLogger() *zerolog.Logger {
+	return &log.Logger
+}
 
 func (l *Logger) Panic() *Event {
 	return &Event{log.Panic()}

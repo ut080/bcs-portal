@@ -5,12 +5,12 @@ import (
 	"os"
 	"time"
 
+	"github.com/ag7if/go-files"
 	"github.com/pkg/errors"
 	"gopkg.in/yaml.v3"
 
-	"github.com/ut080/bcs-portal/domain"
-	"github.com/ut080/bcs-portal/internal/files"
 	"github.com/ut080/bcs-portal/internal/logging"
+	"github.com/ut080/bcs-portal/pkg/org"
 )
 
 const (
@@ -23,21 +23,21 @@ const (
 )
 
 type SummaryInfo struct {
-	CAPID          uint              `yaml:"capid"`
-	LastName       string            `yaml:"last_name"`
-	FirstName      string            `yaml:"first_name"`
-	MemberType     domain.MemberType `yaml:"member_type"`
-	Grade          domain.Grade      `yaml:"grade"`
-	JoinDate       time.Time         `yaml:"join_date"`
-	RankDate       time.Time         `yaml:"rank_date"`
-	ExpirationDate time.Time         `yaml:"expiration_date"`
+	CAPID          uint           `yaml:"capid"`
+	LastName       string         `yaml:"last_name"`
+	FirstName      string         `yaml:"first_name"`
+	MemberType     org.MemberType `yaml:"member_type"`
+	Grade          org.Grade      `yaml:"grade"`
+	JoinDate       time.Time      `yaml:"join_date"`
+	RankDate       time.Time      `yaml:"rank_date"`
+	ExpirationDate time.Time      `yaml:"expiration_date"`
 }
 
 type Member struct {
 	SummaryInfo SummaryInfo `yaml:"summary"`
 }
 
-func NewMember(member domain.Member) Member {
+func NewMember(member org.Member) Member {
 	si := SummaryInfo{
 		CAPID:          member.CAPID,
 		LastName:       member.LastName,
@@ -54,8 +54,8 @@ func NewMember(member domain.Member) Member {
 	}
 }
 
-func (m *Member) ToDomainMember() domain.Member {
-	return domain.Member{
+func (m *Member) ToDomainMember() org.Member {
+	return org.Member{
 		CAPID:          m.SummaryInfo.CAPID,
 		LastName:       m.SummaryInfo.LastName,
 		FirstName:      m.SummaryInfo.FirstName,
@@ -101,12 +101,17 @@ func (m *Member) CreatePersonnelFile(path string) error {
 }
 
 func (m *Member) WriteSummary(path string) error {
+	f, err := files.NewFile(path, logging.DefaultLogger())
+	if err != nil {
+		return errors.WithMessagef(err, "failed to create a file at path: %s", path)
+	}
+
 	d, err := yaml.Marshal(m)
 	if err != nil {
 		return errors.WithMessagef(err, "failed to marshal CAPID: %d", m.SummaryInfo.CAPID)
 	}
 
-	err = files.Write(path, string(d))
+	err = f.WriteBytes(d)
 	if err != nil {
 		return errors.WithMessagef(err, "failed to write summary YAML for CAPID: %d", m.SummaryInfo.CAPID)
 	}

@@ -5,10 +5,10 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/ag7if/go-files"
 	"github.com/pkg/errors"
 
 	"github.com/ut080/bcs-portal/internal/config"
-	"github.com/ut080/bcs-portal/internal/files"
 	"github.com/ut080/bcs-portal/internal/logging"
 )
 
@@ -75,7 +75,7 @@ func CopyAssets(projectPath string, logger logging.Logger) error {
 	destCfgDir := filepath.Join(cfgDir, "cfg")
 
 	logging.Info().Str("file", "disposition_instructions.yaml").Msg("copying config")
-	dispIns, err := files.NewFile(filepath.Join(defaultCfgDir, "disposition_instructions.yaml"), logger)
+	dispIns, err := files.NewFile(filepath.Join(defaultCfgDir, "disposition_instructions.yaml"), logger.DefaultLogger())
 	if err != nil {
 		return errors.WithStack(err)
 	}

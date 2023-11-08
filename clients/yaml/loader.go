@@ -1,10 +1,10 @@
 package yaml
 
 import (
+	files "github.com/ag7if/go-files"
 	"github.com/pkg/errors"
 	"gopkg.in/yaml.v3"
 
-	"github.com/ut080/bcs-portal/internal/files"
 	"github.com/ut080/bcs-portal/internal/logging"
 )
 

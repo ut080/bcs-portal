@@ -5,10 +5,10 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/ag7if/go-files"
 	"github.com/pkg/errors"
 
 	"github.com/ut080/bcs-portal/internal/config"
-	"github.com/ut080/bcs-portal/internal/files"
 	"github.com/ut080/bcs-portal/internal/logging"
 )
 
@@ -84,7 +84,7 @@ func CopyAssets(projectPath string, logger logging.Logger) error {
 	destCfgDir := filepath.Join(cfgDir, "cfg")
 
 	logging.Info().Str("file", "cap_command_emblem.jpg").Msg("copying asset")
-	capEmblem, err := files.NewFile(filepath.Join(imgDir, "cap_command_emblem.jpg"), logger)
+	capEmblem, err := files.NewFile(filepath.Join(imgDir, "cap_command_emblem.jpg"), logger.DefaultLogger())
 	if err != nil {
 		return errors.WithStack(err)
 	}
@@ -95,7 +95,7 @@ func CopyAssets(projectPath string, logger logging.Logger) error {
 	}
 
 	logging.Info().Str("file", "ut080_color.png").Msg("copying asset")
-	bcsPatch, err := files.NewFile(filepath.Join(imgDir, "ut080_color.png"), logger)
+	bcsPatch, err := files.NewFile(filepath.Join(imgDir, "ut080_color.png"), logger.DefaultLogger())
 	if err != nil {
 		return errors.WithStack(err)
 	}
@@ -106,7 +106,7 @@ func CopyAssets(projectPath string, logger logging.Logger) error {
 	}
 
 	logging.Info().Str("file", "duty_assignments.yaml").Msg("copying config")
-	daCfg, err := files.NewFile(filepath.Join(defaultCfgDir, "duty_assignments.yaml"), logger)
+	daCfg, err := files.NewFile(filepath.Join(defaultCfgDir, "duty_assignments.yaml"), logger.DefaultLogger())
 	if err != nil {
 		return errors.WithStack(err)
 	}
