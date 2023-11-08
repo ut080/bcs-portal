@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"time"
 
-	files "github.com/ag7if/go-files"
+	"github.com/ag7if/go-files"
 	"github.com/pkg/errors"
 
 	"github.com/ut080/bcs-portal/internal/logging"

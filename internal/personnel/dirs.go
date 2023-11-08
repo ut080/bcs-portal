@@ -3,7 +3,6 @@ package personnel
 import (
 	"fmt"
 	"os"
-	"strings"
 
 	"github.com/ag7if/go-files"
 	"github.com/pkg/errors"
@@ -45,12 +44,25 @@ func parseMembership(members []org.Member) map[org.MemberType][]sharepoint.Membe
 	return mbr
 }
 
-func makeDirectories(t org.MemberType, members []sharepoint.Member, path string) error {
-	mt := strings.ToLower(string(t))
-	mt = fmt.Sprintf("%s%s", strings.ToUpper(mt[:1]), mt[1:])
-	dir := fmt.Sprintf("%s/%ss", path, mt)
+// memberTypeDirectoryName is hard-coded for now. Eventually, this will be pulled from the fileplan YAML.
+// TODO: Pull this info from the file plan
+func memberTypeDirectoryName(t org.MemberType) string {
+	switch t {
+	case org.CadetMember:
+		return "3.1.3.1-Cadets"
+	case org.SeniorMember:
+		return "3.1.3.2-Seniors"
+	case org.CadetSponsorMember:
+		return "3.1.3.3-Cadet Sponsor Members"
+	default:
+		return "misc"
+	}
+}
 
-	logging.Info().Str("path", dir).Msgf("Creating %ss directory", mt)
+func makeDirectories(t org.MemberType, members []sharepoint.Member, path string) error {
+	dir := fmt.Sprintf("%s/%s", path, memberTypeDirectoryName(t))
+
+	logging.Info().Str("path", dir).Msgf("Creating %ss directory", t)
 	err := os.Mkdir(dir, 0755)
 	if err != nil {
 		return errors.WithStack(err)
@@ -81,6 +93,11 @@ func CreateDirectories(mbrReportPath, outputPath string) error {
 	}
 
 	err = makeDirectories(org.CadetMember, membersByType[org.CadetMember], outputPath)
+	if err != nil {
+		return errors.WithStack(err)
+	}
+
+	err = makeDirectories(org.CadetSponsorMember, membersByType[org.CadetSponsorMember], outputPath)
 	if err != nil {
 		return errors.WithStack(err)
 	}

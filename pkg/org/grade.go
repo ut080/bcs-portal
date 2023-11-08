@@ -24,6 +24,7 @@ const (
 	TSgt        Grade = "TSgt"
 	SSgt        Grade = "SSgt"
 	SM          Grade = "SM"
+	CSM         Grade = "CSM"
 	CdtCol      Grade = "C/Col"
 	CdtLtCol    Grade = "C/Lt Col"
 	CdtMaj      Grade = "C/Maj"
@@ -77,6 +78,8 @@ func ParseGrade(gradeStr string) (grade Grade, err error) {
 		grade = SSgt
 	case "SM":
 		grade = SM
+	case "CSM":
+		grade = CSM
 	case "C/Col":
 		grade = CdtCol
 	case "C/Lt Col":
@@ -135,6 +138,7 @@ func MapGradesToMemberTypes() map[Grade]MemberType {
 		TSgt:        SeniorMember,
 		SSgt:        SeniorMember,
 		SM:          SeniorMember,
+		CSM:         CadetSponsorMember,
 		CdtCol:      CadetMember,
 		CdtLtCol:    CadetMember,
 		CdtMaj:      CadetMember,

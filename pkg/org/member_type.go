@@ -9,8 +9,9 @@ import (
 type MemberType string
 
 const (
-	SeniorMember MemberType = "SENIOR"
-	CadetMember  MemberType = "CADET"
+	SeniorMember       MemberType = "SENIOR"
+	CadetMember        MemberType = "CADET"
+	CadetSponsorMember MemberType = "CADET SPONSOR"
 )
 
 func ParseMemberType(memberTypeStr string) (mt MemberType, err error) {
@@ -19,6 +20,8 @@ func ParseMemberType(memberTypeStr string) (mt MemberType, err error) {
 		mt = SeniorMember
 	case "CADET":
 		mt = CadetMember
+	case "CADET SPONSOR":
+		mt = CadetSponsorMember
 	default:
 		err = errors.Errorf("invalid member type: %s", memberTypeStr)
 		return "", err
