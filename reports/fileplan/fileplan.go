@@ -135,7 +135,7 @@ func unpackFilePlanItems(item filing.FilePlanItem) []FilePlanItem {
 		return append(items, NewFilePlanItem(item))
 	case 1:
 		// File Level 1 is grouped with its subitems with a blank line at the end
-		items = append(items, NewFilePlanItem(item))
+		items = append(items, FilePlanItem{}, NewFilePlanItem(item))
 		for _, subitem := range item.Subitems() {
 			items = append(items, unpackFilePlanItems(subitem)...)
 		}
