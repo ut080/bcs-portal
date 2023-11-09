@@ -18,7 +18,7 @@ func filePlanItemAsCsvRow(item filing.FilePlanItem) []string {
 	if !item.Disposition().Empty() {
 		row[2] = fmt.Sprintf("T%d, R%d", item.Table(), item.Rule())
 
-		if item.Disposition().Cutoff() == "" {
+		if item.Disposition().Cutoff() == filing.NoCutoff {
 			instructions := []rune(item.Disposition().Instructions())
 			instructions[0] = unicode.ToUpper(instructions[0])
 			row[3] = string(instructions)

@@ -28,11 +28,12 @@ func loadTableOfOrganizationConfiguration(toCfg files.File, logger logging.Logge
 	}
 
 	daCfg := yaml.DutyAssignmentConfig{}
-	daCfgFile, err := files.NewFile(filepath.Join(cfgDir, "cfg", "duty_assignments.yaml"), logger.DefaultLogger())
+	daCfgFile, err := files.NewFile(filepath.Join(cfgDir, "cfg", "defs", "duty_assignments.yaml"), logger.DefaultLogger())
 	if err != nil {
 		return org.TableOfOrganization{}, errors.WithStack(err)
 	}
-	err = yaml.LoadFromFile(daCfgFile, &daCfg, logger)
+	// TODO: Add schema validation
+	err = yaml.LoadFromFile(daCfgFile, &daCfg, nil, logger)
 	if err != nil {
 		return org.TableOfOrganization{}, err
 	}
@@ -40,7 +41,8 @@ func loadTableOfOrganizationConfiguration(toCfg files.File, logger logging.Logge
 	domainDACfg := daCfg.DomainDutyAssignments()
 
 	yamlTO := yaml.TableOfOrganization{}
-	err = yaml.LoadFromFile(toCfg, &yamlTO, logger)
+	// TODO: Add schema validation
+	err = yaml.LoadFromFile(toCfg, &yamlTO, nil, logger)
 	if err != nil {
 		return org.TableOfOrganization{}, err
 	}

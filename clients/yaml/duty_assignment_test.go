@@ -4,6 +4,7 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/ag7if/go-files"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 
@@ -18,7 +19,11 @@ type DutyAssignmentSuite struct {
 func (suite *DutyAssignmentSuite) TestLoadReadDutyAssignmentConfig() {
 	dac := DutyAssignmentConfig{}
 
-	err := LoadFromFile(filepath.Join(testDataDir, "config", "duty_assignments.yaml"), &dac, logging.Logger{})
+	dacFile, err := files.NewFile(filepath.Join(testDataDir, "config", "duty_assignments.yaml"), logging.DefaultLogger())
+	assert.NoError(suite.T(), err)
+
+	// TODO: Include schema validation
+	err = LoadFromFile(dacFile, &dac, nil, logging.Logger{})
 	assert.NoError(suite.T(), err)
 
 	// NOTE: This test assumes that C/CC is defined in duty_assignments.yaml as follows:

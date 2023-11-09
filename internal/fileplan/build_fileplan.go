@@ -22,11 +22,12 @@ func loadFileDispositionRules(logger logging.Logger) (map[uint]filing.Dispositio
 	}
 
 	dispRulesCfg := make(map[string]yaml.DispositionTable)
-	dispRulesCfgFile, err := files.NewFile(filepath.Join(cfgDir, "cfg", "disposition_instructions.yaml"), logger.DefaultLogger())
+	dispRulesCfgFile, err := files.NewFile(filepath.Join(cfgDir, "cfg", "defs", "disposition_instructions.yaml"), logger.DefaultLogger())
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
-	err = yaml.LoadFromFile(dispRulesCfgFile, &dispRulesCfg, logger)
+	// TODO: Add schema validation
+	err = yaml.LoadFromFile(dispRulesCfgFile, &dispRulesCfg, nil, logger)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
@@ -41,7 +42,9 @@ func loadFileDispositionRules(logger logging.Logger) (map[uint]filing.Dispositio
 
 func readFilePlan(planFile files.File, dispositionRules map[uint]filing.DispositionTable, logger logging.Logger) (filing.FilePlan, error) {
 	var filePlanCfg yaml.FilePlan
-	err := yaml.LoadFromFile(planFile, &filePlanCfg, logger)
+
+	// TODO: Add schema validation
+	err := yaml.LoadFromFile(planFile, &filePlanCfg, nil, logger)
 	if err != nil {
 		return filing.FilePlan{}, errors.WithStack(err)
 	}

@@ -1,22 +1,40 @@
 package yaml
 
 import (
+	"fmt"
+
 	"github.com/ut080/bcs-portal/pkg/filing"
 )
 
 type DispositionRule struct {
-	RuleNumber  uint   `yaml:"rule_number"`
-	RecordType  string `yaml:"record_type"`
-	Cutoff      string `yaml:"cutoff"`
-	Disposition string `yaml:"disposition"`
+	RuleNumber   uint   `yaml:"rule_number"`
+	RecordType   string `yaml:"record_type"`
+	AutoCutoff   bool   `yaml:"auto_cutoff"`
+	Cutoff       string `yaml:"cutoff"`
+	DisposeAfter int    `yaml:"dispose_after"`
+	Disposition  string `yaml:"disposition"`
 }
 
 func (dr DispositionRule) DomainDispositionRule(tableNumber uint) filing.DispositionRule {
+	var cutoff filing.Cutoff
+	switch dr.Cutoff {
+	case "":
+		cutoff = filing.NoCutoff
+	case "30 Sep":
+		cutoff = filing.FiscalYearCutoff
+	case "31 Dec":
+		cutoff = filing.CalendarYearCutoff
+	default:
+		panic(fmt.Sprintf("invalid cutoff value parsed from YAML: %s", dr.Cutoff))
+	}
+
 	return filing.NewDispositionRule(
 		tableNumber,
 		dr.RuleNumber,
 		dr.RecordType,
-		dr.Cutoff,
+		dr.AutoCutoff,
+		cutoff,
+		dr.DisposeAfter,
 		dr.Disposition,
 	)
 }

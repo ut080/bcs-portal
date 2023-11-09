@@ -3,70 +3,18 @@ package main
 import (
 	"os"
 	"path/filepath"
-	"strings"
 
 	"github.com/ag7if/go-files"
 	"github.com/pkg/errors"
 
+	"github.com/ut080/bcs-portal/build"
 	"github.com/ut080/bcs-portal/internal/config"
 	"github.com/ut080/bcs-portal/internal/logging"
 )
 
-func CreateConfigDirectories() error {
-	cfgDir, err := config.ConfigDir()
-	if err != nil {
-		return errors.WithStack(err)
-	}
-
-	logging.Info().Str("dir", cfgDir).Msg("creating config directory")
-	err = os.Mkdir(cfgDir, 0700)
-	err = clearFileExistsError(err)
-	if err != nil {
-		logging.Warn().Err(err).Str("dir", cfgDir).Msg("failed to create config directory")
-	}
-
-	logging.Info().Str("subidr", "cfg").Msg("creating subdirectory")
-	err = os.Mkdir(filepath.Join(cfgDir, "cfg"), 0700)
-	err = clearFileExistsError(err)
-	if err != nil {
-		logging.Warn().Err(err).Str("subdir", "cfg").Msg("failed to create subdirectory")
-	}
-
-	logging.Info().Str("subidr", "assets").Msg("creating subdirectory")
-	err = os.Mkdir(filepath.Join(cfgDir, "assets"), 0700)
-	err = clearFileExistsError(err)
-	if err != nil {
-		logging.Warn().Err(err).Str("subdir", "assets").Msg("failed to create subdirectory")
-	}
-
-	return nil
-}
-
-func CreateCacheDirectories() error {
-	cacheDir, err := config.CacheDir()
-	if err != nil {
-		return errors.WithStack(err)
-	}
-
-	logging.Info().Str("dir", cacheDir).Msg("creating cache directory")
-	err = os.Mkdir(cacheDir, 0700)
-	err = clearFileExistsError(err)
-	if err != nil {
-		logging.Warn().Err(err).Str("dir", cacheDir).Msg("failed to create cache directory")
-	}
-
-	logging.Info().Str("subidr", "build").Msg("creating subdirectory")
-	err = os.Mkdir(filepath.Join(cacheDir, "build"), 0700)
-	err = clearFileExistsError(err)
-	if err != nil {
-		logging.Warn().Err(err).Str("subdir", "build").Msg("failed to create subdirectory")
-	}
-
-	return nil
-}
-
 func CopyAssets(projectPath string, logger logging.Logger) error {
 	defaultCfgDir := filepath.Join(projectPath, "config")
+	defaultSchemaDir := filepath.Join(projectPath, "docs", "schemas")
 
 	cfgDir, err := config.ConfigDir()
 	if err != nil {
@@ -79,26 +27,35 @@ func CopyAssets(projectPath string, logger logging.Logger) error {
 	if err != nil {
 		return errors.WithStack(err)
 	}
-	_, err = dispIns.Copy(destCfgDir)
-	err = clearFileExistsError(err)
+	_, err = dispIns.Copy(filepath.Join(destCfgDir, "defs"))
+	err = build.ClearFileExistsError(err)
 	if err != nil {
-		logging.Warn().Err(err).Str("file", "duty_assignments.yaml").Msg("failed to copy config")
+		logging.Warn().Err(err).Str("file", "disposition_instructions.yaml").Msg("failed to copy config")
+	}
+
+	logging.Info().Str("file", "schemas/disposition_instructions.json").Msg("copying schema")
+	dispInsSchema, err := files.NewFile(filepath.Join(defaultSchemaDir, "disposition_instructions.json"), logger.DefaultLogger())
+	if err != nil {
+		return errors.WithStack(err)
+	}
+	_, err = dispInsSchema.Copy(filepath.Join(destCfgDir, "schemas"))
+	err = build.ClearFileExistsError(err)
+	if err != nil {
+		logging.Warn().Err(err).Str("file", "schemas/disposition_instructions.json").Msg("failed to copy schema")
+	}
+
+	logging.Info().Str("file", "schemas/fileplan.json").Msg("copying schema")
+	fileplanSchema, err := files.NewFile(filepath.Join(defaultSchemaDir, "fileplan.json"), logger.DefaultLogger())
+	if err != nil {
+		return errors.WithStack(err)
+	}
+	_, err = fileplanSchema.Copy(filepath.Join(destCfgDir, "schemas"))
+	err = build.ClearFileExistsError(err)
+	if err != nil {
+		logging.Warn().Err(err).Str("file", "schemas/fileplan.json").Msg("failed to copy schema")
 	}
 
 	return nil
-}
-
-func clearFileExistsError(err error) error {
-	if err == nil {
-		return nil
-	}
-
-	msg := err.Error()
-	if strings.Contains(msg, "file exists") {
-		return nil
-	}
-
-	return err
 }
 
 func main() {
@@ -106,13 +63,13 @@ func main() {
 
 	logger := logging.Logger{}
 
-	err := CreateConfigDirectories()
+	err := build.CreateConfigDirectories()
 	if err != nil {
 		logging.Error().Err(err).Msg("failed to create config directories")
 		os.Exit(1)
 	}
 
-	err = CreateCacheDirectories()
+	err = build.CreateCacheDirectories()
 	if err != nil {
 		logging.Error().Err(err).Msg("failed to create cache directories")
 		os.Exit(1)

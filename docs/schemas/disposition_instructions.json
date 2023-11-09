@@ -18,10 +18,12 @@
       "properties": {
         "rule_number": { "type": "integer", "minimum":  0},
         "record_type": { "type": "string", "minLength": 1 },
-        "cutoff": { "type": "string" },
+        "auto_cutoff": { "type": "boolean" },
+        "cutoff": { "enum": ["", "30 Sep", "31 Dec"] },
+        "dispose_after": { "type":  "integer" },
         "disposition": { "type": "string", "minLength": 1 }
       },
-      "required": [ "rule_number", "record_type", "cutoff", "disposition" ]
+      "required": [ "rule_number", "record_type", "cutoff", "dispose_after", "disposition" ]
     }
   },
   "type": "object",
