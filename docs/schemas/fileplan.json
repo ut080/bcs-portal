@@ -10,7 +10,7 @@
         "title": { "type": "string" },
         "table": { "type": ["integer", "null"], "minimum": 0 },
         "rule": { "type": ["integer", "null"], "minimum": 0 },
-        "dont_make_label": { "type": "boolean" },
+        "electronic": { "type": "boolean" },
         "subitems": { "type": "array", "items": { "$ref": "#/$defs/file_item"} }
       },
       "required": [ "title", "table", "rule" ]

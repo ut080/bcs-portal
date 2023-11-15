@@ -33,7 +33,7 @@ func filePlanItemAsCsvRow(item filing.FilePlanItem) []string {
 func filePlanSubItemsToRows(item filing.FilePlanItem) [][]string {
 	var rows [][]string
 
-	if !item.DontMakeLabel() {
+	if !item.Electronic() {
 		rows = append(rows, filePlanItemAsCsvRow(item))
 	}
 

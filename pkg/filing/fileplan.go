@@ -38,15 +38,15 @@ func (fp FilePlan) Items() []FilePlanItem {
 }
 
 type FilePlanItem struct {
-	itemID        string
-	title         string
-	rule          DispositionRule
-	dontMakeLabel bool
-	level         int
-	subitems      []FilePlanItem
+	itemID     string
+	title      string
+	rule       DispositionRule
+	electronic bool
+	level      int
+	subitems   []FilePlanItem
 }
 
-func NewFilePlanItem(itemID string, title string, rule DispositionRule, dontMakeLabel bool, subitems []FilePlanItem, root bool) FilePlanItem {
+func NewFilePlanItem(itemID string, title string, rule DispositionRule, electronic bool, subitems []FilePlanItem, root bool) FilePlanItem {
 	var level int
 	if root {
 		level = -1
@@ -62,12 +62,12 @@ func NewFilePlanItem(itemID string, title string, rule DispositionRule, dontMake
 	}
 
 	return FilePlanItem{
-		itemID:        itemID,
-		title:         title,
-		rule:          rule,
-		dontMakeLabel: dontMakeLabel,
-		level:         level,
-		subitems:      subitems,
+		itemID:     itemID,
+		title:      title,
+		rule:       rule,
+		electronic: electronic,
+		level:      level,
+		subitems:   subitems,
 	}
 }
 
@@ -87,8 +87,8 @@ func (fpi FilePlanItem) Rule() uint {
 	return fpi.rule.ruleNumber
 }
 
-func (fpi FilePlanItem) DontMakeLabel() bool {
-	return fpi.dontMakeLabel
+func (fpi FilePlanItem) Electronic() bool {
+	return fpi.electronic
 }
 
 func (fpi FilePlanItem) Disposition() DispositionRule {
