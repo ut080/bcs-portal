@@ -4,6 +4,7 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/ag7if/go-files"
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
@@ -22,13 +23,22 @@ func (suite *TableOfOrganizationSuite) SetupTest() {
 
 func (suite *TableOfOrganizationSuite) TestLoadTableOfOrganization() {
 	daCfg := DutyAssignmentConfig{}
-	err := LoadYamlDocFromFile(filepath.Join(testDataDir, "config", "duty_assignments.yaml"), &daCfg, logging.Logger{})
+	daCfgFile, err := files.NewFile(filepath.Join(testDataDir, "config", "defs", "duty_assignments.yaml"), logging.DefaultLogger())
+	assert.NoError(suite.T(), err)
+
+	// TODO: Include schema validation
+	err = LoadFromFile(daCfgFile, &daCfg, nil, logging.Logger{})
 	assert.NoError(suite.T(), err)
 
 	domainDACfg := daCfg.DomainDutyAssignments()
 
 	to := TableOfOrganization{}
-	err = LoadYamlDocFromFile(filepath.Join(testDataDir, "to.yaml"), &to, logging.Logger{})
+
+	toFile, err := files.NewFile(filepath.Join(testDataDir, "to.yaml"), logging.DefaultLogger())
+	assert.NoError(suite.T(), err)
+
+	// TODO: Include schema validation
+	err = LoadFromFile(toFile, &to, nil, logging.Logger{})
 	assert.NoError(suite.T(), err)
 
 	domainTo, err := to.DomainTableOfOrganization(domainDACfg)

@@ -10,8 +10,8 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/ut080/bcs-portal/domain"
 	"github.com/ut080/bcs-portal/internal/logging"
+	"github.com/ut080/bcs-portal/pkg/org"
 )
 
 type Dump struct {
@@ -45,13 +45,13 @@ func (d *Dump) openCSV(filename string) (reader *csv.Reader, err error) {
 	return reader, nil
 }
 
-func (d *Dump) FetchMembers() (members map[uint]domain.Member, err error) {
-	members = make(map[uint]domain.Member)
+func (d *Dump) FetchMembers() (members map[uint]org.Member, err error) {
+	members = make(map[uint]org.Member)
 
 	membersCSV, err := d.openCSV("Member.txt")
 
 	// Naively assuming the CSV columns are always the same, the ones I'm interested (and their corresponding fields
-	// in the domain.Member struct) are:
+	// in the pkg.Member struct) are:
 	// 		 0: CAPID
 	//		 2: LastName
 	//		 3: FirstName
@@ -80,13 +80,13 @@ func (d *Dump) FetchMembers() (members map[uint]domain.Member, err error) {
 		}
 		lastName := record[2]
 		firstName := record[3]
-		memberType, err := domain.ParseMemberType(record[21])
+		memberType, err := org.ParseMemberType(record[21])
 		if err != nil {
 			// TODO: Remove direct calls to logger
 			logging.Warn().Err(err).Int("capid", capid).Int("col", 21).Str("member_type", record[21]).Msg("error converting MemberType, skipping record")
 			continue
 		}
-		grade, err := domain.ParseGrade(record[14])
+		grade, err := org.ParseGrade(record[14])
 		if err != nil {
 			// TODO: Remove direct calls to logger
 			logging.Error().Err(err).Int("capid", capid).Int("col", 14).Str("grade", record[14]).Msg("error converting Grade, skipping record")
@@ -96,7 +96,7 @@ func (d *Dump) FetchMembers() (members map[uint]domain.Member, err error) {
 		// TODO: Parse JoinDate
 		// TODO: Parse RankDate
 
-		member := domain.Member{
+		member := org.Member{
 			CAPID:      uint(capid),
 			LastName:   lastName,
 			FirstName:  firstName,

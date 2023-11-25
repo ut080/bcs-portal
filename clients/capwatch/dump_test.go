@@ -8,8 +8,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/ut080/bcs-portal/domain"
 	"github.com/ut080/bcs-portal/internal/logging"
+	"github.com/ut080/bcs-portal/pkg/org"
 	"github.com/ut080/bcs-portal/tests"
 )
 
@@ -48,11 +48,11 @@ func (suite *DumpTestSuite) TestFetchMembers() {
 	testMember, ok := members[viper.GetUint("test_member.capid")]
 	assert.True(suite.T(), ok)
 
-	testMemberType, err := domain.ParseMemberType(viper.GetString("test_member.member_type"))
+	testMemberType, err := org.ParseMemberType(viper.GetString("test_member.member_type"))
 	if err != nil {
 		panic(err)
 	}
-	testMemberGrade, err := domain.ParseGrade(viper.GetString("test_member.grade"))
+	testMemberGrade, err := org.ParseGrade(viper.GetString("test_member.grade"))
 	if err != nil {
 		panic(err)
 	}

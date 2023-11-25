@@ -5,7 +5,7 @@ skinparam linetype ortho
 /'
     Org Package
 
-    This package is the core domain model.
+    This package is the core pkg model.
 '/
 class DutyAssignment {
     +DutyTitle: string

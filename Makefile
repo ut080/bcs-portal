@@ -8,13 +8,18 @@ GIT_DIRTY = `git diff-index --quiet HEAD -- || echo 'x-'`
 
 LDFLAGS = -ldflags "-s -X main.BuildTime=${BUILD_TIME} -X main.GitRevision=${GIT_DIRTY}${GIT_REVISION} -X main.GitBranch=${GIT_BRANCH}"
 
+bin/damx: $(foreach f, $(SRC), $(f))
+	go build ${LDFLAGS} -o bin/damx cmd/damx/main.go
+
 bin/dpdocs: $(foreach f, $(SRC), $(f))
 	go build ${LDFLAGS} -o bin/dpdocs cmd/dpdocs/main.go
 
 .PHONY: install
-install: bin/dpdocs
+install: bin/dpdocs bin/damx
+	go run build/damx/install.go $(CURDIR)
 	go run build/dpdocs/install.go $(CURDIR)
 	cp bin/dpdocs ${HOME}/.local/bin/
+	cp bin/damx ${HOME}/.local/bin/
 
 .PHONY: test
 test:

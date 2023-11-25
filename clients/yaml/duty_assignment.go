@@ -1,11 +1,16 @@
 package yaml
 
 import (
-	"github.com/ut080/bcs-portal/domain"
+	"github.com/ut080/bcs-portal/pkg/org"
 )
 
 type DutyAssignmentConfig struct {
-	DutyAssignments []DutyAssignment `yaml:"duty_assignments"`
+	SquadronCommandStaff []DutyAssignment `yaml:"squadron_command_staff"`
+	SeniorProgramStaff   []DutyAssignment `yaml:"senior_program_staff"`
+	SeniorSupportStaff   []DutyAssignment `yaml:"senior_support_staff"`
+	CadetCommandStaff    []DutyAssignment `yaml:"cadet_command_staff"`
+	CadetSupportStaff    []DutyAssignment `yaml:"cadet_support_staff"`
+	CadetLineStaff       []DutyAssignment `yaml:"cadet_line_staff"`
 }
 
 type DutyAssignment struct {
@@ -17,34 +22,56 @@ type DutyAssignment struct {
 	AsigneeCAPID  *uint   `yaml:"capid"`
 }
 
-func (dac DutyAssignmentConfig) DomainDutyAssignments() (dutyAssignments map[string]domain.DutyAssignment) {
-	dutyAssignments = make(map[string]domain.DutyAssignment)
-
-	for _, assignment := range dac.DutyAssignments {
-		var min *domain.Grade = nil
-		if assignment.MinGrade != nil {
-			mi, err := domain.ParseGrade(*assignment.MinGrade)
-			if err == nil { // TODO: Add some actual error handling
-				min = &mi
-			}
+func toDomainDutyAssignment(assignment DutyAssignment) org.DutyAssignment {
+	var minGrade *org.Grade = nil
+	if assignment.MinGrade != nil {
+		mi, err := org.ParseGrade(*assignment.MinGrade)
+		if err == nil { // TODO: Add some actual error handling
+			minGrade = &mi
 		}
+	}
 
-		var max *domain.Grade = nil
-		if assignment.MaxGrade != nil {
-			mx, err := domain.ParseGrade(*assignment.MaxGrade)
-			if err == nil { // TODO: Add some actual error handling
-				max = &mx
-			}
+	var maxGrade *org.Grade = nil
+	if assignment.MaxGrade != nil {
+		mx, err := org.ParseGrade(*assignment.MaxGrade)
+		if err == nil { // TODO: Add some actual error handling
+			maxGrade = &mx
 		}
+	}
 
-		da := domain.DutyAssignment{
-			DutyTitle:    assignment.Title,
-			OfficeSymbol: assignment.OfficeSymbol,
-			MinGrade:     min,
-			MaxGrade:     max,
-		}
+	return org.DutyAssignment{
+		DutyTitle:    assignment.Title,
+		OfficeSymbol: assignment.OfficeSymbol,
+		MinGrade:     minGrade,
+		MaxGrade:     maxGrade,
+	}
+}
 
-		dutyAssignments[assignment.OfficeSymbol] = da
+func (dac DutyAssignmentConfig) DomainDutyAssignments() (dutyAssignments map[string]org.DutyAssignment) {
+	dutyAssignments = make(map[string]org.DutyAssignment)
+
+	for _, assignment := range dac.SquadronCommandStaff {
+		dutyAssignments[assignment.OfficeSymbol] = toDomainDutyAssignment(assignment)
+	}
+
+	for _, assignment := range dac.SeniorProgramStaff {
+		dutyAssignments[assignment.OfficeSymbol] = toDomainDutyAssignment(assignment)
+	}
+
+	for _, assignment := range dac.SeniorSupportStaff {
+		dutyAssignments[assignment.OfficeSymbol] = toDomainDutyAssignment(assignment)
+	}
+
+	for _, assignment := range dac.CadetCommandStaff {
+		dutyAssignments[assignment.OfficeSymbol] = toDomainDutyAssignment(assignment)
+	}
+
+	for _, assignment := range dac.CadetSupportStaff {
+		dutyAssignments[assignment.OfficeSymbol] = toDomainDutyAssignment(assignment)
+	}
+
+	for _, assignment := range dac.CadetLineStaff {
+		dutyAssignments[assignment.OfficeSymbol] = toDomainDutyAssignment(assignment)
 	}
 
 	return dutyAssignments

@@ -3,30 +3,31 @@ package eservices
 import (
 	"encoding/csv"
 	"io"
-	"os"
 	"regexp"
 	"strconv"
 	"time"
 
+	"github.com/ag7if/go-files"
 	"github.com/pkg/errors"
 
-	"github.com/ut080/bcs-portal/domain"
 	"github.com/ut080/bcs-portal/internal/logging"
+	"github.com/ut080/bcs-portal/pkg/org"
 )
 
 type MembershipReport struct {
 	csvReader    *csv.Reader
 	lastModified time.Time
+	memberType   org.MemberType
 }
 
-func openCSV(filename string) (*csv.Reader, time.Time, error) {
-	info, err := os.Stat(filename)
+func openCSV(reportFile files.File) (*csv.Reader, time.Time, error) {
+	info, err := reportFile.Stat()
 	if err != nil {
 		return nil, time.Time{}, errors.WithStack(err)
 	}
 	modTime := info.ModTime()
 
-	f, err := os.Open(filename)
+	f, err := reportFile.Open()
 	if err != nil {
 		return nil, time.Time{}, errors.WithStack(err)
 	}
@@ -36,21 +37,25 @@ func openCSV(filename string) (*csv.Reader, time.Time, error) {
 	return reader, modTime, nil
 }
 
-func NewMembershipReport(filename string) (MembershipReport, error) {
-	reader, modTime, err := openCSV(filename)
+func NewMembershipReport(reportFile files.File, memberType org.MemberType) (MembershipReport, error) {
+	reader, modTime, err := openCSV(reportFile)
 	if err != nil {
 		return MembershipReport{}, errors.WithStack(err)
 	}
 
-	return MembershipReport{csvReader: reader, lastModified: modTime}, nil
+	return MembershipReport{
+		csvReader:    reader,
+		lastModified: modTime,
+		memberType:   memberType,
+	}, nil
 }
 
 func (mr *MembershipReport) LastModified() time.Time {
 	return mr.lastModified
 }
 
-func (mr *MembershipReport) FetchMembers() (members map[uint]domain.Member, err error) {
-	members = make(map[uint]domain.Member)
+func (mr *MembershipReport) FetchMembers() (members map[uint]org.Member, err error) {
+	members = make(map[uint]org.Member)
 
 	// Naively assuming the CSV columns are always the same, the ones I'm interested in follow:
 	const nameField = 2
@@ -62,10 +67,7 @@ func (mr *MembershipReport) FetchMembers() (members map[uint]domain.Member, err 
 	// nameField is the full name. To parse it, we will need this regex:
 	nameRE := regexp.MustCompile(`(\w+),\s*(\w+)`)
 
-	// Additionally, member type will have to be assumed from the member's grade:
-	memberTypeMap := domain.MapGradesToMemberTypes()
-
-	// Time layouts will be in the following format:
+	// Time layouts will be in one of the following formats:
 	const timeLayout = `02 Jan 2006`
 
 	headerSkipped := false
@@ -101,17 +103,10 @@ func (mr *MembershipReport) FetchMembers() (members map[uint]domain.Member, err 
 		lastName := matches[1]
 		firstName := matches[2]
 
-		grade, err := domain.ParseGrade(record[gradeField])
+		grade, err := org.ParseGrade(record[gradeField])
 		if err != nil {
 			// TODO: Remove direct calls to logger
 			logging.Error().Err(err).Int("capid", capid).Int("col", gradeField).Str("grade", record[gradeField]).Msg("error converting Grade, skipping record")
-			continue
-		}
-
-		memberType, ok := memberTypeMap[grade]
-		if !ok {
-			// TODO: Remove direct calls to logger
-			logging.Warn().Err(err).Int("capid", capid).Int("col", gradeField).Str("grade", record[gradeField]).Msg("error determining MemberType, skipping record")
 			continue
 		}
 
@@ -129,11 +124,11 @@ func (mr *MembershipReport) FetchMembers() (members map[uint]domain.Member, err 
 			continue
 		}
 
-		member := domain.Member{
+		member := org.Member{
 			CAPID:      uint(capid),
 			LastName:   lastName,
 			FirstName:  firstName,
-			MemberType: memberType,
+			MemberType: mr.memberType,
 			Grade:      grade,
 			JoinDate:   joinDate,
 			RankDate:   rankDate,

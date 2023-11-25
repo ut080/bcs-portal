@@ -1,4 +1,4 @@
-package dpdocs
+package damx
 
 import (
 	"os"
@@ -13,8 +13,8 @@ var logLevel string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "dpdocs",
-	Short: "Helper tools for Civil Air Patrol admin and org officers",
+	Use:   "damx",
+	Short: "Tools for maintaining Civil Air Patrol filing systems IAW CAPR 10-2",
 	Long:  ``,
 }
 

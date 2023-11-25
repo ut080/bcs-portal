@@ -12,41 +12,41 @@ import (
 
 	"github.com/ut080/bcs-portal/clients/capwatch"
 	"github.com/ut080/bcs-portal/clients/yaml"
-	"github.com/ut080/bcs-portal/domain"
 	"github.com/ut080/bcs-portal/internal/logging"
+	"github.com/ut080/bcs-portal/pkg/org"
 	"github.com/ut080/bcs-portal/tests"
 )
 
 type BarcodeLogSuite struct {
 	suite.Suite
-	to         domain.TableOfOrganization
+	to         org.TableOfOrganization
 	lastCWSync time.Time
 }
 
-func loadTOConfig() (domain.TableOfOrganization, error) {
+func loadTOConfig() (org.TableOfOrganization, error) {
 	daCfg := yaml.DutyAssignmentConfig{}
-	err := yaml.LoadYamlDocFromFile(filepath.Join(testDataDir, "config", "duty_assignments.yaml"), &daCfg, logging.Logger{})
+	err := yaml.LoadFromFile(filepath.Join(testDataDir, "config", "duty_assignments.yaml"), &daCfg, logging.Logger{})
 	if err != nil {
-		return domain.TableOfOrganization{}, err
+		return org.TableOfOrganization{}, err
 	}
 
 	domainDACfg := daCfg.DomainDutyAssignments()
 
 	to := yaml.TableOfOrganization{}
-	err = yaml.LoadYamlDocFromFile(filepath.Join(testDataDir, "to.yaml"), &to, logging.Logger{})
+	err = yaml.LoadFromFile(filepath.Join(testDataDir, "to.yaml"), &to, logging.Logger{})
 	if err != nil {
-		return domain.TableOfOrganization{}, err
+		return org.TableOfOrganization{}, err
 	}
 
 	domainTO, err := to.DomainTableOfOrganization(domainDACfg)
 	if err != nil {
-		return domain.TableOfOrganization{}, err
+		return org.TableOfOrganization{}, err
 	}
 
 	return domainTO, nil
 }
 
-func loadCAPWATCHData() (map[uint]domain.Member, time.Time, error) {
+func loadCAPWATCHData() (map[uint]org.Member, time.Time, error) {
 	orgID := viper.GetString("capwatch.orgid")
 	username := viper.GetString("capwatch.username")
 	password := viper.GetString("capwatch.password")
