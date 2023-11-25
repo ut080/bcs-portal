@@ -1,31 +1,43 @@
 package org
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/pkg/errors"
 )
 
-type MemberType string
+type MemberType int
 
 const (
-	SeniorMember       MemberType = "SENIOR"
-	CadetMember        MemberType = "CADET"
-	CadetSponsorMember MemberType = "CADET SPONSOR"
+	InvalidMemberType MemberType = iota
+	SeniorMember
+	CadetMember
+	CadetSponsorMember
 )
 
-func ParseMemberType(memberTypeStr string) (mt MemberType, err error) {
+func ParseMemberType(memberTypeStr string) (MemberType, error) {
 	switch strings.ToUpper(memberTypeStr) {
 	case "SENIOR":
-		mt = SeniorMember
+		return SeniorMember, nil
 	case "CADET":
-		mt = CadetMember
+		return CadetMember, nil
 	case "CADET SPONSOR":
-		mt = CadetSponsorMember
+		return CadetSponsorMember, nil
 	default:
-		err = errors.Errorf("invalid member type: %s", memberTypeStr)
-		return "", err
+		return InvalidMemberType, errors.Errorf("invalid member type: %s", memberTypeStr)
 	}
+}
 
-	return mt, nil
+func (mt MemberType) String() string {
+	switch mt {
+	case SeniorMember:
+		return "SENIOR"
+	case CadetMember:
+		return "CADET"
+	case CadetSponsorMember:
+		return "CADET SPONSOR"
+	default:
+		panic(fmt.Errorf("invalid MemberType enum value: %d", mt))
+	}
 }

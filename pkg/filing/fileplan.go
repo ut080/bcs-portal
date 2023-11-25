@@ -3,6 +3,8 @@ package filing
 import (
 	"fmt"
 	"time"
+
+	"github.com/ut080/bcs-portal/pkg/org"
 )
 
 type FilePlan struct {
@@ -40,13 +42,16 @@ func (fp FilePlan) Items() []FilePlanItem {
 type FilePlanItem struct {
 	itemID     string
 	title      string
+	short      string
 	rule       DispositionRule
+	folderType FolderType
 	electronic bool
+	personnel  org.MemberType
 	level      int
 	subitems   []FilePlanItem
 }
 
-func NewFilePlanItem(itemID string, title string, rule DispositionRule, electronic bool, subitems []FilePlanItem, root bool) FilePlanItem {
+func NewFilePlanItem(itemID string, title, short string, rule DispositionRule, folderType FolderType, electronic bool, personnel org.MemberType, subitems []FilePlanItem, root bool) FilePlanItem {
 	var level int
 	if root {
 		level = -1
@@ -64,8 +69,11 @@ func NewFilePlanItem(itemID string, title string, rule DispositionRule, electron
 	return FilePlanItem{
 		itemID:     itemID,
 		title:      title,
+		short:      short,
 		rule:       rule,
+		folderType: folderType,
 		electronic: electronic,
+		personnel:  personnel,
 		level:      level,
 		subitems:   subitems,
 	}
@@ -79,12 +87,20 @@ func (fpi FilePlanItem) Title() string {
 	return fpi.title
 }
 
+func (fpi FilePlanItem) ShortTitle() string {
+	return fpi.short
+}
+
 func (fpi FilePlanItem) Table() uint {
 	return fpi.rule.tableNumber
 }
 
 func (fpi FilePlanItem) Rule() uint {
 	return fpi.rule.ruleNumber
+}
+
+func (fpi FilePlanItem) FolderType() FolderType {
+	return fpi.folderType
 }
 
 func (fpi FilePlanItem) Electronic() bool {

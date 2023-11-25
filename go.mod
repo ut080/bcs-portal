@@ -4,7 +4,7 @@ go 1.21.1
 
 require (
 	github.com/ag7if/go-files v0.1.0
-	github.com/ag7if/go-latex v0.1.0
+	github.com/ag7if/go-latex v0.1.1
 	github.com/deckarep/golang-set/v2 v2.1.0
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.31.0

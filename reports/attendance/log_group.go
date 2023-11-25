@@ -79,12 +79,17 @@ func NewLogGroupFromMemberGroup(memberGroup org.MemberGroup) (lg LogGroup) {
 		seniors.Members = append(seniors.Members, NewMemberFromDomainMember(senior))
 	}
 
+	cadetSponsors := LogSubGroup{Name: "Cadet Sponsors"}
+	for _, csm := range memberGroup.CadetSponsors {
+		cadetSponsors.Members = append(cadetSponsors.Members, NewMemberFromDomainMember(csm))
+	}
+
 	cadets := LogSubGroup{Name: "Cadets"}
 	for _, cadet := range memberGroup.Cadets {
 		cadets.Members = append(cadets.Members, NewMemberFromDomainMember(cadet))
 	}
 
-	lg.SubGroups = append(lg.SubGroups, seniors, cadets)
+	lg.SubGroups = append(lg.SubGroups, seniors, cadetSponsors, cadets)
 
 	return lg
 }

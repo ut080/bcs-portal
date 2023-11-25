@@ -11,18 +11,26 @@
         "MSgt", "TSgt", "SSgt", "SM", "C/Col", "C/Lt Col", "C/Maj", "C/Capt", "C/1st Lt", "C/2d Lt", "C/CMSgt",
         "C/SMSgt", "C/MSgt", "C/TSgt", "C/SSgt", "C/SrA", "C/A1C", "C/Amn", "C/AB"
       ]
+    },
+    "duty_assignment": {
+      "type": "object",
+      "properties": {
+        "symbol": { "type":  "string", "minLength":  1 },
+        "title": { "type":  "string", "minLength": 1 },
+        "capwatch_title": { "type": "string" },
+        "min_grade": { "$ref": "#/$defs/grade" },
+        "max_grade": { "$ref": "#/$defs/grade" }
+      },
+      "required": [ "symbol", "title"]
     }
   },
-  "type": "array",
-  "items": {
-    "type": "object",
-    "properties": {
-      "symbol": { "type":  "string", "minLength":  1 },
-      "title": { "type":  "string", "minLength": 1 },
-      "capwatch_title": { "type": "string" },
-      "min_grade": { "$ref": "#/$defs/grade" },
-      "max_grade": { "$ref": "#/$defs/grade" }
-    },
-    "required": [ "symbol", "title"]
+  "type": "object",
+  "properties": {
+    "squadron_command_staff": { "type":  "array": "items": { "$ref":  "#/$defs/duty_assignment"} },
+    "senior_program_staff": { "type":  "array": "items": { "$ref":  "#/$defs/duty_assignment"} }
+    "senior_support_staff": { "type":  "array": "items": { "$ref":  "#/$defs/duty_assignment"} }
+    "cadet_command_staff": { "type":  "array": "items": { "$ref":  "#/$defs/duty_assignment"} },
+    "cadet_support_staff": { "type":  "array": "items": { "$ref":  "#/$defs/duty_assignment"} },
+    "cadet_line_staff": { "type":  "array": "items": { "$ref":  "#/$defs/duty_assignment"} }
   }
 }

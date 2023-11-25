@@ -8,9 +8,12 @@
       "type": "object",
       "properties": {
         "title": { "type": "string" },
+        "short": { "type": "string" },
         "table": { "type": ["integer", "null"], "minimum": 0 },
         "rule": { "type": ["integer", "null"], "minimum": 0 },
+        "folder_type": { "enum": ["FOLDER", "HANGING", "GUIDE"] },
         "electronic": { "type": "boolean" },
+        "personnel" : { "enum": ["", "CADET", "SENIOR", "CADET SPONSOR"] },
         "subitems": { "type": "array", "items": { "$ref": "#/$defs/file_item"} }
       },
       "required": [ "title", "table", "rule" ]

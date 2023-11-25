@@ -2,6 +2,7 @@ package attendance
 
 import (
 	"fmt"
+	"maps"
 	"path/filepath"
 	"syscall"
 	"time"
@@ -108,23 +109,43 @@ func loadCapwatchData(to *org.TableOfOrganization, logger logging.Logger) (refre
 	return refreshDate, nil
 }
 
-func loadDataFromMembershipReport(to *org.TableOfOrganization, reportFile files.File) (lastSync time.Time, err error) {
-	report, err := eservices.NewMembershipReport(reportFile)
+func loadDataFromMembershipReport(reportFile files.File, memberType org.MemberType) (map[uint]org.Member, time.Time, error) {
+	report, err := eservices.NewMembershipReport(reportFile, memberType)
 	if err != nil {
-		return lastSync, errors.WithStack(err)
+		return nil, time.Time{}, errors.WithStack(err)
 	}
 
 	members, err := report.FetchMembers()
 	if err != nil {
-		return lastSync, errors.WithStack(err)
+		return nil, time.Time{}, errors.WithStack(err)
 	}
 
-	err = to.PopulateMemberData(members)
+	return members, report.LastModified(), nil
+}
+
+func loadMembershipReports(to *org.TableOfOrganization, reportFiles map[org.MemberType]files.File) (time.Time, error) {
+	var lastSync time.Time
+
+	members := make(map[uint]org.Member)
+	for mbrType, reportFile := range reportFiles {
+		mbrs, t, err := loadDataFromMembershipReport(reportFile, mbrType)
+		if err != nil {
+			return time.Time{}, errors.WithStack(err)
+		}
+
+		if lastSync.IsZero() || t.Before(lastSync) {
+			lastSync = t
+		}
+
+		maps.Copy(members, mbrs)
+	}
+
+	err := to.PopulateMemberData(members)
 	if err != nil {
-		return lastSync, errors.WithStack(err)
+		return time.Time{}, errors.WithStack(err)
 	}
 
-	return report.LastModified(), nil
+	return lastSync, nil
 }
 
 func generateLaTeX(to org.TableOfOrganization, compiler *latex.Compiler, outputFile files.File, logDate, lastSync time.Time) error {
@@ -144,23 +165,26 @@ func generateLaTeX(to org.TableOfOrganization, compiler *latex.Compiler, outputF
 	return nil
 }
 
-func BuildBarcodeLog(toCfg, outFile, membershipReport files.File, logDate time.Time, logger logging.Logger) error {
+func BuildBarcodeLog(toCfg, outFile files.File, mbrReports map[org.MemberType]files.File, logDate time.Time, logger logging.Logger) error {
 	to, err := loadTableOfOrganizationConfiguration(toCfg, logger)
 	if err != nil {
 		return errors.WithStack(err)
 	}
 
 	var lastSync time.Time
-	if membershipReport.Empty() {
-		lastSync, err = loadCapwatchData(&to, logger)
-		if err != nil {
-			return errors.WithStack(err)
-		}
-	} else {
-		lastSync, err = loadDataFromMembershipReport(&to, membershipReport)
-		if err != nil {
-			return errors.WithStack(err)
-		}
+	/*
+		// TODO: Re-enable CAPWATCH access
+			if membershipReport.Empty() {
+				lastSync, err = loadCapwatchData(&to, logger)
+				if err != nil {
+					return errors.WithStack(err)
+				}
+
+			} else {
+	*/
+	lastSync, err = loadMembershipReports(&to, mbrReports)
+	if err != nil {
+		return errors.WithStack(err)
 	}
 
 	compiler, err := reports.ConfigureLaTeXCompiler(logger)

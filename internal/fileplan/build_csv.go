@@ -11,7 +11,12 @@ func filePlanItemAsCsvRow(item filing.FilePlanItem) []string {
 	row := make([]string, 4)
 
 	row[0] = item.ItemID()
-	row[1] = item.Title()
+
+	if item.ShortTitle() != "" {
+		row[1] = item.ShortTitle()
+	} else {
+		row[1] = item.Title()
+	}
 
 	// Process LaTeX commands for en- and em-dashes in the title row
 

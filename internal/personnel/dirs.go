@@ -13,10 +13,8 @@ import (
 	"github.com/ut080/bcs-portal/repositories/sharepoint"
 )
 
-func loadMembershipReport(mbrReportPath string) ([]org.Member, error) {
-	mbrReport, err := files.NewFile(mbrReportPath, logging.DefaultLogger())
-
-	report, err := eservices.NewMembershipReport(mbrReport)
+func loadMembershipReport(mbrReport files.File, mbrType org.MemberType) ([]org.Member, error) {
+	report, err := eservices.NewMembershipReport(mbrReport, mbrType)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
@@ -34,14 +32,24 @@ func loadMembershipReport(mbrReportPath string) ([]org.Member, error) {
 	return mbr, nil
 }
 
-func parseMembership(members []org.Member) map[org.MemberType][]sharepoint.Member {
+func loadMembers(mbrReports map[org.MemberType]files.File) (map[org.MemberType][]sharepoint.Member, error) {
 	mbr := make(map[org.MemberType][]sharepoint.Member)
-	for _, member := range members {
-		m := sharepoint.NewMember(member)
-		mbr[member.MemberType] = append(mbr[member.MemberType], m)
+
+	for mbrType, reportFile := range mbrReports {
+		members, err := loadMembershipReport(reportFile, mbrType)
+		if err != nil {
+			return nil, err
+		}
+
+		m := make([]sharepoint.Member, 0)
+		for _, v := range members {
+			m = append(m, sharepoint.NewMember(v))
+		}
+
+		mbr[mbrType] = m
 	}
 
-	return mbr
+	return mbr, nil
 }
 
 // memberTypeDirectoryName is hard-coded for now. Eventually, this will be pulled from the fileplan YAML.
@@ -79,13 +87,11 @@ func makeDirectories(t org.MemberType, members []sharepoint.Member, path string)
 	return nil
 }
 
-func CreateDirectories(mbrReportPath, outputPath string) error {
-	members, err := loadMembershipReport(mbrReportPath)
+func CreateDirectories(mbrReports map[org.MemberType]files.File, outputPath string) error {
+	membersByType, err := loadMembers(mbrReports)
 	if err != nil {
 		return errors.WithStack(err)
 	}
-
-	membersByType := parseMembership(members)
 
 	err = makeDirectories(org.SeniorMember, membersByType[org.SeniorMember], outputPath)
 	if err != nil {

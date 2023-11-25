@@ -23,6 +23,17 @@ const (
 	CalendarYearCutoff
 )
 
+func (c Cutoff) String() string {
+	switch c {
+	case FiscalYearCutoff:
+		return "30 Sep"
+	case CalendarYearCutoff:
+		return "31 Dec"
+	default:
+		return ""
+	}
+}
+
 type DispositionTable struct {
 	number uint
 	title  string

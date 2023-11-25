@@ -17,6 +17,7 @@ import (
 type MembershipReport struct {
 	csvReader    *csv.Reader
 	lastModified time.Time
+	memberType   org.MemberType
 }
 
 func openCSV(reportFile files.File) (*csv.Reader, time.Time, error) {
@@ -36,13 +37,17 @@ func openCSV(reportFile files.File) (*csv.Reader, time.Time, error) {
 	return reader, modTime, nil
 }
 
-func NewMembershipReport(reportFile files.File) (MembershipReport, error) {
+func NewMembershipReport(reportFile files.File, memberType org.MemberType) (MembershipReport, error) {
 	reader, modTime, err := openCSV(reportFile)
 	if err != nil {
 		return MembershipReport{}, errors.WithStack(err)
 	}
 
-	return MembershipReport{csvReader: reader, lastModified: modTime}, nil
+	return MembershipReport{
+		csvReader:    reader,
+		lastModified: modTime,
+		memberType:   memberType,
+	}, nil
 }
 
 func (mr *MembershipReport) LastModified() time.Time {
@@ -62,10 +67,7 @@ func (mr *MembershipReport) FetchMembers() (members map[uint]org.Member, err err
 	// nameField is the full name. To parse it, we will need this regex:
 	nameRE := regexp.MustCompile(`(\w+),\s*(\w+)`)
 
-	// Additionally, member type will have to be assumed from the member's grade:
-	memberTypeMap := org.MapGradesToMemberTypes()
-
-	// Time layouts will be in the following format:
+	// Time layouts will be in one of the following formats:
 	const timeLayout = `02 Jan 2006`
 
 	headerSkipped := false
@@ -108,13 +110,6 @@ func (mr *MembershipReport) FetchMembers() (members map[uint]org.Member, err err
 			continue
 		}
 
-		memberType, ok := memberTypeMap[grade]
-		if !ok {
-			// TODO: Remove direct calls to logger
-			logging.Warn().Err(err).Int("capid", capid).Int("col", gradeField).Str("grade", record[gradeField]).Msg("error determining MemberType, skipping record")
-			continue
-		}
-
 		joinDate, err := time.Parse(timeLayout, record[joinDateField])
 		if err != nil {
 			// TODO: Remove direct calls to logger
@@ -133,7 +128,7 @@ func (mr *MembershipReport) FetchMembers() (members map[uint]org.Member, err err
 			CAPID:      uint(capid),
 			LastName:   lastName,
 			FirstName:  firstName,
-			MemberType: memberType,
+			MemberType: mr.memberType,
 			Grade:      grade,
 			JoinDate:   joinDate,
 			RankDate:   rankDate,

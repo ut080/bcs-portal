@@ -5,6 +5,7 @@ import (
 
 	"github.com/ut080/bcs-portal/internal/logging"
 	"github.com/ut080/bcs-portal/pkg/filing"
+	"github.com/ut080/bcs-portal/pkg/org"
 )
 
 type FilePlan struct {
@@ -25,9 +26,12 @@ func (fp FilePlan) DomainFilePlan(dispositionRules map[uint]filing.DispositionTa
 
 type FilePlanItem struct {
 	Title      string         `yaml:"title"`
+	Short      string         `yaml:"short"`
 	Table      uint           `yaml:"table"`
 	Rule       uint           `yaml:"rule"`
+	FolderType string         `yaml:"folder_type"`
 	Electronic bool           `yaml:"electronic"`
+	Personnel  string         `yaml:"personnel"`
 	Subitems   []FilePlanItem `yaml:"subitems"`
 }
 
@@ -67,5 +71,32 @@ func (fpi FilePlanItem) DomainFilePlanItem(itemID string, dispositionRules map[u
 
 	}
 
-	return filing.NewFilePlanItem(itemID, fpi.Title, rule, fpi.Electronic, subitems, root)
+	var folderType filing.FolderType
+	if fpi.FolderType != "" {
+		if fpi.Electronic {
+			logger.Warn().Str("key", "folder_type").Msg("folder_type key used with electronic=true, ignoring key")
+		} else {
+			var err error
+			folderType, err = filing.ParseFolderType(fpi.FolderType)
+			if err != nil {
+				logger.Warn().Err(err).Str("folder_type", fpi.FolderType).Msg("invalid folder_type specified, ignoring key")
+			}
+		}
+
+	}
+
+	var personnel org.MemberType
+	if fpi.Personnel != "" {
+		if fpi.Electronic {
+			var err error
+			personnel, err = org.ParseMemberType(fpi.Personnel)
+			if err != nil {
+				logger.Warn().Err(err).Str("personnel", fpi.Personnel).Msg("Invalid member type used as personnel key")
+			}
+		} else {
+			logger.Warn().Str("personnel", fpi.Personnel).Msg("Personnel key set on non-electronic file, key will be ignored")
+		}
+	}
+
+	return filing.NewFilePlanItem(itemID, fpi.Title, fpi.Short, rule, folderType, fpi.Electronic, personnel, subitems, root)
 }

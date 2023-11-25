@@ -3,5 +3,103 @@
   "$id": "https://github.com/ut080/bcs-portal/blob/main/docs/schemas/table_of_organization.json",
   "title": "Table of Organization",
   "description": "YAML definition of a CAP unit's table of organization",
-  "type": "object"
+  "$defs": {
+    "capid": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "duty_assignment": {
+      "type": "object",
+      "properties": {
+        "symbol": { "type": "string" },
+        "title": { "type": "string" },
+        "capwatch_title": { "type": "string" },
+        "min_grade": { "$ref": "#/$defs/grade" },
+        "max_grade": { "$ref": "#/$defs/grade" },
+        "capid": { "$ref": "#/$defs/capid" }
+      },
+      "required": [ "symbol" ]
+    },
+    "element": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "leader": {
+          "$ref": "#/$defs/duty_assignment"
+        },
+        "assistant": {
+          "$ref": "#/$defs/duty_assignment"
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/capid"
+          }
+        }
+      },
+      "required": [ "name", "leader", "assistant", "members" ]
+    },
+    "flight": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "cc": {
+          "$ref": "#/$defs/duty_assignment"
+        },
+        "ccf": {
+          "$ref": "#/$defs/duty_assignment"
+        },
+        "elements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/element"
+          }
+        }
+      },
+      "required": [ "name", "cc", "ccf", "elements" ]
+    },
+    "grade": {
+      "type": "string",
+      "enum": [
+        "Maj Gen", "Brig Gen", "Col", "Lt Col", "Maj", "Capt", "1st Lt", "2d Lt", "SFO", "TFO", "FO", "CMSgt", "SMSgt",
+        "MSgt", "TSgt", "SSgt", "SM", "C/Col", "C/Lt Col", "C/Maj", "C/Capt", "C/1st Lt", "C/2d Lt", "C/CMSgt",
+        "C/SMSgt", "C/MSgt", "C/TSgt", "C/SSgt", "C/SrA", "C/A1C", "C/Amn", "C/AB"
+      ]
+    },
+    "staff_group": {
+      "type": "object",
+      "properties": {
+        "group": { "type": "string" },
+         "subgroups": { "type": "array", "items": { "$ref": "#/$defs/staff_subgroup" } }
+      }
+    },
+    "staff_subgroup": {
+      "type": "object",
+      "properties": {
+        "subgroup": { "type": "string" },
+        "leader": { "$ref": "#/$defs/duty_assignment" },
+        "direct_reports": { "type": "array", "items": { "$ref": "#/$defs/duty_assignment" } }
+      }
+    }
+  },
+  "type": "object",
+  "properties": {
+    "unit": {
+      "type": "object",
+      "properties": {
+        "charter": { "type": "string" },
+        "name": { "type": "name" }
+      }
+    },
+    "staff_groups": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/staff_group" }
+    },
+    "flights": {},
+    "inactive": { "type": "array", "items": { "$ref": "#/$defs/capid" } }
+  }
 }
