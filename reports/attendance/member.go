@@ -35,3 +35,7 @@ func (m Member) LaTeX() string {
 
 	return latex
 }
+
+func CompareMember(a, b Member) int {
+	return strings.Compare(a.Name, b.Name)
+}

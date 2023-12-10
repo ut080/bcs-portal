@@ -2,6 +2,7 @@ package attendance
 
 import (
 	"fmt"
+	"slices"
 	"strings"
 
 	mapset "github.com/deckarep/golang-set/v2"
@@ -78,16 +79,19 @@ func NewLogGroupFromMemberGroup(memberGroup org.MemberGroup) (lg LogGroup) {
 	for _, senior := range memberGroup.Seniors {
 		seniors.Members = append(seniors.Members, NewMemberFromDomainMember(senior))
 	}
+	slices.SortFunc(seniors.Members, CompareMember)
 
 	cadetSponsors := LogSubGroup{Name: "Cadet Sponsors"}
 	for _, csm := range memberGroup.CadetSponsors {
 		cadetSponsors.Members = append(cadetSponsors.Members, NewMemberFromDomainMember(csm))
 	}
+	slices.SortFunc(cadetSponsors.Members, CompareMember)
 
 	cadets := LogSubGroup{Name: "Cadets"}
 	for _, cadet := range memberGroup.Cadets {
 		cadets.Members = append(cadets.Members, NewMemberFromDomainMember(cadet))
 	}
+	slices.SortFunc(cadets.Members, CompareMember)
 
 	lg.SubGroups = append(lg.SubGroups, seniors, cadetSponsors, cadets)
 
@@ -127,20 +131,26 @@ type LogSubGroup struct {
 	Members []Member
 }
 
-func NewLogSubGroupFromStaffSubGroup(subgroup org.StaffSubGroup, ignore *mapset.Set[uint]) (lsg LogSubGroup) {
-	lsg.Name = subgroup.Name
+func NewLogSubGroupFromStaffSubGroup(subgroup org.StaffSubGroup, ignore *mapset.Set[uint]) LogSubGroup {
+	lsg := LogSubGroup{Name: subgroup.Name}
 
 	if subgroup.Leader.Assignee != nil && !(*ignore).Contains(subgroup.Leader.Assignee.CAPID) {
 		lsg.Members = append(lsg.Members, NewMemberFromDomainMember(*subgroup.Leader.Assignee))
 		(*ignore).Add(subgroup.Leader.Assignee.CAPID)
 	}
 
+	// We want subordinates in the group to come after the leader, but be listed in alphabetical order.
+	// So, we will load the subordinates into a temporary slice that we can sort later.
+	var m []Member
 	for _, report := range subgroup.DirectReports {
 		if report.Assignee != nil && !(*ignore).Contains(report.Assignee.CAPID) {
-			lsg.Members = append(lsg.Members, NewMemberFromDomainMember(*report.Assignee))
+			m = append(m, NewMemberFromDomainMember(*report.Assignee))
 			(*ignore).Add(report.Assignee.CAPID)
 		}
 	}
+
+	slices.SortFunc(m, CompareMember)
+	lsg.Members = append(lsg.Members, m...)
 
 	return lsg
 }
@@ -158,12 +168,18 @@ func NewLogSubGroupFromElement(element org.Element, elementNumber int, ignore *m
 		(*ignore).Add(element.AsstElementLeader.Assignee.CAPID)
 	}
 
+	// We want element members in the group to come after the EL and asst. EL, but be listed in alphabetical order.
+	// So, we will load the element members into a temporary slice that we can sort later.
+	var m []Member
 	for _, member := range element.Members {
 		if !(*ignore).Contains(member.CAPID) {
-			lsg.Members = append(lsg.Members, NewMemberFromDomainMember(member))
+			m = append(m, NewMemberFromDomainMember(member))
 			(*ignore).Add(member.CAPID)
 		}
 	}
+
+	slices.SortFunc(m, CompareMember)
+	lsg.Members = append(lsg.Members, m...)
 
 	return lsg
 }
