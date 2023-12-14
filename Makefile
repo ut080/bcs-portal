@@ -21,6 +21,10 @@ install: bin/dpdocs bin/damx
 	cp bin/dpdocs ${HOME}/.local/bin/
 	cp bin/damx ${HOME}/.local/bin/
 
+.PHONY: dev_migrate
+dev_migrate:
+
+
 .PHONY: test
 test:
 	go test -v -count=1 ./...

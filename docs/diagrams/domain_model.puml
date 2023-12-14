@@ -7,22 +7,72 @@ skinparam linetype ortho
 
     This package is the core pkg model.
 '/
-class DutyAssignment {
-    +DutyTitle: string
-    +Assistant: bool
-    +OfficeSymbol: string
-    +MinGrade: *Grade
-    +MaxGrade: *Grade
-    +Assignee: *Member
+enum org.Grade {
+    MajGen
+    BrigGen
+    Col
+    LtCol
+    Maj
+    Capt
+    FirstLt
+    SecondLt
+    SFO
+    TFO
+    FO
+    CMSgt
+    SMSgt
+    MSgt
+    TSgt
+    SSgt
+    SM
+    CdtCol
+    CdtLtCol
+    CdtMaj
+    CdtCapt
+    CdtFirstLt
+    CdtSecondLt
+    CdtCMSgt
+    CdtSMSgt
+    CdtMSgt
+    CdtTSgt
+    CdtSSgt
+    CdtSrA
+    CdtA1C
+    CdtAmn
+    CADET
 }
 
-class Element {
+enum org.MemberType {
+    Senior
+    CadetSponsor
+    Cadet
+    Patron
+}
+
+class org.DutyTitle {
+    +Title: string
+    +MemberType: org.MemberType
+    +MinGrade: *org.Grade
+    +MaxGrade: *org.Grade
+}
+
+class org.DutyAssignment {
+    +Assistant: bool
+    +OfficeSymbol: string
+    +Assignee: *Member
+    -title: *string
+--
+    +Title(): string
+    +DutyTitle(): DutyTitle
+}
+
+class org.Element {
     +ElementLeader: DutyAssignment
     +AsstElementLeader: DutyAssignment
     +Members: Members[]
 }
 
-class Flight {
+class org.Flight {
     +Name: string
     +Abbreviation: string
     +FlightCommander: DutyAssignment
@@ -30,7 +80,7 @@ class Flight {
     +Elements: Element[]
 }
 
-class Member {
+class org.Member {
     +CAPID: int
     +LastName: string
     +FirstName: string
@@ -40,33 +90,135 @@ class Member {
     +FullName(): string
 }
 
-class StaffGroup {
+class org.StaffGroup {
     +Name string
     +SubGroups: StaffSubGroup[]
 }
 
-class StaffSubGroup {
+class org.StaffSubGroup {
     +Name: string
     +Leader: DutyAssignment
     +DirectReports: DutyAssignments[]
 }
 
-enum Grade
-enum MemberType
+org.DutyAssignment --|> org.DutyTitle
 
-DutyAssignment *-- Grade
-DutyAssignment *-- Member
+org.Element *-- org.DutyAssignment
+org.Element o-- org.Member
 
-Element *-- DutyAssignment
-Element o-- Member
+org.Flight *-- org.DutyAssignment
+org.Flight *-- org.Element
 
-Flight *-- DutyAssignment
-Flight o-- Element
+org.Member o-- org.MemberType
+org.Member o-- org.Grade
 
-Member *-- MemberType
-Member *-- Grade
+org.StaffGroup *-- org.StaffSubGroup
 
-StaffGroup o-- StaffSubGroup
-StaffSubGroup o-- DutyAssignment
+org.StaffSubGroup *-- org.DutyAssignment
+
+/'
+    Calendar Package
+
+    Describes events and squadron meetings.
+'/
+
+enum cal.Uniform
+
+class cal.Event {
+    +Title: time.Time
+    +Start: time.Time
+    +End: time.Time
+    +UOD: *cal.Uniform
+    +POC: string
+    +Plan: *cal.Plan
+}
+
+class cal.Meeting {
+    +Topic: string
+    +Plan: planning.MeetingPlan
+}
+
+cal.Event o-- cal.Uniform
+cal.Event *-- planning.Plan
+
+cal.Meeting --|> cal.Event
+cal.Meeting *-- planning.MeetingPlan
+
+/'
+    Planning package
+
+    Coordinates planning events.
+'/
+enum planning.CoordinationAction
+
+interface planning.Plan {
+--
+    +GetCoordination(): []planning.Coordination
+    +UpdateCoordination(coord: planning.Coordination)
+}
+
+struct planning.Coordination {
+    +Office: org.DutyAssignment
+    +Action: planning.CoordinationAction
+    +Completed: time.Time
+    +Outcome: string
+}
+
+class planning.CONPLAN {
+    +PlanNumber: string
+    +Title: string
+    +Sections: []planning.PlanSection
+    -coordination: map[string]planning.Coordination
+}
+
+class planning.LessonPlan {
+}
+
+class planning.MeetingPlan {
+    +PlanningStart: time.Time
+    +PlanDue: time.Time
+    +Sessions: []cal.Session
+    -coordination: map[string]planning.Coordination
+}
+
+class planning.OPLAN {
+    +PlanNumber: string
+    +Title: string
+    +ProjectOfficer: org.Member
+    +CadetProjectOfficer: org.Member
+    +Sections: []planning.PlanSection
+    -coordination: map[string]planning.Coordination
+}
+
+class planning.PlanSection {
+}
+
+class planning.TrainingBlock {
+    +OPR: org.DutyAssignment
+    +CdtOPR: org.DutyAssignment
+    +Topic: string
+    +Instructor: org.Member
+    +LessonPlan: planning.LessonPlan
+}
+
+planning.Coordination o-- org.DutyAssignment
+planning.Coordination o-- planning.CoordinationAction
+
+planning.CONPLAN --|> planning.Plan
+planning.CONPLAN *-- planning.Coordination
+planning.CONPLAN *-- planning.PlanSection
+
+planning.MeetingPlan --|> planning.Plan
+planning.MeetingPlan *-- planning.Coordination
+planning.MeetingPlan *-- planning.TrainingBlock
+
+planning.OPLAN --|> planning.Plan
+planning.OPLAN *-- planning.Coordination
+planning.OPLAN o-- org.Member
+planning.OPLAN *-- planning.PlanSection
+
+planning.TrainingBlock o-- org.DutyAssignment
+planning.TrainingBlock o-- org.Member
+planning.TrainingBlock o-- planning.LessonPlan
 
 @enduml

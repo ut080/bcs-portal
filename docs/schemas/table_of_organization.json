@@ -11,14 +11,13 @@
     "duty_assignment": {
       "type": "object",
       "properties": {
-        "symbol": { "type": "string" },
+        "office_symbol": { "type": "string" },
         "title": { "type": "string" },
-        "capwatch_title": { "type": "string" },
-        "min_grade": { "$ref": "#/$defs/grade" },
-        "max_grade": { "$ref": "#/$defs/grade" },
-        "capid": { "$ref": "#/$defs/capid" }
+        "assistant": { "type": "bool" },
+        "duty_title": { "type": "string" },
+        "assignee": { "$ref": "#/defs/capid" }
       },
-      "required": [ "symbol" ]
+      "required": [ "office_symbol", "duty_title" ]
     },
     "element": {
       "type": "object",

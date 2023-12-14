@@ -1,0 +1,260 @@
+senior_titles:
+  - id: SM-ACTIVITY
+    title: 'Activities Officer'
+  - id: SM-ADMIN
+    title: 'Administrative Officer'
+  - id: SM-CC-ADVISOR
+    title: 'Advisor to the Commander'
+  - id: SM-AE
+    title: 'Aerospace Education Officer'
+  - id: SM-ALERT
+    title: 'Alerting Officer'
+  - id: SM-CC
+    title: 'Commander'
+  - id: SM-CHAPLAIN
+    title: 'Chaplain'
+  - id: SM-CDI
+    title: 'Character Development Instructor'
+  - id: SM-COMMUNICATIONS
+    title: 'Communications Officer'
+  - id: SM-CYBER
+    title: 'Cyber Education Officer'
+  - id: SM-DEPUTY
+    title: 'Deputy Commander'
+  - id: SM-DCC
+    title: 'Deputy Commander for Cadets'
+  - id: SM-DCS
+    title: 'Deputy Commander for Seniors'
+  - id: SM-PREP
+    title: 'Disaster Preparedness Officer'
+  - id: SM-DDR
+    title: 'Drug Demand Reduction Officer'
+  - id: SM-ETO
+    title: 'Education and Training Officer'
+  - id: SM-ES
+    title: 'Emergency Services Officer'
+  - id: SM-EST
+    title: 'Emergency Services Training Officer'
+  - id: SM-FINANCE
+    title: 'Finance Officer'
+  - id: SM-FITNESS
+    title: 'Fitness Officer'
+  - id: SM-HSO
+    title: 'Health Services Officer'
+  - id: SM-HISTORY
+    title: 'Historian'
+  - id: SM-HOMELAND
+    title: 'Homeland Security Officer'
+  - id: SM-IT
+    title: 'Information Technologies Officer'
+  - id: SM-LEADERSHIP
+    title: 'Squadron Leadership Officer'
+  - id: SM-LOGISTICS
+    title: 'Logistics Officer'
+  - id: SM-MX
+    title: 'Maintenance Officer'
+  - id: SM-OPS
+    title: 'Operations Officer'
+  - id: SM-PERSONNEL
+    title: 'Personnel Officer'
+  - id: SM-PAO
+    title: 'Public Affairs Officer'
+  - id: SM-RECRUITING
+    title: 'Recruiting Officer'
+  - id: SM-SAFETY
+    title: 'Safety Officer'
+  - id: SM-SAR
+    title: 'Search and Rescue Officer'
+  - id: SM-NCO
+    title: 'Squadron NCO'
+  - id: SM-STANDEVAL
+    title: 'Standards/Evaluation Officer'
+  - id: SM-SUPPLY
+    title: 'Supply Officer'
+  - id: SM-TESTING
+    title: 'Testing Officer'
+  - id: SM-TRANSPORTATION
+    title: 'Transportation Officer'
+  - id: SM-WSA
+    title: 'Web Security Administrator'
+cadet_titles:
+  - id: CDT-NCO-ACTIVITY
+    title: 'Cadet Activities NCO'
+    min_grade: C/SSgt
+    max_grade: C/CMSgt
+  - id: CDT-OFF-ACTIVITY
+    title: 'Cadet Activities Officer'
+    min_grade: C/2d Lt
+    max_grade: C/Col
+  - id: CDT-NCO-ADMIN
+    title: 'Cadet Administrative NCO'
+    min_grade: C/SSgt
+    max_grade: C/CMSgt
+  - id: CDT-OFF-ADMIN
+    title: 'Cadet Administrative Officer'
+    min_grade: C/2d Lt
+    max_grade: C/Capt
+  - id: CDT-NCO-AE
+    title: 'Cadet Aerospace Education NCO'
+    min_grade: C/SSgt
+    max_grade: C/CMSgt
+  - id: CDT-OFF-AE
+    title: 'Cadet Aerospace Education Officer'
+    min_grade: C/2d Lt
+    max_grade: C/Col
+  - id: CDT-CC
+    title: 'Cadet Commander'
+    min_grade: C/2d Lt
+    max_grade: C/Col
+  - id: CDT-NCO-COMMUNICATIONS
+    title: 'Cadet Communications NCO'
+    min_grade: C/SSgt
+    max_grade: C/CMSgt
+  - id: CDT-OFF-COMMUNICATIONS
+    title: 'Cadet Communications Officer'
+    min_grade: C/2d Lt
+    max_grade: C/Col
+  - id: CDT-NCO-CYBER
+    title: 'Cadet Cyber Education NCO'
+    min_grade: C/SSgt
+    max_grade: C/CMSgt
+  - id: CDT-OFF-CYBER
+    title: 'Cadet Cyber Education Officer'
+    min_grade: C/2d Lt
+    max_grade: C/Col
+  - id: CDT-CDO
+    title: 'Cadet Deputy Commander for Operations'
+    min_grade: C/2d Lt
+    max_grade: C/Col
+  - id: CDT-CDS
+    title: 'Cadet Deputy Commander for Support'
+    min_grade: C/2d Lt
+    max_grade: C/Col
+  - id: CDT-EL
+    title: 'Cadet Element Leader'
+    min_grade: C/Amn
+    max_grade: C/CMSgt
+  - id: CDT-NCO-ES
+    title: 'Cadet Emergency Services NCO'
+    min_grade: C/SSgt
+    max_grade: C/CMSgt
+  - id: CDT-OFF-ES
+    title: 'Cadet Emergency Services Officer'
+    min_grade: C/2d Lt
+    max_grade: C/Col
+  - id: CDT-AMN-FINANCE
+    title: 'Cadet Finance Airman'
+    min_grade: C/A1C
+    max_grade: C/SrA
+  - id: CDT-CCF
+    title: 'Cadet First Sergeant'
+    min_grade: C/MSgt
+    max_grade: C/CMSgt
+  - id: CDT-NCO-FITNESS
+    title: 'Cadet Fitness Education NCO'
+    min_grade: C/SSgt
+    max_grade: C/CMSgt
+  - id: CDT-OFF-FITNESS
+    title: 'Cadet Fitness Education Officer'
+    min_grade: C/2d Lt
+    max_grade: C/Col
+  - id: CDT-FLT-CC
+    title: 'Cadet Flight Commander'
+    min_grade: C/MSgt
+    max_grade: C/Capt
+  - id: CDT-FLT-CCF
+    title: 'Cadet Flight Sergeant'
+    min_grade: C/SSgt
+    max_grade: C/CMSgt
+  - id: CDT-CAC-GPA
+    title: 'Cadet GCAC Assistant'
+  - id: CDT-CAC-GP
+    title: 'Cadet GCAC Representative'
+  - id: CDT-NCO-HISTORY
+    title: 'Cadet Historian NCO'
+    min_grade: C/SSgt
+    max_grade: C/CMSgt
+  - id: CDT-OFF-HISTORY
+    title: 'Cadet Historian Officer'
+    min_grade: C/2d Lt
+    max_grade: C/Col
+  - id: CDT-NCO-IT
+    title: 'Cadet IT NCO'
+    min_grade: C/SSgt
+    max_grade: C/CMSgt
+  - id: CDT-OFF-IT
+    title: 'Cadet IT Officer'
+    min_grade: C/2d Lt
+    max_grade: C/Col
+  - id: CDT-NCO-LEADERSHIP
+    title: 'Cadet Leadership Education NCO'
+    min_grade: C/SSgt
+    max_grade: C/CMSgt
+  - id: CDT-OFF-LEADERSHIP
+    title: 'Cadet Leadership Education Officer'
+    min_grade: C/2d Lt
+    max_grade: C/Col
+  - id: CDT-NCO-LOGISTICS
+    title: 'Cadet Logistics NCO'
+    min_grade: C/SSgt
+    max_grade: C/CMSgt
+  - id: CDT-OFF-LOGISTICS
+    title: 'Cadet Logistics Officer'
+    min_grade: C/2d Lt
+    max_grade: C/Col
+  - id: CDT-NCO-OPERATIONS
+    title: 'Cadet Operations NCO'
+    min_grade: C/SSgt
+    max_grade: C/CMSgt
+  - id: CDT-OFF-OPS
+    title: 'Cadet Operations Officer'
+    min_grade: C/2d Lt
+    max_grade: C/Col
+  - id: CDT-AMN-PERSONNEL
+    title: 'Cadet Personnel Airman'
+    min_grade: C/A1C
+    max_grade: C/SrA
+  - id: CDT-NCO-PA
+    title: 'Cadet Public Affairs NCO'
+    min_grade: C/SSgt
+    max_grade: C/CMSgt
+  - id: CDT-OFF-PA
+    title: 'Cadet Public Affairs Officer'
+    min_grade: C/2d Lt
+    max_grade: C/Col
+  - id: CDT-NCO-RECRUITING
+    title: 'Cadet Recruiting NCO'
+    min_grade: C/SSgt
+    max_grade: C/CMSgt
+  - id: CDT-OFF-RECRUITING
+    title: 'Cadet Recruiting Officer'
+    min_grade: C/2d Lt
+    max_grade: C/Col
+  - id: CDT-NCO-SAFETY
+    title: 'Cadet Safety NCO'
+    min_grade: C/SSgt
+    max_grade: C/CMSgt
+  - id: CDT-OFF-SAFETY
+    title: 'Cadet Safety Officer'
+    min_grade: C/2d Lt
+    max_grade: C/Col
+  - id: CDT-AMN-SUPPLY
+    title: 'Cadet Supply Airman'
+    min_grade: C/A1C
+    max_grade: C/SrA
+  - id: CDT-NCO-SUPPLY
+    title: 'Cadet Supply NCO'
+    min_grade: C/SSgt
+    max_grade: C/CMSgt
+  - id: CDT-OFF-SUPPLY
+    title: 'Cadet Supply Officer'
+    min_grade: C/2d Lt
+    max_grade: C/Col
+  - id: CDT-CAC-WGA
+    title: 'Cadet WCAC Assistant'
+  - id: CDT-CAC-WG
+    title: 'Cadet WCAC Representative'
+  - id: CDT-AMN-WEB
+    title: 'Cadet Web Maintenance Airman'
+    min_grade: C/A1C
+    max_grade: C/SrA

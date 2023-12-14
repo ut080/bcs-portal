@@ -1,5 +1,10 @@
 version: 2.1
 
+# Deployment steps:
+# - Build backend
+# - Build frontend
+# - Build publications
+
 jobs:
   clone:
     working_directory: ~/repo
