@@ -1,0 +1,213 @@
+unit:
+  charter: 'RMR-UT-080'
+  name: 'Blackhawk Cadet Squadron'
+chain_of_command:
+  - office_symbol: 'POTUS'
+    title: 'Commander-in-Chief of the United States Armed Forces'
+    incumbent: 'The Honorable Joseph R. Biden, Jr.'
+  - office_symbol: 'SECDEF'
+    title: 'Secretary of Defense'
+    incumbent: 'The Honorable Lloyd J. Austin'
+  - office_symbol: 'SECAF'
+    title: 'Secretary of the Air Force'
+    incumbent: 'The Honorable Frank Kendall III'
+  - office_symbol: 'CSAF'
+    title: 'Chief of Staff of the Air Force'
+    incumbent: 'Gen David W. Allvin, USAF'
+  - office_symbol: 'ACC/CC'
+    title: 'Commander, Air Combat Command'
+    incumbent: 'Gen Mark D. Kelly, USAF'
+  - office_symbol: 'AFNORTH/CC'
+    title: 'Commander, Air Forces Northern'
+    incumbent: 'Lt Gen Steven S. Nordhaus, USAF'
+  - office_symbol: 'CAP-USAF/CC'
+    title: 'Commander, CAP-USAF Liaison Command'
+    incumbent: 'Col Aaron Reid, USAF'
+  - office_symbol: 'CAP/CC'
+    title: 'National Commander'
+    incumbent: 'Maj Gen Edward D. Phelka, CAP'
+  - office_symbol: 'RMR/CC'
+    title: 'Commander, Rocky Mountain Region'
+    incumbent: 'Col Jason R. Hess, CAP'
+  - office_symbol: 'UTWG/CC'
+    title: 'Commander, Utah Wing'
+    incumbent: 'Col John Wagner, CAP'
+  - office_symbol: 'UT080/CC'
+    title: 'Commander, Blackhawk Cadet Squadron'
+    incumbent: 'Capt Robert H. Hawk, CAP'
+staff_groups:
+  - group: 'Senior Staff'
+    subgroups:
+      - subgroup: 'Command Staff'
+        leader:
+          office_symbol: 'CC'
+          duty_title: 'SM-CC'
+        direct_reports:
+          - office_symbol: 'CD'
+            duty_title: 'SM-CD'
+          - office_symbol: 'CCN'
+            duty_title: 'SM-CC-ADVISOR'
+          - office_symbol: 'SE'
+            duty_title: 'SM-SAFETY'
+          - office_symbol: 'HC'
+            duty_title: 'SM-CHAPLAIN'
+      - subgroup: 'Program Staff'
+        leader:
+          office_symbol: 'CC'
+          duty_title: 'SM-CC'
+        direct_reports:
+          - office_symbol: 'AE'
+            duty_title: 'SM-AE'
+          - office_symbol: 'HCI'
+            duty_title: 'SM-CDI'
+          - office_symbol: 'ES'
+            duty_title: 'SM-ES'
+          - office_symbol: 'LD'
+            duty_title: 'SM-LEADERSHIP'
+          - office_symbol: 'PT'
+            duty_title: 'SM-FITNESS'
+          - office_symbol: 'RR'
+            duty_title: 'SM-RECRUITING'
+      - subgroup: 'Support Staff'
+        leader:
+          office_symbol: 'CC'
+          duty_title: 'SM-CC'
+        direct_reports:
+          - office_symbol: 'DA'
+            duty_title: 'SM-ADMIN'
+          - office_symbol: 'DC'
+            duty_title: 'SM-COMMUNICATIONS'
+          - office_symbol: 'ET'
+            duty_title: 'SM-ETO'
+          - office_symbol: 'LDA'
+            duty_title: 'SM-ACTIVITY'
+          - office_symbol: 'IT'
+            duty_title: 'SM-IT'
+          - office_symbol: 'LG'
+            duty_title: 'SM-LOGISTICS'
+          - office_symbol: 'DP'
+            duty_title: 'SM-PERSONNEL'
+          - office_symbol: 'PA'
+            duty_title: 'SM-PAO'
+  - group: 'Cadet Staff'
+    subgroups:
+      - subgroup: 'Cadet Command Staff'
+        leader:
+          office_symbol: 'C/CC'
+          duty_title: 'CDT-CC'
+        direct_reports:
+          - office_symbol: 'C/CDO'
+            duty_title: 'CDT-CDO'
+          - office_symbol: 'C/CDS'
+            duty_title: 'CDT-CDS'
+          - office_symbol: 'C/CCF'
+            duty_title: 'CDT-CCF'
+      - subgroup: 'Cadet Support Staff'
+        leader:
+          office_symbol: 'C/CDS'
+          duty_title: 'CDT-CDS'
+        direct_reports:
+          - office_symbol: 'C/AE'
+          - office_symbol: 'C/DA'
+          - office_symbol: 'C/DC'
+          - office_symbol: 'C/ES'
+          - office_symbol: 'C/LD'
+          - office_symbol: 'C/PA'
+          - office_symbol: 'C/LG'
+flights:
+  - name: 'Alpha Flight'
+    cc:
+      office_symbol: 'AFlt/CC'
+      capid: 675989
+    ccf:
+      office_symbol: 'AFlt/CCF'
+      capid: 695574
+    elements:
+      - name: 'Element A-1'
+        leader:
+          office_symbol: 'AFlt/CCF1'
+          capid: 696106
+        assistant:
+          office_symbol: 'AFlt/CCF1'
+        members:
+          - 680102
+          - 680441
+          - 687817
+          - 700414
+      - name: 'Element A-2'
+        leader:
+          office_symbol: 'AFlt/CCF2'
+          capid: 685297
+        assistant:
+          office_symbol: 'AFlt/CCF1'
+        members:
+          - 664179
+          - 695636
+          - 700324
+          - 703292
+          - 658572
+      - name: 'Element A-3'
+        leader:
+          office_symbol: 'AFlt/CCF3'
+          capid: 693740
+        assistant:
+          office_symbol: 'AFlt/CCF1'
+        members:
+          - 681947
+          - 703967
+  - name: 'Cohort 1'
+    cc:
+      office_symbol: 'TC1/CC'
+      capid: 664503
+    ccf:
+      office_symbol: 'TC1/CCF'
+    elements:
+      - name: 'Element TC1-1'
+        leader:
+          office_symbol: 'TC1/CCF1'
+          capid: 691437
+        assistant:
+          office_symbol: 'TC1/CCF1'
+        members:
+          - 705634
+          - 711437
+          - 711886
+          - 712601
+          - 712697
+      - name: 'Element TC1-2'
+        leader:
+          office_symbol: 'TC1/CCF2'
+          capid: 687815
+        assistant:
+          office_symbol: 'TC1/CCF1'
+        members:
+          - 705120
+          - 712397
+          - 712606
+          - 712691
+inactive:
+  - 550738
+  - 550788
+  - 554686
+  - 585051
+  - 619381
+  - 629991
+  - 641940
+  - 649787
+  - 657937
+  - 662357
+  - 672792
+  - 673195
+  - 676610
+  - 685738
+  - 685777
+  - 686332
+  - 687328
+  - 688346
+  - 691430
+  - 691921
+  - 694180
+  - 694386
+  - 695743
+  - 703969
+  - 707287

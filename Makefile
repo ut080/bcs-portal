@@ -29,6 +29,10 @@ install_dev: bin/dpdocs bin/damx
 	BCSPORTAL_CONFIG=./testdata/config BCSPORTAL_CACHE=./testdata/cache go run build/damx/install.go $(CURDIR)
 	BCSPORTAL_CONFIG=./testdata/config BCSPORTAL_CACHE=./testdata/cache go run build/dpdocs/install.go $(CURDIR)
 
+.PHONY: dev_migrate
+dev_migrate:
+
+
 .PHONY: test
 test:
 	go test -v -count=1 ./...

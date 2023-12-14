@@ -1,0 +1,11 @@
+DROP TABLE staff_subgroup_direct_reports;
+DROP TABLE staff_subgroup;
+DROP TABLE staff_group;
+DROP TABLE element_members;
+DROP TABLE element;
+DROP TABLE flight;
+DROP TABLE duty_assignment;
+DROP TABLE duty_title;
+DROP TABLE member;
+DROP TYPE member_type;
+DROP TYPE grade;
