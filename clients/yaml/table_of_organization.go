@@ -29,7 +29,7 @@ func domainDutyAssignment(config map[string]org.DutyAssignment, yamlDA DutyAssig
 		return da, err
 	}
 
-	// If a CAPID is given in the YAML duty assignment, then we need to create a pointer to an org.Member
+	// If a CAPID is given in the YAML duty assignment, then we need to create a pointer to an gorm.Member
 	var member *org.Member
 	if yamlDA.AsigneeCAPID != nil {
 		member = new(org.Member)
@@ -65,7 +65,7 @@ func domainStaffGroups(config map[string]org.DutyAssignment, groups []StaffGroup
 				return nil, err
 			}
 
-			domainSubgroup := org.StaffSubGroup{
+			domainSubgroup := org.StaffSubgroup{
 				Name:   subgroup.Subgroup,
 				Leader: leader,
 			}

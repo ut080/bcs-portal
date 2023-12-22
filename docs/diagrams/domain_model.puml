@@ -122,7 +122,15 @@ org.StaffSubGroup *-- org.DutyAssignment
     Describes events and squadron meetings.
 '/
 
-enum cal.Uniform
+enum cal.Uniform {
+    +SemiFormal
+    +ServiceDress
+    +Service
+    +Utility
+    +Field
+    +PT
+    +Civilian
+}
 
 class cal.Event {
     +Title: time.Time
@@ -149,12 +157,17 @@ cal.Meeting *-- planning.MeetingPlan
 
     Coordinates planning events.
 '/
-enum planning.CoordinationAction
+enum planning.CoordinationAction {
+    +COORD
+    +APPROVE
+    +SIGN
+    +ACTION
+}
 
 interface planning.Plan {
 --
     +GetCoordination(): []planning.Coordination
-    +UpdateCoordination(coord: planning.Coordination)
+    +UpdateCoordination(idx: int, coord: planning.Coordination): error
 }
 
 struct planning.Coordination {
@@ -169,15 +182,23 @@ class planning.CONPLAN {
     +Title: string
     +Sections: []planning.PlanSection
     -coordination: map[string]planning.Coordination
+--
+    +LaTeX(): string
 }
 
 class planning.LessonPlan {
+    +Duration: uint
+    +Objectives: string
+    +Resources: string
+    +Outline: string
+--
+    +LaTeX(): string
 }
 
 class planning.MeetingPlan {
     +PlanningStart: time.Time
     +PlanDue: time.Time
-    +Sessions: []cal.Session
+    +Sessions: []planning.TrainingBlock
     -coordination: map[string]planning.Coordination
 }
 
@@ -188,9 +209,15 @@ class planning.OPLAN {
     +CadetProjectOfficer: org.Member
     +Sections: []planning.PlanSection
     -coordination: map[string]planning.Coordination
+--
+    +LaTeX(): string
 }
 
 class planning.PlanSection {
+    +Title: string
+    +Body: string
+--
+    +LaTeX(): string
 }
 
 class planning.TrainingBlock {

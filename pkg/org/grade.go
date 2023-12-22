@@ -1,160 +1,220 @@
 package org
 
 import (
+	"database/sql/driver"
+
 	"github.com/pkg/errors"
+	"gopkg.in/yaml.v3"
 )
 
-type Grade string
+type Grade int
 
 const (
-	MajGen      Grade = "Maj Gen"
-	BrigGen     Grade = "Brig Gen"
-	Col         Grade = "Col"
-	LtCol       Grade = "Lt Col"
-	Maj         Grade = "Maj"
-	Capt        Grade = "Capt"
-	FirstLt     Grade = "1st Lt"
-	SecondLt    Grade = "2d Lt"
-	SFO         Grade = "SFO"
-	TFO         Grade = "TFO"
-	FO          Grade = "FO"
-	CMSgt       Grade = "CMSgt"
-	SMSgt       Grade = "SMSgt"
-	MSgt        Grade = "MSgt"
-	TSgt        Grade = "TSgt"
-	SSgt        Grade = "SSgt"
-	SM          Grade = "SM"
-	CSM         Grade = "CSM"
-	CdtCol      Grade = "C/Col"
-	CdtLtCol    Grade = "C/Lt Col"
-	CdtMaj      Grade = "C/Maj"
-	CdtCapt     Grade = "C/Capt"
-	CdtFirstLt  Grade = "C/1st Lt"
-	CdtSecondLt Grade = "C/2d Lt"
-	CdtCMSgt    Grade = "C/CMSgt"
-	CdtSMSgt    Grade = "C/SMSgt"
-	CdtMSgt     Grade = "C/MSgt"
-	CdtTSgt     Grade = "C/TSgt"
-	CdtSSgt     Grade = "C/SSgt"
-	CdtSrA      Grade = "C/SrA"
-	CdtA1C      Grade = "C/A1C"
-	CdtAmn      Grade = "C/Amn"
-	CdtAB       Grade = "C/AB"
+	CADET Grade = iota
+	CdtAmn
+	CdtA1C
+	CdtSrA
+	CdtSSgt
+	CdtTSgt
+	CdtMSgt
+	CdtSMSgt
+	CdtCMSgt
+	CdtSecondLt
+	CdtFirstLt
+	CdtCapt
+	CdtMaj
+	CdtLtCol
+	CdtCol
+	SM
+	SSgt
+	TSgt
+	MSgt
+	SMSgt
+	CMSgt
+	FO
+	TFO
+	SFO
+	SecondLt
+	FirstLt
+	Capt
+	Maj
+	LtCol
+	Col
+	BrigGen
+	MajGen
 )
 
-func ParseGrade(gradeStr string) (grade Grade, err error) {
+func ParseGrade(gradeStr string) (Grade, error) {
 	switch gradeStr {
 	case "Maj Gen":
-		grade = MajGen
+		return MajGen, nil
 	case "Brig Gen":
-		grade = BrigGen
+		return BrigGen, nil
 	case "Col":
-		grade = Col
+		return Col, nil
 	case "Lt Col":
-		grade = LtCol
+		return LtCol, nil
 	case "Maj":
-		grade = Maj
+		return Maj, nil
 	case "Capt":
-		grade = Capt
+		return Capt, nil
 	case "1st Lt":
-		grade = FirstLt
+		return FirstLt, nil
 	case "2d Lt":
-		grade = SecondLt
+		return SecondLt, nil
 	case "SFO":
-		grade = SFO
+		return SFO, nil
 	case "TFO":
-		grade = TFO
+		return TFO, nil
 	case "FO":
-		grade = FO
+		return FO, nil
 	case "CMSgt":
-		grade = CMSgt
+		return CMSgt, nil
 	case "SMSgt":
-		grade = SMSgt
+		return SMSgt, nil
 	case "MSgt":
-		grade = MSgt
+		return MSgt, nil
 	case "TSgt":
-		grade = TSgt
+		return TSgt, nil
 	case "SSgt":
-		grade = SSgt
+		return SSgt, nil
 	case "SM":
-		grade = SM
-	case "CSM":
-		grade = CSM
+		return SM, nil
 	case "C/Col":
-		grade = CdtCol
+		return CdtCol, nil
 	case "C/Lt Col":
-		grade = CdtLtCol
+		return CdtLtCol, nil
 	case "C/Maj":
-		grade = CdtMaj
+		return CdtMaj, nil
 	case "C/Capt":
-		grade = CdtCapt
+		return CdtCapt, nil
 	case "C/1st Lt":
-		grade = CdtFirstLt
+		return CdtFirstLt, nil
 	case "C/2d Lt":
-		grade = CdtSecondLt
+		return CdtSecondLt, nil
 	case "C/CMSgt":
-		grade = CdtCMSgt
+		return CdtCMSgt, nil
 	case "C/SMSgt":
-		grade = CdtSMSgt
+		return CdtSMSgt, nil
 	case "C/MSgt":
-		grade = CdtMSgt
+		return CdtMSgt, nil
 	case "C/TSgt":
-		grade = CdtTSgt
+		return CdtTSgt, nil
 	case "C/SSgt":
-		grade = CdtSSgt
+		return CdtSSgt, nil
 	case "C/SrA":
-		grade = CdtSrA
+		return CdtSrA, nil
 	case "C/A1C":
-		grade = CdtA1C
+		return CdtA1C, nil
 	case "C/Amn":
-		grade = CdtAmn
-	case "C/AB":
+		return CdtAmn, nil
 	case "CADET":
-		grade = CdtAB
+		return CADET, nil
 	default:
-		err = errors.Errorf("invalid gradeStr: %s", gradeStr)
-		return "", err
+		return -1, errors.Errorf("invalid gradeStr: %s", gradeStr)
 	}
-
-	return grade, nil
 }
 
-func MapGradesToMemberTypes() map[Grade]MemberType {
-	mapping := map[Grade]MemberType{
-		MajGen:      SeniorMember,
-		BrigGen:     SeniorMember,
-		Col:         SeniorMember,
-		LtCol:       SeniorMember,
-		Maj:         SeniorMember,
-		Capt:        SeniorMember,
-		FirstLt:     SeniorMember,
-		SecondLt:    SeniorMember,
-		SFO:         SeniorMember,
-		TFO:         SeniorMember,
-		FO:          SeniorMember,
-		CMSgt:       SeniorMember,
-		SMSgt:       SeniorMember,
-		MSgt:        SeniorMember,
-		TSgt:        SeniorMember,
-		SSgt:        SeniorMember,
-		SM:          SeniorMember,
-		CSM:         CadetSponsorMember,
-		CdtCol:      CadetMember,
-		CdtLtCol:    CadetMember,
-		CdtMaj:      CadetMember,
-		CdtCapt:     CadetMember,
-		CdtFirstLt:  CadetMember,
-		CdtSecondLt: CadetMember,
-		CdtCMSgt:    CadetMember,
-		CdtSMSgt:    CadetMember,
-		CdtMSgt:     CadetMember,
-		CdtTSgt:     CadetMember,
-		CdtSSgt:     CadetMember,
-		CdtSrA:      CadetMember,
-		CdtA1C:      CadetMember,
-		CdtAmn:      CadetMember,
-		CdtAB:       CadetMember,
+func (g *Grade) MarshalYAML() (interface{}, error) {
+	return g.String(), nil
+}
+
+func (g *Grade) Scan(src any) error {
+	s, ok := src.(string)
+	if !ok {
+		return errors.New("failed to scan grade")
 	}
 
-	return mapping
+	v, err := ParseGrade(s)
+	if err != nil {
+		return errors.WithStack(err)
+	}
+
+	*g = v
+	return nil
+}
+
+func (g *Grade) String() string {
+	switch *g {
+	case MajGen:
+		return "Maj Gen"
+	case BrigGen:
+		return "Brig Gen"
+	case Col:
+		return "Col"
+	case LtCol:
+		return "Lt Col"
+	case Maj:
+		return "Maj"
+	case Capt:
+		return "Capt"
+	case FirstLt:
+		return "1st Lt"
+	case SecondLt:
+		return "2d Lt"
+	case SFO:
+		return "SFO"
+	case TFO:
+		return "TFO"
+	case FO:
+		return "FO"
+	case CMSgt:
+		return "CMSgt"
+	case SMSgt:
+		return "SMSgt"
+	case MSgt:
+		return "MSgt"
+	case TSgt:
+		return "TSgt"
+	case SSgt:
+		return "SSgt"
+	case SM:
+		return "SM"
+	case CdtCol:
+		return "C/Col"
+	case CdtLtCol:
+		return "C/Lt Col"
+	case CdtMaj:
+		return "C/Maj"
+	case CdtCapt:
+		return "C/Capt"
+	case CdtFirstLt:
+		return "C/1st Lt"
+	case CdtSecondLt:
+		return "C/2d Lt"
+	case CdtCMSgt:
+		return "C/CMSgt"
+	case CdtSMSgt:
+		return "C/SMSgt"
+	case CdtMSgt:
+		return "C/MSgt"
+	case CdtTSgt:
+		return "C/TSgt"
+	case CdtSSgt:
+		return "C/SSgt"
+	case CdtSrA:
+		return "C/SrA"
+	case CdtA1C:
+		return "C/A1C"
+	case CdtAmn:
+		return "C/Amn"
+	case CADET:
+		return "CADET"
+	default:
+		panic(errors.Errorf("invalid grade: %d", *g))
+	}
+}
+
+func (g *Grade) Value() (driver.Value, error) {
+	return g.String(), nil
+}
+
+func (g *Grade) UnmarshalYAML(value *yaml.Node) error {
+	v, err := ParseGrade(value.Value)
+	if err != nil {
+		return errors.WithStack(err)
+	}
+
+	*g = v
+	return nil
 }
