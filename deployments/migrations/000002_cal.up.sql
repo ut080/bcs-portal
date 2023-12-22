@@ -4,12 +4,12 @@ CREATE TYPE uniform AS ENUM (
     'Service',
     'Utility',
     'Field',
-    'PTU',
+    'PT',
     'Civilian'
 );
 
 
-CREATE TABLE event (
+CREATE TABLE events (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     title VARCHAR NOT NULL,
     start_datetime TIMESTAMP NOT NULL,
@@ -18,8 +18,8 @@ CREATE TABLE event (
     poc VARCHAR
 );
 
-CREATE TABLE meeting (
+CREATE TABLE meetings (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    event_id UUID NOT NULL REFERENCES event (id),
+    event_id UUID NOT NULL REFERENCES events (id),
     topic VARCHAR NOT NULL
 );

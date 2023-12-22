@@ -5,9 +5,11 @@ import (
 	"time"
 
 	mapset "github.com/deckarep/golang-set/v2"
+	"github.com/google/uuid"
 )
 
 type Member struct {
+	id             uuid.UUID
 	CAPID          uint
 	LastName       string
 	FirstName      string
@@ -16,6 +18,34 @@ type Member struct {
 	JoinDate       time.Time
 	RankDate       time.Time
 	ExpirationDate time.Time
+}
+
+func NewMember(
+	id uuid.UUID,
+	capid uint,
+	lastName string,
+	firstName string,
+	memberType MemberType,
+	grade Grade,
+	joinDate time.Time,
+	rankDate time.Time,
+	expirationDate time.Time,
+) Member {
+	return Member{
+		id:             id,
+		CAPID:          capid,
+		LastName:       lastName,
+		FirstName:      firstName,
+		MemberType:     memberType,
+		Grade:          grade,
+		JoinDate:       joinDate,
+		RankDate:       rankDate,
+		ExpirationDate: expirationDate,
+	}
+}
+
+func (m Member) ID() uuid.UUID {
+	return m.id
 }
 
 func (m Member) String() string {

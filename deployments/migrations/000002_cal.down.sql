@@ -1,3 +1,3 @@
-DROP TABLE meeting;
-DROP TABLE event;
+DROP TABLE meetings;
+DROP TABLE events;
 DROP TYPE uniform;

@@ -2,15 +2,42 @@ package org
 
 import (
 	mapset "github.com/deckarep/golang-set/v2"
+	"github.com/google/uuid"
 	"github.com/pkg/errors"
 )
 
 type Flight struct {
+	id              uuid.UUID
 	Name            string
+	Abbreviation    string
 	FlightCommander DutyAssignment
 	FlightSergeant  DutyAssignment
 	Elements        []Element
 }
+
+func NewFlight(
+	id uuid.UUID,
+	name string,
+	abbreviation string,
+	flightCommander DutyAssignment,
+	flightSergeant DutyAssignment,
+	elements []Element,
+) Flight {
+	return Flight{
+		id:              id,
+		Name:            name,
+		Abbreviation:    abbreviation,
+		FlightCommander: flightCommander,
+		FlightSergeant:  flightSergeant,
+		Elements:        elements,
+	}
+}
+
+func (f Flight) ID() uuid.UUID {
+	return f.id
+}
+
+// TODO: Refactor PopulateMemberData
 
 func (f *Flight) PopulateMemberData(members map[uint]Member, accounted *mapset.Set[uint]) (err error) {
 	if f.FlightCommander.Assignee != nil {
@@ -53,9 +80,31 @@ func (f *Flight) PopulateMemberData(members map[uint]Member, accounted *mapset.S
 }
 
 type Element struct {
+	id                uuid.UUID
+	Name              string
 	ElementLeader     DutyAssignment
 	AsstElementLeader DutyAssignment
 	Members           []Member
+}
+
+func NewElement(
+	id uuid.UUID,
+	name string,
+	elementLeader DutyAssignment,
+	asstElementLeader DutyAssignment,
+	members []Member,
+) Element {
+	return Element{
+		id:                id,
+		Name:              name,
+		ElementLeader:     elementLeader,
+		AsstElementLeader: asstElementLeader,
+		Members:           members,
+	}
+}
+
+func (e Element) ID() uuid.UUID {
+	return e.id
 }
 
 func (e *Element) PopulateMemberData(members map[uint]Member, accounted *mapset.Set[uint]) (err error) {

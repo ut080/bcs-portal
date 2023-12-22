@@ -127,7 +127,7 @@ type LogSubGroup struct {
 	Members []Member
 }
 
-func NewLogSubGroupFromStaffSubGroup(subgroup org.StaffSubGroup, ignore *mapset.Set[uint]) (lsg LogSubGroup) {
+func NewLogSubGroupFromStaffSubGroup(subgroup org.StaffSubgroup, ignore *mapset.Set[uint]) (lsg LogSubGroup) {
 	lsg.Name = subgroup.Name
 
 	if subgroup.Leader.Assignee != nil && !(*ignore).Contains(subgroup.Leader.Assignee.CAPID) {
