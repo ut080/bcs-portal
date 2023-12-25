@@ -1,18 +1,16 @@
 package org
 
 import (
-	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/google/uuid"
-	"github.com/pkg/errors"
 )
 
 type Flight struct {
 	id              uuid.UUID
-	Name            string
-	Abbreviation    string
-	FlightCommander DutyAssignment
-	FlightSergeant  DutyAssignment
-	Elements        []Element
+	name            string
+	abbreviation    string
+	flightCommander DutyAssignment
+	flightSergeant  DutyAssignment
+	elements        []Element
 }
 
 func NewFlight(
@@ -25,11 +23,11 @@ func NewFlight(
 ) Flight {
 	return Flight{
 		id:              id,
-		Name:            name,
-		Abbreviation:    abbreviation,
-		FlightCommander: flightCommander,
-		FlightSergeant:  flightSergeant,
-		Elements:        elements,
+		name:            name,
+		abbreviation:    abbreviation,
+		flightCommander: flightCommander,
+		flightSergeant:  flightSergeant,
+		elements:        elements,
 	}
 }
 
@@ -37,112 +35,22 @@ func (f Flight) ID() uuid.UUID {
 	return f.id
 }
 
-// TODO: Refactor PopulateMemberData
-
-func (f *Flight) PopulateMemberData(members map[uint]Member, accounted *mapset.Set[uint]) (err error) {
-	if f.FlightCommander.Assignee != nil {
-		cc, ok := members[f.FlightCommander.Assignee.CAPID]
-		if !ok {
-			// TODO: Instead of halting on error, continue to populate and return a slice of errors
-			err = errors.Errorf("no member found with CAPID %d", f.FlightCommander.Assignee.CAPID)
-			return err
-		}
-		f.FlightCommander.Assignee = &cc
-		(*accounted).Add(cc.CAPID)
-	}
-
-	if f.FlightSergeant.Assignee != nil {
-		ccf, ok := members[f.FlightSergeant.Assignee.CAPID]
-		if !ok {
-			// TODO: Instead of halting on error, continue to populate and return a slice of errors
-			err = errors.Errorf("no member found with CAPID %d", f.FlightSergeant.Assignee.CAPID)
-			return err
-		}
-		f.FlightSergeant.Assignee = &ccf
-		(*accounted).Add(ccf.CAPID)
-	}
-
-	var elements []Element
-	for _, element := range f.Elements {
-		err := element.PopulateMemberData(members, accounted)
-		if err != nil {
-			// TODO: Instead of halting on error, continue to populate and return a slice of errors
-			err = errors.WithStack(err)
-			return err
-		}
-
-		elements = append(elements, element)
-	}
-
-	f.Elements = elements
-
-	return nil
+func (f Flight) Name() string {
+	return f.name
 }
 
-type Element struct {
-	id                uuid.UUID
-	Name              string
-	ElementLeader     DutyAssignment
-	AsstElementLeader DutyAssignment
-	Members           []Member
+func (f Flight) Abbreviation() string {
+	return f.abbreviation
 }
 
-func NewElement(
-	id uuid.UUID,
-	name string,
-	elementLeader DutyAssignment,
-	asstElementLeader DutyAssignment,
-	members []Member,
-) Element {
-	return Element{
-		id:                id,
-		Name:              name,
-		ElementLeader:     elementLeader,
-		AsstElementLeader: asstElementLeader,
-		Members:           members,
-	}
+func (f Flight) FlightCommander() DutyAssignment {
+	return f.flightCommander
 }
 
-func (e Element) ID() uuid.UUID {
-	return e.id
+func (f Flight) FlightSergeant() DutyAssignment {
+	return f.flightSergeant
 }
 
-func (e *Element) PopulateMemberData(members map[uint]Member, accounted *mapset.Set[uint]) (err error) {
-	if e.ElementLeader.Assignee != nil {
-		el, ok := members[e.ElementLeader.Assignee.CAPID]
-		if !ok {
-			// TODO: Instead of halting on error, continue to populate and return a slice of errors
-			err = errors.Errorf("no member found with CAPID %d", e.ElementLeader.Assignee.CAPID)
-			return err
-		}
-		e.ElementLeader.Assignee = &el
-		(*accounted).Add(el.CAPID)
-	}
-
-	if e.AsstElementLeader.Assignee != nil {
-		ael, ok := members[e.AsstElementLeader.Assignee.CAPID]
-		if !ok {
-			// TODO: Instead of halting on error, continue to populate and return a slice of errors
-			err = errors.Errorf("no member found with CAPID %d", e.AsstElementLeader.Assignee.CAPID)
-			return err
-		}
-		e.AsstElementLeader.Assignee = &ael
-		(*accounted).Add(ael.CAPID)
-	}
-
-	var elementMembers []Member
-	for _, member := range e.Members {
-		// TODO: Instead of halting on error, continue to populate and return a slice of errors
-		mbr, ok := members[member.CAPID]
-		if !ok {
-			err = errors.Errorf("no member found with CAPID %d", member.CAPID)
-			return err
-		}
-		elementMembers = append(elementMembers, mbr)
-		(*accounted).Add(mbr.CAPID)
-	}
-
-	e.Members = elementMembers
-
-	return nil
+func (f Flight) Elements() []Element {
+	return f.elements
 }

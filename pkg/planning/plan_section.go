@@ -7,8 +7,8 @@ import (
 
 type PlanSection struct {
 	id    uuid.UUID
-	Title string
-	Body  string
+	title string
+	body  string
 }
 
 func NewPlanSection(
@@ -18,13 +18,21 @@ func NewPlanSection(
 ) PlanSection {
 	return PlanSection{
 		id:    id,
-		Title: title,
-		Body:  body,
+		title: title,
+		body:  body,
 	}
 }
 
 func (ps PlanSection) ID() uuid.UUID {
 	return ps.id
+}
+
+func (ps PlanSection) Title() string {
+	return ps.title
+}
+
+func (ps PlanSection) Body() string {
+	return ps.body
 }
 
 func (ps PlanSection) LaTeX() string {

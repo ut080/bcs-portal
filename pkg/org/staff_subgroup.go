@@ -1,16 +1,14 @@
 package org
 
 import (
-	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/google/uuid"
-	"github.com/pkg/errors"
 )
 
 type StaffSubgroup struct {
 	id            uuid.UUID
-	Name          string
-	Leader        DutyAssignment
-	DirectReports []DutyAssignment
+	name          string
+	leader        DutyAssignment
+	directReports []DutyAssignment
 }
 
 func NewStaffSubgroup(
@@ -21,9 +19,9 @@ func NewStaffSubgroup(
 ) StaffSubgroup {
 	return StaffSubgroup{
 		id:            id,
-		Name:          name,
-		Leader:        leader,
-		DirectReports: directReports,
+		name:          name,
+		leader:        leader,
+		directReports: directReports,
 	}
 }
 
@@ -31,34 +29,14 @@ func (ssg StaffSubgroup) ID() uuid.UUID {
 	return ssg.id
 }
 
-func (ssg *StaffSubgroup) PopulateMemberData(members map[uint]Member, assigned *mapset.Set[uint]) (err error) {
-	if ssg.Leader.Assignee != nil {
-		leader, ok := members[ssg.Leader.Assignee.CAPID]
-		if !ok {
-			// TODO: Instead of halting on error, continue to populate and return a slice of errors
-			err = errors.Errorf("no member found with CAPID %d", ssg.Leader.Assignee.CAPID)
-			return err
-		}
-		ssg.Leader.Assignee = &leader
-		(*assigned).Add(leader.CAPID)
-	}
+func (ssg StaffSubgroup) Name() string {
+	return ssg.name
+}
 
-	var directReports []DutyAssignment
-	for _, report := range ssg.DirectReports {
-		if report.Assignee != nil {
-			member, ok := members[report.Assignee.CAPID]
-			if !ok {
-				// TODO: Instead of halting on error, continue to populate and return a slice of errors
-				return errors.Errorf("no member found with CAPID %d", ssg.Leader.Assignee.CAPID)
-			}
-			report.Assignee = &member
-			(*assigned).Add(member.CAPID)
+func (ssg StaffSubgroup) Leader() DutyAssignment {
+	return ssg.leader
+}
 
-			directReports = append(directReports, report)
-		}
-	}
-
-	ssg.DirectReports = directReports
-
-	return nil
+func (ssg StaffSubgroup) DirectReports() []DutyAssignment {
+	return ssg.directReports
 }

@@ -1,4 +1,4 @@
-package gorm
+package postgres
 
 import (
 	"reflect"
@@ -8,6 +8,7 @@ import (
 	"github.com/pkg/errors"
 
 	"github.com/ut080/bcs-portal/pkg"
+	"github.com/ut080/bcs-portal/pkg/org"
 	"github.com/ut080/bcs-portal/pkg/planning"
 )
 
@@ -144,12 +145,41 @@ func (p *Plan) fromMeetingPlan(meetingPlan planning.MeetingPlan) error {
 	return nil
 }
 
+func (p *Plan) planSectionsToDomain() []planning.PlanSection {
+	var sections []planning.PlanSection
+	for _, v := range p.PlanSections {
+		section := planning.NewPlanSection(v.ID, v.Title, v.Body)
+		sections = append(sections, section)
+	}
+
+	return sections
+}
+
+func (p *Plan) coordinationToDomain() []planning.Coordination {
+	var coordination []planning.Coordination
+	for _, v := range p.Coordination {
+		office := v.Office.ToDomainObject().(org.DutyAssignment)
+		coord := planning.NewCoordination(v.ID, office, v.Action, v.Completed, v.Outcome)
+		coordination = append(coordination, coord)
+	}
+
+	return coordination
+}
+
 func (p *Plan) toCONPLAN() planning.CONPLAN {
-	panic(errors.New("Plan.toCONPLAN() not implemented"))
+	coordination := p.coordinationToDomain()
+	sections := p.planSectionsToDomain()
+
+	return planning.NewCONPLAN(p.ID, coordination, p.PlanNumber, p.Title, sections)
 }
 
 func (p *Plan) toOPLAN() planning.OPLAN {
-	panic(errors.New("Plan.toOPLAN() not implemented"))
+	coordination := p.coordinationToDomain()
+	sections := p.planSectionsToDomain()
+	projectOfficer := p.ProjectOfficer.ToDomainObject().(org.Member)
+	cadetProjectOfficer := p.CadetProjectOfficer.ToDomainObject().(org.Member)
+
+	return planning.NewOPLAN(p.ID, coordination, p.PlanNumber, p.Title, projectOfficer, cadetProjectOfficer, sections)
 }
 
 func (p *Plan) toMeetingPlan() planning.MeetingPlan {
