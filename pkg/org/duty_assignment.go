@@ -6,11 +6,11 @@ import (
 
 type DutyAssignment struct {
 	id           uuid.UUID
-	Title        string
-	OfficeSymbol string
-	Assistant    bool
-	DutyTitle    DutyTitle
-	Assignee     *Member
+	title        string
+	officeSymbol string
+	assistant    bool
+	dutyTitle    DutyTitle
+	assignee     *Member
 }
 
 func NewDutyAssignment(
@@ -23,14 +23,34 @@ func NewDutyAssignment(
 ) DutyAssignment {
 	return DutyAssignment{
 		id:           id,
-		Title:        title,
-		OfficeSymbol: officeSymbol,
-		Assistant:    assistant,
-		DutyTitle:    dutyTitle,
-		Assignee:     assignee,
+		title:        title,
+		officeSymbol: officeSymbol,
+		assistant:    assistant,
+		dutyTitle:    dutyTitle,
+		assignee:     assignee,
 	}
 }
 
 func (da DutyAssignment) ID() uuid.UUID {
 	return da.id
+}
+
+func (da DutyAssignment) Title() string {
+	return da.title
+}
+
+func (da DutyAssignment) OfficeSymbol() string {
+	return da.officeSymbol
+}
+
+func (da DutyAssignment) Assistant() bool {
+	return da.assistant
+}
+
+func (da DutyAssignment) DutyTitle() DutyTitle {
+	return da.dutyTitle
+}
+
+func (da DutyAssignment) Assignee() *Member {
+	return da.assignee
 }

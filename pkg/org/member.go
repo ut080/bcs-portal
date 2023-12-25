@@ -4,25 +4,25 @@ import (
 	"fmt"
 	"time"
 
-	mapset "github.com/deckarep/golang-set/v2"
 	"github.com/google/uuid"
+	"github.com/pkg/errors"
 )
 
 type Member struct {
 	id             uuid.UUID
-	CAPID          uint
-	LastName       string
-	FirstName      string
-	MemberType     MemberType
-	Grade          Grade
-	JoinDate       time.Time
-	RankDate       time.Time
-	ExpirationDate time.Time
+	capid          int
+	lastName       string
+	firstName      string
+	memberType     MemberType
+	grade          Grade
+	joinDate       time.Time
+	rankDate       time.Time
+	expirationDate time.Time
 }
 
 func NewMember(
 	id uuid.UUID,
-	capid uint,
+	capid int,
 	lastName string,
 	firstName string,
 	memberType MemberType,
@@ -30,65 +30,92 @@ func NewMember(
 	joinDate time.Time,
 	rankDate time.Time,
 	expirationDate time.Time,
-) Member {
+) (Member, error) {
+	if capid < 100000 {
+		return Member{}, errors.Errorf("invalid CAPID for normal member: %d", capid)
+	}
+
 	return Member{
 		id:             id,
-		CAPID:          capid,
-		LastName:       lastName,
-		FirstName:      firstName,
-		MemberType:     memberType,
-		Grade:          grade,
-		JoinDate:       joinDate,
-		RankDate:       rankDate,
-		ExpirationDate: expirationDate,
+		capid:          capid,
+		lastName:       lastName,
+		firstName:      firstName,
+		memberType:     memberType,
+		grade:          grade,
+		joinDate:       joinDate,
+		rankDate:       rankDate,
+		expirationDate: expirationDate,
+	}, nil
+}
+
+func NewCohortMember(
+	id uuid.UUID,
+	capid int,
+	lastName string,
+	firstName string,
+	memberType MemberType,
+	grade Grade,
+	joinDate time.Time,
+	rankDate time.Time,
+	expirationDate time.Time,
+) (Member, error) {
+	if capid > 0 {
+		return Member{}, errors.Errorf("invalid CAPID for cohort member: %d", capid)
 	}
+
+	return Member{
+		id:             id,
+		capid:          capid,
+		lastName:       lastName,
+		firstName:      firstName,
+		memberType:     memberType,
+		grade:          grade,
+		joinDate:       joinDate,
+		rankDate:       rankDate,
+		expirationDate: expirationDate,
+	}, nil
 }
 
 func (m Member) ID() uuid.UUID {
 	return m.id
 }
 
-func (m Member) String() string {
-	return fmt.Sprintf("%s, %s, %s", m.LastName, m.FirstName, m.Grade)
+func (m Member) CAPID() int {
+	return m.capid
+}
+
+func (m Member) LastName() string {
+	return m.lastName
+}
+
+func (m Member) FirstName() string {
+	return m.firstName
+}
+
+func (m Member) MemberType() MemberType {
+	return m.memberType
+}
+
+func (m Member) Grade() Grade {
+	return m.grade
+}
+
+func (m Member) JoinDate() time.Time {
+	return m.joinDate
+}
+
+func (m Member) RankDate() time.Time {
+	return m.rankDate
+}
+
+func (m Member) ExpirationDate() time.Time {
+	return m.expirationDate
 }
 
 func (m Member) FullName() string {
-	return fmt.Sprintf("%s %s %s", m.Grade, m.FirstName, m.LastName)
+	return fmt.Sprintf("%s %s %s", &m.grade, m.firstName, m.lastName)
 }
 
-type MemberGroup struct {
-	Name          string
-	Cadets        []Member
-	CadetSponsors []Member
-	Seniors       []Member
-}
-
-func capidSet(members map[uint]Member) (s mapset.Set[uint]) {
-	s = mapset.NewSet[uint]()
-
-	for u, _ := range members {
-		s.Add(u)
-	}
-
-	return s
-}
-
-func NewUnassignedMemberGroup(members map[uint]Member, assigned mapset.Set[uint], inactive mapset.Set[uint]) (mg MemberGroup) {
-	mg.Name = "Unassigned"
-
-	diff := capidSet(members).Difference(inactive).Difference(assigned)
-
-	for capid := range diff.Iter() {
-		mbr := members[capid]
-		switch mbr.MemberType {
-		case CadetMember:
-			mg.Cadets = append(mg.Cadets, mbr)
-		case CadetSponsorMember:
-			mg.CadetSponsors = append(mg.CadetSponsors, mbr)
-		case SeniorMember:
-			mg.Seniors = append(mg.Seniors, mbr)
-		}
-	}
-
-	return mg
+func (m Member) String() string {
+	return fmt.Sprintf("%s, %s, %s", m.lastName, m.firstName, &m.grade)
 }

@@ -6,14 +6,16 @@ import (
 
 type DutyTitle struct {
 	id         uuid.UUID
-	Title      string
-	MemberType MemberType
-	MinGrade   *Grade
-	MaxGrade   *Grade
+	code       string
+	title      string
+	memberType MemberType
+	minGrade   *Grade
+	maxGrade   *Grade
 }
 
 func NewDutyTitle(
 	id uuid.UUID,
+	code string,
 	title string,
 	memberType MemberType,
 	minGrade *Grade,
@@ -21,13 +23,34 @@ func NewDutyTitle(
 ) DutyTitle {
 	return DutyTitle{
 		id:         id,
-		Title:      title,
-		MemberType: memberType,
-		MinGrade:   minGrade,
-		MaxGrade:   maxGrade,
+		code:       code,
+		title:      title,
+		memberType: memberType,
+		minGrade:   minGrade,
+		maxGrade:   maxGrade,
 	}
 }
 
 func (dt DutyTitle) ID() uuid.UUID {
 	return dt.id
+}
+
+func (dt DutyTitle) Code() string {
+	return dt.code
+}
+
+func (dt DutyTitle) Title() string {
+	return dt.title
+}
+
+func (dt DutyTitle) MemberType() MemberType {
+	return dt.memberType
+}
+
+func (dt DutyTitle) MinGrade() *Grade {
+	return dt.minGrade
+}
+
+func (dt DutyTitle) MaxGrade() *Grade {
+	return dt.maxGrade
 }

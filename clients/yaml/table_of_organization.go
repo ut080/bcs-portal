@@ -29,7 +29,7 @@ func domainDutyAssignment(config map[string]org.DutyAssignment, yamlDA DutyAssig
 		return da, err
 	}
 
-	// If a CAPID is given in the YAML duty assignment, then we need to create a pointer to an gorm.Member
+	// If a CAPID is given in the YAML duty assignment, then we need to create a pointer to an postgres.Member
 	var member *org.Member
 	if yamlDA.AsigneeCAPID != nil {
 		member = new(org.Member)

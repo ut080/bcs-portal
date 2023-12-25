@@ -6,8 +6,8 @@ import (
 
 type Meeting struct {
 	id    uuid.UUID
-	Topic string
-	Event Event
+	topic string
+	event Event
 }
 
 func NewMeeting(
@@ -17,11 +17,19 @@ func NewMeeting(
 ) Meeting {
 	return Meeting{
 		id:    id,
-		Topic: topic,
-		Event: event,
+		topic: topic,
+		event: event,
 	}
 }
 
 func (m Meeting) ID() uuid.UUID {
 	return m.id
+}
+
+func (m Meeting) Topic() string {
+	return m.topic
+}
+
+func (m Meeting) Event() Event {
+	return m.event
 }

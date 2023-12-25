@@ -7,11 +7,11 @@ import (
 
 type LessonPlan struct {
 	id         uuid.UUID
-	Title      string
-	Duration   uint
-	Objectives string
-	Resources  string
-	Outline    string
+	title      string
+	duration   uint
+	objectives string
+	resources  string
+	outline    string
 }
 
 func NewLessonPlan(
@@ -24,16 +24,36 @@ func NewLessonPlan(
 ) LessonPlan {
 	return LessonPlan{
 		id:         id,
-		Title:      title,
-		Duration:   duration,
-		Objectives: objectives,
-		Resources:  resources,
-		Outline:    outline,
+		title:      title,
+		duration:   duration,
+		objectives: objectives,
+		resources:  resources,
+		outline:    outline,
 	}
 }
 
 func (lp LessonPlan) ID() uuid.UUID {
 	return lp.id
+}
+
+func (lp LessonPlan) Title() string {
+	return lp.title
+}
+
+func (lp LessonPlan) Duration() uint {
+	return lp.duration
+}
+
+func (lp LessonPlan) Objectives() string {
+	return lp.objectives
+}
+
+func (lp LessonPlan) Resources() string {
+	return lp.resources
+}
+
+func (lp LessonPlan) Outline() string {
+	return lp.outline
 }
 
 func (lp LessonPlan) LaTeX() string {
