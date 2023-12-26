@@ -27,48 +27,48 @@ type Repository interface {
 	FromDomainObject(pkg.DomainObject) (RepoObject, error)
 
 	// Create will return a statement that attempts to create the slice of objects.
-	Create([]RepoObject) Statement
+	Create([]RepoObject) (Statement, error)
 
 	// CreateOne is the singular case of Create().
-	CreateOne(RepoObject) Statement
+	CreateOne(RepoObject) (Statement, error)
 
 	// Fetch will return a statement that queries the database. Any non-zero parameters in the passed object are used in
 	// the WHERE statement.
-	Fetch(RepoObject) Statement
+	Fetch(RepoObject) (Statement, error)
 
 	// Update will return a statement that attempts to update all the objects in the passed slice. Any object that does
 	// not already exist in the database will return an error.
-	Update([]RepoObject) Statement
+	Update([]RepoObject) (Statement, error)
 
 	// UpdateOne is the singular form of Update().
-	UpdateOne(RepoObject) Statement
+	UpdateOne(RepoObject) (Statement, error)
 
 	// UpdateOrCreate will attempt to update all the objects in the passed slice. If any object does not exist, the
 	// repository will attempt to create it.
-	UpdateOrCreate([]RepoObject) Statement
+	UpdateOrCreate([]RepoObject) (Statement, error)
 
 	// UpdateOrCreateOne is the singular form of UpdateOrCreate().
-	UpdateOrCreateOne(RepoObject) Statement
+	UpdateOrCreateOne(RepoObject) (Statement, error)
 
 	// Delete will attempt a soft delete on the passed objects. If the corresponding repository object is not
 	// SoftDeletable, then a hard delete is executed.
-	Delete([]RepoObject) Statement
+	Delete([]RepoObject) (Statement, error)
 
 	// DeleteOne is the singular form of Delete.
-	DeleteOne(RepoObject) Statement
+	DeleteOne(RepoObject) (Statement, error)
 
 	// SoftDelete will return a statement that attempts a soft delete on the passed objects. If the RepoObject is not
 	// SoftDeletable, an error is returned.
-	SoftDelete([]RepoObject) (Statement, error)
+	SoftDelete([]SoftDeletable) (Statement, error)
 
 	// SoftDeleteOne is the singular form of SoftDelete().
-	SoftDeleteOne(RepoObject) (Statement, error)
+	SoftDeleteOne(SoftDeletable) (Statement, error)
 
 	// HardDelete will return a statement that attempts to permanently remove the passed objects from the database.
-	HardDelete([]RepoObject) Statement
+	HardDelete([]RepoObject) (Statement, error)
 
 	// HardDeleteOne is the singular form of HardDelete.
-	HardDeleteOne(RepoObject) Statement
+	HardDeleteOne(RepoObject) (Statement, error)
 }
 
 type RepoObject interface {
@@ -117,6 +117,8 @@ type RepoObject interface {
 }
 
 type SoftDeletable interface {
+	RepoObject
+
 	// SoftDelete will return a string that can be used to prepare a statement that will execute a soft delete (i.e. an
 	// undoable delete) on this object in the database.
 	SoftDelete() string
