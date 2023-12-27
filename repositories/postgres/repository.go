@@ -270,6 +270,7 @@ func (r *Repository) HardDeleteOne(object repositories.RepoObject) (repositories
 
 func (r *Repository) FromDomainObject(object pkg.DomainObject) (repositories.RepoObject, error) {
 	switch reflect.TypeOf(object).Name() {
+	case
 	default:
 		return nil, errors.Errorf("%s is not supported by the Postgres repository", reflect.TypeOf(object).Name())
 	}

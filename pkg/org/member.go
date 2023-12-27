@@ -10,57 +10,29 @@ import (
 
 type Member struct {
 	id             uuid.UUID
-	capid          int
+	capid          uint
 	lastName       string
 	firstName      string
 	memberType     MemberType
 	grade          Grade
-	joinDate       time.Time
-	rankDate       time.Time
-	expirationDate time.Time
+	joinDate       *time.Time
+	rankDate       *time.Time
+	expirationDate *time.Time
 }
 
 func NewMember(
 	id uuid.UUID,
-	capid int,
+	capid uint,
 	lastName string,
 	firstName string,
 	memberType MemberType,
 	grade Grade,
-	joinDate time.Time,
-	rankDate time.Time,
-	expirationDate time.Time,
+	joinDate *time.Time,
+	rankDate *time.Time,
+	expirationDate *time.Time,
 ) (Member, error) {
-	if capid < 100000 {
+	if (capid != 0) && (capid < 100000) {
 		return Member{}, errors.Errorf("invalid CAPID for normal member: %d", capid)
-	}
-
-	return Member{
-		id:             id,
-		capid:          capid,
-		lastName:       lastName,
-		firstName:      firstName,
-		memberType:     memberType,
-		grade:          grade,
-		joinDate:       joinDate,
-		rankDate:       rankDate,
-		expirationDate: expirationDate,
-	}, nil
-}
-
-func NewCohortMember(
-	id uuid.UUID,
-	capid int,
-	lastName string,
-	firstName string,
-	memberType MemberType,
-	grade Grade,
-	joinDate time.Time,
-	rankDate time.Time,
-	expirationDate time.Time,
-) (Member, error) {
-	if capid > 0 {
-		return Member{}, errors.Errorf("invalid CAPID for cohort member: %d", capid)
 	}
 
 	return Member{
@@ -80,7 +52,7 @@ func (m Member) ID() uuid.UUID {
 	return m.id
 }
 
-func (m Member) CAPID() int {
+func (m Member) CAPID() uint {
 	return m.capid
 }
 
@@ -100,15 +72,15 @@ func (m Member) Grade() Grade {
 	return m.grade
 }
 
-func (m Member) JoinDate() time.Time {
+func (m Member) JoinDate() *time.Time {
 	return m.joinDate
 }
 
-func (m Member) RankDate() time.Time {
+func (m Member) RankDate() *time.Time {
 	return m.rankDate
 }
 
-func (m Member) ExpirationDate() time.Time {
+func (m Member) ExpirationDate() *time.Time {
 	return m.expirationDate
 }
 

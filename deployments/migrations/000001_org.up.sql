@@ -44,14 +44,14 @@ CREATE TYPE grade AS ENUM (
 
 CREATE TABLE members (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    capid INTEGER NOT NULL CHECK (capid >= 100000),
+    capid INTEGER NOT NULL CHECK (capid = 0 OR capid >= 100000),
     last_name VARCHAR NOT NULL,
     first_name VARCHAR NOT NULL,
     member_type member_type NOT NULL,
     grade grade NOT NULL,
-    join_date DATE NOT NULL,
-    rank_date DATE NOT NULL,
-    expiration_date DATE NOT NULL
+    join_date DATE,
+    rank_date DATE,
+    expiration_date DATE
 );
 
 CREATE TABLE duty_titles (
