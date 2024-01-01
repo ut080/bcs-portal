@@ -7,6 +7,7 @@ require (
 	github.com/ag7if/go-latex v0.1.1
 	github.com/golang-migrate/migrate/v4 v4.17.0
 	github.com/google/uuid v1.4.0
+	github.com/joho/godotenv v1.5.1
 	github.com/pkg/errors v0.9.1
 	github.com/romanyx/polluter v1.2.2
 	github.com/rs/zerolog v1.31.0

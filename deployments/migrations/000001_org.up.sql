@@ -42,6 +42,13 @@ CREATE TYPE grade AS ENUM (
     'CADET'
 );
 
+CREATE TYPE unit_type AS ENUM (
+    'Composite Squadron',
+    'Cadet Squadron',
+    'Senior Squadron',
+    'Activity'
+);
+
 CREATE TABLE members (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     capid INTEGER NOT NULL UNIQUE CHECK (capid = 0 OR capid >= 100000),
@@ -69,6 +76,7 @@ CREATE TABLE duty_assignments (
     title VARCHAR NOT NULL,
     assistant BOOLEAN NOT NULL DEFAULT false,
     duty_title_id UUID NOT NULL REFERENCES duty_titles (id) ON DELETE CASCADE,
+    reports_to UUID REFERENCES duty_assignments (id) ON DELETE SET NULL,
     assignee_id UUID REFERENCES members (id) ON DELETE SET NULL
 );
 
@@ -96,20 +104,22 @@ CREATE TABLE element_members (
 
 CREATE TABLE staff_groups (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    name VARCHAR NOT NULL UNIQUE
-);
-
-CREATE TABLE staff_subgroups (
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     name VARCHAR NOT NULL UNIQUE,
-    staff_group_id UUID REFERENCES staff_groups (id) ON DELETE CASCADE,
+    staff_supergroup_id UUID REFERENCES staff_groups (id) ON DELETE CASCADE,
     leader_id UUID NOT NULL REFERENCES duty_assignments (id) ON DELETE RESTRICT
 );
 
-CREATE TABLE staff_subgroup_direct_reports (
-    staff_subgroup_id UUID NOT NULL REFERENCES staff_groups (id) ON DELETE CASCADE,
+CREATE TABLE staff_group_direct_reports (
+    staff_group_id UUID NOT NULL REFERENCES staff_groups (id) ON DELETE CASCADE,
     duty_assignment_id UUID NOT NULL REFERENCES duty_assignments (id) ON DELETE CASCADE,
-    PRIMARY KEY (staff_subgroup_id, duty_assignment_id)
+    PRIMARY KEY (staff_group_id, duty_assignment_id)
+);
+
+CREATE TABLE units (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    charter_number VARCHAR NOT NULL UNIQUE,
+    name VARCHAR NOT NULL,
+    commander_id UUID NOT NULL REFERENCES duty_assignments (id) ON DELETE CASCADE
 );
 
 INSERT INTO duty_titles (id, code, title, member_type, min_grade, max_grade) VALUES

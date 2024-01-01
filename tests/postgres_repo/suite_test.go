@@ -2,7 +2,6 @@ package postgres_repo
 
 import (
 	"database/sql"
-	"fmt"
 	"os"
 	"strings"
 	"testing"
@@ -19,9 +18,7 @@ import (
 type RepositorySuite struct {
 	suite.Suite
 	db              *gorm.DB
-	rootDatabaseURL string
 	testDatabaseURL string
-	databaseName    string
 	migrationsURL   string
 	migrator        *migrate.Migrate
 	polluter        *polluter.Polluter
@@ -30,13 +27,11 @@ type RepositorySuite struct {
 
 func (suite *RepositorySuite) SetupSuite() {
 	// Fetch URLs from environment
-	databaseURL := os.Getenv("TEST_DATABASE_URL")
-	suite.databaseName = os.Getenv("TEST_DATABASE_NAME")
+	suite.testDatabaseURL = os.Getenv("TEST_DATABASE_URL")
 	suite.migrationsURL = os.Getenv("TEST_MIGRATIONS")
 	seedURL := os.Getenv("TEST_SEED")
 
 	// Initialize connection to Postgres
-	suite.testDatabaseURL = strings.Replace(databaseURL, "<DATABASE>", fmt.Sprintf("/%s", suite.databaseName), 1)
 	db, err := sql.Open("pgx", suite.testDatabaseURL)
 	if err != nil {
 		panic(err)
