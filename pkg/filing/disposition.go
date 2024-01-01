@@ -12,7 +12,7 @@ type InvalidRuleNumber struct {
 }
 
 func (irn InvalidRuleNumber) Error() string {
-	return fmt.Sprintf("invalid rule ruleNumber on table %s (%s): %d", irn.TableNumber, irn.TableTitle, irn.BadRuleNumber)
+	return fmt.Sprintf("invalid rule ruleNumber on table %d (%s): %d", irn.TableNumber, irn.TableTitle, irn.BadRuleNumber)
 }
 
 type Cutoff int

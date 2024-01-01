@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/google/uuid"
 	"github.com/pkg/errors"
 
 	"github.com/ut080/bcs-portal/internal/logging"
@@ -96,13 +97,17 @@ func (d *Dump) FetchMembers() (members map[uint]org.Member, err error) {
 		// TODO: Parse JoinDate
 		// TODO: Parse RankDate
 
-		member := org.Member{
-			CAPID:      uint(capid),
-			LastName:   lastName,
-			FirstName:  firstName,
-			MemberType: memberType,
-			Grade:      grade,
-		}
+		member := org.NewMember(
+			uuid.Nil,
+			uint(capid),
+			lastName,
+			firstName,
+			memberType,
+			grade,
+			nil,
+			nil,
+			nil,
+		)
 
 		members[uint(capid)] = member
 	}

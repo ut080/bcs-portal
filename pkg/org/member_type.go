@@ -12,8 +12,7 @@ import (
 type MemberType int
 
 const (
-	InvalidMemberType MemberType = iota
-	SeniorMember
+	SeniorMember MemberType = iota
 	CadetMember
 	CadetSponsorMember
 	PatronMember
@@ -30,7 +29,7 @@ func ParseMemberType(memberTypeStr string) (MemberType, error) {
 	case "PATRON":
 		return PatronMember, nil
 	default:
-		return InvalidMemberType, errors.Errorf("invalid member type: %s", memberTypeStr)
+		return -1, errors.Errorf("invalid member type: %s", memberTypeStr)
 	}
 }
 
@@ -53,8 +52,8 @@ func (mt *MemberType) Scan(src any) error {
 	return nil
 }
 
-func (mt *MemberType) String() string {
-	switch *mt {
+func (mt MemberType) String() string {
+	switch mt {
 	case SeniorMember:
 		return "SENIOR"
 	case CadetMember:
@@ -64,7 +63,7 @@ func (mt *MemberType) String() string {
 	case PatronMember:
 		return "PATRON"
 	default:
-		panic(fmt.Errorf("invalid MemberType enum value: %d", *mt))
+		panic(fmt.Errorf("invalid MemberType enum value: %d", mt))
 	}
 }
 
@@ -78,6 +77,6 @@ func (mt *MemberType) UnmarshalYAML(value *yaml.Node) error {
 	return nil
 }
 
-func (mt *MemberType) Value() (driver.Value, error) {
+func (mt MemberType) Value() (driver.Value, error) {
 	return mt.String(), nil
 }

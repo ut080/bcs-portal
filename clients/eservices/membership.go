@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/ag7if/go-files"
+	"github.com/google/uuid"
 	"github.com/pkg/errors"
 
 	"github.com/ut080/bcs-portal/internal/logging"
@@ -63,6 +64,7 @@ func (mr *MembershipReport) FetchMembers() (members map[uint]org.Member, err err
 	const gradeField = 4
 	const rankDateField = 5
 	const joinDateField = 7
+	const expirationDateField = 0
 
 	// nameField is the full name. To parse it, we will need this regex:
 	nameRE := regexp.MustCompile(`(\w+),\s*(\w+)`)
@@ -124,15 +126,24 @@ func (mr *MembershipReport) FetchMembers() (members map[uint]org.Member, err err
 			continue
 		}
 
-		member := org.Member{
-			CAPID:      uint(capid),
-			LastName:   lastName,
-			FirstName:  firstName,
-			MemberType: mr.memberType,
-			Grade:      grade,
-			JoinDate:   joinDate,
-			RankDate:   rankDate,
+		expirationDate, err := time.Parse(timeLayout, record[expirationDateField])
+		if err != nil {
+			// TODO: Remove direct calls to logger
+			logging.Error().Err(err).Int("capid", capid).Int("col", rankDateField).Str("grade", record[rankDateField]).Msg("error parsing rank date, skipping record")
+			continue
 		}
+
+		member := org.NewMember(
+			uuid.Nil,
+			uint(capid),
+			lastName,
+			firstName,
+			mr.memberType,
+			grade,
+			&joinDate,
+			&rankDate,
+			&expirationDate,
+		)
 
 		members[uint(capid)] = member
 	}

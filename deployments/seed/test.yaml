@@ -1,0 +1,2280 @@
+members:
+  - id: aab94819-ee34-47ad-9a44-31e627a97ed5
+    capid: 688662
+    last_name: Morrison
+    first_name: Shelly
+    member_type: SENIOR
+    grade: Maj
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 67a1155e-a039-4f7c-be60-81d19fa49890
+    capid: 752670
+    last_name: Donovan
+    first_name: Ronnie
+    member_type: SENIOR
+    grade: Maj
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: e92fad40-630f-4297-94e7-3cab3c175334
+    capid: 409239
+    last_name: Hale
+    first_name: Kris
+    member_type: SENIOR
+    grade: MSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: ef587ac7-b870-4bef-87c2-445272e45007
+    capid: 227889
+    last_name: Gilbert
+    first_name: Alejandro
+    member_type: SENIOR
+    grade: Lt Col
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 85f54161-ff4c-4ed0-b58c-5ccc1ebd6dbc
+    capid: 989994
+    last_name: Kemp
+    first_name: Ronald
+    member_type: SENIOR
+    grade: 1st Lt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 5199cafb-1c59-4140-b2b2-4e37031cf238
+    capid: 117224
+    last_name: Cannon
+    first_name: Jackie
+    member_type: SENIOR
+    grade: Capt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 42edbc99-d6a8-4fc7-b47d-26386a51e39e
+    capid: 229008
+    last_name: Simons
+    first_name: Norma
+    member_type: SENIOR
+    grade: Capt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 8cb7f8fe-1c21-46d5-8eb9-8ae22849aaa5
+    capid: 332251
+    last_name: Walls
+    first_name: Douglas
+    member_type: SENIOR
+    grade: 1st Lt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 3f7afd83-98a3-46d3-b102-0d8d5710cb28
+    capid: 182933
+    last_name: Villarreal
+    first_name: Christopher
+    member_type: SENIOR
+    grade: Capt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: d3859b5c-b200-4139-9591-22ef837ff2d3
+    capid: 507898
+    last_name: Benjamin
+    first_name: Audrey
+    member_type: SENIOR
+    grade: 1st Lt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 7bacce74-f13a-47cd-b2e3-4cbb4a3131ae
+    capid: 531603
+    last_name: Baldwin
+    first_name: Tammie
+    member_type: SENIOR
+    grade: Capt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 10f7fe0d-e935-4449-adcf-7d1f0140c65b
+    capid: 611342
+    last_name: Mullins
+    first_name: Lee
+    member_type: SENIOR
+    grade: 1st Lt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 32d7e62d-b0d9-4c8b-9ac6-6619a6f14917
+    capid: 235027
+    last_name: Louis
+    first_name: Mathew
+    member_type: SENIOR
+    grade: 2d Lt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: ba6e5607-0f49-4dc4-9ac5-34ce651cead6
+    capid: 341242
+    last_name: Knight
+    first_name: Wanda
+    member_type: SENIOR
+    grade: 2d Lt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: f324c9c1-7ead-4ebf-9a01-5cb40d94e568
+    capid: 688741
+    last_name: Sparks
+    first_name: Geoffrey
+    member_type: SENIOR
+    grade: Capt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 560edbd2-f9a2-49d4-9b70-b19199fb139a
+    capid: 878381
+    last_name: Clayton
+    first_name: Laverne
+    member_type: SENIOR
+    grade: 1st Lt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: d1a358c5-441d-4313-9f86-4772d1871fdd
+    capid: 810255
+    last_name: Richardson
+    first_name: Denni
+    member_type: SENIOR
+    grade: 1st Lt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: b1cbc696-1a7c-402c-8b59-68660cf04f2c
+    capid: 327096
+    last_name: Jennings
+    first_name: Lucia
+    member_type: SENIOR
+    grade: 1st Lt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: c4220706-1a65-41e5-8faa-10630051b79e
+    capid: 500627
+    last_name: Willard
+    first_name: Tamara
+    member_type: SENIOR
+    grade: 1st Lt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 2e424879-a0a4-4570-a06c-fa98e1cab0a4
+    capid: 410366
+    last_name: Elliott
+    first_name: Delia
+    member_type: SENIOR
+    grade: 2d Lt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 68380853-46b6-44d6-91c2-467d6fd8208a
+    capid: 734035
+    last_name: Decker
+    first_name: Jeannie
+    member_type: SENIOR
+    grade: 1st Lt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 0489bcb3-616f-48e6-ad66-277572828031
+    capid: 366267
+    last_name: McIntyre
+    first_name: Bill
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: aa9d2109-98a2-418d-b90d-ec59e781502a
+    capid: 801647
+    last_name: Barnett
+    first_name: Ignacio
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 6f58e5b8-f09b-4832-824e-fc9d97b4596f
+    capid: 394403
+    last_name: George
+    first_name: Shawn
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: c5daf209-2c24-41c5-b847-ca738a306be7
+    capid: 737750
+    last_name: McFadden
+    first_name: Lois
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: e6e7c332-31eb-4a60-bb93-128f41cbe9b4
+    capid: 142315
+    last_name: Kane
+    first_name: Janis
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 8571c8b4-45d7-429e-a988-7d2e753c14b3
+    capid: 678181
+    last_name: Stanton
+    first_name: Terry
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 25c3b315-1186-4b3b-807d-4c4054e14cb4
+    capid: 712289
+    last_name: York
+    first_name: Rick
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 2af65b74-8b82-450c-9764-9b37964d3b40
+    capid: 922110
+    last_name: Keith
+    first_name: Adam
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: bc159a9a-e362-4811-8b20-d25d9c4592aa
+    capid: 596430
+    last_name: Herring
+    first_name: Wes
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: ccedae46-a725-49d7-b1cb-ef1aece7ec05
+    capid: 302666
+    last_name: McGee
+    first_name: Francisco
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: b813eb0e-35b7-4013-bc9a-0cf056c8f695
+    capid: 514374
+    last_name: Franklin
+    first_name: Charlie
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 920f344d-f10b-4134-aa72-db579bb607a8
+    capid: 969229
+    last_name: Roman
+    first_name: Lon
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 6baebd6a-ba7b-416b-9694-1a3afa4935fb
+    capid: 399372
+    last_name: Fox
+    first_name: Traci
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 51d7a6c6-c6c3-4beb-9b2e-8d12ef04870c
+    capid: 569859
+    last_name: Dickerson
+    first_name: Blanca
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 43c718af-da3b-40bc-bd89-d88cf760654d
+    capid: 828541
+    last_name: Howe
+    first_name: Jordan
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 24220918-8adb-4b68-a0b9-397341b2c961
+    capid: 120013
+    last_name: Shepherd
+    first_name: Cara
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 4b349afa-3556-411a-9ee9-43026cd901bb
+    capid: 652708
+    last_name: Briggs
+    first_name: Julie
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 69715452-4e72-4120-95e6-ed1dfb175648
+    capid: 752887
+    last_name: Ortega
+    first_name: Jaime
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: f4cf3f80-e447-49e5-9619-5f521be7a7d0
+    capid: 802486
+    last_name: Parker
+    first_name: Erick
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: e36a4d3a-f300-49b4-b347-8117edecd4b7
+    capid: 205687
+    last_name: Snider
+    first_name: Lou
+    member_type: CADET SPONSOR
+    grade: SM
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: b9d2b00b-1195-466f-a895-5bc42808b9c4
+    capid: 202284
+    last_name: Griffith
+    first_name: Vivian
+    member_type: SENIOR
+    grade: 1st Lt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 19f8c1dd-e96f-4950-868b-346bcbdd1198
+    capid: 646184
+    last_name: Schmidt
+    first_name: Travis
+    member_type: CADET
+    grade: C/Col
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 34389124-0fea-4d56-9f8a-9c72650d12fa
+    capid: 848793
+    last_name: Burnett
+    first_name: Eugene
+    member_type: CADET
+    grade: C/Lt Col
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 07b41154-e39c-4a1d-ae95-73efeab367bf
+    capid: 468339
+    last_name: Washburn
+    first_name: Marisa
+    member_type: CADET
+    grade: C/Lt Col
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 0bbe45c8-828b-48e6-9e1d-0d72220029f0
+    capid: 836339
+    last_name: Sheridan
+    first_name: Kenny
+    member_type: CADET
+    grade: C/CMSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: ae5222e2-a0df-402f-93c4-04e7a37b57e8
+    capid: 314420
+    last_name: Eaton
+    first_name: Sheryl
+    member_type: CADET
+    grade: C/Maj
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 6a012caa-0997-47df-b7d2-63fc61c0cb4e
+    capid: 190338
+    last_name: Hatfield
+    first_name: Patty
+    member_type: CADET
+    grade: C/MSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: cf33b3bd-ce35-401c-9e9c-a63ffd0c2018
+    capid: 311550
+    last_name: Combs
+    first_name: Maryann
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 83d6417c-fad7-4f03-b5fe-294d5f63b621
+    capid: 127697
+    last_name: Hampton
+    first_name: Shane
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: d4c40ef0-a75a-4fd2-b934-e95d758dd5f2
+    capid: 390059
+    last_name: Carson
+    first_name: Brandy
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: c8422874-f8f2-42ad-bd0c-f5f1a60af66a
+    capid: 818166
+    last_name: Ash
+    first_name: Susan
+    member_type: CADET
+    grade: C/1st Lt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 31061065-ae02-4659-ae8f-1692bbb5b8f6
+    capid: 945189
+    last_name: Dorsey
+    first_name: Kristy
+    member_type: CADET
+    grade: C/MSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 4174cc6a-ce33-4951-827b-c0acaecc0a21
+    capid: 696982
+    last_name: Quick
+    first_name: Carolina
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 6e612315-bbaf-496d-b72f-d7159b8fcc3a
+    capid: 868005
+    last_name: Thomson
+    first_name: Glenn
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 163015b2-4c61-4782-be4b-a46dcec5fec6
+    capid: 766294
+    last_name: Murphey
+    first_name: Sophia
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: b6fdca4b-1324-4c90-8a2a-84ab3034ad6d
+    capid: 470819
+    last_name: Oliver
+    first_name: Verna
+    member_type: CADET
+    grade: C/Maj
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 2e2127f1-ff48-4a6b-b0f7-ffa96fa4ab38
+    capid: 491429
+    last_name: Hatfield
+    first_name: Morgan
+    member_type: CADET
+    grade: C/MSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 7c7d5b60-1916-4e83-91c2-dfd5e4d67fa0
+    capid: 979710
+    last_name: Bennett
+    first_name: Joe
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: e657ca02-5d66-4bb6-aa19-5fb714b34ded
+    capid: 671725
+    last_name: Becker
+    first_name: Sabrina
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 6ffa84eb-3a20-465a-a3df-fb7f6863a859
+    capid: 232960
+    last_name: Ashley
+    first_name: Pete
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 5c3e96cc-5b1e-45e3-b5b9-9707e7d320e9
+    capid: 607077
+    last_name: Moon
+    first_name: Jeanette
+    member_type: CADET
+    grade: C/Maj
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 529b1782-e0be-41bd-8051-e1f2929da27a
+    capid: 873101
+    last_name: Howell
+    first_name: Delores
+    member_type: CADET
+    grade: C/MSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 69307698-b7ca-45e6-986b-1dc651c18c1e
+    capid: 175110
+    last_name: Barber
+    first_name: Rick
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 0e2bfd06-5cb7-4ed8-8e3a-5d0787a92efe
+    capid: 673001
+    last_name: Kemp
+    first_name: Wayne
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: ec458118-54e2-44e9-9c0d-d527d9a65704
+    capid: 492178
+    last_name: Santana
+    first_name: Ted
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 972ad4df-b0d8-4690-90d1-e20954de41cc
+    capid: 843454
+    last_name: McCarthy
+    first_name: Josephine
+    member_type: CADET
+    grade: C/Capt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 5c57096d-aae9-4d9f-8bd9-397e045a17ed
+    capid: 394009
+    last_name: Olsen
+    first_name: Pauline
+    member_type: CADET
+    grade: C/MSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 85656099-e3f8-41e4-bfe5-d617d10aaa24
+    capid: 473225
+    last_name: Logan
+    first_name: Michele
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: d333f5b7-2476-4211-9454-9366355e55cf
+    capid: 615367
+    last_name: Sharp
+    first_name: Roger
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 0c7ea44f-fcc4-4786-ba7b-40c0d7f55f4d
+    capid: 882620
+    last_name: Fisher
+    first_name: Stewart
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 1e3433f1-aedb-4485-a948-e0f6d1fedc37
+    capid: 150297
+    last_name: Crosby
+    first_name: Norma
+    member_type: CADET
+    grade: C/Maj
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 6aa2594c-c99d-428e-8cb6-56b92defaad2
+    capid: 721571
+    last_name: Kline
+    first_name: Kelli
+    member_type: CADET
+    grade: C/MSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 2db1f60b-1525-4c99-9d16-e38dc2163f6c
+    capid: 958889
+    last_name: FitzGerald
+    first_name: Loretta
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 5a82a316-ff49-41fe-a20d-75f765846dfb
+    capid: 331710
+    last_name: Funk
+    first_name: Sandy
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 00e3fe75-5add-400b-8a35-c1531d0f546f
+    capid: 306164
+    last_name: Woodruff
+    first_name: Betsy
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 48400731-2234-4979-9a83-27cf8d10af3e
+    capid: 193322
+    last_name: Horn
+    first_name: Douglas
+    member_type: CADET
+    grade: C/Capt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: b693a6bf-fb39-4b70-bf91-6d049703edfe
+    capid: 811087
+    last_name: Jimenez
+    first_name: Erika
+    member_type: CADET
+    grade: C/MSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 642fc8a9-136b-4e12-bf06-27f50fc0b8ff
+    capid: 724171
+    last_name: Rowland
+    first_name: Roland
+    member_type: CADET
+    grade: C/SrA
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 3b93f2f1-d6e5-4dfc-931d-e45393aecebd
+    capid: 533686
+    last_name: Farmer
+    first_name: Kurt
+    member_type: CADET
+    grade: C/SrA
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: b285a07f-8154-43e2-a739-4a4f54de9d84
+    capid: 749267
+    last_name: Donaldson
+    first_name: Shane
+    member_type: CADET
+    grade: C/SrA
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 66e09cad-f639-4c6f-b235-2acf78cae52b
+    capid: 375559
+    last_name: Meyer
+    first_name: Rolando
+    member_type: CADET
+    grade: C/Capt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: c25322b7-cbd6-4462-8778-35f6db68ce7e
+    capid: 719413
+    last_name: Dalton
+    first_name: Lucinda
+    member_type: CADET
+    grade: C/MSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 0802ecc3-46de-4bf3-88c9-6583e4e926fb
+    capid: 474380
+    last_name: Ewing
+    first_name: Gladys
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: d55c4acc-ad62-49ba-ac19-b888fa782033
+    capid: 817060
+    last_name: Savage
+    first_name: Sara
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: ee2090ec-9aa9-40e2-948a-7391a2a528e2
+    capid: 342570
+    last_name: Pearce
+    first_name: Tyrone
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: c6b6a0e7-7580-4014-89b1-2c30106cd411
+    capid: 309194
+    last_name: Koch
+    first_name: Tamara
+    member_type: CADET
+    grade: C/1st Lt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: e6de1147-eb9e-4715-b110-ec69fabadb54
+    capid: 438338
+    last_name: Kinney
+    first_name: Pat
+    member_type: CADET
+    grade: C/MSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: e5ebcb55-1724-4d06-98f3-0c28d9a62544
+    capid: 544806
+    last_name: Winters
+    first_name: Sonya
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 458a9485-4a31-493f-b0d3-e72daf95630b
+    capid: 661740
+    last_name: Doyle
+    first_name: Amber
+    member_type: CADET
+    grade: C/SrA
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 9c1a8e12-97f7-4cc6-aeef-ab315b29027e
+    capid: 740073
+    last_name: Rivera
+    first_name: Whitney
+    member_type: CADET
+    grade: C/SrA
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: eb675f61-ddf2-440e-9c27-a018ba258bee
+    capid: 170519
+    last_name: Lacy
+    first_name: Charles
+    member_type: CADET
+    grade: C/Capt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 1f1dd5f3-35cf-4c8c-8295-dcd6b4c5b01f
+    capid: 626315
+    last_name: Hanna
+    first_name: Traci
+    member_type: CADET
+    grade: C/MSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 1e109202-3978-48b5-a338-1da74ec6e98a
+    capid: 172532
+    last_name: Bond
+    first_name: Dena
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: c4925bc3-eab7-474f-86d4-b0a467663da5
+    capid: 947408
+    last_name: Eldridge
+    first_name: Charlie
+    member_type: CADET
+    grade: C/SSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 4d8b45f5-50f0-48ac-ae9c-6ab1d316275d
+    capid: 251975
+    last_name: Petty
+    first_name: Shannon
+    member_type: CADET
+    grade: C/1st Lt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: baa3c556-f149-423b-bf3e-783dc88099a0
+    capid: 528860
+    last_name: Lang
+    first_name: Evelyn
+    member_type: CADET
+    grade: C/MSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 0852a5d4-8aa9-4e15-ba7c-7671f90ed4a8
+    capid: 874020
+    last_name: Ward
+    first_name: Matt
+    member_type: CADET
+    grade: C/SrA
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 40325bd2-1743-43c9-ad15-faba55a08b8c
+    capid: 389771
+    last_name: McClure
+    first_name: Josefina
+    member_type: CADET
+    grade: C/SrA
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 77c8547a-4c2e-4a2f-8ade-8c2ec0201c0f
+    capid: 381729
+    last_name: Ross
+    first_name: Gregg
+    member_type: CADET
+    grade: C/1st Lt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 6dc448dc-5452-47e9-a0ba-f42b63097de7
+    capid: 594808
+    last_name: Pierce
+    first_name: Leanne
+    member_type: CADET
+    grade: C/TSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 2d9bce0c-35af-4c55-82c5-588e2b3888a2
+    capid: 399454
+    last_name: Kline
+    first_name: Aaron
+    member_type: CADET
+    grade: C/SrA
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 749f3b16-d268-4e22-9d63-441bba9c1a8c
+    capid: 190256
+    last_name: Faulkner
+    first_name: Lucy
+    member_type: CADET
+    grade: C/A1C
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: d24e12df-69ff-4f81-b691-e9512cf25e85
+    capid: 860452
+    last_name: Ware
+    first_name: Kathryn
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: d2db746e-dab9-44d6-9b32-81bda1fc5339
+    capid: 309035
+    last_name: Gillespie
+    first_name: Antonio
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 72eaec0b-72b5-442e-8b3b-394731790681
+    capid: 118627
+    last_name: Vaughan
+    first_name: Regina
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: dfe0c4f7-4918-43fe-bb1c-e42e86c317d9
+    capid: 894436
+    last_name: Galvan
+    first_name: Bonita
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 0932d789-477f-485c-b27a-518fc639bacb
+    capid: 928860
+    last_name: Page
+    first_name: Jan
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 00e3c84f-95fd-4174-9788-a4e931d46a3a
+    capid: 150940
+    last_name: Clements
+    first_name: Cesar
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 6fd30da5-7b75-4c9e-9276-e1f8d3335021
+    capid: 756829
+    last_name: Lynn
+    first_name: Elvira
+    member_type: CADET
+    grade: C/SrA
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 1ff63bb0-3704-42cd-b351-07aca1fa14b7
+    capid: 298471
+    last_name: Adams
+    first_name: Amber
+    member_type: CADET
+    grade: C/A1C
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 1e5cd57b-4a32-403e-b524-69b55dfb145a
+    capid: 408625
+    last_name: Whitehead
+    first_name: Sandi
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: eea13a1a-937e-4b6b-9f69-d76aa2d8a6fe
+    capid: 217551
+    last_name: Harding
+    first_name: Katrina
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: d9b15649-e5c6-4db1-beeb-78e70db8e539
+    capid: 730042
+    last_name: Abbott
+    first_name: Patrick
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: e11f519b-37a8-4daa-a2ab-582efae062a7
+    capid: 373195
+    last_name: Saunders
+    first_name: Susan
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: bea4f404-1e71-4cb5-ab0c-96399bd9873f
+    capid: 964458
+    last_name: Guerrero
+    first_name: Ronnie
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 2f43b405-e109-4372-ba2e-61200c96d0a9
+    capid: 213354
+    last_name: Ewing
+    first_name: Norman
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: de255210-4e10-4348-b4d9-99754291a1d2
+    capid: 613297
+    last_name: Knapp
+    first_name: Brenda
+    member_type: CADET
+    grade: C/SrA
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 9e9e3c13-70c1-4021-89ee-a4917098710d
+    capid: 644731
+    last_name: Lord
+    first_name: Chuck
+    member_type: CADET
+    grade: C/A1C
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: d95c8105-56ae-48c7-a7c2-33ffeffd0bb7
+    capid: 488986
+    last_name: Casey
+    first_name: Frankie
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 5f987c18-23c9-4875-88b3-d3c665f43f84
+    capid: 696254
+    last_name: Pope
+    first_name: Ruth
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: df07b5f5-d9a5-4fd1-a77f-25cfaa242835
+    capid: 398296
+    last_name: Vaughan
+    first_name: Stephen
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 996f5697-db69-450e-a2f6-ca003e8f00a4
+    capid: 381297
+    last_name: Reid
+    first_name: Jill
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: d82997f9-c202-4603-b9dc-31c500a68370
+    capid: 166213
+    last_name: Melton
+    first_name: Russ
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 7af20981-bb1b-41ff-8b10-3697294af83c
+    capid: 509538
+    last_name: Mahoney
+    first_name: Becky
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: dc127cd7-1779-4ca6-b485-d9b53e2271a7
+    capid: 842851
+    last_name: Clay
+    first_name: Harry
+    member_type: CADET
+    grade: C/SrA
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: df40e01f-d94f-4cb6-8224-0a6d7f85085d
+    capid: 118365
+    last_name: Barr
+    first_name: Deb
+    member_type: CADET
+    grade: C/A1C
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 2d809a15-e58b-4ebb-a446-9c429b45f662
+    capid: 514985
+    last_name: Welch
+    first_name: Jeffrey
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 4a1c312a-0e54-4e3c-8d24-eaef406ab170
+    capid: 304395
+    last_name: Kelly
+    first_name: Tamara
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: b281e8b0-7126-4540-b9da-c73ccd9332cc
+    capid: 819616
+    last_name: Becker
+    first_name: Bobby
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 04ce7cda-79c6-4e7e-8be4-f3cc98477967
+    capid: 408773
+    last_name: Fry
+    first_name: Jocelyn
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: baca256e-e68d-4cec-9e4e-820a494e4d0b
+    capid: 275364
+    last_name: Moody
+    first_name: Young
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: fac01484-1b00-42b6-a594-b06cb743b40e
+    capid: 757864
+    last_name: Koch
+    first_name: Roberto
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 2885d5eb-8d96-4213-83c8-eb2bbb6500df
+    capid: 940313
+    last_name: Andrade
+    first_name: Kim
+    member_type: CADET
+    grade: C/1st Lt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 62b3f1cc-026c-4102-a60e-f7ee8dbe42b8
+    capid: 236054
+    last_name: McLean
+    first_name: Emily
+    member_type: CADET
+    grade: C/TSgt
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 6d7d82d0-2fa2-4ede-8115-343a7b351d8b
+    capid: 789761
+    last_name: Love
+    first_name: Angelo
+    member_type: CADET
+    grade: C/SrA
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: a87237fc-4b35-4ae6-add4-556870113df4
+    capid: 985746
+    last_name: Woodard
+    first_name: Patrice
+    member_type: CADET
+    grade: C/A1C
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 97b72649-d1c2-4b2d-9a3f-909b4d0530d3
+    capid: 870365
+    last_name: Mann
+    first_name: Paulette
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 2062de1d-9fe3-4c36-994f-2aa57a643817
+    capid: 537097
+    last_name: Leonard
+    first_name: Clint
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 0ad995f5-f278-4709-9f94-09ee0235a086
+    capid: 650409
+    last_name: Owens
+    first_name: John
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 48fc42a9-5c8b-48d5-a167-d7007db15e6a
+    capid: 708189
+    last_name: Bassett
+    first_name: Hector
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 60aecba9-8d34-48b4-8d26-b8c4f9b8f74b
+    capid: 348334
+    last_name: Terry
+    first_name: Gerardo
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 103caff7-56d9-4680-a023-a21e157463c3
+    capid: 877702
+    last_name: Bruce
+    first_name: Barry
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: e53ca830-7970-4b82-b321-e4a483391baa
+    capid: 818680
+    last_name: Mullins
+    first_name: Catherine
+    member_type: CADET
+    grade: C/SrA
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 3dee3563-7495-4873-b8ae-780788d7bfc9
+    capid: 454098
+    last_name: Myer
+    first_name: Alma
+    member_type: CADET
+    grade: C/A1C
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: b259c5ae-ee87-44fc-9ec0-1b4855bdd6c5
+    capid: 722374
+    last_name: Glass
+    first_name: Sean
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 597259dd-836c-415d-adfb-56b94ff3a7d4
+    capid: 354630
+    last_name: French
+    first_name: Robyn
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: dccbaf52-bb3b-4a59-ba97-8e0a44f7989c
+    capid: 144957
+    last_name: Bright
+    first_name: Alyssa
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: be22a001-567a-4d1e-93f7-c4fe65b41510
+    capid: 689962
+    last_name: Collier
+    first_name: Trisha
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: d36a070f-7137-4eb9-902c-981b66e39cb1
+    capid: 674636
+    last_name: Holloway
+    first_name: Ken
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 8efe2a5f-f6e2-4380-9271-8775cf66b3f3
+    capid: 465836
+    last_name: Allen
+    first_name: Merle
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 127572cd-e8ae-44a0-ae39-acc28d9a3e97
+    capid: 841382
+    last_name: Bishop
+    first_name: Minnie
+    member_type: CADET
+    grade: C/SrA
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: f4b433e4-5983-4d6e-9a05-7959b783c70d
+    capid: 274632
+    last_name: Cruz
+    first_name: Nancy
+    member_type: CADET
+    grade: C/A1C
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: c78e1865-4016-44c8-afda-fdea7dedd6ae
+    capid: 557487
+    last_name: Sloan
+    first_name: Robbie
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 73b7b51c-f1e5-4fe7-b2a4-0096d9808d4b
+    capid: 847113
+    last_name: Burgess
+    first_name: Lyle
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 12620ccd-2755-43d5-a011-6adbbce679d0
+    capid: 451447
+    last_name: Daily
+    first_name: Dawn
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: bf0ca1cb-6bf9-4cba-a7ba-b0e1b567096b
+    capid: 605890
+    last_name: Myers
+    first_name: Whitney
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: d08262d3-5778-45cb-979f-d0ff49f86e42
+    capid: 452191
+    last_name: Morrison
+    first_name: Gwen
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 621c1611-66ff-4453-9bdd-bbeef66253b7
+    capid: 555867
+    last_name: Moore
+    first_name: Louis
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: f74dcc0a-e4d0-4c33-9c07-ce01628021ec
+    capid: 212579
+    last_name: Floyd
+    first_name: Robin
+    member_type: CADET
+    grade: C/SrA
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 12944eb7-13a5-458d-8119-032d179010aa
+    capid: 172313
+    last_name: Glass
+    first_name: Carl
+    member_type: CADET
+    grade: C/A1C
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 8e68294c-ab5f-445a-b511-6f34e1b1a953
+    capid: 462269
+    last_name: Knight
+    first_name: Kristy
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 332e121e-fae0-4e61-ad48-bc8bf1bff3b3
+    capid: 669721
+    last_name: Thomson
+    first_name: Antonio
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 26cb1f79-4110-4f37-a467-2a5510f9c966
+    capid: 325239
+    last_name: Fry
+    first_name: Ron
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: bf546359-13f7-4065-96d2-21b2b7463f18
+    capid: 822544
+    last_name: Bradley
+    first_name: Randolph
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: 493f4fb4-8d2f-4ddf-afdb-f96d3bb144b9
+    capid: 939725
+    last_name: Clarke
+    first_name: Hannah
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+  - id: d099c169-1702-4408-83df-97799843464a
+    capid: 787082
+    last_name: Manning
+    first_name: Janice
+    member_type: CADET
+    grade: C/Amn
+    join_date: null
+    rank_date: null
+    expiration_date: null
+duty_assignments:
+  - id: e81f0253-5268-4b1f-a3f9-9c33b6df6819
+    office_symbol: CC
+    title: ''
+    assistant: FALSE
+    duty_title_id: defb6475-a2d2-4961-a063-a360c2a59aec
+    assignee_id: aab94819-ee34-47ad-9a44-31e627a97ed5
+  - id: 5ab98426-9c0a-482c-baff-26ce8ada2ea8
+    office_symbol: CD
+    title: ''
+    assistant: FALSE
+    duty_title_id: 47ef770c-30a6-4fe5-9f9f-2171f6eb68a8
+    assignee_id: 67a1155e-a039-4f7c-be60-81d19fa49890
+  - id: 653dacb4-dad0-4699-b567-9e003021527d
+    office_symbol: CCN
+    title: ''
+    assistant: FALSE
+    duty_title_id: 9b627217-465d-4da7-9a3e-8eb9e8c3939f
+    assignee_id: e92fad40-630f-4297-94e7-3cab3c175334
+  - id: 5a6719df-2743-4599-8343-1e242b7f03af
+    office_symbol: HC
+    title: ''
+    assistant: FALSE
+    duty_title_id: 1e6e89dd-4fa3-451f-8710-981b5427c3a6
+    assignee_id: ef587ac7-b870-4bef-87c2-445272e45007
+  - id: 2c70e85e-0dae-4c23-81eb-6b014a94d80c
+    office_symbol: HCI
+    title: ''
+    assistant: FALSE
+    duty_title_id: 1e6e89dd-4fa3-451f-8710-981b5427c3a6
+    assignee_id: 85f54161-ff4c-4ed0-b58c-5ccc1ebd6dbc
+  - id: 3bfc15f8-e2b3-4fd4-8369-223b6311b956
+    office_symbol: SE
+    title: ''
+    assistant: FALSE
+    duty_title_id: 5aadc559-a9d0-4c55-8604-9dc40296056f
+    assignee_id: 5199cafb-1c59-4140-b2b2-4e37031cf238
+  - id: 8bf62f57-ff6f-4ea9-a285-ee911e719cf6
+    office_symbol: AE
+    title: ''
+    assistant: FALSE
+    duty_title_id: 291b7ce6-0c17-4b66-99cb-ed7ba73c5288
+    assignee_id: 42edbc99-d6a8-4fc7-b47d-26386a51e39e
+  - id: 0891d1f5-5d68-429d-86cf-9e4cc305f68e
+    office_symbol: AEC
+    title: ''
+    assistant: FALSE
+    duty_title_id: b316d0dd-bb58-4c4a-9e1d-ace950e75649
+    assignee_id: 8cb7f8fe-1c21-46d5-8eb9-8ae22849aaa5
+  - id: 58565da9-80dd-452c-a563-7516fa34e65c
+    office_symbol: ES
+    title: ''
+    assistant: FALSE
+    duty_title_id: d4ba46ac-f218-43d4-9c46-0ab4328874d7
+    assignee_id: 3f7afd83-98a3-46d3-b102-0d8d5710cb28
+  - id: 17e58466-ef5e-4fd8-9706-d042bb3452ab
+    office_symbol: DOA
+    title: ''
+    assistant: FALSE
+    duty_title_id: 6e0393d4-0cb9-4d53-bd7c-65401af9c825
+    assignee_id: d3859b5c-b200-4139-9591-22ef837ff2d3
+  - id: 8bf74a73-c40e-4abb-a5cc-5d92c7fbb982
+    office_symbol: LD
+    title: ''
+    assistant: FALSE
+    duty_title_id: c3e26655-d8ee-44b2-8f46-8489c3330281
+    assignee_id: 7bacce74-f13a-47cd-b2e3-4cbb4a3131ae
+  - id: a2edb3f1-7693-4fb1-8958-699e9f8662c0
+    office_symbol: LDA
+    title: ''
+    assistant: FALSE
+    duty_title_id: 31303b55-88be-42bf-af8f-3f42b74fa58c
+    assignee_id: 10f7fe0d-e935-4449-adcf-7d1f0140c65b
+  - id: 05cc1bf4-6b43-42f7-a561-9a929b8c5ed2
+    office_symbol: LDTA
+    title: Assisstant Leadership Officer for Alpha Flight
+    assistant: TRUE
+    duty_title_id: c3e26655-d8ee-44b2-8f46-8489c3330281
+    assignee_id: 32d7e62d-b0d9-4c8b-9ac6-6619a6f14917
+  - id: d4e897fc-7815-4d9b-bf0d-a04f28fe3957
+    office_symbol: LDTB
+    title: Assisstant Leadership Officer for Bravo Flight
+    assistant: TRUE
+    duty_title_id: c3e26655-d8ee-44b2-8f46-8489c3330281
+    assignee_id: ba6e5607-0f49-4dc4-9ac5-34ce651cead6
+  - id: 8005976a-8c69-4d02-8d1f-2e8df09df2c0
+    office_symbol: PT
+    title: ''
+    assistant: FALSE
+    duty_title_id: 31d347a7-166c-4af8-8381-6eaacf988423
+    assignee_id: f324c9c1-7ead-4ebf-9a01-5cb40d94e568
+  - id: b5204083-8bfc-419b-a379-e572a82b68d9
+    office_symbol: DA
+    title: ''
+    assistant: FALSE
+    duty_title_id: 004b8a7d-bc9b-4db9-b998-4be3e8059fa6
+    assignee_id: 560edbd2-f9a2-49d4-9b70-b19199fb139a
+  - id: 8024ef6e-a5ec-4964-acb2-4486e514dfbd
+    office_symbol: DP
+    title: ''
+    assistant: FALSE
+    duty_title_id: 96f5fc73-79be-491e-ab9c-a558a20c10b4
+    assignee_id: d1a358c5-441d-4313-9f86-4772d1871fdd
+  - id: 76ef0ee0-90d3-472b-8697-a8bec395a511
+    office_symbol: FM
+    title: ''
+    assistant: FALSE
+    duty_title_id: baf01c15-ec42-4401-9e7a-dc9264d104e6
+    assignee_id: b1cbc696-1a7c-402c-8b59-68660cf04f2c
+  - id: c2eeb4e7-7789-436f-b1e2-cd9bf2248311
+    office_symbol: LG
+    title: ''
+    assistant: FALSE
+    duty_title_id: eba06ece-a956-439d-829c-793b7d360d10
+    assignee_id: c4220706-1a65-41e5-8faa-10630051b79e
+  - id: 26f6aa64-490c-46ac-97ef-f9d0ae8f9250
+    office_symbol: LGS
+    title: ''
+    assistant: FALSE
+    duty_title_id: 370110ba-12f6-441d-9a51-95f986836cac
+    assignee_id: 2e424879-a0a4-4570-a06c-fa98e1cab0a4
+  - id: 6db6f316-7374-482b-8651-eb0dbdec1fe7
+    office_symbol: DC
+    title: ''
+    assistant: FALSE
+    duty_title_id: 68040829-08b7-4a39-9086-8e18cdf5095f
+    assignee_id: 68380853-46b6-44d6-91c2-467d6fd8208a
+  - id: af047bd2-2367-4d9d-be00-b760cbf97f1b
+    office_symbol: IT
+    title: ''
+    assistant: FALSE
+    duty_title_id: 1c07babe-07ce-4a82-a9c1-ff11cb5813e0
+    assignee_id: b9d2b00b-1195-466f-a895-5bc42808b9c4
+  - id: d5e05dd0-d0f4-475b-b4f6-930d76134622
+    office_symbol: C/CC
+    title: ''
+    assistant: FALSE
+    duty_title_id: 1bfe0c38-3c26-43b2-a06e-2ecffa7cf2de
+    assignee_id: 19f8c1dd-e96f-4950-868b-346bcbdd1198
+  - id: 8f1240dd-7ac4-43c4-a871-24b8e94676b6
+    office_symbol: C/CDO
+    title: ''
+    assistant: FALSE
+    duty_title_id: e8d59f30-0b45-4962-a132-f9395ca4d706
+    assignee_id: 34389124-0fea-4d56-9f8a-9c72650d12fa
+  - id: bdfedc18-2f6d-4d43-a905-5d90b665bd78
+    office_symbol: C/CDS
+    title: ''
+    assistant: FALSE
+    duty_title_id: 717fa3b7-49d1-4ee0-a664-de342c103025
+    assignee_id: 07b41154-e39c-4a1d-ae95-73efeab367bf
+  - id: c70d72ea-ab59-48f9-9ea5-a7a441bc6896
+    office_symbol: C/CCF
+    title: ''
+    assistant: FALSE
+    duty_title_id: fe177c68-78ba-4fa5-aec9-fbefa3c657c7
+    assignee_id: 0bbe45c8-828b-48e6-9e1d-0d72220029f0
+  - id: 5bfa3206-7b42-4e6d-a3c6-c3594d79cf49
+    office_symbol: C/AE
+    title: ''
+    assistant: FALSE
+    duty_title_id: e2dffdba-f626-4d94-aec0-dd214abced54
+    assignee_id: ae5222e2-a0df-402f-93c4-04e7a37b57e8
+  - id: 7686b2ca-53cf-4bd9-8d7c-ca9a29a73aea
+    office_symbol: C/AEN
+    title: ''
+    assistant: FALSE
+    duty_title_id: c74b7f61-bd67-4eb0-b54d-106bc325fcce
+    assignee_id: 6a012caa-0997-47df-b7d2-63fc61c0cb4e
+  - id: 94968ca6-515f-453a-83ff-962c2b0754de
+    office_symbol: C/AEN1
+    title: ''
+    assistant: TRUE
+    duty_title_id: c74b7f61-bd67-4eb0-b54d-106bc325fcce
+    assignee_id: cf33b3bd-ce35-401c-9e9c-a63ffd0c2018
+  - id: 85da31ae-1f5b-4dca-bbe4-222f98928deb
+    office_symbol: C/AEN2
+    title: ''
+    assistant: TRUE
+    duty_title_id: c74b7f61-bd67-4eb0-b54d-106bc325fcce
+    assignee_id: 83d6417c-fad7-4f03-b5fe-294d5f63b621
+  - id: 2d39bb05-3940-45f4-8a4c-0319c24eecf3
+    office_symbol: C/AEN3
+    title: ''
+    assistant: TRUE
+    duty_title_id: c74b7f61-bd67-4eb0-b54d-106bc325fcce
+    assignee_id: d4c40ef0-a75a-4fd2-b934-e95d758dd5f2
+  - id: 62c8759b-aa50-40fa-bf3f-1764eef65f82
+    office_symbol: C/AEC
+    title: ''
+    assistant: FALSE
+    duty_title_id: bea1e013-f14c-4ff0-8726-bb1d06fbf3e3
+    assignee_id: c8422874-f8f2-42ad-bd0c-f5f1a60af66a
+  - id: a640fd08-e071-47cf-92e9-e82c74acf705
+    office_symbol: C/AECN
+    title: ''
+    assistant: FALSE
+    duty_title_id: 4cb2c9c9-a06b-400c-927d-310546eb8127
+    assignee_id: 31061065-ae02-4659-ae8f-1692bbb5b8f6
+  - id: ba9f2ccf-f9a5-4a8a-8e8d-9e01db0fc2a6
+    office_symbol: C/AECN1
+    title: ''
+    assistant: TRUE
+    duty_title_id: 4cb2c9c9-a06b-400c-927d-310546eb8127
+    assignee_id: 4174cc6a-ce33-4951-827b-c0acaecc0a21
+  - id: ca029a37-4b8f-4287-9d91-eba30592de9f
+    office_symbol: C/AECN2
+    title: ''
+    assistant: TRUE
+    duty_title_id: 4cb2c9c9-a06b-400c-927d-310546eb8127
+    assignee_id: 6e612315-bbaf-496d-b72f-d7159b8fcc3a
+  - id: 54be76de-fa94-46e1-a689-8f693cc5c889
+    office_symbol: C/AECN3
+    title: ''
+    assistant: TRUE
+    duty_title_id: 4cb2c9c9-a06b-400c-927d-310546eb8127
+    assignee_id: 163015b2-4c61-4782-be4b-a46dcec5fec6
+  - id: ac210dd9-b5b3-49f7-afd8-f64d3651dcb1
+    office_symbol: C/ES
+    title: ''
+    assistant: FALSE
+    duty_title_id: 2549d647-79d6-43ae-944b-b434879eba89
+    assignee_id: b6fdca4b-1324-4c90-8a2a-84ab3034ad6d
+  - id: d403bd0b-eff8-45b7-9dc0-7b494c2079c0
+    office_symbol: C/ESN
+    title: ''
+    assistant: FALSE
+    duty_title_id: c2c11c2a-0911-49b1-9bc4-9c234f22d20d
+    assignee_id: 2e2127f1-ff48-4a6b-b0f7-ffa96fa4ab38
+  - id: 6a8afd9b-01c4-454b-84a2-cb095ac441d0
+    office_symbol: C/ESN1
+    title: ''
+    assistant: TRUE
+    duty_title_id: c2c11c2a-0911-49b1-9bc4-9c234f22d20d
+    assignee_id: 7c7d5b60-1916-4e83-91c2-dfd5e4d67fa0
+  - id: 5e7f7a37-13c4-4770-9de8-a27f42716f59
+    office_symbol: C/ESN2
+    title: ''
+    assistant: TRUE
+    duty_title_id: c2c11c2a-0911-49b1-9bc4-9c234f22d20d
+    assignee_id: e657ca02-5d66-4bb6-aa19-5fb714b34ded
+  - id: 6a636d8b-e6e2-497a-8a4e-07dcec2a5f55
+    office_symbol: C/ESN3
+    title: ''
+    assistant: TRUE
+    duty_title_id: c2c11c2a-0911-49b1-9bc4-9c234f22d20d
+    assignee_id: 6ffa84eb-3a20-465a-a3df-fb7f6863a859
+  - id: 04ea4850-923c-4b1c-bfc2-274d3848899e
+    office_symbol: C/LD
+    title: ''
+    assistant: FALSE
+    duty_title_id: c30397ac-d1f1-4d20-b8ab-96d24cead115
+    assignee_id: 5c3e96cc-5b1e-45e3-b5b9-9707e7d320e9
+  - id: 63bd85f4-70de-4ae4-8b29-a9fe92126762
+    office_symbol: C/LDN
+    title: ''
+    assistant: FALSE
+    duty_title_id: afc0fce4-1e0d-4077-b911-829f5ce22468
+    assignee_id: 529b1782-e0be-41bd-8051-e1f2929da27a
+  - id: 0bbb206a-983c-4f3e-adf8-aaeb9f0da83c
+    office_symbol: C/LDN1
+    title: ''
+    assistant: TRUE
+    duty_title_id: afc0fce4-1e0d-4077-b911-829f5ce22468
+    assignee_id: 69307698-b7ca-45e6-986b-1dc651c18c1e
+  - id: 9393f9a4-5616-4a34-b285-d83db40b136b
+    office_symbol: C/LDN2
+    title: ''
+    assistant: TRUE
+    duty_title_id: afc0fce4-1e0d-4077-b911-829f5ce22468
+    assignee_id: 0e2bfd06-5cb7-4ed8-8e3a-5d0787a92efe
+  - id: cebb3713-45fb-40ee-ae73-d45e24644fc7
+    office_symbol: C/LDN3
+    title: ''
+    assistant: TRUE
+    duty_title_id: afc0fce4-1e0d-4077-b911-829f5ce22468
+    assignee_id: ec458118-54e2-44e9-9c0d-d527d9a65704
+  - id: e7400f38-110d-4e67-b4b7-69743604bb9e
+    office_symbol: C/LDA
+    title: ''
+    assistant: FALSE
+    duty_title_id: ce984a1a-e481-4a3e-8c21-9bd499bd5508
+    assignee_id: 972ad4df-b0d8-4690-90d1-e20954de41cc
+  - id: 4a5b3c5b-e6fb-4349-993f-13916d55601e
+    office_symbol: C/LDAN
+    title: ''
+    assistant: FALSE
+    duty_title_id: 4f8cd548-f91b-4e14-8d84-1109fae06384
+    assignee_id: 5c57096d-aae9-4d9f-8bd9-397e045a17ed
+  - id: d3fdfc88-5830-46d0-a549-6c7d4e9523b7
+    office_symbol: C/LDAN1
+    title: ''
+    assistant: TRUE
+    duty_title_id: 4f8cd548-f91b-4e14-8d84-1109fae06384
+    assignee_id: 85656099-e3f8-41e4-bfe5-d617d10aaa24
+  - id: 7d00c8e2-739c-4291-bc5c-0476123c59a6
+    office_symbol: C/LDAN2
+    title: ''
+    assistant: TRUE
+    duty_title_id: 4f8cd548-f91b-4e14-8d84-1109fae06384
+    assignee_id: d333f5b7-2476-4211-9454-9366355e55cf
+  - id: 0037cef4-1a7e-4665-b79a-c05efeb36d8f
+    office_symbol: C/LDAN3
+    title: ''
+    assistant: TRUE
+    duty_title_id: 4f8cd548-f91b-4e14-8d84-1109fae06384
+    assignee_id: 0c7ea44f-fcc4-4786-ba7b-40c0d7f55f4d
+  - id: c554be03-749c-41a9-bfc1-a8d48fca6fcf
+    office_symbol: C/PT
+    title: ''
+    assistant: FALSE
+    duty_title_id: f1d8db17-b786-4265-928e-9e525842f05c
+    assignee_id: 1e3433f1-aedb-4485-a948-e0f6d1fedc37
+  - id: c7364f33-6010-4b73-a39f-1a136d13802a
+    office_symbol: C/PTN
+    title: ''
+    assistant: FALSE
+    duty_title_id: 66f99a55-b311-4a30-a619-0c65ba55a082
+    assignee_id: 6aa2594c-c99d-428e-8cb6-56b92defaad2
+  - id: 894079c8-746d-4e72-9098-83a250c75cd7
+    office_symbol: C/PTN1
+    title: ''
+    assistant: TRUE
+    duty_title_id: 66f99a55-b311-4a30-a619-0c65ba55a082
+    assignee_id: 2db1f60b-1525-4c99-9d16-e38dc2163f6c
+  - id: 8306f9ba-d118-4e29-a440-979693641417
+    office_symbol: C/PTN2
+    title: ''
+    assistant: TRUE
+    duty_title_id: 66f99a55-b311-4a30-a619-0c65ba55a082
+    assignee_id: 5a82a316-ff49-41fe-a20d-75f765846dfb
+  - id: 15b50b88-9175-48c8-ad1c-857ebfd6ed16
+    office_symbol: C/PTN3
+    title: ''
+    assistant: TRUE
+    duty_title_id: 66f99a55-b311-4a30-a619-0c65ba55a082
+    assignee_id: 00e3fe75-5add-400b-8a35-c1531d0f546f
+  - id: d7319edb-b8ab-46f5-9a0a-9535078bdb0e
+    office_symbol: C/DA
+    title: ''
+    assistant: FALSE
+    duty_title_id: 9ac6305d-0b7c-4143-9ebd-62420e432858
+    assignee_id: 48400731-2234-4979-9a83-27cf8d10af3e
+  - id: 1fd70f77-b928-474f-a9f6-dcfa020a4e1d
+    office_symbol: C/DAN
+    title: ''
+    assistant: FALSE
+    duty_title_id: fc2733e1-6079-4c99-899a-dfb730542f21
+    assignee_id: b693a6bf-fb39-4b70-bf91-6d049703edfe
+  - id: c91600de-4efe-4484-88ec-a4d3bfcda245
+    office_symbol: C/DAF
+    title: ''
+    assistant: TRUE
+    duty_title_id: 2c6b41fe-6959-4a70-9ba0-f574479cd612
+    assignee_id: 642fc8a9-136b-4e12-bf06-27f50fc0b8ff
+  - id: 1fba44b0-69ed-4039-ba78-3345a88bf19d
+    office_symbol: C/DAP1
+    title: ''
+    assistant: TRUE
+    duty_title_id: e3b31a0b-8220-4d85-936e-07b15d2f905f
+    assignee_id: 3b93f2f1-d6e5-4dfc-931d-e45393aecebd
+  - id: 2d7a9a61-3e7b-4ca3-80b5-4db445bcada2
+    office_symbol: C/DAP2
+    title: ''
+    assistant: TRUE
+    duty_title_id: e3b31a0b-8220-4d85-936e-07b15d2f905f
+    assignee_id: b285a07f-8154-43e2-a739-4a4f54de9d84
+  - id: fbbd5e0d-d815-4d70-98d5-d28b2f102cd9
+    office_symbol: C/DC
+    title: ''
+    assistant: FALSE
+    duty_title_id: b180486f-70c5-4a4a-825e-1f97888b8515
+    assignee_id: 66e09cad-f639-4c6f-b235-2acf78cae52b
+  - id: ab628aaa-d3ec-4254-80a0-02adfbc9704f
+    office_symbol: C/DCN
+    title: ''
+    assistant: FALSE
+    duty_title_id: 863c6496-5329-4ea0-be6e-a52ec80ffa75
+    assignee_id: c25322b7-cbd6-4462-8778-35f6db68ce7e
+  - id: 12626d47-d256-4086-8ab4-e084f76d9358
+    office_symbol: C/DCN1
+    title: ''
+    assistant: TRUE
+    duty_title_id: 863c6496-5329-4ea0-be6e-a52ec80ffa75
+    assignee_id: 0802ecc3-46de-4bf3-88c9-6583e4e926fb
+  - id: d89017f1-0e38-47a0-97e3-57bb316a0716
+    office_symbol: C/DCN2
+    title: ''
+    assistant: TRUE
+    duty_title_id: 863c6496-5329-4ea0-be6e-a52ec80ffa75
+    assignee_id: d55c4acc-ad62-49ba-ac19-b888fa782033
+  - id: 503c6621-211e-42d6-b03e-f303fb23e249
+    office_symbol: C/DCN3
+    title: ''
+    assistant: TRUE
+    duty_title_id: 863c6496-5329-4ea0-be6e-a52ec80ffa75
+    assignee_id: ee2090ec-9aa9-40e2-948a-7391a2a528e2
+  - id: 63346867-5a89-49ca-a7c8-aa08b8e7dc8e
+    office_symbol: C/IT
+    title: ''
+    assistant: FALSE
+    duty_title_id: b96d3574-1aa6-419b-8f1b-16c3014089bc
+    assignee_id: c6b6a0e7-7580-4014-89b1-2c30106cd411
+  - id: 05daa0e5-7a90-4489-8c4a-80876d56c51c
+    office_symbol: C/ITN
+    title: ''
+    assistant: FALSE
+    duty_title_id: 568550cc-823e-408c-a916-2dcbd0e5a7eb
+    assignee_id: e6de1147-eb9e-4715-b110-ec69fabadb54
+  - id: afd2f150-b144-4b8f-979b-e78e5af9933b
+    office_symbol: C/ITW1
+    title: ''
+    assistant: FALSE
+    duty_title_id: c5914b12-bef6-462d-b2ff-c0cdfef56481
+    assignee_id: e5ebcb55-1724-4d06-98f3-0c28d9a62544
+  - id: 589ea66b-6ec6-4de2-a834-0d9b7061199b
+    office_symbol: C/ITW2
+    title: ''
+    assistant: FALSE
+    duty_title_id: c5914b12-bef6-462d-b2ff-c0cdfef56481
+    assignee_id: 458a9485-4a31-493f-b0d3-e72daf95630b
+  - id: 2733a501-2f79-4dfc-9ef6-0884d484a409
+    office_symbol: C/ITW3
+    title: ''
+    assistant: FALSE
+    duty_title_id: c5914b12-bef6-462d-b2ff-c0cdfef56481
+    assignee_id: 9c1a8e12-97f7-4cc6-aeef-ab315b29027e
+  - id: 71524eb7-f5dc-4167-9758-43f85fa423d3
+    office_symbol: C/LG
+    title: ''
+    assistant: FALSE
+    duty_title_id: fcf71444-9cbd-448d-b9a7-0807234c7d13
+    assignee_id: eb675f61-ddf2-440e-9c27-a018ba258bee
+  - id: b70129fa-165e-4b43-a72c-b996eab0e0aa
+    office_symbol: C/LGN
+    title: ''
+    assistant: FALSE
+    duty_title_id: a05561c0-9bc7-48dc-80d4-9d1ac7b5129f
+    assignee_id: 1f1dd5f3-35cf-4c8c-8295-dcd6b4c5b01f
+  - id: a2ad18c6-1a7f-43e6-be2e-a4a18bf49128
+    office_symbol: C/LGN1
+    title: ''
+    assistant: TRUE
+    duty_title_id: a05561c0-9bc7-48dc-80d4-9d1ac7b5129f
+    assignee_id: 1e109202-3978-48b5-a338-1da74ec6e98a
+  - id: 8184bc09-00f6-46ce-9bdd-9ac7571cf7f9
+    office_symbol: C/LGN2
+    title: ''
+    assistant: TRUE
+    duty_title_id: a05561c0-9bc7-48dc-80d4-9d1ac7b5129f
+    assignee_id: c4925bc3-eab7-474f-86d4-b0a467663da5
+  - id: fbccb792-2690-413a-a0d7-b3009a1f9cc6
+    office_symbol: C/LGS
+    title: ''
+    assistant: FALSE
+    duty_title_id: 71e5cbca-d75d-4c6b-8966-8d32fa3e0d49
+    assignee_id: 4d8b45f5-50f0-48ac-ae9c-6ab1d316275d
+  - id: f071293c-b819-4382-b937-def6874ba629
+    office_symbol: C/LGSN
+    title: ''
+    assistant: FALSE
+    duty_title_id: 0896211f-ee86-460e-ab4b-ff153482f8cd
+    assignee_id: baa3c556-f149-423b-bf3e-783dc88099a0
+  - id: 5e83ae6d-ab16-4459-9df1-7f73227e1f76
+    office_symbol: C/LGSN1
+    title: ''
+    assistant: TRUE
+    duty_title_id: 0896211f-ee86-460e-ab4b-ff153482f8cd
+    assignee_id: 0852a5d4-8aa9-4e15-ba7c-7671f90ed4a8
+  - id: 99c02156-7695-4bbc-8ba9-5b85d6b726e7
+    office_symbol: C/LGSN2
+    title: ''
+    assistant: TRUE
+    duty_title_id: 0896211f-ee86-460e-ab4b-ff153482f8cd
+    assignee_id: 40325bd2-1743-43c9-ad15-faba55a08b8c
+  - id: 2bd2e4e2-57bd-4867-be4e-f46203d69ed8
+    office_symbol: AFlt/CC
+    title: Alpha Flight Commander
+    assistant: FALSE
+    duty_title_id: f1095ef3-6851-4497-bb74-b704c467e089
+    assignee_id: 77c8547a-4c2e-4a2f-8ade-8c2ec0201c0f
+  - id: 46c6cb23-d942-4754-b8a7-f8afb6139e87
+    office_symbol: AFlt/CCF
+    title: Alpha Flight Sergeant
+    assistant: FALSE
+    duty_title_id: 74d88591-e845-4031-8818-991cd1902f61
+    assignee_id: 6dc448dc-5452-47e9-a0ba-f42b63097de7
+  - id: 996f2782-b86f-4261-a254-9276e8b23454
+    office_symbol: AFlt/CCF1
+    title: Element A-1 Leader
+    assistant: FALSE
+    duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
+    assignee_id: 2d9bce0c-35af-4c55-82c5-588e2b3888a2
+  - id: 1841c3c8-d4d8-486b-8331-8ad39b3c6815
+    office_symbol: AFlt/CCF1A
+    title: Assisstant Element A-1 Leader
+    assistant: TRUE
+    duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
+    assignee_id: 749f3b16-d268-4e22-9d63-441bba9c1a8c
+  - id: 80b38db3-ec36-4b19-9d69-eea2e0a3ff7a
+    office_symbol: AFlt/CCF2
+    title: Element A-2 Leader
+    assistant: FALSE
+    duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
+    assignee_id: 6fd30da5-7b75-4c9e-9276-e1f8d3335021
+  - id: 3ea4bfdf-a389-43f0-b0a5-538432b2dfc3
+    office_symbol: AFlt/CCF2A
+    title: Assisstant Element A-2 Leader
+    assistant: TRUE
+    duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
+    assignee_id: 1ff63bb0-3704-42cd-b351-07aca1fa14b7
+  - id: 406405e6-592e-4071-ad79-1b75506c098e
+    office_symbol: AFlt/CCF3
+    title: Element A-3 Leader
+    assistant: FALSE
+    duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
+    assignee_id: de255210-4e10-4348-b4d9-99754291a1d2
+  - id: 46228210-9be7-4c78-b305-250fc63a70a8
+    office_symbol: AFlt/CCF3A
+    title: Assisstant Element A-3 Leader
+    assistant: TRUE
+    duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
+    assignee_id: 9e9e3c13-70c1-4021-89ee-a4917098710d
+  - id: 1786d1ee-f687-468b-8865-81d9d7de2ac8
+    office_symbol: AFlt/CCF4
+    title: Element A-4 Leader
+    assistant: FALSE
+    duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
+    assignee_id: dc127cd7-1779-4ca6-b485-d9b53e2271a7
+  - id: 9f057694-2709-4aeb-bf2b-88bdd17e9890
+    office_symbol: AFlt/CCF4A
+    title: Assisstant Element A-4 Leader
+    assistant: TRUE
+    duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
+    assignee_id: df40e01f-d94f-4cb6-8224-0a6d7f85085d
+  - id: 2eda4a5a-687c-43ab-8fb6-9a93cac78d02
+    office_symbol: BFlt/CC
+    title: Bravo Flight Commander
+    assistant: FALSE
+    duty_title_id: f1095ef3-6851-4497-bb74-b704c467e089
+    assignee_id: 2885d5eb-8d96-4213-83c8-eb2bbb6500df
+  - id: 03a0fb51-ef8e-41cb-a701-06ecbabeb7c3
+    office_symbol: BFlt/CCF
+    title: Bravo Flight Sergeant
+    assistant: FALSE
+    duty_title_id: 74d88591-e845-4031-8818-991cd1902f61
+    assignee_id: 62b3f1cc-026c-4102-a60e-f7ee8dbe42b8
+  - id: 17542f64-7fa1-434a-b3cc-e3ae7571ed03
+    office_symbol: BFlt/CCF1
+    title: Element B-1 Leader
+    assistant: FALSE
+    duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
+    assignee_id: 6d7d82d0-2fa2-4ede-8115-343a7b351d8b
+  - id: 9c8bdacf-5142-4101-840d-4e0f263c26fa
+    office_symbol: BFlt/CCF1A
+    title: Assisstant Element B-1 Leader
+    assistant: TRUE
+    duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
+    assignee_id: a87237fc-4b35-4ae6-add4-556870113df4
+  - id: f2bfa8bc-1f3d-4090-ad8c-4483d32ddda0
+    office_symbol: BFlt/CCF2
+    title: Element B-2 Leader
+    assistant: FALSE
+    duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
+    assignee_id: e53ca830-7970-4b82-b321-e4a483391baa
+  - id: 94fab58f-dd81-44c4-91ba-2116e379772d
+    office_symbol: BFlt/CCF2A
+    title: Assisstant Element B-2 Leader
+    assistant: TRUE
+    duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
+    assignee_id: 3dee3563-7495-4873-b8ae-780788d7bfc9
+  - id: a1ddbab9-8dc0-4639-b44c-2628fdb7bf28
+    office_symbol: BFlt/CCF3
+    title: Element B-3 Leader
+    assistant: FALSE
+    duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
+    assignee_id: 127572cd-e8ae-44a0-ae39-acc28d9a3e97
+  - id: c78b9ddb-7673-4436-9b45-3a41f4261a1a
+    office_symbol: BFlt/CCF3A
+    title: Assisstant Element B-3 Leader
+    assistant: TRUE
+    duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
+    assignee_id: f4b433e4-5983-4d6e-9a05-7959b783c70d
+  - id: b2e3ab19-a3f1-431e-b8b4-013f4ae6ebdb
+    office_symbol: BFlt/CCF4
+    title: Element B-4 Leader
+    assistant: FALSE
+    duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
+    assignee_id: f74dcc0a-e4d0-4c33-9c07-ce01628021ec
+  - id: c5d5e3a0-6b04-47db-86dd-5b648a8f3def
+    office_symbol: BFlt/CCF4A
+    title: Assisstant Element B-4 Leader
+    assistant: TRUE
+    duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
+    assignee_id: 12944eb7-13a5-458d-8119-032d179010aa
+flights:
+  - id: 372d62d4-c5b8-453b-b0c8-c603b2d209ae
+    name: Alpha Flight
+    abbreviation: A
+    flight_commander_id: 2bd2e4e2-57bd-4867-be4e-f46203d69ed8
+    flight_sergeant_id: 46c6cb23-d942-4754-b8a7-f8afb6139e87
+  - id: 92c02aa1-8c16-4241-9c27-b639e04cceef
+    name: Bravo Flight
+    abbreviation: B
+    flight_commander_id: 2eda4a5a-687c-43ab-8fb6-9a93cac78d02
+    flight_sergeant_id: 03a0fb51-ef8e-41cb-a701-06ecbabeb7c3
+elements:
+  - id: 3d7b1dc9-ac83-45fc-8253-6d853f3ead2a
+    name: Element A-1
+    flight_id: 372d62d4-c5b8-453b-b0c8-c603b2d209ae
+    element_leader_id: 996f2782-b86f-4261-a254-9276e8b23454
+    asst_element_leader_id: 1841c3c8-d4d8-486b-8331-8ad39b3c6815
+  - id: ea472ca1-1fdc-4181-a7e5-6ca55f5176d4
+    name: Element A-2
+    flight_id: 372d62d4-c5b8-453b-b0c8-c603b2d209ae
+    element_leader_id: 80b38db3-ec36-4b19-9d69-eea2e0a3ff7a
+    asst_element_leader_id: 3ea4bfdf-a389-43f0-b0a5-538432b2dfc3
+  - id: 87da90b2-3cd5-4ca5-bcbb-5051761d1edf
+    name: Element A-3
+    flight_id: 372d62d4-c5b8-453b-b0c8-c603b2d209ae
+    element_leader_id: 406405e6-592e-4071-ad79-1b75506c098e
+    asst_element_leader_id: 46228210-9be7-4c78-b305-250fc63a70a8
+  - id: dfe54ba4-e48c-4085-bd7a-6cf646d5e683
+    name: Element A-4
+    flight_id: 372d62d4-c5b8-453b-b0c8-c603b2d209ae
+    element_leader_id: 1786d1ee-f687-468b-8865-81d9d7de2ac8
+    asst_element_leader_id: 9f057694-2709-4aeb-bf2b-88bdd17e9890
+  - id: b3be6a91-b74b-49e6-9c76-7d95e0a19639
+    name: Element B-1
+    flight_id: 92c02aa1-8c16-4241-9c27-b639e04cceef
+    element_leader_id: 17542f64-7fa1-434a-b3cc-e3ae7571ed03
+    asst_element_leader_id: 9c8bdacf-5142-4101-840d-4e0f263c26fa
+  - id: ad46c681-0e05-4aa1-aafd-bb73605ddee5
+    name: Element B-2
+    flight_id: 92c02aa1-8c16-4241-9c27-b639e04cceef
+    element_leader_id: f2bfa8bc-1f3d-4090-ad8c-4483d32ddda0
+    asst_element_leader_id: 94fab58f-dd81-44c4-91ba-2116e379772d
+  - id: d28d4776-d826-4ed9-8410-87a0874f35cc
+    name: Element B-3
+    flight_id: 92c02aa1-8c16-4241-9c27-b639e04cceef
+    element_leader_id: a1ddbab9-8dc0-4639-b44c-2628fdb7bf28
+    asst_element_leader_id: c78b9ddb-7673-4436-9b45-3a41f4261a1a
+  - id: 21876463-85d4-4873-a68d-0aec6338b0cb
+    name: Element B-4
+    flight_id: 92c02aa1-8c16-4241-9c27-b639e04cceef
+    element_leader_id: b2e3ab19-a3f1-431e-b8b4-013f4ae6ebdb
+    asst_element_leader_id: c5d5e3a0-6b04-47db-86dd-5b648a8f3def
+element_members:
+  - element_id: 3d7b1dc9-ac83-45fc-8253-6d853f3ead2a
+    member_id: 2d9bce0c-35af-4c55-82c5-588e2b3888a2
+  - element_id: 3d7b1dc9-ac83-45fc-8253-6d853f3ead2a
+    member_id: 749f3b16-d268-4e22-9d63-441bba9c1a8c
+  - element_id: 3d7b1dc9-ac83-45fc-8253-6d853f3ead2a
+    member_id: d24e12df-69ff-4f81-b691-e9512cf25e85
+  - element_id: 3d7b1dc9-ac83-45fc-8253-6d853f3ead2a
+    member_id: d2db746e-dab9-44d6-9b32-81bda1fc5339
+  - element_id: 3d7b1dc9-ac83-45fc-8253-6d853f3ead2a
+    member_id: 72eaec0b-72b5-442e-8b3b-394731790681
+  - element_id: 3d7b1dc9-ac83-45fc-8253-6d853f3ead2a
+    member_id: dfe0c4f7-4918-43fe-bb1c-e42e86c317d9
+  - element_id: 3d7b1dc9-ac83-45fc-8253-6d853f3ead2a
+    member_id: 0932d789-477f-485c-b27a-518fc639bacb
+  - element_id: 3d7b1dc9-ac83-45fc-8253-6d853f3ead2a
+    member_id: 00e3c84f-95fd-4174-9788-a4e931d46a3a
+  - element_id: ea472ca1-1fdc-4181-a7e5-6ca55f5176d4
+    member_id: 6fd30da5-7b75-4c9e-9276-e1f8d3335021
+  - element_id: ea472ca1-1fdc-4181-a7e5-6ca55f5176d4
+    member_id: 1ff63bb0-3704-42cd-b351-07aca1fa14b7
+  - element_id: ea472ca1-1fdc-4181-a7e5-6ca55f5176d4
+    member_id: 1e5cd57b-4a32-403e-b524-69b55dfb145a
+  - element_id: ea472ca1-1fdc-4181-a7e5-6ca55f5176d4
+    member_id: eea13a1a-937e-4b6b-9f69-d76aa2d8a6fe
+  - element_id: ea472ca1-1fdc-4181-a7e5-6ca55f5176d4
+    member_id: d9b15649-e5c6-4db1-beeb-78e70db8e539
+  - element_id: ea472ca1-1fdc-4181-a7e5-6ca55f5176d4
+    member_id: e11f519b-37a8-4daa-a2ab-582efae062a7
+  - element_id: ea472ca1-1fdc-4181-a7e5-6ca55f5176d4
+    member_id: bea4f404-1e71-4cb5-ab0c-96399bd9873f
+  - element_id: ea472ca1-1fdc-4181-a7e5-6ca55f5176d4
+    member_id: 2f43b405-e109-4372-ba2e-61200c96d0a9
+  - element_id: 87da90b2-3cd5-4ca5-bcbb-5051761d1edf
+    member_id: de255210-4e10-4348-b4d9-99754291a1d2
+  - element_id: 87da90b2-3cd5-4ca5-bcbb-5051761d1edf
+    member_id: 9e9e3c13-70c1-4021-89ee-a4917098710d
+  - element_id: 87da90b2-3cd5-4ca5-bcbb-5051761d1edf
+    member_id: d95c8105-56ae-48c7-a7c2-33ffeffd0bb7
+  - element_id: 87da90b2-3cd5-4ca5-bcbb-5051761d1edf
+    member_id: 5f987c18-23c9-4875-88b3-d3c665f43f84
+  - element_id: 87da90b2-3cd5-4ca5-bcbb-5051761d1edf
+    member_id: df07b5f5-d9a5-4fd1-a77f-25cfaa242835
+  - element_id: 87da90b2-3cd5-4ca5-bcbb-5051761d1edf
+    member_id: 996f5697-db69-450e-a2f6-ca003e8f00a4
+  - element_id: 87da90b2-3cd5-4ca5-bcbb-5051761d1edf
+    member_id: d82997f9-c202-4603-b9dc-31c500a68370
+  - element_id: 87da90b2-3cd5-4ca5-bcbb-5051761d1edf
+    member_id: 7af20981-bb1b-41ff-8b10-3697294af83c
+  - element_id: dfe54ba4-e48c-4085-bd7a-6cf646d5e683
+    member_id: dc127cd7-1779-4ca6-b485-d9b53e2271a7
+  - element_id: dfe54ba4-e48c-4085-bd7a-6cf646d5e683
+    member_id: df40e01f-d94f-4cb6-8224-0a6d7f85085d
+  - element_id: dfe54ba4-e48c-4085-bd7a-6cf646d5e683
+    member_id: 2d809a15-e58b-4ebb-a446-9c429b45f662
+  - element_id: dfe54ba4-e48c-4085-bd7a-6cf646d5e683
+    member_id: 4a1c312a-0e54-4e3c-8d24-eaef406ab170
+  - element_id: dfe54ba4-e48c-4085-bd7a-6cf646d5e683
+    member_id: b281e8b0-7126-4540-b9da-c73ccd9332cc
+  - element_id: dfe54ba4-e48c-4085-bd7a-6cf646d5e683
+    member_id: 04ce7cda-79c6-4e7e-8be4-f3cc98477967
+  - element_id: dfe54ba4-e48c-4085-bd7a-6cf646d5e683
+    member_id: baca256e-e68d-4cec-9e4e-820a494e4d0b
+  - element_id: dfe54ba4-e48c-4085-bd7a-6cf646d5e683
+    member_id: fac01484-1b00-42b6-a594-b06cb743b40e
+  - element_id: b3be6a91-b74b-49e6-9c76-7d95e0a19639
+    member_id: 6d7d82d0-2fa2-4ede-8115-343a7b351d8b
+  - element_id: b3be6a91-b74b-49e6-9c76-7d95e0a19639
+    member_id: a87237fc-4b35-4ae6-add4-556870113df4
+  - element_id: b3be6a91-b74b-49e6-9c76-7d95e0a19639
+    member_id: 97b72649-d1c2-4b2d-9a3f-909b4d0530d3
+  - element_id: b3be6a91-b74b-49e6-9c76-7d95e0a19639
+    member_id: 2062de1d-9fe3-4c36-994f-2aa57a643817
+  - element_id: b3be6a91-b74b-49e6-9c76-7d95e0a19639
+    member_id: 0ad995f5-f278-4709-9f94-09ee0235a086
+  - element_id: b3be6a91-b74b-49e6-9c76-7d95e0a19639
+    member_id: 48fc42a9-5c8b-48d5-a167-d7007db15e6a
+  - element_id: b3be6a91-b74b-49e6-9c76-7d95e0a19639
+    member_id: 60aecba9-8d34-48b4-8d26-b8c4f9b8f74b
+  - element_id: b3be6a91-b74b-49e6-9c76-7d95e0a19639
+    member_id: 103caff7-56d9-4680-a023-a21e157463c3
+  - element_id: ad46c681-0e05-4aa1-aafd-bb73605ddee5
+    member_id: e53ca830-7970-4b82-b321-e4a483391baa
+  - element_id: ad46c681-0e05-4aa1-aafd-bb73605ddee5
+    member_id: 3dee3563-7495-4873-b8ae-780788d7bfc9
+  - element_id: ad46c681-0e05-4aa1-aafd-bb73605ddee5
+    member_id: b259c5ae-ee87-44fc-9ec0-1b4855bdd6c5
+  - element_id: ad46c681-0e05-4aa1-aafd-bb73605ddee5
+    member_id: 597259dd-836c-415d-adfb-56b94ff3a7d4
+  - element_id: ad46c681-0e05-4aa1-aafd-bb73605ddee5
+    member_id: dccbaf52-bb3b-4a59-ba97-8e0a44f7989c
+  - element_id: ad46c681-0e05-4aa1-aafd-bb73605ddee5
+    member_id: be22a001-567a-4d1e-93f7-c4fe65b41510
+  - element_id: ad46c681-0e05-4aa1-aafd-bb73605ddee5
+    member_id: d36a070f-7137-4eb9-902c-981b66e39cb1
+  - element_id: ad46c681-0e05-4aa1-aafd-bb73605ddee5
+    member_id: 8efe2a5f-f6e2-4380-9271-8775cf66b3f3
+  - element_id: d28d4776-d826-4ed9-8410-87a0874f35cc
+    member_id: 127572cd-e8ae-44a0-ae39-acc28d9a3e97
+  - element_id: d28d4776-d826-4ed9-8410-87a0874f35cc
+    member_id: f4b433e4-5983-4d6e-9a05-7959b783c70d
+  - element_id: d28d4776-d826-4ed9-8410-87a0874f35cc
+    member_id: c78e1865-4016-44c8-afda-fdea7dedd6ae
+  - element_id: d28d4776-d826-4ed9-8410-87a0874f35cc
+    member_id: 73b7b51c-f1e5-4fe7-b2a4-0096d9808d4b
+  - element_id: d28d4776-d826-4ed9-8410-87a0874f35cc
+    member_id: 12620ccd-2755-43d5-a011-6adbbce679d0
+  - element_id: d28d4776-d826-4ed9-8410-87a0874f35cc
+    member_id: bf0ca1cb-6bf9-4cba-a7ba-b0e1b567096b
+  - element_id: d28d4776-d826-4ed9-8410-87a0874f35cc
+    member_id: d08262d3-5778-45cb-979f-d0ff49f86e42
+  - element_id: d28d4776-d826-4ed9-8410-87a0874f35cc
+    member_id: 621c1611-66ff-4453-9bdd-bbeef66253b7
+  - element_id: 21876463-85d4-4873-a68d-0aec6338b0cb
+    member_id: f74dcc0a-e4d0-4c33-9c07-ce01628021ec
+  - element_id: 21876463-85d4-4873-a68d-0aec6338b0cb
+    member_id: 12944eb7-13a5-458d-8119-032d179010aa
+  - element_id: 21876463-85d4-4873-a68d-0aec6338b0cb
+    member_id: 8e68294c-ab5f-445a-b511-6f34e1b1a953
+  - element_id: 21876463-85d4-4873-a68d-0aec6338b0cb
+    member_id: 332e121e-fae0-4e61-ad48-bc8bf1bff3b3
+  - element_id: 21876463-85d4-4873-a68d-0aec6338b0cb
+    member_id: 26cb1f79-4110-4f37-a467-2a5510f9c966
+  - element_id: 21876463-85d4-4873-a68d-0aec6338b0cb
+    member_id: bf546359-13f7-4065-96d2-21b2b7463f18
+  - element_id: 21876463-85d4-4873-a68d-0aec6338b0cb
+    member_id: 493f4fb4-8d2f-4ddf-afdb-f96d3bb144b9
+  - element_id: 21876463-85d4-4873-a68d-0aec6338b0cb
+    member_id: d099c169-1702-4408-83df-97799843464a

@@ -6,10 +6,12 @@ import (
 	"time"
 
 	"github.com/ag7if/go-files"
+	"github.com/google/uuid"
 	"github.com/pkg/errors"
 	"gopkg.in/yaml.v3"
 
 	"github.com/ut080/bcs-portal/internal/logging"
+	"github.com/ut080/bcs-portal/pkg"
 	"github.com/ut080/bcs-portal/pkg/org"
 )
 
@@ -23,14 +25,15 @@ const (
 )
 
 type SummaryInfo struct {
+	ID             uuid.UUID      `yaml:"id"`
 	CAPID          uint           `yaml:"capid"`
 	LastName       string         `yaml:"last_name"`
 	FirstName      string         `yaml:"first_name"`
 	MemberType     org.MemberType `yaml:"member_type"`
 	Grade          org.Grade      `yaml:"grade"`
-	JoinDate       time.Time      `yaml:"join_date"`
-	RankDate       time.Time      `yaml:"rank_date"`
-	ExpirationDate time.Time      `yaml:"expiration_date"`
+	JoinDate       *time.Time     `yaml:"join_date"`
+	RankDate       *time.Time     `yaml:"rank_date"`
+	ExpirationDate *time.Time     `yaml:"expiration_date"`
 }
 
 type Member struct {
@@ -39,14 +42,14 @@ type Member struct {
 
 func NewMember(member org.Member) Member {
 	si := SummaryInfo{
-		CAPID:          member.CAPID,
-		LastName:       member.LastName,
-		FirstName:      member.FirstName,
-		MemberType:     member.MemberType,
-		Grade:          member.Grade,
-		JoinDate:       member.JoinDate,
-		RankDate:       member.RankDate,
-		ExpirationDate: member.ExpirationDate,
+		CAPID:          member.CAPID(),
+		LastName:       member.LastName(),
+		FirstName:      member.FirstName(),
+		MemberType:     member.MemberType(),
+		Grade:          member.Grade(),
+		JoinDate:       member.JoinDate(),
+		RankDate:       member.RankDate(),
+		ExpirationDate: member.ExpirationDate(),
 	}
 
 	return Member{
@@ -54,17 +57,22 @@ func NewMember(member org.Member) Member {
 	}
 }
 
-func (m *Member) ToDomainMember() org.Member {
-	return org.Member{
-		CAPID:          m.SummaryInfo.CAPID,
-		LastName:       m.SummaryInfo.LastName,
-		FirstName:      m.SummaryInfo.FirstName,
-		MemberType:     m.SummaryInfo.MemberType,
-		Grade:          m.SummaryInfo.Grade,
-		JoinDate:       m.SummaryInfo.JoinDate,
-		RankDate:       m.SummaryInfo.RankDate,
-		ExpirationDate: m.SummaryInfo.ExpirationDate,
-	}
+func (m *Member) FromDomainObject(object pkg.DomainObject) error {
+	panic("imlement me")
+}
+
+func (m *Member) ToDomainObject() pkg.DomainObject {
+	return org.NewMember(
+		m.SummaryInfo.ID,
+		m.SummaryInfo.CAPID,
+		m.SummaryInfo.LastName,
+		m.SummaryInfo.FirstName,
+		m.SummaryInfo.MemberType,
+		m.SummaryInfo.Grade,
+		m.SummaryInfo.JoinDate,
+		m.SummaryInfo.RankDate,
+		m.SummaryInfo.ExpirationDate,
+	)
 }
 
 func (m *Member) DirectoryName() string {

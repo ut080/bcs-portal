@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/pkg/errors"
 )
 
 type Member struct {
@@ -30,11 +29,7 @@ func NewMember(
 	joinDate *time.Time,
 	rankDate *time.Time,
 	expirationDate *time.Time,
-) (Member, error) {
-	if (capid != 0) && (capid < 100000) {
-		return Member{}, errors.Errorf("invalid CAPID for normal member: %d", capid)
-	}
-
+) Member {
 	return Member{
 		id:             id,
 		capid:          capid,
@@ -45,7 +40,7 @@ func NewMember(
 		joinDate:       joinDate,
 		rankDate:       rankDate,
 		expirationDate: expirationDate,
-	}, nil
+	}
 }
 
 func (m Member) ID() uuid.UUID {

@@ -134,8 +134,8 @@ func (g *Grade) Scan(src any) error {
 	return nil
 }
 
-func (g *Grade) String() string {
-	switch *g {
+func (g Grade) String() string {
+	switch g {
 	case MajGen:
 		return "Maj Gen"
 	case BrigGen:
@@ -201,11 +201,11 @@ func (g *Grade) String() string {
 	case CADET:
 		return "CADET"
 	default:
-		panic(errors.Errorf("invalid grade: %d", *g))
+		panic(errors.Errorf("invalid grade: %d", g))
 	}
 }
 
-func (g *Grade) Value() (driver.Value, error) {
+func (g Grade) Value() (driver.Value, error) {
 	return g.String(), nil
 }
 
