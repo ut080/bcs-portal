@@ -13,11 +13,12 @@ import (
 
 type Member struct {
 	ID             uuid.UUID `gorm:"type:uuid;primary_key"`
-	CAPID          uint      `gorm:"column:capid"`
+	CAPID          *uint     `gorm:"column:capid"`
 	LastName       string
 	FirstName      string
 	MemberType     org.MemberType
 	Grade          org.Grade
+	Active         bool
 	JoinDate       *time.Time
 	RankDate       *time.Time
 	ExpirationDate *time.Time
@@ -29,12 +30,19 @@ func (m *Member) FromDomainObject(object pkg.DomainObject) error {
 		return errors.New("attempt to pass non-org.Member object to Member.FromDomainObject")
 	}
 
+	capid := mbr.CAPID()
+	if capid == 0 {
+		m.CAPID = nil
+	} else {
+		m.CAPID = &capid
+	}
+
 	m.ID = mbr.ID()
-	m.CAPID = mbr.CAPID()
 	m.LastName = mbr.LastName()
 	m.FirstName = mbr.FirstName()
 	m.MemberType = mbr.MemberType()
 	m.Grade = mbr.Grade()
+	m.Active = mbr.Active()
 	m.JoinDate = mbr.JoinDate()
 	m.RankDate = mbr.RankDate()
 	m.ExpirationDate = mbr.ExpirationDate()
@@ -43,13 +51,19 @@ func (m *Member) FromDomainObject(object pkg.DomainObject) error {
 }
 
 func (m *Member) ToDomainObject() pkg.DomainObject {
+	var capid uint
+	if m.CAPID != nil {
+		capid = *m.CAPID
+	}
+
 	return org.NewMember(
 		m.ID,
-		m.CAPID,
+		capid,
 		m.LastName,
 		m.FirstName,
 		m.MemberType,
 		m.Grade,
+		m.Active,
 		m.JoinDate,
 		m.RankDate,
 		m.ExpirationDate,

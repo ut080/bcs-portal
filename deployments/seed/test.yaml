@@ -1590,14 +1590,14 @@ duty_assignments:
   - id: 05cc1bf4-6b43-42f7-a561-9a929b8c5ed2
     office_symbol: LDTA
     title: Assisstant Leadership Officer for Alpha Flight
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: c3e26655-d8ee-44b2-8f46-8489c3330281
     reports_to: 8bf74a73-c40e-4abb-a5cc-5d92c7fbb982
     assignee_id: 32d7e62d-b0d9-4c8b-9ac6-6619a6f14917
   - id: d4e897fc-7815-4d9b-bf0d-a04f28fe3957
     office_symbol: LDTB
     title: Assisstant Leadership Officer for Bravo Flight
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: c3e26655-d8ee-44b2-8f46-8489c3330281
     reports_to: 8bf74a73-c40e-4abb-a5cc-5d92c7fbb982
     assignee_id: ba6e5607-0f49-4dc4-9ac5-34ce651cead6
@@ -1702,21 +1702,21 @@ duty_assignments:
   - id: 94968ca6-515f-453a-83ff-962c2b0754de
     office_symbol: C/AEN1
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: c74b7f61-bd67-4eb0-b54d-106bc325fcce
     reports_to: 5bfa3206-7b42-4e6d-a3c6-c3594d79cf49
     assignee_id: cf33b3bd-ce35-401c-9e9c-a63ffd0c2018
   - id: 85da31ae-1f5b-4dca-bbe4-222f98928deb
     office_symbol: C/AEN2
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: c74b7f61-bd67-4eb0-b54d-106bc325fcce
     reports_to: 5bfa3206-7b42-4e6d-a3c6-c3594d79cf49
     assignee_id: 83d6417c-fad7-4f03-b5fe-294d5f63b621
   - id: 2d39bb05-3940-45f4-8a4c-0319c24eecf3
     office_symbol: C/AEN3
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: c74b7f61-bd67-4eb0-b54d-106bc325fcce
     reports_to: 5bfa3206-7b42-4e6d-a3c6-c3594d79cf49
     assignee_id: d4c40ef0-a75a-4fd2-b934-e95d758dd5f2
@@ -1737,21 +1737,21 @@ duty_assignments:
   - id: ba9f2ccf-f9a5-4a8a-8e8d-9e01db0fc2a6
     office_symbol: C/AECN1
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: 4cb2c9c9-a06b-400c-927d-310546eb8127
     reports_to: 62c8759b-aa50-40fa-bf3f-1764eef65f82
     assignee_id: 4174cc6a-ce33-4951-827b-c0acaecc0a21
   - id: ca029a37-4b8f-4287-9d91-eba30592de9f
     office_symbol: C/AECN2
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: 4cb2c9c9-a06b-400c-927d-310546eb8127
     reports_to: 62c8759b-aa50-40fa-bf3f-1764eef65f82
     assignee_id: 6e612315-bbaf-496d-b72f-d7159b8fcc3a
   - id: 54be76de-fa94-46e1-a689-8f693cc5c889
     office_symbol: C/AECN3
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: 4cb2c9c9-a06b-400c-927d-310546eb8127
     reports_to: 62c8759b-aa50-40fa-bf3f-1764eef65f82
     assignee_id: 163015b2-4c61-4782-be4b-a46dcec5fec6
@@ -1772,21 +1772,21 @@ duty_assignments:
   - id: 6a8afd9b-01c4-454b-84a2-cb095ac441d0
     office_symbol: C/ESN1
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: c2c11c2a-0911-49b1-9bc4-9c234f22d20d
     reports_to: ac210dd9-b5b3-49f7-afd8-f64d3651dcb1
     assignee_id: 7c7d5b60-1916-4e83-91c2-dfd5e4d67fa0
   - id: 5e7f7a37-13c4-4770-9de8-a27f42716f59
     office_symbol: C/ESN2
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: c2c11c2a-0911-49b1-9bc4-9c234f22d20d
     reports_to: ac210dd9-b5b3-49f7-afd8-f64d3651dcb1
     assignee_id: e657ca02-5d66-4bb6-aa19-5fb714b34ded
   - id: 6a636d8b-e6e2-497a-8a4e-07dcec2a5f55
     office_symbol: C/ESN3
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: c2c11c2a-0911-49b1-9bc4-9c234f22d20d
     reports_to: ac210dd9-b5b3-49f7-afd8-f64d3651dcb1
     assignee_id: 6ffa84eb-3a20-465a-a3df-fb7f6863a859
@@ -1807,21 +1807,21 @@ duty_assignments:
   - id: 0bbb206a-983c-4f3e-adf8-aaeb9f0da83c
     office_symbol: C/LDN1
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: afc0fce4-1e0d-4077-b911-829f5ce22468
     reports_to: 04ea4850-923c-4b1c-bfc2-274d3848899e
     assignee_id: 69307698-b7ca-45e6-986b-1dc651c18c1e
   - id: 9393f9a4-5616-4a34-b285-d83db40b136b
     office_symbol: C/LDN2
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: afc0fce4-1e0d-4077-b911-829f5ce22468
     reports_to: 04ea4850-923c-4b1c-bfc2-274d3848899e
     assignee_id: 0e2bfd06-5cb7-4ed8-8e3a-5d0787a92efe
   - id: cebb3713-45fb-40ee-ae73-d45e24644fc7
     office_symbol: C/LDN3
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: afc0fce4-1e0d-4077-b911-829f5ce22468
     reports_to: 04ea4850-923c-4b1c-bfc2-274d3848899e
     assignee_id: ec458118-54e2-44e9-9c0d-d527d9a65704
@@ -1842,21 +1842,21 @@ duty_assignments:
   - id: d3fdfc88-5830-46d0-a549-6c7d4e9523b7
     office_symbol: C/LDAN1
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: 4f8cd548-f91b-4e14-8d84-1109fae06384
     reports_to: e7400f38-110d-4e67-b4b7-69743604bb9e
     assignee_id: 85656099-e3f8-41e4-bfe5-d617d10aaa24
   - id: 7d00c8e2-739c-4291-bc5c-0476123c59a6
     office_symbol: C/LDAN2
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: 4f8cd548-f91b-4e14-8d84-1109fae06384
     reports_to: e7400f38-110d-4e67-b4b7-69743604bb9e
     assignee_id: d333f5b7-2476-4211-9454-9366355e55cf
   - id: 0037cef4-1a7e-4665-b79a-c05efeb36d8f
     office_symbol: C/LDAN3
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: 4f8cd548-f91b-4e14-8d84-1109fae06384
     reports_to: e7400f38-110d-4e67-b4b7-69743604bb9e
     assignee_id: 0c7ea44f-fcc4-4786-ba7b-40c0d7f55f4d
@@ -1877,21 +1877,21 @@ duty_assignments:
   - id: 894079c8-746d-4e72-9098-83a250c75cd7
     office_symbol: C/PTN1
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: 66f99a55-b311-4a30-a619-0c65ba55a082
     reports_to: c554be03-749c-41a9-bfc1-a8d48fca6fcf
     assignee_id: 2db1f60b-1525-4c99-9d16-e38dc2163f6c
   - id: 8306f9ba-d118-4e29-a440-979693641417
     office_symbol: C/PTN2
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: 66f99a55-b311-4a30-a619-0c65ba55a082
     reports_to: c554be03-749c-41a9-bfc1-a8d48fca6fcf
     assignee_id: 5a82a316-ff49-41fe-a20d-75f765846dfb
   - id: 15b50b88-9175-48c8-ad1c-857ebfd6ed16
     office_symbol: C/PTN3
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: 66f99a55-b311-4a30-a619-0c65ba55a082
     reports_to: c554be03-749c-41a9-bfc1-a8d48fca6fcf
     assignee_id: 00e3fe75-5add-400b-8a35-c1531d0f546f
@@ -1912,21 +1912,21 @@ duty_assignments:
   - id: c91600de-4efe-4484-88ec-a4d3bfcda245
     office_symbol: C/DAF
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: 2c6b41fe-6959-4a70-9ba0-f574479cd612
     reports_to: d7319edb-b8ab-46f5-9a0a-9535078bdb0e
     assignee_id: 642fc8a9-136b-4e12-bf06-27f50fc0b8ff
   - id: 1fba44b0-69ed-4039-ba78-3345a88bf19d
     office_symbol: C/DAP1
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: e3b31a0b-8220-4d85-936e-07b15d2f905f
     reports_to: d7319edb-b8ab-46f5-9a0a-9535078bdb0e
     assignee_id: 3b93f2f1-d6e5-4dfc-931d-e45393aecebd
   - id: 2d7a9a61-3e7b-4ca3-80b5-4db445bcada2
     office_symbol: C/DAP2
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: e3b31a0b-8220-4d85-936e-07b15d2f905f
     reports_to: d7319edb-b8ab-46f5-9a0a-9535078bdb0e
     assignee_id: b285a07f-8154-43e2-a739-4a4f54de9d84
@@ -1947,21 +1947,21 @@ duty_assignments:
   - id: 12626d47-d256-4086-8ab4-e084f76d9358
     office_symbol: C/DCN1
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: 863c6496-5329-4ea0-be6e-a52ec80ffa75
     reports_to: fbbd5e0d-d815-4d70-98d5-d28b2f102cd9
     assignee_id: 0802ecc3-46de-4bf3-88c9-6583e4e926fb
   - id: d89017f1-0e38-47a0-97e3-57bb316a0716
     office_symbol: C/DCN2
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: 863c6496-5329-4ea0-be6e-a52ec80ffa75
     reports_to: fbbd5e0d-d815-4d70-98d5-d28b2f102cd9
     assignee_id: d55c4acc-ad62-49ba-ac19-b888fa782033
   - id: 503c6621-211e-42d6-b03e-f303fb23e249
     office_symbol: C/DCN3
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: 863c6496-5329-4ea0-be6e-a52ec80ffa75
     reports_to: fbbd5e0d-d815-4d70-98d5-d28b2f102cd9
     assignee_id: ee2090ec-9aa9-40e2-948a-7391a2a528e2
@@ -2017,14 +2017,14 @@ duty_assignments:
   - id: a2ad18c6-1a7f-43e6-be2e-a4a18bf49128
     office_symbol: C/LGN1
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: a05561c0-9bc7-48dc-80d4-9d1ac7b5129f
     reports_to: 71524eb7-f5dc-4167-9758-43f85fa423d3
     assignee_id: 1e109202-3978-48b5-a338-1da74ec6e98a
   - id: 8184bc09-00f6-46ce-9bdd-9ac7571cf7f9
     office_symbol: C/LGN2
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: a05561c0-9bc7-48dc-80d4-9d1ac7b5129f
     reports_to: 71524eb7-f5dc-4167-9758-43f85fa423d3
     assignee_id: c4925bc3-eab7-474f-86d4-b0a467663da5
@@ -2045,14 +2045,14 @@ duty_assignments:
   - id: 5e83ae6d-ab16-4459-9df1-7f73227e1f76
     office_symbol: C/LGSN1
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: 0896211f-ee86-460e-ab4b-ff153482f8cd
     reports_to: fbccb792-2690-413a-a0d7-b3009a1f9cc6
     assignee_id: 0852a5d4-8aa9-4e15-ba7c-7671f90ed4a8
   - id: 99c02156-7695-4bbc-8ba9-5b85d6b726e7
     office_symbol: C/LGSN2
     title: ''
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: 0896211f-ee86-460e-ab4b-ff153482f8cd
     reports_to: fbccb792-2690-413a-a0d7-b3009a1f9cc6
     assignee_id: 40325bd2-1743-43c9-ad15-faba55a08b8c
@@ -2080,7 +2080,7 @@ duty_assignments:
   - id: 1841c3c8-d4d8-486b-8331-8ad39b3c6815
     office_symbol: AFlt/CCF1A
     title: Assisstant Element A-1 Leader
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
     reports_to: 996f2782-b86f-4261-a254-9276e8b23454
     assignee_id: 749f3b16-d268-4e22-9d63-441bba9c1a8c
@@ -2094,7 +2094,7 @@ duty_assignments:
   - id: 3ea4bfdf-a389-43f0-b0a5-538432b2dfc3
     office_symbol: AFlt/CCF2A
     title: Assisstant Element A-2 Leader
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
     reports_to: 80b38db3-ec36-4b19-9d69-eea2e0a3ff7a
     assignee_id: 1ff63bb0-3704-42cd-b351-07aca1fa14b7
@@ -2108,7 +2108,7 @@ duty_assignments:
   - id: 46228210-9be7-4c78-b305-250fc63a70a8
     office_symbol: AFlt/CCF3A
     title: Assisstant Element A-3 Leader
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
     reports_to: 406405e6-592e-4071-ad79-1b75506c098e
     assignee_id: 9e9e3c13-70c1-4021-89ee-a4917098710d
@@ -2122,7 +2122,7 @@ duty_assignments:
   - id: 9f057694-2709-4aeb-bf2b-88bdd17e9890
     office_symbol: AFlt/CCF4A
     title: Assisstant Element A-4 Leader
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
     reports_to: 1786d1ee-f687-468b-8865-81d9d7de2ac8
     assignee_id: df40e01f-d94f-4cb6-8224-0a6d7f85085d
@@ -2150,7 +2150,7 @@ duty_assignments:
   - id: 9c8bdacf-5142-4101-840d-4e0f263c26fa
     office_symbol: BFlt/CCF1A
     title: Assisstant Element B-1 Leader
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
     reports_to: 17542f64-7fa1-434a-b3cc-e3ae7571ed03
     assignee_id: a87237fc-4b35-4ae6-add4-556870113df4
@@ -2164,7 +2164,7 @@ duty_assignments:
   - id: 94fab58f-dd81-44c4-91ba-2116e379772d
     office_symbol: BFlt/CCF2A
     title: Assisstant Element B-2 Leader
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
     reports_to: f2bfa8bc-1f3d-4090-ad8c-4483d32ddda0
     assignee_id: 3dee3563-7495-4873-b8ae-780788d7bfc9
@@ -2178,7 +2178,7 @@ duty_assignments:
   - id: c78b9ddb-7673-4436-9b45-3a41f4261a1a
     office_symbol: BFlt/CCF3A
     title: Assisstant Element B-3 Leader
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
     reports_to: a1ddbab9-8dc0-4639-b44c-2628fdb7bf28
     assignee_id: f4b433e4-5983-4d6e-9a05-7959b783c70d
@@ -2192,7 +2192,7 @@ duty_assignments:
   - id: c5d5e3a0-6b04-47db-86dd-5b648a8f3def
     office_symbol: BFlt/CCF4A
     title: Assisstant Element B-4 Leader
-    assistant: 'TRUE'
+    assistant: true
     duty_title_id: ec6ea052-6ac1-437f-a59d-c748862c8393
     reports_to: b2e3ab19-a3f1-431e-b8b4-013f4ae6ebdb
     assignee_id: 12944eb7-13a5-458d-8119-032d179010aa
@@ -2490,7 +2490,7 @@ staff_groups:
     name: Flight Staff
     staff_supergroup_id: cc1252a6-1dce-42ba-8455-96530bcacf0c
     leader_id: 8f1240dd-7ac4-43c4-a871-24b8e94676b6
-staff_group_direct_reports:
+staff_group_members:
   - staff_group_id: b1d95b8c-9095-4621-af46-9cc9eadbd8e9
     duty_assignment_id: e81f0253-5268-4b1f-a3f9-9c33b6df6819
   - staff_group_id: b1d95b8c-9095-4621-af46-9cc9eadbd8e9

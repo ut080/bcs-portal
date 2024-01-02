@@ -43,19 +43,22 @@ CREATE TYPE grade AS ENUM (
 );
 
 CREATE TYPE unit_type AS ENUM (
+    'Group',
     'Composite Squadron',
     'Cadet Squadron',
     'Senior Squadron',
+    'Flight',
     'Activity'
 );
 
 CREATE TABLE members (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    capid INTEGER NOT NULL UNIQUE CHECK (capid = 0 OR capid >= 100000),
+    capid INTEGER UNIQUE CHECK (capid >= 100000),
     last_name VARCHAR NOT NULL,
     first_name VARCHAR NOT NULL,
     member_type member_type NOT NULL,
     grade grade NOT NULL,
+    active boolean NOT NULL DEFAULT true,
     join_date DATE,
     rank_date DATE,
     expiration_date DATE
@@ -109,7 +112,7 @@ CREATE TABLE staff_groups (
     leader_id UUID NOT NULL REFERENCES duty_assignments (id) ON DELETE RESTRICT
 );
 
-CREATE TABLE staff_group_direct_reports (
+CREATE TABLE staff_group_members (
     staff_group_id UUID NOT NULL REFERENCES staff_groups (id) ON DELETE CASCADE,
     duty_assignment_id UUID NOT NULL REFERENCES duty_assignments (id) ON DELETE CASCADE,
     PRIMARY KEY (staff_group_id, duty_assignment_id)
@@ -118,6 +121,7 @@ CREATE TABLE staff_group_direct_reports (
 CREATE TABLE units (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     charter_number VARCHAR NOT NULL UNIQUE,
+    unit_type unit_type NOT NULL,
     name VARCHAR NOT NULL,
     commander_id UUID NOT NULL REFERENCES duty_assignments (id) ON DELETE CASCADE
 );

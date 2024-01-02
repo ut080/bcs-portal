@@ -14,6 +14,7 @@ type Member struct {
 	firstName      string
 	memberType     MemberType
 	grade          Grade
+	active         bool
 	joinDate       *time.Time
 	rankDate       *time.Time
 	expirationDate *time.Time
@@ -26,6 +27,7 @@ func NewMember(
 	firstName string,
 	memberType MemberType,
 	grade Grade,
+	active bool,
 	joinDate *time.Time,
 	rankDate *time.Time,
 	expirationDate *time.Time,
@@ -37,6 +39,7 @@ func NewMember(
 		firstName:      firstName,
 		memberType:     memberType,
 		grade:          grade,
+		active:         active,
 		joinDate:       joinDate,
 		rankDate:       rankDate,
 		expirationDate: expirationDate,
@@ -65,6 +68,10 @@ func (m Member) MemberType() MemberType {
 
 func (m Member) Grade() Grade {
 	return m.grade
+}
+
+func (m Member) Active() bool {
+	return m.active
 }
 
 func (m Member) JoinDate() *time.Time {

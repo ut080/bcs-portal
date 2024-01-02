@@ -23,7 +23,7 @@ type DutyAssignment struct {
 func (da *DutyAssignment) FromDomainObject(object pkg.DomainObject) error {
 	assignment, ok := object.(org.DutyAssignment)
 	if !ok {
-		return errors.New("attempt to pass non-org.DutyTitle object to DutyTitle.FromDomainObject")
+		return errors.New("attempt to pass non-org.DutyAssignment object to DutyAssignment.FromDomainObject")
 	}
 
 	dutyTitle := DutyTitle{}

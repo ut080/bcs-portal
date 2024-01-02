@@ -7,14 +7,21 @@ import (
 type StaffGroup struct {
 	id        uuid.UUID
 	name      string
-	subGroups []StaffSubgroup
+	subgroups []StaffGroup
+	leader    DutyAssignment
 }
 
-func NewStaffGroup(id uuid.UUID, name string, subgroups []StaffSubgroup) StaffGroup {
+func NewStaffGroup(
+	id uuid.UUID,
+	name string,
+	subgroups []StaffGroup,
+	leader DutyAssignment,
+) StaffGroup {
 	return StaffGroup{
 		id:        id,
 		name:      name,
-		subGroups: subgroups,
+		subgroups: subgroups,
+		leader:    leader,
 	}
 }
 
@@ -26,6 +33,10 @@ func (sg StaffGroup) Name() string {
 	return sg.name
 }
 
-func (sg StaffGroup) SubGroups() []StaffSubgroup {
-	return sg.subGroups
+func (sg StaffGroup) Subgroups() []StaffGroup {
+	return sg.subgroups
+}
+
+func (sg StaffGroup) Leader() DutyAssignment {
+	return sg.leader
 }

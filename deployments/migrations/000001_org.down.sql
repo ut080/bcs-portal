@@ -1,5 +1,5 @@
 DROP TABLE units;
-DROP TABLE staff_group_direct_reports;
+DROP TABLE staff_group_members;
 DROP TABLE staff_groups;
 DROP TABLE element_members;
 DROP TABLE elements;
