@@ -1,11 +1,11 @@
-package postgres_repo
+package gorm_org
 
 import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/ut080/bcs-portal/pkg/org"
-	"github.com/ut080/bcs-portal/repositories/gorm"
+	"github.com/ut080/bcs-portal/repositories/gorm/gorm_org"
 )
 
 func (suite *RepositorySuite) TestMember_BeforeCreate() {
@@ -16,12 +16,13 @@ func (suite *RepositorySuite) TestMember_BeforeCreate() {
 		"Robert",
 		org.SeniorMember,
 		org.Capt,
+		true,
 		nil,
 		nil,
 		nil,
 	)
 
-	repoMbr := gorm.Member{}
+	repoMbr := gorm_org.Member{}
 	err := repoMbr.FromDomainObject(mbr)
 	assert.NoError(suite.T(), err)
 
@@ -40,7 +41,7 @@ func (suite *RepositorySuite) TestMember_ToDomainObject() {
 		grade: Maj
 	*/
 
-	repoMbr := gorm.Member{}
+	repoMbr := gorm_org.Member{}
 	result := suite.db.Take(&repoMbr).Where("capid = ?", 688662)
 	assert.NoError(suite.T(), result.Error)
 

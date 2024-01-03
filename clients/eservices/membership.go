@@ -140,6 +140,7 @@ func (mr *MembershipReport) FetchMembers() (members map[uint]org.Member, err err
 			firstName,
 			mr.memberType,
 			grade,
+			true,
 			&joinDate,
 			&rankDate,
 			&expirationDate,

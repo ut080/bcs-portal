@@ -31,6 +31,7 @@ type SummaryInfo struct {
 	FirstName      string         `yaml:"first_name"`
 	MemberType     org.MemberType `yaml:"member_type"`
 	Grade          org.Grade      `yaml:"grade"`
+	Active         bool           `yaml:"active"`
 	JoinDate       *time.Time     `yaml:"join_date"`
 	RankDate       *time.Time     `yaml:"rank_date"`
 	ExpirationDate *time.Time     `yaml:"expiration_date"`
@@ -58,7 +59,7 @@ func NewMember(member org.Member) Member {
 }
 
 func (m *Member) FromDomainObject(object pkg.DomainObject) error {
-	panic("imlement me")
+	panic("implement me")
 }
 
 func (m *Member) ToDomainObject() pkg.DomainObject {
@@ -69,6 +70,7 @@ func (m *Member) ToDomainObject() pkg.DomainObject {
 		m.SummaryInfo.FirstName,
 		m.SummaryInfo.MemberType,
 		m.SummaryInfo.Grade,
+		m.SummaryInfo.Active,
 		m.SummaryInfo.JoinDate,
 		m.SummaryInfo.RankDate,
 		m.SummaryInfo.ExpirationDate,

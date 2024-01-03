@@ -1,4 +1,4 @@
-package gorm
+package gorm_org
 
 import (
 	"github.com/google/uuid"

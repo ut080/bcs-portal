@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"flag"
 	"fmt"
 	"os"
 	"strings"
@@ -15,7 +16,21 @@ import (
 	_ "gorm.io/driver/postgres"
 )
 
+func reset(pollute bool) error {
+	err := down()
+	if err != nil && err.Error() != migrate.ErrNoChange.Error() {
+		return errors.WithStack(err)
+	}
+	err = up(pollute)
+	if err != nil {
+		return errors.WithStack(err)
+	}
+
+	return nil
+}
+
 func down() error {
+	fmt.Println("Migrating dev database down...")
 	m, _, err := setup()
 	if err != nil {
 		return errors.WithStack(err)
@@ -29,7 +44,8 @@ func down() error {
 	return nil
 }
 
-func up() error {
+func up(pollute bool) error {
+	fmt.Println("Migrating dev database up...")
 	m, p, err := setup()
 	if err != nil {
 		return errors.WithStack(err)
@@ -40,15 +56,26 @@ func up() error {
 		return errors.WithStack(err)
 	}
 
-	err = seed(p)
-	if err != nil {
-		return errors.WithStack(err)
+	if pollute {
+		err = seed(p)
+		if err != nil {
+			return errors.WithStack(err)
+		}
 	}
 
 	return nil
 }
 
 func seed(polluter *polluter.Polluter) error {
+	if polluter == nil {
+		_, p, err := setup()
+		if err != nil {
+			return errors.WithStack(err)
+		}
+		polluter = p
+	}
+
+	fmt.Println("Seeding database...")
 	seedPath := os.Getenv("DEV_SEED")
 
 	f, err := os.Open(seedPath)
@@ -85,8 +112,12 @@ func setup() (*migrate.Migrate, *polluter.Polluter, error) {
 }
 
 func main() {
-	if len(os.Args) < 2 {
-		fmt.Println("Usage: go run devdb.go [up|down|reset]")
+	pollute := flag.Bool("seed", false, "seed database with test data after migration")
+	flag.Parse()
+
+	cmd := flag.Arg(0)
+	if cmd == "" {
+		fmt.Println("Usage: go run devdb.go [--seed] [up|down|reset|seed]")
 		os.Exit(1)
 	}
 
@@ -94,19 +125,16 @@ func main() {
 		fmt.Println("Could not load .env, attempting to continue")
 	}
 
-	cmd := os.Args[1]
-
 	var err error
 	switch strings.ToLower(cmd) {
 	case "up":
-		err = up()
+		err = up(*pollute)
 	case "down":
 		err = down()
 	case "reset":
-		err = down()
-		if err == nil {
-			err = up()
-		}
+		err = reset(*pollute)
+	case "seed":
+		err = seed(nil)
 	default:
 		fmt.Printf("Invalid command: %s\nValid commands are [up|down|reset]\n", cmd)
 	}

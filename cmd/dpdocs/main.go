@@ -6,9 +6,9 @@ import (
 	"github.com/ut080/bcs-portal/internal/dpdocs"
 )
 
-// BaseVersion is the SemVer-formatted string that defines the current version of dpdocs.
+// BaseVersion is the SemVer-formatted string that defines the current version of ag7if.
 // Build information will be added at compile-time.
-const BaseVersion = "1.1.0"
+const BaseVersion = "2.0.0-develop"
 
 // BuildTime is a timestamp of when the build is run. This variable is set at compile-time.
 var BuildTime string
@@ -28,5 +28,6 @@ func main() {
 		GitRevision,
 		BuildTime,
 	)
+
 	dpdocs.Execute()
 }

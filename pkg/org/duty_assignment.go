@@ -36,7 +36,11 @@ func (da DutyAssignment) ID() uuid.UUID {
 }
 
 func (da DutyAssignment) Title() string {
-	return da.title
+	if da.title != "" {
+		return da.title
+	}
+
+	return da.dutyTitle.Title()
 }
 
 func (da DutyAssignment) OfficeSymbol() string {

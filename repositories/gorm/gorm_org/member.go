@@ -1,4 +1,4 @@
-package gorm
+package gorm_org
 
 import (
 	"time"
@@ -12,16 +12,16 @@ import (
 )
 
 type Member struct {
-	ID             uuid.UUID `gorm:"type:uuid;primary_key"`
-	CAPID          *uint     `gorm:"column:capid"`
-	LastName       string
-	FirstName      string
-	MemberType     org.MemberType
-	Grade          org.Grade
-	Active         bool
-	JoinDate       *time.Time
-	RankDate       *time.Time
-	ExpirationDate *time.Time
+	ID             uuid.UUID      `gorm:"column:id;type:uuid;primary_key"`
+	CAPID          *uint          `gorm:"column:capid"`
+	LastName       string         `gorm:"column:last_name"`
+	FirstName      string         `gorm:"column:first_name"`
+	MemberType     org.MemberType `gorm:"column:member_type"`
+	Grade          org.Grade      `gorm:"column:grade"`
+	Active         bool           `gorm:"column:active"`
+	JoinDate       *time.Time     `gorm:"column:join_date"`
+	RankDate       *time.Time     `gorm:"column:rank_date"`
+	ExpirationDate *time.Time     `gorm:"column:expiration_date"`
 }
 
 func (m *Member) FromDomainObject(object pkg.DomainObject) error {

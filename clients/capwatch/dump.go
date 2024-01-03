@@ -104,6 +104,7 @@ func (d *Dump) FetchMembers() (members map[uint]org.Member, err error) {
 			firstName,
 			memberType,
 			grade,
+			true,
 			nil,
 			nil,
 			nil,

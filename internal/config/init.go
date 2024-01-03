@@ -11,8 +11,11 @@ func InitConfig() {
 	SetDefault("capwatch.orgid", "")
 	SetDefault("capwatch.username", "")
 	SetDefault("capwatch.refresh", 7)
-	SetDefault("unit.name", "")
-	SetDefault("unit.patch_image", "")
+	SetDefault("database.host", "localhost")
+	SetDefault("database.port", "5432")
+	SetDefault("database.name", "bcs_portal")
+	SetDefault("database.user", "postgres")
+	SetDefault("database.password", "postgres")
 
 	cwd, _ := os.Getwd()
 	logging.Trace().Str("cwd", cwd).Msg("")

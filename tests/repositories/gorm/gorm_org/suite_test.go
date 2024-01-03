@@ -1,4 +1,4 @@
-package postgres_repo
+package gorm_org
 
 import (
 	"database/sql"
@@ -53,7 +53,9 @@ func (suite *RepositorySuite) SetupSuite() {
 
 	err = suite.migrator.Up()
 	if err != nil {
-		panic(err)
+		if err.Error() != migrate.ErrNoChange.Error() {
+			panic(err)
+		}
 	}
 
 	// Initialize seeder
@@ -72,6 +74,10 @@ func (suite *RepositorySuite) SetupTest() {
 	if err != nil {
 		panic(err)
 	}
+	_, err = db.Exec("DELETE FROM units;")
+	if err != nil {
+		panic(err)
+	}
 	_, err = db.Exec("DELETE FROM element_members;")
 	if err != nil {
 		panic(err)
@@ -81,6 +87,14 @@ func (suite *RepositorySuite) SetupTest() {
 		panic(err)
 	}
 	_, err = db.Exec("DELETE FROM flights;")
+	if err != nil {
+		panic(err)
+	}
+	_, err = db.Exec("DELETE FROM staff_group_members")
+	if err != nil {
+		panic(err)
+	}
+	_, err = db.Exec("DELETE FROM staff_groups")
 	if err != nil {
 		panic(err)
 	}

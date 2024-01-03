@@ -29,9 +29,13 @@ install_dev: bin/dpdocs bin/damx
 	BCSPORTAL_CONFIG=./testdata/config BCSPORTAL_CACHE=./testdata/cache go run build/damx/install.go $(CURDIR)
 	BCSPORTAL_CONFIG=./testdata/config BCSPORTAL_CACHE=./testdata/cache go run build/dpdocs/install.go $(CURDIR)
 
-.PHONY: dev_migrate
-dev_migrate:
+.PHONY: devdb_migrate
+devdb_migrate:
+	cd tools/devdb/ && go run devdb.go reset
 
+.PHONY: devdb_reset
+devdb_reset:
+	cd tools/devdb/ && go run devdb.go --seed reset
 
 .PHONY: test
 test:
@@ -44,5 +48,5 @@ clean:
 
 # For future reference when I set this up with a server:
 #.PHONY: run
-#run: bin/ag7if
+#run: bin/bcs-portal
 #	air -d -c .air.conf
