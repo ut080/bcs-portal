@@ -8,7 +8,7 @@ import (
 
 // BaseVersion is the SemVer-formatted string that defines the current version of dpdocs.
 // Build information will be added at compile-time.
-const BaseVersion = "1.0.0"
+const BaseVersion = "1.1.0"
 
 // BuildTime is a timestamp of when the build is run. This variable is set at compile-time.
 var BuildTime string
