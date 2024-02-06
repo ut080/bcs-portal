@@ -10,8 +10,15 @@ import (
 
 // Directory functions
 
-// ConfigDir returns the directory where configuration filing and assets are stored.
-func ConfigDir() (string, error) {
+// CfgDir returns the directory where configuration filing and assets are stored.
+// If the environment variable BCSPORTAL_CONFIG is set, then that configuration directory will be used.
+// Otherwise, it defaults to ${UserConfigDir}/bcs-portal
+func CfgDir() (string, error) {
+	cfgDir := os.Getenv("BCSPORTAL_CONFIG")
+	if cfgDir != "" {
+		return cfgDir, nil
+	}
+
 	hd, err := os.UserConfigDir()
 	if err != nil {
 		return "", errors.WithMessage(err, "failed to find user home directory")
@@ -21,7 +28,14 @@ func ConfigDir() (string, error) {
 }
 
 // CacheDir returns the directory where CAPWATCH and other cache filing are stored.
+// If the environment variable BCSPORTAL_CACHE is set, then that configuration directory will be used.
+// Otherwise, it defaults to ${UserCacheDir}/bcs-portal
 func CacheDir() (string, error) {
+	cacheDir := os.Getenv("BCSPORTAL_CACHE")
+	if cacheDir != "" {
+		return cacheDir, nil
+	}
+
 	cd, err := os.UserCacheDir()
 	if err != nil {
 		return "", errors.WithMessage(err, "failed to find user cache directory")

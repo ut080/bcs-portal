@@ -68,7 +68,7 @@ var dirsCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(dirsCmd)
+	RootCmd.AddCommand(dirsCmd)
 
 	dirsCmd.Flags().StringVarP(&cdtMbrReportStr, "cdt-report", "c", "", "file path to eServices Cadet Membership report (skips CAPWATCH access). MUST be used with --csm-report and --sm-report.")
 	dirsCmd.Flags().StringVarP(&csMbrReportStr, "csm-report", "s", "", "file path to eServices Cadet Sponsor Membership report (skips CAPWATCH access). MUST be used with --cdt-report and --sm-report.")

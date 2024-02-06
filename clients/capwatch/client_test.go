@@ -22,7 +22,7 @@ func (suite *ClientTestSuite) SetupTest() {
 }
 
 func (suite *ClientTestSuite) TestFetch() {
-	//suite.T().Skip("This test hits CAPWATCH, comment out the Skip() method if you want it to run.")
+	suite.T().Skip("This test hits CAPWATCH, comment out the Skip() method if you want it to run.")
 	orgID := viper.GetString("capwatch.orgid")
 	username := viper.GetString("capwatch.username")
 	password := viper.GetString("capwatch.password")

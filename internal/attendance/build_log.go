@@ -23,7 +23,7 @@ import (
 )
 
 func loadTableOfOrganizationConfiguration(toCfg files.File, logger logging.Logger) (to org.TableOfOrganization, err error) {
-	cfgDir, err := config.ConfigDir()
+	cfgDir, err := config.CfgDir()
 	if err != nil {
 		return org.TableOfOrganization{}, errors.WithMessage(err, "failed to access config directory")
 	}

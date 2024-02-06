@@ -60,5 +60,5 @@ func init() {
 	fileplanCmd.Flags().StringVarP(&csvOutFileStr, "csv", "c", "", "output file path for the CSV file (defaults to the basename of the fileplan config)")
 	fileplanCmd.Flags().StringVarP(&csvOutFileStr, "pdf", "p", "", "output file path for the PDF file (defaults to the basename of the fileplan config)")
 
-	rootCmd.AddCommand(fileplanCmd)
+	RootCmd.AddCommand(fileplanCmd)
 }

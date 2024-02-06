@@ -16,7 +16,7 @@ func CopyAssets(projectPath string, logger logging.Logger) error {
 	defaultCfgDir := filepath.Join(projectPath, "config")
 	defaultSchemaDir := filepath.Join(projectPath, "docs", "schemas")
 
-	cfgDir, err := config.ConfigDir()
+	cfgDir, err := config.CfgDir()
 	if err != nil {
 		return errors.WithStack(err)
 	}

@@ -17,11 +17,11 @@ func InitConfig() {
 	cwd, _ := os.Getwd()
 	logging.Trace().Str("cwd", cwd).Msg("")
 
-	cfgDir, err := ConfigDir()
+	cfgDir, err := CfgDir()
 	if err != nil {
-		logging.Error().Err(err).Msg("could not find user config dir")
+		logging.Error().Err(err).Msgf("could not find configuration directory: %s", cfgDir)
 	} else {
-		logging.Debug().Str("usrCfgDir", cfgDir).Msg("user config dir found")
+		logging.Debug().Str("usrCfgDir", cfgDir).Msgf("configuration directory found: %s", cfgDir)
 	}
 
 	SetConfigType("yaml")
