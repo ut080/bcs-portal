@@ -8,8 +8,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- `dpdocs` will now accept the eServices Membership report as an input file as an alternative to CAPWATCH.
-- Join Date and Rank Date are now a part of the Domain Model.
 - The config path can be set with the env variable BCSPORTAL_CONFIG
 - The cache path can be set with the env variable BCSPORTAL_CACHE
 - Added --version flag
@@ -24,19 +22,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
-## [1.0.0]
-
-### Changed
-- Output file name now defaults to the log date
-- `dpdocs` will ask for the CAPWATCH password if it will be refreshing the cache instead of throwing an error
-
-### Removed
-- `--password` flag removed from command-line interface
-
-### Security
-- Instead of typing the eServices password on the command line in the clear, a no-echo scan approach is now used
-
 ## [0.1.0]
+
+### Added
+- Creating personnel file directories
+- Creating file plan documentation
 
 ### Added
 - Fetching membership data from CAPWATCH
@@ -44,5 +34,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Creating Barcode Attendance Logs from CAPWATCH data and YAML config
 
 [unreleased]: https://github.com/ut080/bcs-portal/compare/v0.1.0...HEAD
-[1.0.0]: https://github.com/ut080/bcs-portal/compare/v0.1.0...v1.0.0
 [0.1.0]: https://github.com/ut080/bcs-portal/releases/tag/v0.1.0

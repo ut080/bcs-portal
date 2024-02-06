@@ -97,5 +97,5 @@ func init() {
 	attendanceCmd.Flags().StringVarP(&attCSMbrReportStr, "csm-report", "s", "", "file path to eServices Cadet Sponsor Membership report (skips CAPWATCH access). MUST be used with --cdt-report and --sm-report.")
 	attendanceCmd.Flags().StringVarP(&attSMbrReportStr, "sm-report", "r", "", "file path to eServices Cadet Membership report (skips CAPWATCH access). MUST be used with --cdt-report and --csm-report.")
 
-	rootCmd.AddCommand(attendanceCmd)
+	RootCmd.AddCommand(attendanceCmd)
 }

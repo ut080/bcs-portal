@@ -15,7 +15,7 @@ var attendanceCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(attendanceCmd)
+	RootCmd.AddCommand(attendanceCmd)
 }
 
 */
