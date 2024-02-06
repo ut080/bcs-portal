@@ -8,11 +8,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- `dpdocs` will now accept the eServices Membership report as an input file as an alternative to CAPWATCH.
-- Join Date and Rank Date are now a part of the Domain Model.
-- The config path can be set with the env variable BCSPORTAL_CONFIG
-- The cache path can be set with the env variable BCSPORTAL_CACHE
-- Added --version flag
 
 ### Changed
 
