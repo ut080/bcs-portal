@@ -12,7 +12,7 @@ import (
 )
 
 func CreateConfigDirectories() error {
-	cfgDir, err := config.ConfigDir()
+	cfgDir, err := config.CfgDir()
 	if err != nil {
 		return errors.WithStack(err)
 	}

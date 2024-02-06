@@ -16,7 +16,7 @@ import (
 )
 
 func loadFileDispositionRules(logger logging.Logger) (map[uint]filing.DispositionTable, error) {
-	cfgDir, err := config.ConfigDir()
+	cfgDir, err := config.CfgDir()
 	if err != nil {
 		return nil, errors.WithMessage(err, "failed to access config directory")
 	}

@@ -22,6 +22,7 @@ func (suite *DumpTestSuite) SetupTest() {
 }
 
 func (suite *DumpTestSuite) TestFetchMembers() {
+	suite.T().Skip("You need a CAPWATCH dump to run this test. Comment out the Skip() method if you want it to run.")
 	orgID := viper.GetString("capwatch.orgid")
 	username := viper.GetString("capwatch.username")
 	password := viper.GetString("capwatch.password")

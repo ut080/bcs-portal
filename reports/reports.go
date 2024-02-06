@@ -11,7 +11,7 @@ import (
 )
 
 func ConfigureLaTeXCompiler(logger logging.Logger) (*latex.Compiler, error) {
-	cfgDir, err := config.ConfigDir()
+	cfgDir, err := config.CfgDir()
 	if err != nil {
 		return nil, errors.WithMessage(err, "failed to find config directory")
 	}
