@@ -4,7 +4,8 @@ CREATE TYPE member_type AS ENUM (
     'SENIOR',
     'CADET',
     'CADET SPONSOR',
-    'PATRON'
+    'PATRON',
+    'PARENT'
 );
 
 CREATE TYPE grade AS ENUM (
@@ -25,6 +26,9 @@ CREATE TYPE grade AS ENUM (
     'TSgt',
     'SSgt',
     'SM',
+    'Mr.',
+    'Ms.',
+    'Mx.',
     'C/Col',
     'C/Lt Col',
     'C/Maj',

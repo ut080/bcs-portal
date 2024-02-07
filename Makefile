@@ -21,21 +21,25 @@ install: bin/dpdocs bin/damx
 	cp bin/dpdocs ${HOME}/.local/bin/
 	cp bin/damx ${HOME}/.local/bin/
 
-.PHONY: install_dev
-install_dev: bin/dpdocs bin/damx
+.PHONY: dev_install
+dev_install: bin/dpdocs bin/damx
 	-rm -r ./testdata
 	mkdir -p ./testdata/config
 	mkdir -p ./testdata/cache
 	BCSPORTAL_CONFIG=./testdata/config BCSPORTAL_CACHE=./testdata/cache go run build/damx/install.go $(CURDIR)
 	BCSPORTAL_CONFIG=./testdata/config BCSPORTAL_CACHE=./testdata/cache go run build/dpdocs/install.go $(CURDIR)
 
-.PHONY: devdb_migrate
-devdb_migrate:
-	cd tools/devdb/ && go run devdb.go reset
+.PHONY: dev_db_up
+dev_db_up:
+	cd tools/migrate/ && go run migrate.go --seed up
 
-.PHONY: devdb_reset
-devdb_reset:
-	cd tools/devdb/ && go run devdb.go --seed reset
+.PHONY: dev_db_down
+dev_db_down:
+	cd tools/migrate/ && go run migrate.go down
+
+.PHONY: dev_db_reset
+dev_db_reset:
+	cd tools/migrate/ && go run migrate.go --seed reset
 
 .PHONY: test
 test:

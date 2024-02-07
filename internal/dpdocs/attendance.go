@@ -21,7 +21,7 @@ var fileplanCmd = &cobra.Command{
 func init() {
 	fileplanCmd.Flags().StringVarP(&logOutFileStr, "out", "o", "", "output file path for attendance log (defaults to <SquadronName>-<MeetingDate>.pdf).")
 
-	rootCmd.AddCommand(fileplanCmd)
+	RootCmd.AddCommand(fileplanCmd)
 }
 
 func runAttendance(cmd *cobra.Command, args []string) {

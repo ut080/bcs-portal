@@ -16,6 +16,7 @@ const (
 	CadetMember
 	CadetSponsorMember
 	PatronMember
+	CadetParent
 )
 
 func ParseMemberType(memberTypeStr string) (MemberType, error) {
@@ -28,6 +29,8 @@ func ParseMemberType(memberTypeStr string) (MemberType, error) {
 		return CadetSponsorMember, nil
 	case "PATRON":
 		return PatronMember, nil
+	case "PARENT":
+		return CadetParent, nil
 	default:
 		return -1, errors.Errorf("invalid member type: %s", memberTypeStr)
 	}
@@ -62,6 +65,8 @@ func (mt MemberType) String() string {
 		return "CADET SPONSOR"
 	case PatronMember:
 		return "PATRON"
+	case CadetParent:
+		return "PARENT"
 	default:
 		panic(fmt.Errorf("invalid MemberType enum value: %d", mt))
 	}

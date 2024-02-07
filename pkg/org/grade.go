@@ -26,6 +26,9 @@ const (
 	CdtLtCol
 	CdtCol
 	SM
+	Mr
+	Ms
+	Mx
 	SSgt
 	TSgt
 	MSgt
@@ -80,6 +83,12 @@ func ParseGrade(gradeStr string) (Grade, error) {
 		return SSgt, nil
 	case "SM":
 		return SM, nil
+	case "Mr.":
+		return Mr, nil
+	case "Ms.":
+		return Ms, nil
+	case "Mx.":
+		return Mx, nil
 	case "C/Col":
 		return CdtCol, nil
 	case "C/Lt Col":
@@ -170,6 +179,12 @@ func (g Grade) String() string {
 		return "SSgt"
 	case SM:
 		return "SM"
+	case Mr:
+		return "Mr."
+	case Ms:
+		return "Ms."
+	case Mx:
+		return "Mx."
 	case CdtCol:
 		return "C/Col"
 	case CdtLtCol:

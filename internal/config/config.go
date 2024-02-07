@@ -87,3 +87,8 @@ func GetInt(key string) int {
 func GetString(key string) string {
 	return viper.GetString(key)
 }
+
+// GetBool wraps Viper's GetBool function.
+func GetBool(key string) bool {
+	return viper.GetBool(key)
+}

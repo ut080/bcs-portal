@@ -17,7 +17,7 @@ var localUpdateCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(localUpdateCmd)
+	RootCmd.AddCommand(localUpdateCmd)
 }
 
 func runLocalUpdate(cmd *cobra.Command, args []string) {

@@ -13,9 +13,12 @@ func InitConfig() {
 	SetDefault("capwatch.refresh", 7)
 	SetDefault("database.host", "localhost")
 	SetDefault("database.port", "5432")
-	SetDefault("database.name", "bcs_portal")
+	SetDefault("database.name", "bcs_portal_dev")
 	SetDefault("database.user", "postgres")
 	SetDefault("database.password", "postgres")
+	SetDefault("database.ssl", false)
+	SetDefault("database.migration.source", "file:///path/to/migrations")
+	SetDefault("database.migration.seed", "/path/to/seed")
 
 	cwd, _ := os.Getwd()
 	logging.Trace().Str("cwd", cwd).Msg("")

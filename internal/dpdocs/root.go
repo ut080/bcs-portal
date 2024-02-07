@@ -11,7 +11,7 @@ import (
 
 var logLevel string
 
-// rootCmd represents the base command when called without any subcommands
+// RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
 	Use:   "dpdocs",
 	Short: "Helper tools for Civil Air Patrol admin and personnel officers",
