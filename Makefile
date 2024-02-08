@@ -11,14 +11,9 @@ LDFLAGS = -ldflags "-s -X main.BuildTime=${BUILD_TIME} -X main.GitRevision=${GIT
 bin/damx: $(foreach f, $(SRC), $(f))
 	go build ${LDFLAGS} -o bin/damx cmd/damx/main.go
 
-bin/dpdocs: $(foreach f, $(SRC), $(f))
-	go build ${LDFLAGS} -o bin/dpdocs cmd/dpdocs/main.go
-
 .PHONY: install
-install: bin/dpdocs bin/damx
+install: bin/damx
 	go run build/damx/install.go $(CURDIR)
-	go run build/dpdocs/install.go $(CURDIR)
-	cp bin/dpdocs ${HOME}/.local/bin/
 	cp bin/damx ${HOME}/.local/bin/
 
 .PHONY: dev_install

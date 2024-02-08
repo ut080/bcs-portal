@@ -11,7 +11,11 @@ import (
 )
 
 type Repository struct {
-	db gorm.DB
+	db *gorm.DB
+}
+
+func NewRepository(db *gorm.DB) Repository {
+	return Repository{db: db}
 }
 
 func (r *Repository) FromDomainObject(object pkg.DomainObject) (repositories.RepoObject, error) {
@@ -57,6 +61,20 @@ func (r *Repository) FromDomainObject(object pkg.DomainObject) (repositories.Rep
 	default:
 		return nil, errors.Errorf("%s is not supported by the GORM Repo", t)
 	}
+}
+
+func (r *Repository) FromDomainObjects(objects []pkg.DomainObject) ([]repositories.RepoObject, error) {
+	var objs []repositories.RepoObject
+	for _, v := range objects {
+		obj, err := r.FromDomainObject(v)
+		if err != nil {
+			return nil, errors.WithStack(err)
+		}
+
+		objs = append(objs, obj)
+	}
+
+	return objs, nil
 }
 
 func (r *Repository) Create(objects []repositories.RepoObject) ([]pkg.DomainObject, error) {
@@ -112,8 +130,4 @@ func (r *Repository) Delete(objects []repositories.RepoObject) ([]pkg.DomainObje
 func (r *Repository) DeleteOne(object repositories.RepoObject) (pkg.DomainObject, error) {
 	//TODO implement me
 	panic("implement me")
-}
-
-func NewRepository(db gorm.DB) Repository {
-	return Repository{db: db}
 }

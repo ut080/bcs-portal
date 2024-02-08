@@ -10,6 +10,12 @@ type Repository interface {
 	// error is returned instead.
 	FromDomainObject(pkg.DomainObject) (RepoObject, error)
 
+	// FromDomainObjects iterates over the argument and returns the results from FromDomainObject. If any one of the
+	// members of the slice throws an error, then the whole process breaks, a nil slice is returned, and the error
+	// that caused the initial problem is returned.
+	// TODO: Find a more sane way to handle errors
+	FromDomainObjects([]pkg.DomainObject) ([]RepoObject, error)
+
 	// Create will return a statement that attempts to create the slice of objects.
 	Create([]RepoObject) ([]pkg.DomainObject, error)
 

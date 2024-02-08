@@ -64,7 +64,7 @@ func (mr *MembershipReport) FetchMembers() (members map[uint]org.Member, err err
 	const gradeField = 4
 	const rankDateField = 5
 	const joinDateField = 7
-	const expirationDateField = 0
+	const expirationDateField = 8
 
 	// nameField is the full name. To parse it, we will need this regex:
 	nameRE := regexp.MustCompile(`(\w+),\s*(\w+)`)
